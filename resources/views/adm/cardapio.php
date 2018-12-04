@@ -92,7 +92,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   // the product is automatically added to our Firebase database!
   $scope.addProduct = function() {
     $scope.products.$add({
-      text: $scope.newProductText
+      text: $scope.newProductText,
+      value: $scope.newProductValue
     });
   };
   // click on `index.html` above to see $remove() and $save() in action
@@ -252,6 +253,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
     <!-- push a new product onto the array -->
     <form ng-submit="addProduct()">
       <input ng-model="newProductText" />
+      <input ng-model="newProductValue" />
       <button type="submit">Add Product</button>
     </form>
           <div class="col-md-4">
