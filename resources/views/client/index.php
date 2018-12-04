@@ -176,24 +176,22 @@
                 <i class="material-icons">error</i> Error Page
               </a>
             </div>
-          </li>
+          </li> 
           <li class="button-container nav-item iframe-extern">
-            <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-rose   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i> Buy Now
+            <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-warning   btn-round btn-block">
+              <i class="material-icons">shopping_cart</i> Meus Pedidos
             </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/examples/clark-street-merc.jpg');">
+  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/croissant-chocolate-aberto.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
           <div class="brand">
-            <h1 class="title">Ecommerce Page!</h1>
-            <h4>Free global delivery for all products. Use coupon
-              <b>25summer</b> for an extra 25% Off</h4>
+            <img src="../assets/img/clark-street-merc.jpg">
           </div>
         </div>
       </div>
@@ -202,18 +200,18 @@
   <div class="main main-raised">
     <div class="section">
       <div class="container">
-        <h2 class="section-title">Latest Offers</h2>
+        <h2 class="section-title">Cardápio</h2>
         <div class="row">
           <div class="col-md-4">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
-                  <img src="../assets/img/examples/gucci.jpg" alt="">
+                  <img src="../assets/img/examples/croissant_presunto_e_queijo.jpg" alt="">
                 </a>
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">
-                  <a href="#pablo">Gucci</a>
+                  <a href="#pablo">Croissant de Presunto e Queijo</a>
                 </h4>
                 <p class="card-description">The structured shoulders and sleek detailing ensure a sharp silhouette. Team it with a silk pocket square and leather loafers.</p>
               </div>
@@ -234,11 +232,11 @@
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
-                  <img src="../assets/img/examples/dolce.jpg" alt="">
+                  <img src="../assets/img/examples/sanduba-bigben.jpg" alt="">
                 </a>
               </div>
               <div class="card-body">
-                <h4 class="card-title">Dolce &amp; Gabbana</h4>
+                <h4 class="card-title">Sanduba BigBen</h4>
                 <p class="card-description">The structured shoulders and sleek detailing ensure a sharp silhouette. Team it with a silk pocket square and leather loafers.</p>
               </div>
               <div class="card-footer">
@@ -258,11 +256,11 @@
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
-                  <img src="../assets/img/examples/tom-ford.jpg" alt="">
+                  <img src="../assets/img/examples/bolo_de_cenoura-1.jpg" alt="">
                 </a>
               </div>
               <div class="card-body">
-                <h4 class="card-title">Dolce &amp; Gabbana</h4>
+                <h4 class="card-title">Bolo de Cenoura</h4>
                 <p class="card-description">The structured shoulders and sleek detailing ensure a sharp silhouette. Team it with a silk pocket square and leather loafers.</p>
               </div>
               <div class="card-footer">
@@ -285,7 +283,7 @@
     <div class="section">
       <div class="container">
         <h2 class="section-title">Find what you need</h2>
-        <div class="row">
+<!--        <div class="row">
           <div class="col-md-3">
             <div class="card card-refine card-plain card-rose">
               <div class="card-body">
@@ -630,15 +628,15 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="col-md-9">
+            </div> 
+          </div>-->
+          <div class="col-md-12">
             <div class="row">
               <div class="col-md-4">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/suit-1.jpg" alt="...">
+                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -664,7 +662,7 @@
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/suit-2.jpg" alt="...">
+                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -690,7 +688,7 @@
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/suit-3.jpg" alt="...">
+                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -716,7 +714,7 @@
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/suit-4.jpg" alt="...">
+                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -742,7 +740,7 @@
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/suit-5.jpg" alt="...">
+                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -768,7 +766,7 @@
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/suit-6.jpg" alt="...">
+                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
