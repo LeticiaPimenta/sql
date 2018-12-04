@@ -246,6 +246,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       <li ng-repeat="product in products">
         <!-- edit a product -->
         <input ng-model="product.text" ng-change="products.$save(product)" />
+        <input ng-model="product.value" ng-change="products.$save(product)" />
         <!-- delete a product -->
         <button ng-click="products.$remove(product)">Delete Product</button>
       </li>
