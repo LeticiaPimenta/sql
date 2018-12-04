@@ -89,6 +89,21 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   // create a synchronized array
   $scope.products = $firebaseArray(ref);
 
+  var ref_users = firebase.database().ref().child("users");
+  // create a synchronized array
+  var users = $firebaseArray(ref_users);
+  var users_id=[];
+  $scope.username = "";
+
+  users.$loaded().then(function() {
+    var cont = 1;
+  angular.forEach(users, function(value, key) {
+  console.log(value, key);
+  users_id[value.$id]=value;
+  });
+  $scope.users_id = users_id;
+  });
+
 
   var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>");
   // create a synchronized array
@@ -228,6 +243,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       </div>
     </div>
   </nav>
+  {{username = " do : nome do usuario aqui"}}
   <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/croissant-chocolate-aberto.jpg');">
     <div class="container">
       <div class="row">
@@ -245,8 +261,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
         <h2 class="section-title">Vendas</h2>
         <div class="row">
 
-        
-          <div class="col-md-4" ng-repeat="product in carts">
+        <span ng-repeat="clientes in carts">
+          <div class="col-md-4" ng-repeat="cliente in clientes">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
@@ -255,7 +271,9 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">
-                  <a href="#pablo">{{products}}</a>
+                  {{username = users_id[cliente.user].name}}
+                  <a href="#pablo">{{users_id[cliente.user].name}}@{{cliente.user}}#{{cliente.name}}-{{cliente.value}}</a>
+                  {{username = users_id[cliente.user].name}}
                 </h4>
                 <p class="card-description">The structured shoulders and sleek detailing ensure a sharp silhouette. Team it with a silk pocket square and leather loafers.</p>
               </div>
@@ -273,6 +291,9 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               </div>
             </div>
           </div>
+          <hr>
+          <button class="btn" type="button">Fechar Compra{{username}}</button>
+          </span>
           <div class="col-md-4">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
