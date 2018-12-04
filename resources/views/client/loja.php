@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Material Kit PRO by Creative Tim
@@ -39,10 +39,10 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="../assets/css/material-kit.min.css?v=2.1.1" rel="stylesheet" />
+  <link href="/assets/css/material-kit.min.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
-  <link href="../assets/demo/vertical-nav.css" rel="stylesheet" />
+  <link href="/assets/demo/demo.css" rel="stylesheet" />
+  <link href="/assets/demo/vertical-nav.css" rel="stylesheet" />
 
   <!-- Google Tag Manager -->
   <script>
@@ -92,9 +92,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   // the product is automatically added to our Firebase database!
   $scope.addProduct = function() {
     $scope.products.$add({
-      text: $scope.newProductText,
-      value: $scope.newProductValue,
-      priority : $scope.newProductPriority
+      text: $scope.newProductText
     });
   };
   // click on `index.html` above to see $remove() and $save() in action
@@ -231,7 +229,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
           <div class="brand">
-            <img src="../assets/img/clark-street-merc.jpg" class="img-fluid">
+            <img src="/assets/img/clark-street-merc.jpg" class="img-fluid">
           </div>
         </div>
       </div>
@@ -243,40 +241,24 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
         <h2 class="section-title">Cardápio</h2>
         <div class="row">
 
-          <ul>
-      <li ng-repeat="product in products">
-        <!-- edit a product -->
-        <input ng-model="product.text" ng-change="products.$save(product)" />
-        <input ng-model="product.value" ng-change="products.$save(product)" />
-        <input ng-model="product.priority" ng-change="products.$save(product)" />
-        <!-- delete a product -->
-        <button ng-click="products.$remove(product)">Delete Product</button>
-      </li>
-      </ul>
-      <!-- push a new product onto the array -->
-      <form ng-submit="addProduct()">
-        <input ng-model="newProductText" />
-        <input ng-model="newProductValue" />
-        <input ng-model="newProductPriority" />
-        <button type="submit">Adicionar</button>
-      </form>
-          <div class="col-md-4">
+        
+          <div class="col-md-4" ng-repeat="product in products">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
-                  <img src="../assets/img/examples/croissant_presunto_e_queijo.jpg" alt="">
+                  <img src="/assets/img/examples/croissant_presunto_e_queijo.jpg" alt="">
                 </a>
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">
-                  <a href="#pablo">Croissant de Presunto e Queijo</a>
+                  <a href="#pablo">{{product.text}}</a>
                 </h4>
                 <p class="card-description">The structured shoulders and sleek detailing ensure a sharp silhouette. Team it with a silk pocket square and leather loafers.</p>
               </div>
               <div class="card-footer">
                 <div class="price-container">
-                  <span class="price price-old"> €1,430</span>
-                  <span class="price price-new"> €743</span>
+                  <span class="price price-old">{{product.value}}</span>
+                  <span class="price price-new">{{product.value*0.90}}</span>
                 </div>
                 <div class="stats ml-auto">
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
@@ -290,7 +272,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
-                  <img src="../assets/img/examples/sanduba-bigben.jpg" alt="">
+                  <img src="/assets/img/examples/sanduba-bigben.jpg" alt="">
                 </a>
               </div>
               <div class="card-body">
@@ -314,7 +296,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
-                  <img src="../assets/img/examples/bolo_de_cenoura-1.jpg" alt="">
+                  <img src="/assets/img/examples/bolo_de_cenoura-1.jpg" alt="">
                 </a>
               </div>
               <div class="card-body">
@@ -347,7 +329,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
+                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -373,7 +355,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
+                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -399,7 +381,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
+                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -425,7 +407,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
+                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -451,7 +433,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
+                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -477,7 +459,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="../assets/img/examples/cesta-benjamin.jpg" alt="...">
+                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
                     </a>
                   </div>
                   <div class="card-body">
@@ -605,7 +587,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           <div class="card card-blog">
             <div class="card-header card-header-image">
               <a href="#pablo">
-                <img src="../assets/img/dg6.jpg" alt="">
+                <img src="/assets/img/dg6.jpg" alt="">
               </a>
             </div>
             <div class="card-body">
@@ -623,7 +605,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           <div class="card card-blog">
             <div class="card-header card-header-image">
               <a href="#pablo">
-                <img src="../assets/img/dg10.jpg" alt="">
+                <img src="/assets/img/dg10.jpg" alt="">
               </a>
             </div>
             <div class="card-body">
@@ -641,7 +623,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           <div class="card card-blog">
             <div class="card-header card-header-image">
               <a href="#pablo">
-                <img src="../assets/img/dg9.jpg" alt="">
+                <img src="/assets/img/dg9.jpg" alt="">
               </a>
             </div>
             <div class="card-body">
@@ -723,14 +705,14 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           <div class="col-md-4">
             <h5>Instagram Feed</h5>
             <div class="gallery-feed">
-              <img src="../assets/img/faces/card-profile6-square.jpg" class="img img-raised rounded" alt="">
-              <img src="../assets/img/faces/christian.jpg" class="img img-raised rounded" alt="">
-              <img src="../assets/img/faces/card-profile4-square.jpg" class="img img-raised rounded" alt="">
-              <img src="../assets/img/faces/card-profile1-square.jpg" class="img img-raised rounded" alt="">
-              <img src="../assets/img/faces/marc.jpg" class="img img-raised rounded" alt="">
-              <img src="../assets/img/faces/kendall.jpg" class="img img-raised rounded" alt="">
-              <img src="../assets/img/faces/card-profile5-square.jpg" class="img img-raised rounded" alt="">
-              <img src="../assets/img/faces/card-profile2-square.jpg" class="img img-raised rounded" alt="">
+              <img src="/assets/img/faces/card-profile6-square.jpg" class="img img-raised rounded" alt="">
+              <img src="/assets/img/faces/christian.jpg" class="img img-raised rounded" alt="">
+              <img src="/assets/img/faces/card-profile4-square.jpg" class="img img-raised rounded" alt="">
+              <img src="/assets/img/faces/card-profile1-square.jpg" class="img img-raised rounded" alt="">
+              <img src="/assets/img/faces/marc.jpg" class="img img-raised rounded" alt="">
+              <img src="/assets/img/faces/kendall.jpg" class="img img-raised rounded" alt="">
+              <img src="/assets/img/faces/card-profile5-square.jpg" class="img img-raised rounded" alt="">
+              <img src="/assets/img/faces/card-profile2-square.jpg" class="img img-raised rounded" alt="">
             </div>
           </div>
         </div>
@@ -772,37 +754,37 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
     </div>
   </footer>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="../assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-  <script src="../assets/js/plugins/moment.min.js"></script>
+  <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="/assets/js/plugins/moment.min.js"></script>
   <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-  <script src="../assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+  <script src="/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGat1sgDZ-3y6fFe6HD7QUziVC6jlJNog"></script>
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!--	Plugin for Sharrre btn -->
-  <script src="../assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
+  <script src="/assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
   <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-  <script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>
+  <script src="/assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-  <script src="../assets/js/plugins/bootstrap-selectpicker.js" type="text/javascript"></script>
+  <script src="/assets/js/plugins/bootstrap-selectpicker.js" type="text/javascript"></script>
   <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="../assets/js/plugins/jasny-bootstrap.min.js" type="text/javascript"></script>
+  <script src="/assets/js/plugins/jasny-bootstrap.min.js" type="text/javascript"></script>
   <!--	Plugin for Small Gallery in Product Page -->
-  <script src="../assets/js/plugins/jquery.flexisel.js" type="text/javascript"></script>
+  <script src="/assets/js/plugins/jquery.flexisel.js" type="text/javascript"></script>
   <!-- Plugins for presentation and navigation  -->
-  <script src="../assets/demo/modernizr.js" type="text/javascript"></script>
-  <script src="../assets/demo/vertical-nav.js" type="text/javascript"></script>
+  <script src="/assets/demo/modernizr.js" type="text/javascript"></script>
+  <script src="/assets/demo/vertical-nav.js" type="text/javascript"></script>
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Js With initialisations For Demo Purpose, Don't Include it in Your Project -->
-  <script src="../assets/demo/demo.js" type="text/javascript"></script>
+  <script src="/assets/demo/demo.js" type="text/javascript"></script>
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-kit.min.js?v=2.1.1" type="text/javascript"></script>
+  <script src="/assets/js/material-kit.min.js?v=2.1.1" type="text/javascript"></script>
   <script>
     $(document).ready(function() {
 
