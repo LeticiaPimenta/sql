@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="sampleApp">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -43,7 +43,6 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
   <link href="../assets/demo/vertical-nav.css" rel="stylesheet" />
-
   <!-- Google Tag Manager -->
   <script>
     (function(w, d, s, l, i) {
@@ -61,47 +60,10 @@
       f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
   </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
-
-<!-- AngularFire -->
-<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
   <!-- End Google Tag Manager -->
-<script>
-  // Initialize the Firebase SDK
-  var config = {
-    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
-    authDomain: "benjamin-a-padaria.firebaseapp.com",
-    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
-    projectId: "benjamin-a-padaria",
-    storageBucket: "benjamin-a-padaria.appspot.com",
-    messagingSenderId: "579576076240"
-  };
-  firebase.initializeApp(config);
-</script>
-<script type="text/javascript">
-  
-  var app = angular.module("sampleApp", ["firebase"]);
-app.controller("SampleCtrl", function($scope, $firebaseArray) {
-  var ref = firebase.database().ref().child("products");
-  // create a synchronized array
-  $scope.products = $firebaseArray(ref);
-  // add new items to the array
-  // the product is automatically added to our Firebase database!
-  $scope.addProduct = function() {
-    $scope.products.$add({
-      text: $scope.newProductText
-    });
-  };
-  // click on `index.html` above to see $remove() and $save() in action
-});
-</script>
-
 </head>
 
-<body class="ecommerce-page sidebar-collapse" ng-controller="SampleCtrl"> 
+<body class="ecommerce-page sidebar-collapse">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -240,9 +202,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       <div class="container">
         <h2 class="section-title">Cardápio</h2>
         <div class="row">
-
-        
-          <div class="col-md-4" ng-repeat="product in products">
+          <div class="col-md-4">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">

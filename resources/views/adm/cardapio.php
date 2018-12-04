@@ -241,8 +241,20 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
         <h2 class="section-title">Cardápio</h2>
         <div class="row">
 
-        
-          <div class="col-md-4" ng-repeat="product in products">
+          <ul>
+      <li ng-repeat="product in products">
+        <!-- edit a product -->
+        <input ng-model="product.text" ng-change="products.$save(product)" />
+        <!-- delete a product -->
+        <button ng-click="products.$remove(product)">Delete Product</button>
+      </li>
+    </ul>
+    <!-- push a new product onto the array -->
+    <form ng-submit="addProduct()">
+      <input ng-model="newProductText" />
+      <button type="submit">Add Product</button>
+    </form>
+          <div class="col-md-4">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
