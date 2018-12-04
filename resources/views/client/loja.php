@@ -88,11 +88,21 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   var ref = firebase.database().ref().child("products");
   // create a synchronized array
   $scope.products = $firebaseArray(ref);
+
+
+  var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
+  // create a synchronized array
+  $scope.carts = $firebaseArray(ref_carts);
   // add new items to the array
   // the product is automatically added to our Firebase database!
-  $scope.addProduct = function() {
-    $scope.products.$add({
-      text: $scope.newProductText
+ 
+  // add new items to the array
+  // the product is automatically added to our Firebase database!
+  $scope.addCart = function($product) {
+    $scope.carts.$add({
+      product: $product,
+      shop: <?php echo $loja;?>,
+      user : <?php echo $cliente;?>
     });
   };
   // click on `index.html` above to see $remove() and $save() in action
@@ -261,6 +271,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                   <span class="price price-new">{{product.value*0.90}}</span>
                 </div>
                 <div class="stats ml-auto">
+                  <button type="button" class="btn" ng-click="addCart(product.$id)">pedir</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>
