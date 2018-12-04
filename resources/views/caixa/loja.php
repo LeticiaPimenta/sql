@@ -242,11 +242,11 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   <div class="main main-raised">
     <div class="section">
       <div class="container">
-        <h2 class="section-title">Cardápio{{carts}}</h2>
+        <h2 class="section-title">Vendas</h2>
         <div class="row">
 
         
-          <div class="col-md-4" ng-repeat="product in products">
+          <div class="col-md-4" ng-repeat="product in carts">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
@@ -255,7 +255,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">
-                  <a href="#pablo">{{product.text}}</a>
+                  <a href="#pablo">{{products}}</a>
                 </h4>
                 <p class="card-description">The structured shoulders and sleek detailing ensure a sharp silhouette. Team it with a silk pocket square and leather loafers.</p>
               </div>

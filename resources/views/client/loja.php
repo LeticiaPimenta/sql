@@ -98,11 +98,13 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
  
   // add new items to the array
   // the product is automatically added to our Firebase database!
-  $scope.addCart = function($product) {
+  $scope.addCart = function($product, $name , $value) {
     $scope.carts.$add({
       product: $product,
       shop: <?php echo $loja;?>,
-      user : <?php echo $cliente;?>
+      user : <?php echo $cliente;?>,
+      name:$name,
+      value:$value
     });
   };
   // click on `index.html` above to see $remove() and $save() in action
@@ -270,7 +272,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                   <span class="price price-new">{{product.value}}</span>
                 </div>
                 <div class="stats ml-auto">
-                  <button type="button" class="btn" ng-click="addCart(product.$id)">pedir</button>
+                  <button type="button" class="btn" ng-click="addCart(product.$id,product.text,product.value)">pedir</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>
