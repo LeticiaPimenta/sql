@@ -13,9 +13,11 @@ $router->get('/client/cardapio', function () use ($router) {
 });
 
 $router->get('/client/cardapio/{loja}/{cliente}', function ($loja, $cliente) use ($router) {
-     //print_r($loja);
-    //print_r($cliente);
      return view('client/loja', ['loja' => $loja, 'cliente' => $cliente]);
+});
+
+$router->get('/caixa/loja/{loja}', function ($loja) use ($router) {
+     return view('caixa/loja', ['loja' => $loja]);
 });
 
 
