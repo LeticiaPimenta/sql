@@ -267,8 +267,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               </div>
               <div class="card-footer">
                 <div class="price-container">
-                  <span class="price price-old">{{product.value}}</span>
-                  <span class="price price-new">{{product.value*0.90}}</span>
+                  <span class="price price-new">{{product.value}}</span>
                 </div>
                 <div class="stats ml-auto">
                   <button type="button" class="btn" ng-click="addCart(product.$id)">pedir</button>
