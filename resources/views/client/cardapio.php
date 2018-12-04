@@ -251,7 +251,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">
-                  <a href="#pablo">Croissant de Presunto e Queijo</a>
+                  <a href="#pablo">{{product.text}}</a>
                 </h4>
                 <p class="card-description">The structured shoulders and sleek detailing ensure a sharp silhouette. Team it with a silk pocket square and leather loafers.</p>
               </div>
