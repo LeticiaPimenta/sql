@@ -93,7 +93,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   $scope.addProduct = function() {
     $scope.products.$add({
       text: $scope.newProductText,
-      value: $scope.newProductValue
+      value: $scope.newProductValue,
+      priority : $scope.newProductPriority
     });
   };
   // click on `index.html` above to see $remove() and $save() in action
@@ -247,6 +248,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
         <!-- edit a product -->
         <input ng-model="product.text" ng-change="products.$save(product)" />
         <input ng-model="product.value" ng-change="products.$save(product)" />
+        <input ng-model="product.priority" ng-change="products.$save(product)" />
         <!-- delete a product -->
         <button ng-click="products.$remove(product)">Delete Product</button>
       </li>
