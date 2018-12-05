@@ -286,13 +286,13 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 <tr ng-repeat="produto in carts">
                   <td>
                     <div class="img-container">
-                      <img class="rounded-circle img-fluid" src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
+                      <img src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
                     </div>
                   </td>
                   <td class="td-name" style="color:#999">
                     <a href="#jacket">{{produto.name}}</a>
                     <br />
-                    <small>by Dolce&Gabbana</small>
+                    <small>Descrição simples do produto</small>
                   </td>
                   <td class="td-number text-right">
                     <small>R$ </small>{{produto.value}}
