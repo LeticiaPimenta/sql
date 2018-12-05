@@ -289,7 +289,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                       <img class="rounded-circle img-fluid" src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
                     </div>
                   </td>
-                  <td class="td-name">
+                  <td class="td-name" style="color:#999">
                     <a href="#jacket">{{produto.name}}</a>
                     <br />
                     <small>by Dolce&Gabbana</small>
