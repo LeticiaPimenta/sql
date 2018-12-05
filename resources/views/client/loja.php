@@ -90,6 +90,24 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   $scope.products = $firebaseArray(ref);
 
 
+  var ref_users = firebase.database().ref().child("users");
+  // create a synchronized array
+  var users = $firebaseArray(ref_users);
+  var users_id=[];
+  $scope.username = "";
+
+  users.$loaded().then(function() {
+    var cont = 1;
+  angular.forEach(users, function(value, key) {
+  console.log(value, key);
+  users_id[value.$id]=value;
+  });
+  $scope.users_id = users_id;
+  });
+
+
+
+
   var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
   // create a synchronized array
   $scope.carts = $firebaseArray(ref_carts);
@@ -124,7 +142,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-          Material Kit PRO </a>
+          {{users_id[<?php echo $cliente;?>].name}}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
