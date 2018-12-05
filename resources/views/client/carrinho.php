@@ -107,7 +107,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   });
 
 
-  $scope.total=0;
+
 
   var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
   // create a synchronized array
@@ -285,7 +285,6 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                   <th></th>
                 </tr>
               </thead>
-              {{total=0}}
               <tbody>
                 <tr ng-repeat="produto in carts">
                   <td>
@@ -305,7 +304,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                     M
                   </td>
                   <td class="td-number text-right">
-                    <small>R$ </small>{{produto.value}}{{total=total+produto.value}}
+                    <small>R$ </small>{{produto.value}}
                   </td>
                   <td class="td-number">
                     1
@@ -322,14 +321,15 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                       <i class="material-icons">close</i>
                     </button>
                   </td>
-                </tr>               
+                </tr>
+               
                 <tr>
                   <td colspan="3"></td>
                   <td class="td-total">
                     Total
                   </td>
                   <td colspan="1" class="td-price">
-                    <small>&euro;</small>{{total}}
+                    <small>&euro;</small>2,346
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
