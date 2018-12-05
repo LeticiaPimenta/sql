@@ -154,7 +154,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">apps</i> Components
+              <i class="material-icons">local_cafe</i> Expresso
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
@@ -170,7 +170,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_day</i> Sections
+              <i class="material-icons">local_cafe</i> Da Vitrine pra você
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../sections.html#headers" class="dropdown-item">
@@ -201,7 +201,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_carousel</i> Examples
+              <i class="material-icons">local_cafe</i> Especiais
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../examples/about-us.html" class="dropdown-item">
@@ -254,7 +254,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       </div>
     </div>
   </nav>
-  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/croissant-chocolate-aberto.jpg');">
+  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('/assets/img/croissant-chocolate-aberto.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">

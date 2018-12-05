@@ -156,7 +156,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">apps</i> Components
+              <i class="material-icons">local_cafe</i> Expresso
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
@@ -172,7 +172,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_day</i> Sections
+              <i class="material-icons">local_cafe</i> Da Vitrine pra você
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../sections.html#headers" class="dropdown-item">
@@ -203,7 +203,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_carousel</i> Examples
+              <i class="material-icons">local_cafe</i> Especiais
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../examples/about-us.html" class="dropdown-item">
@@ -248,8 +248,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
             </div>
           </li>
           <li class="button-container nav-item iframe-extern">
-            <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-rose   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i> Buy Now
+            <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-warning   btn-round btn-block">
+              <i class="material-icons">shopping_cart</i> Meus Pedidos
             </a>
           </li>
         </ul>
@@ -260,7 +260,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">Shopping Page</h2>
+          <h2 class="title">Meus Pedidos</h2>
         </div>
       </div>
     </div>
@@ -269,27 +269,24 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
     <div class="container">
       <div class="card card-plain">
         <div class="card-body">
-          <h3 class="card-title">Meus pedidos</h3>
           <br/>
           <div class="table-responsive">
             <table class="table table-shopping">
               <thead>
                 <tr>
                   <th class="text-center"></th>
-                  <th>Product</th>
-                  <th class="th-description">Color</th>
-                  <th class="th-description">Size</th>
-                  <th class="text-right">Price</th>
-                  <th class="text-right">Qty</th>
-                  <th class="text-right">Amount</th>
-                  <th></th>
+                  <th>Produto</th>
+                  <th class="text-right">Preço</th>
+                  <th class="text-center">Quantidade</th>
+                  <th class="text-right">Total</th>
+                  
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="produto in carts">
                   <td>
                     <div class="img-container">
-                      <img src="/assets/img/product1.jpg" alt="...">
+                      <img class="rounded-circle img-fluid" src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
                     </div>
                   </td>
                   <td class="td-name">
@@ -297,24 +294,18 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                     <br />
                     <small>by Dolce&Gabbana</small>
                   </td>
-                  <td>
-                    Red
-                  </td>
-                  <td>
-                    M
-                  </td>
                   <td class="td-number text-right">
                     <small>R$ </small>{{produto.value}}
                   </td>
                   <td class="td-number">
                     1
                     <div class="btn-group btn-group-sm">
-                      <button class="btn btn-round btn-info" ng-click="carts.$remove(produto)"> <i class="material-icons">remove</i> </button>
-                      <button class="btn btn-round btn-info" ng-click="carts.$add(produto)"> <i class="material-icons">add</i> </button>
+                      <button class="btn btn-round btn-warning" ng-click="carts.$remove(produto)"> <i class="material-icons">remove</i> </button>
+                      <button class="btn btn-round btn-warning" ng-click="carts.$add(produto)"> <i class="material-icons">add</i> </button>
                     </div>
                   </td>
                   <td class="td-number">
-                    <small>&euro;</small>549
+                    <small>R$</small>549
                   </td>
                   <td class="td-actions">
                     <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link" ng-click="carts.$remove(produto)">
@@ -324,16 +315,16 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 </tr>
                
                 <tr>
-                  <td colspan="3"></td>
+                  <td colspan="0"></td>
                   <td class="td-total">
                     Total
                   </td>
                   <td colspan="1" class="td-price">
-                    <small>&euro;</small>2,346
+                    <small>R$</small>2,346
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
-                    <button type="button" class="btn btn-info btn-round">Complete Purchase <i class="material-icons">keyboard_arrow_right</i></button>
+                    <button type="button" class="btn btn-warning btn-round">Pedir <i class="material-icons">keyboard_arrow_right</i></button>
                   </td>
                 </tr>
                 <!-- <tr>
