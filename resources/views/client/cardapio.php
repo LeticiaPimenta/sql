@@ -238,7 +238,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   <div class="main main-raised">
     <div class="section">
       <div class="container">
-        <h2 class="section-title">Cardápio</h2>
+        <h2 class="section-title">Cardápio..</h2>
         <div class="row">
 
         
