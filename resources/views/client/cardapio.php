@@ -268,7 +268,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+<!--          <div class="col-md-4">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
@@ -291,8 +291,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
+          </div> -->
+<!--          <div class="col-md-4">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
@@ -315,7 +315,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
