@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en" ng-app="sampleApp">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -61,82 +62,9 @@
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
   </script>
   <!-- End Google Tag Manager -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
-
-<!-- AngularFire -->
-<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-  <!-- End Google Tag Manager -->
-<script>
-  // Initialize the Firebase SDK
-  var config = {
-    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
-    authDomain: "benjamin-a-padaria.firebaseapp.com",
-    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
-    projectId: "benjamin-a-padaria",
-    storageBucket: "benjamin-a-padaria.appspot.com",
-    messagingSenderId: "579576076240"
-  };
-  firebase.initializeApp(config);
-</script>
-<script type="text/javascript">
-  
-  var app = angular.module("sampleApp", ["firebase"]);
-  app.controller("SampleCtrl", function($scope, $firebaseArray) {
-    var ref = firebase.database().ref().child("products");
-    // create a synchronized array
-    $scope.products = $firebaseArray(ref);
-
-
-    var ref_users = firebase.database().ref().child("users");
-    // create a synchronized array
-    var users = $firebaseArray(ref_users);
-    var users_id=[];
-    $scope.username = "";
-
-    users.$loaded().then(function() {
-      var cont = 1;
-      angular.forEach(users, function(value, key) {
-        console.log(value, key);
-        users_id[value.$id]=value;
-      });
-    $scope.users_id = users_id;
-  });
-
-
-  var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
-  // create a synchronized array
-  var carts = $firebaseArray(ref_carts);
-  var cart_formatado = [];
-
-  carts.$loaded().then(function() {
-    $scope.carts_origin = carts;
-      var cont = 1;
-      angular.forEach(carts, function(value, key) {
-        console.log(value);
-        console.log(key);
-        cart_formatado[value.$id]=value;
-      });
-      console.log(cart_formatado);
-      $scope.carts = cart_formatado;
-  });
-  // add new items to the array
-  // the product is automatically added to our Firebase database!
- 
-  // add new items to the array
-  // the product is automatically added to our Firebase database!
-  
-
-  // click on `index.html` above to see $remove() and $save() in action
-});
-</script>
-
 </head>
 
-<body class="shopping-cart sidebar-collapse" ng-controller="SampleCtrl">
+<body class="blog-post sidebar-collapse">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -147,7 +75,7 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-          {{users_id[<?php echo $cliente;?>].name}} </a>
+          Material Kit PRO </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -159,7 +87,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">local_cafe</i> Expresso
+              <i class="material-icons">apps</i> Components
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
@@ -175,7 +103,7 @@
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">local_cafe</i> Da Vitrine pra você
+              <i class="material-icons">view_day</i> Sections
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../sections.html#headers" class="dropdown-item">
@@ -206,7 +134,7 @@
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">local_cafe</i> Especiais
+              <i class="material-icons">view_carousel</i> Examples
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../examples/about-us.html" class="dropdown-item">
@@ -251,97 +179,100 @@
             </div>
           </li>
           <li class="button-container nav-item iframe-extern">
-            <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-warning   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i> Meus Pedidos
+            <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-rose   btn-round btn-block">
+              <i class="material-icons">shopping_cart</i> Buy Now
             </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('/assets/img/examples/bg2.jpg');">
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/bg5.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">Meus Pedidos</h2>
+          <h1 class="title">Escolha a unidade que deseja</h1>
+          <h4>Escolha a sua unidade.</h4>
+          <br>
+          <a href="#pablo" class="btn btn-blue btn-round btn-lg">
+            <i class="material-icons">facebook</i>Logar com o Facebook
+          </a>
         </div>
       </div>
     </div>
   </div>
   <div class="main main-raised">
     <div class="container">
-      <div class="card card-plain">
-        <div class="card-body">
-          <br/>
-          <div class="table-responsive">
-            <table class="table table-shopping">
-              <thead>
-                <tr>
-                  <th class="text-center"></th>
-                  <th>Produto</th>
-                  <th class="text-right">Preço</th>
-                  <th class="text-center">Quantidade</th>
-                  <th class="text-right">Total</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-                <span ng-repeat="origins in carts_origin">{{origins}}</span>
-                {{carts_origin}}##
-                {{carts_origin.length}}
-                <tr ng-repeat="produto in carts_origin">
-                  <td>
-                    <div class="img-container">
-                      <img src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
-                    </div>
-                  </td>
-                  <td class="td-name" style="color:#999">
-                    <a href="#jacket">nome do item</a>
-                    <br />
-                    <small>Pedido</small>
-                  </td>
-                  <td class="td-number text-right">
-                    <small>R$ </small>
-                    <span ng-repeat="item in carts[$index]">{{item.name}}:{{item.value}} :: </span>
-                  </td>
-                  <td class="td-number">
-                    quantidade
-                    <div class="btn-group btn-group-sm">
-                      <button class="btn btn-round btn-warning" ng-click="carts.$remove(produto)"> <i class="material-icons">remove</i> </button>
-                      <button class="btn btn-round btn-warning" ng-click="carts.$add(produto)"> <i class="material-icons">add</i> </button>
-                    </div>
-                  </td>
-                  <td class="td-number">
-                    <small>R$</small>549
-                  </td>
-                  <td class="td-actions">
-                    <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link" ng-click="carts.$remove(produto)">
-                      <i class="material-icons">close</i>
-                    </button>
-                  </td>
-                </tr>
-               
-                <tr>
-                  <td colspan="0"></td>
-                  <td class="td-total">
-                    Total
-                  </td>
-                  <td colspan="1" class="td-price">
-                    <small>R$</small>2,346
-                  </td>
-                  <td colspan="1"></td>
-                  <td colspan="2" class="text-right">
-                    <button type="button" class="btn btn-warning btn-round">Pedir <i class="material-icons">keyboard_arrow_right</i></button>
-                  </td>
-                </tr>
-                <!-- <tr>
-                <td colspan="6"></td>
-                <td colspan="2" class="text-right">
-                  <button type="button" class="btn btn-info btn-round">Complete Purchase <i class="material-icons">keyboard_arrow_right</i></button>
-                </td>
-              </tr> -->
-              </tbody>
-            </table>
+
+  
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="title text-center">Unidades </h2>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="unidade/600">
+                    <img class="img img-raised" src="/assets/img/examples/blog6.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-info">#600</h6>
+                  <h4 class="card-title">
+                    <a href="#pablo">Central</a>
+                  </h4>
+                  <p class="card-description">
+                    Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
+                    <a href="#pablo"> Read More </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="#pablo">
+                    <img class="img img-raised" src="/assets/img/examples/blog8.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-success">
+                    Startups
+                  </h6>
+                  <h4 class="card-title">
+                    <a href="#pablo">Lyft launching cross-platform service this week</a>
+                  </h4>
+                  <p class="card-description">
+                    Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
+                    <a href="#pablo"> Read More </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="#pablo">
+                    <img class="img img-raised" src="/assets/img/examples/blog7.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-danger">
+                    <i class="material-icons">trending_up</i> Enterprise
+                  </h6>
+                  <h4 class="card-title">
+                    <a href="#pablo">6 insights into the French Fashion landscape</a>
+                  </h4>
+                  <p class="card-description">
+                    Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
+                    <a href="#pablo"> Read More </a>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
