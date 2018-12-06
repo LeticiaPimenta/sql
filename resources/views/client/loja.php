@@ -154,7 +154,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">apps</i> Components
+              <i class="material-icons">local_cafe</i> Expresso
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
@@ -170,7 +170,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_day</i> Sections
+              <i class="material-icons">local_cafe</i> Da Vitrine pra você
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../sections.html#headers" class="dropdown-item">
@@ -201,7 +201,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_carousel</i> Examples
+              <i class="material-icons">local_cafe</i> Especiais
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../examples/about-us.html" class="dropdown-item">
@@ -254,7 +254,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       </div>
     </div>
   </nav>
-  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/croissant-chocolate-aberto.jpg');">
+  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('/assets/img/croissant-chocolate-aberto.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
@@ -266,17 +266,60 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
     </div>
   </div>
   <div class="main main-raised">
-    <div class="section">
       <div class="container">
-        <h2 class="section-title">Cardápio</h2>
         <div class="row">
 
-        
+          <!--Start carouse-->
+            <div class="card card-raised card-carousel">
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="/assets/img/croissant-chocolate-aberto.jpg" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h4>
+                        <i class="material-icons">location_on</i> Yellowstone National Park, United States
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="/assets/img/croissant-chocolate-aberto.jpg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h4>
+                        <i class="material-icons">location_on</i> Somewhere Beyond, United States
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="/assets/img/croissant-chocolate-aberto.jpg" alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h4>
+                        <i class="material-icons">location_on</i> Yellowstone National Park, United States
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <i class="material-icons">keyboard_arrow_left</i>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <i class="material-icons">keyboard_arrow_right</i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+            <!--End carouse-->        
+          <h2 class="section-title">Cardápio</h2>  
           <div class="col-md-4" ng-repeat="product in products">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
-                  <img src="/assets/img/examples/croissant_presunto_e_queijo.jpg" alt="">
+                  <img src="/assets/img/examples/Cafe filtrado-2.jpg" alt="">
                 </a>
               </div>
               <div class="card-body text-center">
@@ -290,7 +333,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                   <span class="price price-new">{{product.value}}</span>
                 </div>
                 <div class="stats ml-auto">
-                  <button type="button" class="btn" ng-click="addCart(product.$id,product.text,product.value)">pedir</button>
+                  <button type="button" class="btn btn-warning" ng-click="addCart(product.$id,product.text,product.value)">pedir</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>
@@ -348,7 +391,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           </div>
         </div>
       </div>
-    </div>
+   
     <!-- section -->
     <div class="section">
       <div class="container">
@@ -517,93 +560,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
             </div>
           </div>
         </div>
-        <br>
-        <h2 class="section-title">News in fashion</h2>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card card-background" style="background-image: url(../assets/img/examples/color1.jpg)">
-              <div class="card-body">
-                <h6 class="card-category text-info">Productivy Apps</h6>
-                <a href="#pablo">
-                  <h3 class="card-title">The best trends in fashion 2017</h3>
-                </a>
-                <p class="card-description">
-                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <a href="#pablo" class="btn btn-white btn-round">
-                  <i class="material-icons">subject</i> Read
-                </a>
-              </div>
-            </div>
-            <!-- end card -->
-          </div>
-          <div class="col-md-4">
-            <div class="card card-background" style="background-image: url(../assets/img/examples/color3.jpg)">
-              <div class="card-body">
-                <h6 class="card-category text-info">Fashion News</h6>
-                <h3 class="card-title">Kanye joins the Yeezy team at Adidas</h3>
-                <p class="card-description">
-                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <a href="#pablo" class="btn btn-white btn-round">
-                  <i class="material-icons">subject</i> Read
-                </a>
-              </div>
-            </div>
-            <!-- end card -->
-          </div>
-          <div class="col-md-4">
-            <div class="card card-background" style="background-image: url(../assets/img/examples/color2.jpg)">
-              <div class="card-body">
-                <h6 class="card-category text-info">Productivy Apps</h6>
-                <a href="#pablo">
-                  <h3 class="card-title">Learn how to use the new colors of 2017</h3>
-                </a>
-                <p class="card-description">
-                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <a href="#pablo" class="btn btn-white btn-round">
-                  <i class="material-icons">subject</i> Read
-                </a>
-              </div>
-            </div>
-            <!-- end card -->
-          </div>
-          <div class="col-md-6">
-            <div class="card card-background" style="background-image: url(../assets/img/dg3.jpg)">
-              <div class="card-body">
-                <h6 class="card-category text-info">Tutorials</h6>
-                <a href="#pablo">
-                  <h3 class="card-title">Trending colors of 2017</h3>
-                </a>
-                <p class="card-description">
-                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <a href="#pablo" class="btn btn-white btn-round">
-                  <i class="material-icons">subject</i> Read
-                </a>
-              </div>
-            </div>
-            <!-- end card -->
-          </div>
-          <div class="col-md-6">
-            <div class="card card-background" style="background-image: url(../assets/img/dg1.jpg)">
-              <div class="card-body">
-                <h6 class="card-category text-info">Productivy Style</h6>
-                <a href="#pablo">
-                  <h3 class="card-title">Fashion &amp; Style 2017</h3>
-                </a>
-                <p class="card-description">
-                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <a href="#pablo" class="btn btn-white btn-round">
-                  <i class="material-icons">subject</i> read
-                </a>
-              </div>
-            </div>
-            <!-- end card -->
-          </div>
-        </div>
+        <br>       
       </div>
     </div>
     <!-- section -->
@@ -706,83 +663,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       </div>
     </div>
   </div>
-  <footer class="footer footer-black footer-big">
-    <div class="container">
-      <div class="content">
-        <div class="row">
-          <div class="col-md-4">
-            <h5>About Us</h5>
-            <p>Creative Tim is a startup that creates design tools that make the web development process faster and easier. </p>
-            <p>We love the web and care deeply for how users interact with a digital product. We power businesses and individuals to create better looking web projects around the world. </p>
-          </div>
-          <div class="col-md-4">
-            <h5>Social Feed</h5>
-            <div class="social-feed">
-              <div class="feed-line">
-                <i class="fa fa-twitter"></i>
-                <p>How to handle ethical disagreements with your clients.</p>
-              </div>
-              <div class="feed-line">
-                <i class="fa fa-twitter"></i>
-                <p>The tangible benefits of designing at 1x pixel density.</p>
-              </div>
-              <div class="feed-line">
-                <i class="fa fa-facebook-square"></i>
-                <p>A collection of 25 stunning sites that you can use for inspiration.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <h5>Instagram Feed</h5>
-            <div class="gallery-feed">
-              <img src="/assets/img/faces/card-profile6-square.jpg" class="img img-raised rounded" alt="">
-              <img src="/assets/img/faces/christian.jpg" class="img img-raised rounded" alt="">
-              <img src="/assets/img/faces/card-profile4-square.jpg" class="img img-raised rounded" alt="">
-              <img src="/assets/img/faces/card-profile1-square.jpg" class="img img-raised rounded" alt="">
-              <img src="/assets/img/faces/marc.jpg" class="img img-raised rounded" alt="">
-              <img src="/assets/img/faces/kendall.jpg" class="img img-raised rounded" alt="">
-              <img src="/assets/img/faces/card-profile5-square.jpg" class="img img-raised rounded" alt="">
-              <img src="/assets/img/faces/card-profile2-square.jpg" class="img img-raised rounded" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <ul class="float-left">
-        <li>
-          <a href="#pablo">
-            Blog
-          </a>
-        </li>
-        <li>
-          <a href="#pablo">
-            Presentation
-          </a>
-        </li>
-        <li>
-          <a href="#pablo">
-            Discover
-          </a>
-        </li>
-        <li>
-          <a href="#pablo">
-            Payment
-          </a>
-        </li>
-        <li>
-          <a href="#pablo">
-            Contact Us
-          </a>
-        </li>
-      </ul>
-      <div class="copyright float-right">
-        Copyright &#xA9;
-        <script>
-          document.write(new Date().getFullYear())
-        </script> Creative Tim All Rights Reserved.
-      </div>
-    </div>
-  </footer>
+  
   <!--   Core JS Files   -->
   <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>

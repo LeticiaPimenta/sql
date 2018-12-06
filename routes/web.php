@@ -24,6 +24,10 @@ $router->get('/client/cardapio/{loja}/{cliente}', function ($loja, $cliente) use
      return view('client/loja', ['loja' => $loja, 'cliente' => $cliente]);
 });
 
+$router->get('/client/carrinho/{loja}/{cliente}', function ($loja, $cliente) use ($router) {
+    return view('client/carrinho', ['loja' => $loja, 'cliente' => $cliente]);
+});
+
 $router->get('/caixa/loja/{loja}', function ($loja) use ($router) {
      return view('caixa/loja', ['loja' => $loja]);
 });
