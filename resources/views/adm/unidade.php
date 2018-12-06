@@ -215,14 +215,14 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a href="/client/cardapio/600/1">
+                  <a href="/client/cardapio/<?php echo $unidade; ?>/1">
                     <img class="img img-raised" src="/assets/img/examples/blog6.jpg">
                   </a>
                 </div>
                 <div class="card-body">
-                  <h6 class="category text-info">#600</h6>
+                  <h6 class="category text-info">#<?php echo $unidade; ?></h6>
                   <h4 class="card-title">
-                    <a href="/client/cardapio/600/1">Admin</a>
+                    <a href="/client/cardapio/<?php echo $unidade; ?>/1">Admin</a>
                   </h4>
                   <p class="card-description">
                     Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.

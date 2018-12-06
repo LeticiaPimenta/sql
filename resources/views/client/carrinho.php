@@ -85,47 +85,50 @@
 <script type="text/javascript">
   
   var app = angular.module("sampleApp", ["firebase"]);
-app.controller("SampleCtrl", function($scope, $firebaseArray) {
-  var ref = firebase.database().ref().child("products");
-  // create a synchronized array
-  $scope.products = $firebaseArray(ref);
+  app.controller("SampleCtrl", function($scope, $firebaseArray) {
+    var ref = firebase.database().ref().child("products");
+    // create a synchronized array
+    $scope.products = $firebaseArray(ref);
 
 
-  var ref_users = firebase.database().ref().child("users");
-  // create a synchronized array
-  var users = $firebaseArray(ref_users);
-  var users_id=[];
-  $scope.username = "";
+    var ref_users = firebase.database().ref().child("users");
+    // create a synchronized array
+    var users = $firebaseArray(ref_users);
+    var users_id=[];
+    $scope.username = "";
 
-  users.$loaded().then(function() {
-    var cont = 1;
-  angular.forEach(users, function(value, key) {
-  console.log(value, key);
-  users_id[value.$id]=value;
+    users.$loaded().then(function() {
+      var cont = 1;
+      angular.forEach(users, function(value, key) {
+        console.log(value, key);
+        users_id[value.$id]=value;
+      });
+    $scope.users_id = users_id;
   });
-  $scope.users_id = users_id;
-  });
-
-
 
 
   var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
   // create a synchronized array
-  $scope.carts = $firebaseArray(ref_carts);
+  var carts = $firebaseArray(ref_carts);
+  var cart_formatado = [];
+
+  carts.$loaded().then(function() {
+    $scope.carts_origin = carts;
+      var cont = 1;
+      angular.forEach(carts, function(value, key) {
+        console.log(value);
+        console.log(key);
+        cart_formatado[value.$id]=value;
+      });
+      console.log(cart_formatado);
+      $scope.carts = cart_formatado;
+  });
   // add new items to the array
   // the product is automatically added to our Firebase database!
  
   // add new items to the array
   // the product is automatically added to our Firebase database!
-  $scope.addCart = function($product, $name , $value) {
-    $scope.carts.$add({
-      product: $product,
-      shop: <?php echo $loja;?>,
-      user : <?php echo $cliente;?>,
-      name:$name,
-      value:$value
-    });
-  };
+  
 
   // click on `index.html` above to see $remove() and $save() in action
 });
@@ -283,22 +286,26 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="produto in carts">
+                <span ng-repeat="origins in carts_origin">{{origins.length()}} :: </span>
+                {{carts_origin}}##
+                {{carts_origin.length()}}
+                <tr ng-repeat="produto in carts_origin">
                   <td>
                     <div class="img-container">
                       <img src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
                     </div>
                   </td>
                   <td class="td-name" style="color:#999">
-                    <a href="#jacket">{{produto.name}}</a>
+                    <a href="#jacket">nome do item</a>
                     <br />
-                    <small>Descrição simples do produto</small>
+                    <small>Pedido</small>
                   </td>
                   <td class="td-number text-right">
-                    <small>R$ </small>{{produto.value}}
+                    <small>R$ </small>
+                    <span ng-repeat="item in carts[$index]">{{item.name}}:{{item.value}} :: </span>
                   </td>
                   <td class="td-number">
-                    1
+                    quantidade
                     <div class="btn-group btn-group-sm">
                       <button class="btn btn-round btn-warning" ng-click="carts.$remove(produto)"> <i class="material-icons">remove</i> </button>
                       <button class="btn btn-round btn-warning" ng-click="carts.$add(produto)"> <i class="material-icons">add</i> </button>
