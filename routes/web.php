@@ -4,6 +4,14 @@ $router->get('/', function () use ($router) {
     echo "Benjamin Lab";
 });
 
+$router->get('/select', function () use ($router) {
+    return view('adm/select', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+});
+
+$router->get('/unidade/{unidade}', function ($unidade) use ($router) {
+    return view('adm/unidade', ['unidade' => $unidade , 'public' => '/adm/']);
+});
+
 $router->get('/client/', function () use ($router) {
     return view('client/index', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
@@ -19,7 +27,6 @@ $router->get('/client/cardapio/{loja}/{cliente}', function ($loja, $cliente) use
 $router->get('/caixa/loja/{loja}', function ($loja) use ($router) {
      return view('caixa/loja', ['loja' => $loja]);
 });
-
 
 $router->get('/adm/cardapio', function () use ($router) {
     return view('adm/cardapio', ['app_name' => 'app de teste' , 'public' => '/adm/']);
