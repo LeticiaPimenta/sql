@@ -286,7 +286,7 @@
                 </tr>
               </thead>
               <tbody>
-                <span ng-repeat="origins in carts_origin">{{origins.length()}} :: </span>
+                <span ng-repeat="origins in carts_origin">{{origins}}</span>
                 {{carts_origin}}##
                 {{carts_origin.length()}}
                 <tr ng-repeat="produto in carts_origin">
