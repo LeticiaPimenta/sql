@@ -274,7 +274,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
         <div class="row">
 
           <!--Start carouse-->
-            <div class="card card-raised card-carousel">
+            <div class="card card-raised card-carousel" style="margin: 15%; margin-top: 30px; width: 80%;">
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
@@ -283,7 +283,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="/assets/img/croissant-chocolate-aberto.jpg" alt="First slide">
+                    <img class="d-block w-100" src="/assets/img/Cafefiltrado-2.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
                       <h4>
                         <i class="material-icons">location_on</i> Yellowstone National Park, United States
@@ -317,8 +317,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 </a>
               </div>
             </div>
-            <!--End carouse-->        
-          <h2 class="section-title">Cardápio</h2>  
+            <!--End carouse-->    
+
           <div class="col-md-4" ng-repeat="product in products">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
@@ -334,7 +334,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               </div>
               <div class="card-footer">
                 <div class="price-container">
-                  <span class="price price-new">{{product.value}}</span>
+                  <span class="price price-new">R$ {{product.value}}</span>
                 </div>
                 <div class="stats ml-auto">
                   <button type="button" class="btn btn-warning" ng-click="addCart(product.$id,product.text,product.value)">pedir</button>
@@ -345,7 +345,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+    <!--  <div class="col-md-4">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
@@ -368,8 +368,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
+          </div> -->
+    <!--  <div class="col-md-4">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
@@ -392,17 +392,17 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 </div>
               </div>
             </div>
-          </div>
+        </div> -->
         </div>
       </div>
    
     <!-- section -->
     <div class="section">
       <div class="container">
-        <h2 class="section-title">Find what you need</h2>
+        <h2 class="section-title">Da Vitrine pra você</h2>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-4" ng-repeat="product in products">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
@@ -411,7 +411,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                   </div>
                   <div class="card-body">
                     <a href="#">
-                      <h4 class="card-title">Polo Ralph Lauren</h4>
+                      <h4 class="card-title">{{product.text}}</h4>
                     </a>
                     <p class="description">
                       Impeccably tailored in Italy from lightweight navy wool.
@@ -419,147 +419,17 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                   </div>
                   <div class="card-footer justify-content-between">
                     <div class="price-container">
-                      <span class="price"> € 800</span>
+                      <span class="price">R$ {{product.value}}</span>
                     </div>
                     <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Remove from wishlist">
                       <i class="material-icons">favorite</i>
-                    </button>
-                  </div>
-                </div>
-                <!-- end card -->
-              </div>
-              <div class="col-md-4">
-                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                  <div class="card-header card-header-image">
-                    <a href="#">
-                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <a href="#">
-                      <h4 class="card-title">Wooyoungmi</h4>
-                    </a>
-                    <p class="description">
-                      Dark-grey slub wool, pintucked notch lapels.
-                    </p>
-                  </div>
-                  <div class="card-footer justify-content-between">
-                    <div class="price-container">
-                      <span class="price">€ 555</span>
-                    </div>
-                    <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                      <i class="material-icons">favorite_border</i>
-                    </button>
-                  </div>
-                </div>
-                <!-- end card -->
-              </div>
-              <div class="col-md-4">
-                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                  <div class="card-header card-header-image">
-                    <a href="#">
-                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <a href="#">
-                      <h4 class="card-title">Tom Ford</h4>
-                    </a>
-                    <p class="description">
-                      Immaculate tailoring is TOM FORD's forte.
-                    </p>
-                  </div>
-                  <div class="card-footer justify-content-between">
-                    <div class="price-container">
-                      <span class="price"> € 879</span>
-                    </div>
-                    <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                      <i class="material-icons">favorite_border</i>
-                    </button>
-                  </div>
-                </div>
-                <!-- end card -->
-              </div>
-              <div class="col-md-4">
-                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                  <div class="card-header card-header-image">
-                    <a href="#">
-                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <a href="#">
-                      <h4 class="card-title">Thom Sweeney</h4>
-                    </a>
-                    <p class="description">
-                      It's made from lightweight grey wool woven.
-                    </p>
-                  </div>
-                  <div class="card-footer justify-content-between">
-                    <div class="price-container">
-                      <span class="price"> € 680</span>
-                    </div>
-                    <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                      <i class="material-icons">favorite_border</i>
-                    </button>
-                  </div>
-                </div>
-                <!-- end card -->
-              </div>
-              <div class="col-md-4">
-                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                  <div class="card-header card-header-image">
-                    <a href="#">
-                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <a href="#">
-                      <h4 class="card-title">Kingsman</h4>
-                    </a>
-                    <p class="description">
-                      Crafted from khaki cotton and fully canvassed.
-                    </p>
-                  </div>
-                  <div class="card-footer justify-content-between">
-                    <div class="price-container">
-                      <span class="price"> € 725</span>
-                    </div>
-                    <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Remove from wishlist">
-                      <i class="material-icons">favorite</i>
-                    </button>
-                  </div>
-                </div>
-                <!-- end card -->
-              </div>
-              <div class="col-md-4">
-                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                  <div class="card-header card-header-image">
-                    <a href="#">
-                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <a href="#">
-                      <h4 class="card-title">Boglioli</h4>
-                    </a>
-                    <p class="description">
-                      Masterfully crafted in Northern Italy.
-                    </p>
-                  </div>
-                  <div class="card-footer justify-content-between">
-                    <div class="price-container">
-                      <span class="price">€ 699</span>
-                    </div>
-                    <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                      <i class="material-icons">favorite_border</i>
                     </button>
                   </div>
                 </div>
                 <!-- end card -->
               </div>
               <div class="col-md-3 ml-auto mr-auto">
-                <button rel="tooltip" class="btn btn-rose btn-round" data-original-title="" title="">Load more...</button>
+                <button rel="tooltip" class="btn btn-warning btn-round" data-original-title="" title="">Mais produtos...</button>
               </div>
             </div>
           </div>
@@ -571,102 +441,10 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   </div>
   <!-- end-main-raised -->
   <div class="section section-blog">
-    <div class="container">
-      <h2 class="section-title">Latest Articles</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card card-blog">
-            <div class="card-header card-header-image">
-              <a href="#pablo">
-                <img src="/assets/img/dg6.jpg" alt="">
-              </a>
-            </div>
-            <div class="card-body">
-              <h6 class="card-category text-rose">Trends</h6>
-              <h4 class="card-title">
-                <a href="#pablo">Learn how to wear your scarf with a floral print shirt</a>
-              </h4>
-              <p class="card-description">
-                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-blog">
-            <div class="card-header card-header-image">
-              <a href="#pablo">
-                <img src="/assets/img/dg10.jpg" alt="">
-              </a>
-            </div>
-            <div class="card-body">
-              <h6 class="card-category text-rose">Fashion week</h6>
-              <h4 class="card-title">
-                <a href="#pablo">Katy Perry was wearing a Dolce &amp; Gabanna arc dress</a>
-              </h4>
-              <p class="card-description">
-                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-blog">
-            <div class="card-header card-header-image">
-              <a href="#pablo">
-                <img src="/assets/img/dg9.jpg" alt="">
-              </a>
-            </div>
-            <div class="card-body">
-              <h6 class="card-category text-rose">Fashion week</h6>
-              <h4 class="card-title">
-                <a href="#pablo">Check the latest fashion events and which are the trends</a>
-              </h4>
-              <p class="card-description">
-                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
   </div>
   <!-- section -->
-  <div class="subscribe-line subscribe-line-image" data-parallax="true" style="background-image: url(&apos;../assets/img/examples/ecommerce-header.jpg&apos;);">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 ml-auto mr-auto">
-          <div class="text-center">
-            <h3 class="title">Subscribe to our Newsletter</h3>
-            <p class="description">
-              Join our newsletter and get news in your inbox every week! We hate spam too, so no worries about this.
-            </p>
-          </div>
-          <div class="card card-raised card-form-horizontal">
-            <div class="card-body">
-              <form method="" action="">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="material-icons">mail</i>
-                        </span>
-                      </div>
-                      <input type="text" class="form-control" placeholder="Your Email...">
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <button type="button" class="btn btn-rose btn-block">Subscribe</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   
   <!--   Core JS Files   -->
   <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
