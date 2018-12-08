@@ -250,7 +250,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
             </div>
           </li> 
           <li class="button-container nav-item iframe-extern">
-            <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-warning   btn-round btn-block">
+            <a href="/client/carrinho/<?php echo $loja;?>/<?php echo $cliente;?>" class="btn  btn-warning   btn-round btn-block">
               <i class="material-icons">shopping_cart</i> Meus Pedidos
             </a>
           </li>
