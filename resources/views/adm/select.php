@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Kit PRO by Creative Tim
+    .:: Benjamin a Padaria @ SP :: Brasil ::.
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
@@ -87,96 +87,31 @@
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">apps</i> Components
+              <i class="material-icons">apps</i> Coxinhas
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
-                <i class="material-icons">layers</i> Presentation
+                <i class="material-icons">layers</i> Soonhos
               </a>
               <a href="../index.html" class="dropdown-item">
-                <i class="material-icons">line_style</i> All Components
+                <i class="material-icons">line_style</i> Croissants
               </a>
-              <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
-                <i class="material-icons">content_paste</i> Documentation
-              </a>
+             
             </div>
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_day</i> Sections
+              <i class="material-icons">view_day</i> Cardapio
             </a>
-            <div class="dropdown-menu dropdown-with-icons">
-              <a href="../sections.html#headers" class="dropdown-item">
-                <i class="material-icons">dns</i> Headers
-              </a>
-              <a href="../sections.html#features" class="dropdown-item">
-                <i class="material-icons">build</i> Features
-              </a>
-              <a href="../sections.html#blogs" class="dropdown-item">
-                <i class="material-icons">list</i> Blogs
-              </a>
-              <a href="../sections.html#teams" class="dropdown-item">
-                <i class="material-icons">people</i> Teams
-              </a>
-              <a href="../sections.html#projects" class="dropdown-item">
-                <i class="material-icons">assignment</i> Projects
-              </a>
-              <a href="../sections.html#pricing" class="dropdown-item">
-                <i class="material-icons">monetization_on</i> Pricing
-              </a>
-              <a href="../sections.html#testimonials" class="dropdown-item">
-                <i class="material-icons">chat</i> Testimonials
-              </a>
-              <a href="../sections.html#contactus" class="dropdown-item">
-                <i class="material-icons">call</i> Contacts
-              </a>
-            </div>
+            
+            
           </li>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_carousel</i> Examples
+              <i class="material-icons">view_carousel</i> Conta
             </a>
-            <div class="dropdown-menu dropdown-with-icons">
-              <a href="../examples/about-us.html" class="dropdown-item">
-                <i class="material-icons">account_balance</i> About Us
-              </a>
-              <a href="../examples/blog-post.html" class="dropdown-item">
-                <i class="material-icons">art_track</i> Blog Post
-              </a>
-              <a href="../examples/blog-posts.html" class="dropdown-item">
-                <i class="material-icons">view_quilt</i> Blog Posts
-              </a>
-              <a href="../examples/contact-us.html" class="dropdown-item">
-                <i class="material-icons">location_on</i> Contact Us
-              </a>
-              <a href="../examples/landing-page.html" class="dropdown-item">
-                <i class="material-icons">view_day</i> Landing Page
-              </a>
-              <a href="../examples/login-page.html" class="dropdown-item">
-                <i class="material-icons">fingerprint</i> Login Page
-              </a>
-              <a href="../examples/pricing.html" class="dropdown-item">
-                <i class="material-icons">attach_money</i> Pricing Page
-              </a>
-              <a href="../examples/shopping-cart.html" class="dropdown-item">
-                <i class="material-icons">shopping_basket</i> Shopping Cart
-              </a>
-              <a href="../examples/ecommerce.html" class="dropdown-item">
-                <i class="material-icons">store</i> Ecommerce Page
-              </a>
-              <a href="../examples/product-page.html" class="dropdown-item">
-                <i class="material-icons">shopping_cart</i> Product Page
-              </a>
-              <a href="../examples/profile-page.html" class="dropdown-item">
-                <i class="material-icons">account_circle</i> Profile Page
-              </a>
-              <a href="../examples/signup-page.html" class="dropdown-item">
-                <i class="material-icons">person_add</i> Signup Page
-              </a>
-              <a href="../examples/error.html" class="dropdown-item">
-                <i class="material-icons">error</i> Error Page
-              </a>
-            </div>
+            
+           
           </li>
           <li class="button-container nav-item iframe-extern">
             <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-rose   btn-round btn-block">
