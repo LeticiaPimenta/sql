@@ -15,7 +15,7 @@
   <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/material-kit-pro" />
   <!--  Social tags      -->
-  <meta name="keywords" content="bootstrap 4, bootstrap 4 uit kit, bootstrap 4 kit, material, material kit, creative tim, html kit, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap ui kit, responsive ui kit, premium bootstrap 4 ui kit, premium template, bootstrap 4 template">
+  <meta name="keywords" content=" Benjamin a Padaria Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular">
   <meta name="description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular">
   <!-- Schema.org markup for Google+ -->
   <meta itemprop="name" content="Benjamin a Padaria">
@@ -35,7 +35,7 @@
   <meta property="og:url" content="https://demos.creative-tim.com/material-kit-pro/presentation.html" />
   <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/46/original/opt_mkp_thumbnail.jpg" />
   <meta property="og:description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular" />
-  <meta property="og:site_name" content="Creative Tim" />
+  <meta property="og:site_name" content="Benjamin a Padaria" />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
