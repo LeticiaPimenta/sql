@@ -75,7 +75,7 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-          Material Kit PRO </a>
+          .:: Benjamin a padaria @SP :: Brasil ::. </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -222,11 +222,11 @@
                 <div class="card-body">
                   <h6 class="category text-info">#600</h6>
                   <h4 class="card-title">
-                    <a href="#pablo">Central</a>
+                    <a href="unidade/600">Central</a>
                   </h4>
                   <p class="card-description">
-                    Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
-                    <a href="#pablo"> Read More </a>
+                    A unidade central da nossa padaria
+                    <a href="unidade/600"> Visitar </a>
                   </p>
                 </div>
               </div>
@@ -234,20 +234,20 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a href="#pablo">
+                  <a href="unidade/40">
                     <img class="img img-raised" src="/assets/img/examples/blog8.jpg">
                   </a>
                 </div>
                 <div class="card-body">
                   <h6 class="category text-success">
-                    Startups
+                    #40
                   </h6>
                   <h4 class="card-title">
-                    <a href="#pablo">Lyft launching cross-platform service this week</a>
+                    <a href="unidade/40">Haddock</a>
                   </h4>
                   <p class="card-description">
-                    Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
-                    <a href="#pablo"> Read More </a>
+                    Loja da Haddock Lobbo é perfeita praquela reunião ou cafézinho no meio da tarde
+                    <a href="unidade/40"> Visitar </a>
                   </p>
                 </div>
               </div>
@@ -255,20 +255,20 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a href="#pablo">
+                  <a href="unidade/1">
                     <img class="img img-raised" src="/assets/img/examples/blog7.jpg">
                   </a>
                 </div>
                 <div class="card-body">
                   <h6 class="category text-danger">
-                    <i class="material-icons">trending_up</i> Enterprise
+                    #1
                   </h6>
                   <h4 class="card-title">
-                    <a href="#pablo">6 insights into the French Fashion landscape</a>
+                    <a href="unidade/1">Bairro</a>
                   </h4>
                   <p class="card-description">
-                    Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
-                    <a href="#pablo"> Read More </a>
+                    Nossa loja do bairro
+                    <a href="unidade/1"> Visitar </a>
                   </p>
                 </div>
               </div>
