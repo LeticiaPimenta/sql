@@ -222,11 +222,11 @@
                 <div class="card-body">
                   <h6 class="category text-info">#<?php echo $unidade; ?></h6>
                   <h4 class="card-title">
-                    <a href="/client/cardapio/<?php echo $unidade; ?>/1">Admin</a>
+                    <a href="/client/cardapio/<?php echo $unidade; ?>/1">Usuario Joãozinho</a>
                   </h4>
                   <p class="card-description">
-                    Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
-                    <a href="#pablo"> Read More </a>
+                    Aqui entramos como se fosse o usuario Joãozinho pra testes
+                    <a href="/client/cardapio/<?php echo $unidade; ?>/1"> Entrar como Joãozinho </a>
                   </p>
                 </div>
               </div>
@@ -234,20 +234,20 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a href="#pablo">
+                  <a href="/client/cardapio/<?php echo $unidade; ?>/2">
                     <img class="img img-raised" src="/assets/img/examples/blog8.jpg">
                   </a>
                 </div>
                 <div class="card-body">
                   <h6 class="category text-success">
-                    Startups
+                    Pedro
                   </h6>
                   <h4 class="card-title">
-                    <a href="#pablo">Lyft launching cross-platform service this week</a>
+                    <a href="/client/cardapio/<?php echo $unidade; ?>/2">Usuario Pedro</a>
                   </h4>
                   <p class="card-description">
-                    Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
-                    <a href="#pablo"> Read More </a>
+                    Entrar como o Pedro
+                    <a href="/client/cardapio/<?php echo $unidade; ?>/2"> Entrar como o Pedro </a>
                   </p>
                 </div>
               </div>
@@ -255,20 +255,20 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a href="#pablo">
+                  <a href="/client/cardapio/<?php echo $unidade; ?>/3">
                     <img class="img img-raised" src="/assets/img/examples/blog7.jpg">
                   </a>
                 </div>
                 <div class="card-body">
                   <h6 class="category text-danger">
-                    <i class="material-icons">trending_up</i> Enterprise
+                    #3
                   </h6>
                   <h4 class="card-title">
-                    <a href="#pablo">6 insights into the French Fashion landscape</a>
+                    <a href="/client/cardapio/<?php echo $unidade; ?>/3">Maria</a>
                   </h4>
                   <p class="card-description">
-                    Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
-                    <a href="#pablo"> Read More </a>
+                    Entrar para testes com o Usuario da Maria
+                    <a href="/client/cardapio/<?php echo $unidade; ?>/3"> Entrar como Maria</a>
                   </p>
                 </div>
               </div>
