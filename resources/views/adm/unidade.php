@@ -191,11 +191,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h1 class="title">Escolha a unidade que deseja</h1>
-          <h4>Escolha a sua unidade.</h4>
+          <h1 class="title">Escolha um usuario </h1>
+          <h4>Escolha aqui um usuario pra testes</h4>
           <br>
           <a href="#pablo" class="btn btn-blue btn-round btn-lg">
-            <i class="material-icons">facebook</i>Logar com o Facebook
+            <i class="material-icons">admin</i>Entrar como admin
           </a>
         </div>
       </div>
