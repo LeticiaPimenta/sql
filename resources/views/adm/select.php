@@ -115,7 +115,7 @@
           </li>
           <li class="button-container nav-item iframe-extern">
             <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-rose   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i> Buy Now
+              <i class="material-icons">shopping_cart</i> Minha conta
             </a>
           </li>
         </ul>
