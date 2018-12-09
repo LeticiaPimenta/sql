@@ -124,6 +124,9 @@
       $scope.carts = cart_formatado;
   });
 
+  $scope.recebido = function($chave){
+    alert($chave);
+  }
 
 
   // add new items to the array
@@ -276,71 +279,7 @@
       <div class="card card-plain">
         <div class="card-body">
           <br/>
-          <div class="table-responsive">
-            <table class="table table-shopping">
-              <thead>
-                <tr>
-                  <th class="text-center"></th>
-                  <th>Produto</th>
-                  <th class="text-right">ID usuário</th>
-                  <th class="text-right">Status</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-                <span ng-repeat="origins in carts_origin">{{origins}}</span>
-                {{carts_origin}}##
-                {{carts_origin.length}}
-                <tr ng-repeat="produto in carts_origin">
-                  <td>
-                    <div class="img-container">
-                      <img src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
-                    </div>
-                  </td>
-                  <td class="td-name" style="color:#999">
-                    <a href="#jacket">nome do item</a>
-                    <br />
-                    <small>Pedido</small>
-                  </td>
-                  <td class="td-number text-right">
-                    <small>R$ </small>
-                    <span ng-repeat="item in carts[$index]">{{item.name}}:{{item.value}} :: </span>
-                  </td>
-                  <td class="td-number">
-                    <div class="btn-group btn-group-sm">
-                      <button class="btn btn-round btn-warning" ng-click="carts.$remove(produto)"> <i class="material-icons">remove</i> </button>
-                      <button class="btn btn-round btn-warning" ng-click="carts.$add(produto)"> <i class="material-icons">add</i> </button>
-                    </div>
-                  </td>
-                </tr>
-               
-                <tr>
-                  <td colspan="0"></td>
-                  <td class="td-total">
-                    Total
-                  </td>
-                  <td colspan="1" class="td-price">
-                    <small>R$</small>2,346
-                  </td>
-                  <td colspan="1"></td>
-                  <td colspan="2" class="text-right">
-                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar <i class="material-icons">keyboard_arrow_right</i></button>
-                    <a href="/client/cardapio/<?php echo $loja;?>">
-                    <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
-                    </a>
-
-
-                  </td>
-                </tr>
-                <!-- <tr>
-                <td colspan="6"></td>
-                <td colspan="2" class="text-right">
-                  <button type="button" class="btn btn-info btn-round">Complete Purchase <i class="material-icons">keyboard_arrow_right</i></button>
-                </td>
-              </tr> -->
-              </tbody>
-            </table>
-          </div>
+         
 
           <div class="table-responsive">
                 <table class="table"  ng-repeat="origins in carts_origin">
@@ -354,16 +293,15 @@
                         <th class="text-right">Actions</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <span ng-repeat="items in origins">
-                      <tr ng-repeat="item in items">
+                    <tbody ng-repeat="items in origins">
+                      <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
-                        <td>{{items.length()}}</td>
-                        <td>[<span ><small>{{items}}-{{item}}<br></small></span>]</td>
+                        <td>{{item.name}}</td>
+                        <td>hora</td>
                         <td>2013</td>
-                        <td class="text-right">€ 99,225</td>
+                        <td class="text-right">R$ {{item.value}}</td>
                         <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
+                          <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(key)">
                             <i class="material-icons">person</i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
@@ -374,7 +312,7 @@
                           </button>
                         </td>
                       </tr>
-                     </span>
+                     
                     </tbody>
                   </table>
           </div>
