@@ -281,7 +281,7 @@
             </div>
           </li>
           <li class="button-container nav-item iframe-extern">
-            <a href="client/history/<?php echo $cliente;?>" class="btn  btn-warning   btn-round btn-block">
+            <a href="/client/history/<?php echo $cliente;?>" class="btn  btn-warning   btn-round btn-block">
               <i class="material-icons">shopping_cart</i>Historico
             </a>
           </li>
@@ -361,7 +361,12 @@
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
-                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Pedir <i class="material-icons">keyboard_arrow_right</i></button>
+                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()" ng-if="carts.length">Fechar <i class="material-icons">keyboard_arrow_right</i></button>
+                    <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>">
+                    <button type="button" class="btn btn-success btn-round" ng-if="!carts.length">Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
+                    </a>
+
+
                   </td>
                 </tr>
                 <!-- <tr>

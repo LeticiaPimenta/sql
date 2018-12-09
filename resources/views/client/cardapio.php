@@ -112,7 +112,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-          Material Kit PRO </a>
+          .:: Meu Cardapio :: Benjamin</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
