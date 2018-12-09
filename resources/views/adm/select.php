@@ -74,64 +74,20 @@
   <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-          .:: Benjamin a padaria @SP :: Brasil ::. </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">apps</i> Coxinhas
-            </a>
-            <div class="dropdown-menu dropdown-with-icons">
-              <a href="../presentation.html" class="dropdown-item">
-                <i class="material-icons">layers</i> Soonhos
-              </a>
-              <a href="../index.html" class="dropdown-item">
-                <i class="material-icons">line_style</i> Croissants
-              </a>
-             
-            </div>
-          </li>
-          <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_day</i> Cardapio
-            </a>
-            
-            
-          </li>
-          <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">view_carousel</i> Conta
-            </a>
-            
-           
-          </li>
-          <li class="button-container nav-item iframe-extern">
-            <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-rose   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i> Minha conta
-            </a>
-          </li>
-        </ul>
+        <img src="../assets/img/benjamin.png" style="width: 20%; height: auto;">        
       </div>
     </div>
   </nav>
-  <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/bg5.jpg');">
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/panetone.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
           <h1 class="title">Escolha a unidade que deseja</h1>
-          <h4>Escolha a sua unidade.</h4>
           <br>
-          <a href="#pablo" class="btn btn-blue btn-round btn-lg">
-            <i class="material-icons">facebook</i>Logar com o Facebook
+          <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
+            <i class="fa fa-facebook-square"></i>   Logar com o Facebook
           </a>
+          <div class="ripple-container"></div>
         </div>
       </div>
     </div>
@@ -151,7 +107,7 @@
               <div class="card card-blog">
                 <div class="card-header card-header-image">
                   <a href="unidade/600">
-                    <img class="img img-raised" src="/assets/img/examples/blog6.jpg">
+                    <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
                   </a>
                 </div>
                 <div class="card-body">
@@ -160,7 +116,7 @@
                     <a href="unidade/600">Central</a>
                   </h4>
                   <p class="card-description">
-                    A unidade central da nossa padaria
+                    A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.
                     <a href="unidade/600"> Visitar </a>
                   </p>
                 </div>
@@ -170,7 +126,7 @@
               <div class="card card-blog">
                 <div class="card-header card-header-image">
                   <a href="unidade/40">
-                    <img class="img img-raised" src="/assets/img/examples/blog8.jpg">
+                    <img class="img img-raised" src="/assets/img/UniBenjamin.jpg">
                   </a>
                 </div>
                 <div class="card-body">
@@ -181,7 +137,7 @@
                     <a href="unidade/40">Haddock</a>
                   </h4>
                   <p class="card-description">
-                    Loja da Haddock Lobbo é perfeita praquela reunião ou cafézinho no meio da tarde
+                    Haddock Lobo é a segunda unidade inaugarada pela Benjamin A Padaria, costuma ter grande número de pessoas, ideal para encontrar seu grupo de amigos e interagir com o fluxo constante da Av. Paulista.
                     <a href="unidade/40"> Visitar </a>
                   </p>
                 </div>
@@ -191,7 +147,7 @@
               <div class="card card-blog">
                 <div class="card-header card-header-image">
                   <a href="unidade/1">
-                    <img class="img img-raised" src="/assets/img/examples/blog7.jpg">
+                    <img class="img img-raised" src="/assets/img/benjamin4.jpg">
                   </a>
                 </div>
                 <div class="card-body">
@@ -199,10 +155,10 @@
                     #1
                   </h6>
                   <h4 class="card-title">
-                    <a href="unidade/1">Bairro</a>
+                    <a href="unidade/1">Pamplona</a>
                   </h4>
                   <p class="card-description">
-                    Nossa loja do bairro
+                    Nossa unidade localizada no coração da Av. Pamplona ideal para seu café da manhã antes do trabalho.
                     <a href="unidade/1"> Visitar </a>
                   </p>
                 </div>
@@ -215,7 +171,7 @@
   </div>
   <footer class="footer">
     <div class="container">
-      <nav class="float-left">
+<!--      <nav class="float-left">
         <ul>
           <li>
             <a href="https://www.creative-tim.com">
@@ -238,13 +194,18 @@
             </a>
           </li>
         </ul>
-      </nav>
-      <div class="copyright float-right">
-        &copy;
-        <script>
-          document.write(new Date().getFullYear())
-        </script>, made with <i class="material-icons">favorite</i> by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+      </nav> -->
+      <div class="copyright float-right"> 
+        <a href="https://www.facebook.com/BenjaminAPadaria/" target="_blank">
+        <button class="btn btn-link btn-facebook">
+          <i class="fa fa-facebook-square"></i> facebook
+        </button>
+        </a>
+        <a href="https://www.instagram.com/benjaminapadaria/" target="_blank">
+        <button class="btn btn-link btn-instagram">
+          <i class="fa fa-instagram"></i> instagram
+        </button>  
+        </a>      
       </div>
     </div>
   </footer>
