@@ -107,7 +107,7 @@
   });
 
 
-  var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>");
+  var ref_carts = firebase.database().ref().child("pedidos/<?php echo $loja;?>");
   // create a synchronized array
   var carts = $firebaseArray(ref_carts);
   var cart_formatado = [];
@@ -125,34 +125,7 @@
   });
 
 
-  $scope.encerrar_carrinho = function(){
-               // var disputa = disputas.$getRecord(id);
-             /*    var novo_estilo = firebase.database().ref().child("historico");
-                var novo = $firebaseArray(novo_estilo);
-                novo.$add($scope.disputa);
-                $scope.disputa.inicio = 0; // This print null
-                $scope.disputa.encerrando = 0; // This print null
-                $scope.disputa.estilos = []; // This print null
-                $scope.disputa.votacao = []; // This print null*/
 
-                var ref_caixa = firebase.database().ref().child("caixa/<?php echo $loja;?>/<?php echo $cliente.'/'.$hoje;?>");
-  // create a synchronized array
-                var caixa = $firebaseArray(ref_caixa);
-                caixa.$add($scope.carts);
-
-                var ref_compra = firebase.database().ref().child("users/<?php echo $cliente;?>/compras/<?php echo $loja;?>");
-                var compras = $firebaseArray(ref_compra);
-                compras.$add($scope.carts);
-               // $scope.carts.$remove();
-
-                var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
-                // create a synchronized array
-                var carts = $firebaseObject(ref_carts);
-
-                carts.$remove();
-                alert("Vai Fechar sua compra , veja os detalhes em seus historicos !");
-
-            }
   // add new items to the array
   // the product is automatically added to our Firebase database!
  
@@ -177,7 +150,7 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-          {{users_id[<?php echo $cliente;?>].name}} </a>
+         ... </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -281,7 +254,7 @@
             </div>
           </li>
           <li class="button-container nav-item iframe-extern">
-            <a href="/client/history/<?php echo $cliente;?>" class="btn  btn-warning   btn-round btn-block">
+            <a href="/client/history" class="btn  btn-warning   btn-round btn-block">
               <i class="material-icons">shopping_cart</i>Historico
             </a>
           </li>
@@ -362,7 +335,7 @@
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
                     <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar <i class="material-icons">keyboard_arrow_right</i></button>
-                    <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>">
+                    <a href="/client/cardapio/<?php echo $loja;?>">
                     <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
                     </a>
 

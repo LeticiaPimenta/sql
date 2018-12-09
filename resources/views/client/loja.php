@@ -117,7 +117,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   // add new items to the array
   // the product is automatically added to our Firebase database!
   $scope.addCart = function($product, $name , $value) {
-    var ref_carts_targer = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>/"+$product);
+    var ref_carts_targer = firebase.database().ref().child("pedidos/<?php echo $loja;?>/<?php echo $cliente;?>/"+$product);
   // create a synchronized array
   $scope.carts_clicado = $firebaseArray(ref_carts_targer);
     $scope.carts_clicado.$add({
