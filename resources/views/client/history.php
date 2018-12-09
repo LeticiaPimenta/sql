@@ -333,10 +333,7 @@
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
-                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar <i class="material-icons">keyboard_arrow_right</i></button>
-                    <a href="/client/cardapio/<?php echo $cliente;?>">
-                    <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
-                    </a>
+                    
 
 
                   </td>
