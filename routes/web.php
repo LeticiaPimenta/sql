@@ -43,7 +43,7 @@ $router->get('/caixa/loja/{loja}', function ($loja) use ($router) {
 });
 
 $router->get('/caixa/pedidos/{loja}', function ($loja) use ($router) {
-     return view('caixa/loja', ['loja' => $loja]);
+     return view('caixa/pedidos', ['loja' => $loja]);
 });
 
 $router->get('/caixa/cobrancas/{loja}', function ($loja) use ($router) {
