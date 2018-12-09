@@ -315,7 +315,7 @@
                       <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
                         <td>{{users_id[origins.$id].name}}</td>
-                        <td>[<span ng-repeat="produtinho in item"><span ng-repeat="produtinhos in produtinho">{{products_id[produtinhos.product].text}} - {{produtinhos.value}}{{total = +parseFloat(produtinhos.value)| number}}</span>{{total}}</span>]</td>
+                        <td>[<span ng-repeat="produtinho in item"><span ng-repeat="produtinhos in produtinho">{{produtinhos}}{{products_id[produtinhos.product].text}} - {{produtinhos.value}}{{total = +parseFloat(produtinhos.value)| number}}</span>{{total}}</span>]</td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R${{total}}</td>
                         <td class="td-actions text-right">
