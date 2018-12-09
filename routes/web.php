@@ -1,7 +1,7 @@
 <?php
 
 $router->get('/', function () use ($router) {
-    echo "Benjamin Lab";
+    return view('client/landing', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
 
 $router->get('/select', function () use ($router) {
