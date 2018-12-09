@@ -343,7 +343,7 @@
           </div>
 
           <div class="table-responsive">
-                  <table class="table">
+                  <table class="table"  ng-repeat="origins in carts_origin">
                     <thead>
                       <tr>
                         <th class="text-center">#</th>
@@ -355,7 +355,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr  ng-repeat="origins in carts_origin">
+                      <tr >
                         <td class="text-center">1</td>
                         <td>Andrew Mike</td>
                         <td>Develop</td>
