@@ -107,7 +107,7 @@
   });
 
 
-  var ref_carts = firebase.database().ref().child("carts/<?php echo $usuario;?>");
+  var ref_carts = firebase.database().ref().child("users/<?php echo $usuario;?>/compras");
   // create a synchronized array
   var carts = $firebaseArray(ref_carts);
   var cart_formatado = [];

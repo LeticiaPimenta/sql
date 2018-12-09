@@ -33,10 +33,20 @@ $router->get('/client/cardapio/{loja}/{cliente}', function ($loja, $cliente) use
 });
 
 $router->get('/client/carrinho/{loja}/{cliente}', function ($loja, $cliente) use ($router) {
-    return view('client/carrinho', ['loja' => $loja, 'cliente' => $cliente]);
+	$now = new DateTime();
+	$hoje = $now->getTimestamp();
+    return view('client/carrinho', ['loja' => $loja, 'cliente' => $cliente , 'hoje' => $hoje]);
 });
 
 $router->get('/caixa/loja/{loja}', function ($loja) use ($router) {
+     return view('caixa/loja', ['loja' => $loja]);
+});
+
+$router->get('/caixa/pedidos/{loja}', function ($loja) use ($router) {
+     return view('caixa/loja', ['loja' => $loja]);
+});
+
+$router->get('/caixa/cobrancas/{loja}', function ($loja) use ($router) {
      return view('caixa/loja', ['loja' => $loja]);
 });
 
