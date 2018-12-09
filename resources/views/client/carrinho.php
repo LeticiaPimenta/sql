@@ -85,7 +85,7 @@
 <script type="text/javascript">
   
   var app = angular.module("sampleApp", ["firebase"]);
-  app.controller("SampleCtrl", function($scope, $firebaseArray) {
+  app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseObject) {
     var ref = firebase.database().ref().child("products");
     // create a synchronized array
     $scope.products = $firebaseArray(ref);
@@ -123,6 +123,36 @@
       console.log(cart_formatado);
       $scope.carts = cart_formatado;
   });
+
+
+  $scope.encerrar_carrinho = function(){
+               // var disputa = disputas.$getRecord(id);
+             /*    var novo_estilo = firebase.database().ref().child("historico");
+                var novo = $firebaseArray(novo_estilo);
+                novo.$add($scope.disputa);
+                $scope.disputa.inicio = 0; // This print null
+                $scope.disputa.encerrando = 0; // This print null
+                $scope.disputa.estilos = []; // This print null
+                $scope.disputa.votacao = []; // This print null*/
+
+                var ref_caixa = firebase.database().ref().child("caixa/<?php echo $loja;?>/<?php echo $cliente;?>");
+  // create a synchronized array
+                var caixa = $firebaseArray(ref_caixa);
+                caixa.$add($scope.carts);
+
+                var ref_compra = firebase.database().ref().child("users/<?php echo $cliente;?>/compras/<?php echo $loja;?>");
+                var compras = $firebaseArray(ref_compra);
+                compras.$add($scope.carts);
+               // $scope.carts.$remove();
+
+                var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
+                // create a synchronized array
+                var carts = $firebaseObject(ref_carts);
+
+                carts.$remove();
+                alert("Vai Fechar sua compra , veja os detalhes em seus historicos !");
+
+            }
   // add new items to the array
   // the product is automatically added to our Firebase database!
  
@@ -251,8 +281,8 @@
             </div>
           </li>
           <li class="button-container nav-item iframe-extern">
-            <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-warning   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i> Meus Pedidos
+            <a href="client/history/<?php echo $cliente;?>" class="btn  btn-warning   btn-round btn-block">
+              <i class="material-icons">shopping_cart</i>Historico
             </a>
           </li>
         </ul>
@@ -331,7 +361,7 @@
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
-                    <button type="button" class="btn btn-warning btn-round">Pedir <i class="material-icons">keyboard_arrow_right</i></button>
+                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Pedir <i class="material-icons">keyboard_arrow_right</i></button>
                   </td>
                 </tr>
                 <!-- <tr>

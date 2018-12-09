@@ -16,6 +16,10 @@ $router->get('/client/', function () use ($router) {
     return view('client/index', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
 
+$router->get('/client/history/{id}', function ($id) use ($router) {
+     return view('cleint/history', ['usuario' => $id]);
+});
+
 $router->get('/client/cardapio', function () use ($router) {
     return view('client/cardapio', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
