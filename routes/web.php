@@ -17,7 +17,7 @@ $router->get('/client/', function () use ($router) {
 });
 
 $router->get('/client/history/{id}', function ($id) use ($router) {
-     return view('cleint/history', ['usuario' => $id]);
+     return view('client/history', ['usuario' => $id,'cliente' => $id]);
 });
 
 $router->get('/client/cardapio', function () use ($router) {
