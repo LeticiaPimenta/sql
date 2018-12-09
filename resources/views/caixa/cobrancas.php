@@ -136,8 +136,15 @@
       $scope.carts = cart_formatado;
   });
 
+  $scope.soma = function($carrinho){
+      
+      for (var i = 0; i < $carrinho.length; i++) {
+        
+        console.log($carrinho[i].value);
+      }
+  }
 
-  $scope.total = 0;
+  $scope.total = parseFloat(0);
 
   // add new items to the array
   // the product is automatically added to our Firebase database!
@@ -303,14 +310,14 @@
                         <th class="text-right">Ações</th>
                       </tr>
                     </thead>
-                 
+            
                     <tbody ng-repeat="items in origins">
                       <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
                         <td>{{users_id[origins.$id].name}}</td>
-                        <td>[<span ng-repeat="produtinho in item"><span ng-repeat="produtinhos in produtinho">{{products_id[produtinhos.product].text}} - {{produtinhos.value}}{{total = parseFloat(total)+parseFloat(produtinhos.value)}}</span></span>]</td>
+                        <td>[<span ng-repeat="produtinho in item"><span ng-repeat="produtinhos in produtinho">{{products_id[produtinhos.product].text}} - {{produtinhos.value}}{{total = +parseFloat(produtinhos.value)| number}}</span>{{total}}</span>]</td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-right">R$ {{total}}</td>
+                        <td class="text-right">R${{total}}</td>
                         <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">person</i>

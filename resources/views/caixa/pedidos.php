@@ -139,7 +139,7 @@
       shop: <?php echo $loja;?>,
       user : $usuario,
      // name:$name,
-      value:$value,
+      value:parseFloat($value),
       hora:new Date().getTime()
     });
   
