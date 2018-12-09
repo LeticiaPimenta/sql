@@ -304,19 +304,19 @@
                     <thead>
                       <tr>
                         <th class="text-center">#</th>
-                        <th>Name</th>
-                        <th>Job Position</th>
-                        <th>Since</th>
-                        <th class="text-right">Salary</th>
-                        <th class="text-right">Actions</th>
+                        <th>Cliente</th>
+                        <th>Produto</th>
+                        <th>Hora</th>
+                        <th class="text-right">Valor</th>
+                        <th class="text-right">Ações</th>
                       </tr>
                     </thead>
                     <tbody ng-repeat="items in origins">
                       <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
+                        <td>{{users_id[item.user].name}}</td>
                         <td>{{item.name}}</td>
-                        <td>hora</td>
-                        <td>2013</td>
+                        <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R$ {{item.value}}</td>
                         <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
