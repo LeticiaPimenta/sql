@@ -355,10 +355,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="item in origins">
+                      <tr ng-repeat="items in origins">
                         <td class="text-center">1</td>
-                        <td>{{item}}</td>
-                        <td>Develop</td>
+                        <td>{{items.length()}}</td>
+                        <td>[<span ng-repeat="item in items"><small>{{item.name}}<br></small></span>]</td>
                         <td>2013</td>
                         <td class="text-right">€ 99,225</td>
                         <td class="td-actions text-right">
