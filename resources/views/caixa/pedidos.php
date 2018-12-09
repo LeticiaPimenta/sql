@@ -355,7 +355,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr  ng-repeat="origins in carts_origin">
                         <td class="text-center">1</td>
                         <td>Andrew Mike</td>
                         <td>Develop</td>
