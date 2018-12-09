@@ -124,8 +124,26 @@
       $scope.carts = cart_formatado;
   });
 
-  $scope.recebido = function($chave){
-    alert($chave);
+  $scope.recebido = function($usuario , $produto , $chave , $value){
+;
+     var ref_pedidos = firebase.database().ref("pedidos/<?php echo $loja;?>/"+$usuario+"/"+$produto+"/"+$chave);
+  // create a synchronized array
+    var pedido = $firebaseObject(ref_pedidos);
+    console.log(pedido);
+
+    var ref_carts_targer = firebase.database().ref().child("carts/<?php echo $loja;?>/"+$usuario+"/"+$produto);
+  // create a synchronized array
+  $scope.carts_clicado = $firebaseArray(ref_carts_targer);
+    $scope.carts_clicado.$add({
+      product: $produto,
+      shop: <?php echo $loja;?>,
+      user : $usuario,
+     // name:$name,
+      value:$value,
+      hora:new Date().getTime()
+    });
+  
+    pedido.$remove();
   }
 
 
@@ -301,7 +319,7 @@
                         <td>2013</td>
                         <td class="text-right">R$ {{item.value}}</td>
                         <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(key)">
+                          <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">person</i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">

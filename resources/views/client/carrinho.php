@@ -135,7 +135,9 @@
                 $scope.disputa.estilos = []; // This print null
                 $scope.disputa.votacao = []; // This print null*/
 
-                var ref_caixa = firebase.database().ref().child("caixa/<?php echo $loja;?>/<?php echo $cliente.'/'.$hoje;?>");
+                var hoje = new Date().getTime();
+                alert(hoje);
+                var ref_caixa = firebase.database().ref().child("caixa/<?php echo $loja;?>/<?php echo $cliente.'/';?>"+hoje);
   // create a synchronized array
                 var caixa = $firebaseArray(ref_caixa);
                 caixa.$add($scope.carts);
