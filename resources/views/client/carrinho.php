@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Kit PRO by Creative Tim
+    .:: Meus Pedidos :: Padaria Benjamin :: SP @Brasil ::.
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
@@ -361,9 +361,9 @@
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
-                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()" ng-if="carts.length">Fechar <i class="material-icons">keyboard_arrow_right</i></button>
+                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar <i class="material-icons">keyboard_arrow_right</i></button>
                     <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>">
-                    <button type="button" class="btn btn-success btn-round" ng-if="!carts.length">Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
+                    <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
                     </a>
 
 
