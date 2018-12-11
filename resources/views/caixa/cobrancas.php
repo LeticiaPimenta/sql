@@ -110,10 +110,11 @@
     $scope.username = "";
 
     users.$loaded().then(function() {
+    console.log(users);
       var cont = 1;
       angular.forEach(users, function(value, key) {
-        //console.log(value, key);
-        users_id[value.$id]=value;
+        console.log(value.$id);
+        users_id[value.$id]=value.configs;
       });
     $scope.users_id = users_id;
   });
@@ -339,7 +340,7 @@
                     <tbody ng-repeat="items in origins">
                       <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
-                        <td>{{users_id[origins.$id].name}}</td>
+                        <td>{{users_id[item.user].name}}</td>
                         <td><span ng-repeat="produto in item.products"> {{produto.value}} + </span></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R$ {{item.value}}</td>
