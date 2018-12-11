@@ -111,16 +111,36 @@
   // create a synchronized array
   var carts = $firebaseArray(ref_carts);
   var cart_formatado = [];
+  var valor_total = 0;
+  
 
   carts.$loaded().then(function() {
     $scope.carts_origin = carts;
       var cont = 1;
-      angular.forEach(carts, function(value, key) {
-        console.log(value);
+      var valor_total_produto=0;
+      angular.forEach(carts, function(produtos, key) {
+        console.log(produtos);
         console.log(key);
-        cart_formatado[value.$id]=value;
+        angular.forEach(produtos, function(produto) {
+          //cart_formatado[produtos.$id]=produto;
+          //valor_total=valor_total+produto.value;
+          //console.log(produto.value);
+          if(typeof produto === 'object' && produto !== null){
+            valor_total=valor_total+parseFloat(produto.value);
+            id_produto = produto.product;
+            if(valor_total_produto[id_produto] == null){
+              valor_total_produto[id_produto]=0;
+            }
+            valor_total_produto[id_produto]=valor_total_produto[id_produto]+parseFloat(produto.value);
+            console.log(produto.value);
+            console.log(valor_total_produto);
+            console.log(valor_total);
+          }
+        });
       });
-      console.log(cart_formatado);
+      console.log(valor_total);
+      console.log(valor_total_produto);
+      $scope.valor_total = valor_total;
       $scope.carts = cart_formatado;
   });
 
@@ -136,10 +156,11 @@
                 $scope.disputa.votacao = []; // This print null*/
 
                 var hoje = new Date().getTime();
-                alert(hoje);
-                var ref_caixa = firebase.database().ref().child("caixa/<?php echo $loja;?>/<?php echo $cliente.'/';?>"+hoje);
+                //alert(hoje);WSS
+                var ref_caixa = firebase.database().ref("caixa/<?php echo $loja;?>/<?php echo $cliente.'/';?>"+hoje);
   // create a synchronized array
                 var caixa = $firebaseArray(ref_caixa);
+                console.log("caixa/<?php echo $loja;?>/<?php echo $cliente.'/';?>"+hoje);
                 caixa.$add($scope.carts);
 
                 var ref_compra = firebase.database().ref().child("users/<?php echo $cliente;?>/compras/<?php echo $loja;?>");
@@ -148,9 +169,7 @@
                // $scope.carts.$remove();
 
                 var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
-                // create a synchronized array
                 var carts = $firebaseObject(ref_carts);
-
                 carts.$remove();
                 alert("Vai Fechar sua compra , veja os detalhes em seus historicos !");
 
@@ -318,9 +337,8 @@
                 </tr>
               </thead>
               <tbody>
-                <span ng-repeat="origins in carts_origin">{{origins}}</span>
-                {{carts_origin}}##
-                {{carts_origin.length}}
+             {{nome_linha = ""}}
+       
                 <tr ng-repeat="produto in carts_origin">
                   <td>
                     <div class="img-container">
@@ -328,23 +346,24 @@
                     </div>
                   </td>
                   <td class="td-name" style="color:#999">
-                    <a href="#jacket">nome do item</a>
+                    <a href="#jacket">NOme</a>
                     <br />
                     <small>Pedido</small>
                   </td>
                   <td class="td-number text-right">
                     <small>R$ </small>
-                    <span ng-repeat="item in carts[$index]">{{item.name}}:{{item.value}} :: </span>
+                    <span ng-repeat="item in produto">
+                    {{nome_linha = parseFloat(item.value)}} </span>
                   </td>
                   <td class="td-number">
-                    quantidade
+                    x{{produto.length}}x
                     <div class="btn-group btn-group-sm">
                       <button class="btn btn-round btn-warning" ng-click="carts.$remove(produto)"> <i class="material-icons">remove</i> </button>
                       <button class="btn btn-round btn-warning" ng-click="carts.$add(produto)"> <i class="material-icons">add</i> </button>
                     </div>
                   </td>
                   <td class="td-number">
-                    <small>R$</small>549
+                    <small>R$</small>.{{nome_linha}}.
                   </td>
                   <td class="td-actions">
                     <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link" ng-click="carts.$remove(produto)">
@@ -359,7 +378,7 @@
                     Total
                   </td>
                   <td colspan="1" class="td-price">
-                    <small>R$</small>2,346
+                    <small>R$</small> {{valor_total}}
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">

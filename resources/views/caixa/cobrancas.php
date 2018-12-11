@@ -112,7 +112,7 @@
     users.$loaded().then(function() {
       var cont = 1;
       angular.forEach(users, function(value, key) {
-        console.log(value, key);
+        //console.log(value, key);
         users_id[value.$id]=value;
       });
     $scope.users_id = users_id;
@@ -123,16 +123,38 @@
   // create a synchronized array
   var carts = $firebaseArray(ref_carts);
   var cart_formatado = [];
+  var total_usuario = [];
 
   carts.$loaded().then(function() {
     $scope.carts_origin = carts;
       var cont = 1;
-      angular.forEach(carts, function(value, key) {
-        console.log(value);
-        console.log(key);
-        cart_formatado[value.$id]=value;
+      angular.forEach(carts, function(compras) {
+        //console.log(compras.$id);
+        //console.log(dia);
+        angular.forEach(compras, function(compra) {
+          //console.log(compra);
+          //console.log(dia);
+          angular.forEach(compra, function(produto) {
+           // console.log(produto);
+            angular.forEach(produto, function( item) {
+              angular.forEach(item, function( qtd , key) {
+              console.log(compras.$key);
+              if(qtd.value){
+                console.log(qtd);
+                cart_formatado[key]=cart_formatado[key]+parseFloat(qtd.value);
+                total_usuario[qtd.user]=total_usuario[qtd.user]+parseFloat(qtd.value);
+              }
+              //console.log(dia);
+              
+            });
+              
+            });
+            
+          });
+        });
       });
       console.log(cart_formatado);
+      console.log(total_usuario);
       $scope.carts = cart_formatado;
   });
 
@@ -315,7 +337,7 @@
                       <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
                         <td>{{users_id[origins.$id].name}}</td>
-                        <td>[<span ng-repeat="produtinho in item"><span ng-repeat="produtinhos in produtinho">{{produtinhos}}{{products_id[produtinhos.product].text}} - {{produtinhos.value}}{{total = +parseFloat(produtinhos.value)| number}}</span>{{total}}</span>]</td>
+                        <td><span ng-repeat="produtinho in item"> <span ng-repeat="produtinhos in produtinho"><strong>{{produtinhos.hora | date:'MM/dd @ h:mma' }}</strong> :{{products_id[produtinhos.product].text}} = R$  {{produtinhos.value}}{{total = +parseFloat(produtinhos.value)| number}} <br> </span></span></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R${{total}}</td>
                         <td class="td-actions text-right">
