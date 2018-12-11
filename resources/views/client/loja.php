@@ -129,6 +129,39 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       hora:new Date().getTime()
     });
   };
+
+    $scope.timerCarrinho = 0;
+
+    
+    $scope.cancelarPedido = function() {
+        clearTimeout($scope.timerCarrinho);
+    }
+
+    $scope.modalPedido = function($product, $name , $value) {
+    var ref_carts_targer = firebase.database().ref().child("pedidos/<?php echo $loja;?>/<?php echo $cliente;?>/"+$product);
+  // create a synchronized array
+/*  $scope.carts_clicado = $firebaseArray(ref_carts_targer);
+    $scope.carts_clicado.$add({
+      product: $product,
+      shop: <?php echo $loja;?>,
+      user : <?php echo $cliente;?>,
+      name:$name,
+      value:parseFloat($value),
+      hora:new Date().getTime()
+    }); */
+    $scope.timerCarrinho = setTimeout(function(){ 
+        $('#smallAlertModal').modal('hide');
+        $scope.carts_clicado = $firebaseArray(ref_carts_targer);
+            $scope.carts_clicado.$add({
+              product: $product,
+              shop: <?php echo $loja;?>,
+              user : <?php echo $cliente;?>,
+              name:$name,
+              value:parseFloat($value),
+              hora:new Date().getTime()
+            });
+          }, 3000);
+    };
   // click on `index.html` above to see $remove() and $save() in action
 });
 </script>
@@ -336,8 +369,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 <div class="price-container">
                   <span class="price price-new">R$ {{product.value}}</span>
                 </div>
-                <div class="stats ml-auto">
-                  <button type="button" class="btn btn-warning" ng-click="addCart(product.$id,product.text,product.value)">pedir</button>
+                <div class="stats ml-auto">                  
+                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">modal</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>
@@ -422,7 +455,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                   <span class="price price-new">R$ {{product.value}}</span>
                 </div>
                 <div class="stats ml-auto">
-                  <button type="button" class="btn btn-warning" ng-click="addCart(product.$id,product.text,product.value)">pedir</button>
+                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">modal</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>
@@ -459,6 +492,24 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   </div>
   <!-- section -->
   
+  <!-- modal -->
+  <div class="modal fade" id="smallAlertModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-small" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" ng-click="cancelarPedido()" aria-hidden="true"><i class="material-icons">clear</i></button>
+        </div>
+        <div class="modal-body text-center">
+          <h5>Seu pedido foi aceito. </h5>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-link" data-dismiss="modal">Continuar<div class="ripple-container"><div class="ripple-decorator ripple-on ripple-out" style="left: 57.5px; top: 22.65px; background-color: rgb(153, 153, 153); transform: scale(12.875);"></div></div></button>
+          <button type="button" class="btn btn-danger btn-link" ng-click="cancelarPedido()" data-dismiss="modal">Desfazer<div class="ripple-container"></div></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end modal -->
   
   <!--   Core JS Files   -->
   <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
