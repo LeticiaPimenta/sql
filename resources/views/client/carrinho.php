@@ -396,17 +396,18 @@ $scope.carrinhos = carts_atualizado;
                     </div>
                   </td>
                   <td class="td-name" style="color:#999">
-                    <a href="#jacket"><span ng-repeat="item in produto" ng-show="$first" >
-                      {{products_id[item.product].text}}
-
+                    <a href="#"><span ng-repeat="item in produto" ng-show="$first" >
+                      {{products_id[item.product].text}} 
+                      
+                      <br />
+                    <small>R$ {{products_id[item.product].value}}</small>
                      </span></a>
-                    <br />
-                    <small>Pedido</small>
+                    
                   </td>
                   <td class="td-number text-right">
                     <small> 
                     <span ng-repeat="item in produto" ng-init="counter += 1">
-                      {{$index+1}} : R$ {{item.value}} {{item.hora | date:'@ h:mma'}}<br>
+                      {{$index+1}} - hora: {{item.hora | date:' h:mma'}}<br>
                     </span>
                     </small>
                       
