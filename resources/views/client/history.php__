@@ -88,19 +88,7 @@
   app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseObject) {
     var ref = firebase.database().ref().child("products");
     // create a synchronized array
-    var products = $firebaseArray(ref);
-
-    var products_id = [];
-    products.$loaded().then(function() {
-      var cont = 1;
-      angular.forEach(products, function(value, key) {
-        
-        products_id[value.$id]=value;
-      });
-    //  console.log(products_id);
-    $scope.products = products;
-    $scope.products_id = products_id;
-  });
+    $scope.products = $firebaseArray(ref);
 
 
     var ref_users = firebase.database().ref().child("users");
@@ -112,64 +100,30 @@
     users.$loaded().then(function() {
       var cont = 1;
       angular.forEach(users, function(value, key) {
-        //console.log(value, key);
+        console.log(value, key);
         users_id[value.$id]=value;
       });
     $scope.users_id = users_id;
   });
 
 
-  var ref_carts = firebase.database().ref().child("users/<?php echo $cliente;?>/compras");
+  var ref_carts = firebase.database().ref().child("users/<?php echo $usuario;?>/compras");
   // create a synchronized array
   var carts = $firebaseArray(ref_carts);
   var cart_formatado = [];
-  var total_usuario = [];
- // var produtos_carrinho = [];
 
   carts.$loaded().then(function() {
     $scope.carts_origin = carts;
       var cont = 1;
-      angular.forEach(carts, function(compras) {
-        //console.log(compras.$id);
-        //console.log(dia);
-        angular.forEach(compras, function(compra) {
-          //console.log(compra);
-          //console.log(dia);
-          angular.forEach(compra, function(produto) {
-           // console.log(produto);
-            angular.forEach(produto, function( item) {
-              angular.forEach(item, function( qtd , key) {
-              console.log(compras.$key);
-              if(qtd.value){
-                console.log(qtd);
-                
-                cart_formatado[key]=cart_formatado[key]+parseFloat(qtd.value);
-                total_usuario[qtd.user]=total_usuario[qtd.user]+parseFloat(qtd.value);
-              }
-              //console.log(dia);
-              
-            });
-              
-            });
-            
-          });
-        });
+      angular.forEach(carts, function(value, key) {
+        console.log(value);
+        console.log(key);
+        cart_formatado[value.$id]=value;
       });
-     // $scope.produtos_carrinho = produtos_carrinho;
       console.log(cart_formatado);
-      console.log(total_usuario);
       $scope.carts = cart_formatado;
   });
 
-  $scope.soma = function($carrinho){
-      
-      for (var i = 0; i < $carrinho.length; i++) {
-        
-        console.log($carrinho[i].value);
-      }
-  }
-
-  $scope.total = parseFloat(0);
 
   // add new items to the array
   // the product is automatically added to our Firebase database!
@@ -195,7 +149,7 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-         ... </a>
+          {{users_id[<?php echo $usuario;?>].name}} </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -299,7 +253,7 @@
             </div>
           </li>
           <li class="button-container nav-item iframe-extern">
-            <a href="/client/history" class="btn  btn-warning   btn-round btn-block">
+            <a href="/client/history/<?php echo $cliente;?>" class="btn  btn-warning   btn-round btn-block">
               <i class="material-icons">shopping_cart</i>Historico
             </a>
           </li>
@@ -311,7 +265,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">Todos os Pedidos</h2>
+          <h2 class="title">Meus Pedidos</h2>
         </div>
       </div>
     </div>
@@ -321,43 +275,77 @@
       <div class="card card-plain">
         <div class="card-body">
           <br/>
-         
-
           <div class="table-responsive">
-                <table class="table"  ng-repeat="(dia,origins) in carts_origin">
-                    <thead>
-                      <tr>
-                        <th class="text-center">#</th>
-                        <th>Cliente</th>
-                        <th>Produto</th>
-                        <th>Hora</th>
-                        <th class="text-right">Valor</th>
-                        <th class="text-right">Ações</th>
-                      </tr>
-                    </thead>
-            
-                    <tbody ng-repeat="item in origins">
-                      <tr >
-                        <td class="text-center">1</td>{{dia}}
-                        <td>{{users_id[origins.$id].name}}</td>
-                        <td><span ng-repeat="produto in item.products"> {{produto}} + </span></td>
-                        <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-right">R$ {{origins}}</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                     {{total}}
-                    </tbody>
-                  </table>
+            <table class="table table-shopping">
+              <thead>
+                <tr>
+                  <th class="text-center"></th>
+                  <th>Produto</th>
+                  <th class="text-right">Preço</th>
+                  <th class="text-center">Quantidade</th>
+                  <th class="text-right">Total</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <span ng-repeat="origins in carts_origin">{{origins}}</span>
+                {{carts_origin}}##
+                {{carts_origin.length}}
+                <tr ng-repeat="produto in carts_origin">
+                  <td>
+                    <div class="img-container">
+                      <img src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
+                    </div>
+                  </td>
+                  <td class="td-name" style="color:#999">
+                    <a href="#jacket">nome do item</a>
+                    <br />
+                    <small>Pedido</small>
+                  </td>
+                  <td class="td-number text-right">
+                    <small>R$ </small>
+                    <span ng-repeat="item in carts[$index]">{{item.name}}:{{item.value}} :: </span>
+                  </td>
+                  <td class="td-number">
+                    quantidade
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-round btn-warning" ng-click="carts.$remove(produto)"> <i class="material-icons">remove</i> </button>
+                      <button class="btn btn-round btn-warning" ng-click="carts.$add(produto)"> <i class="material-icons">add</i> </button>
+                    </div>
+                  </td>
+                  <td class="td-number">
+                    <small>R$</small>549
+                  </td>
+                  <td class="td-actions">
+                    <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link" ng-click="carts.$remove(produto)">
+                      <i class="material-icons">close</i>
+                    </button>
+                  </td>
+                </tr>
+               
+                <tr>
+                  <td colspan="0"></td>
+                  <td class="td-total">
+                    Total
+                  </td>
+                  <td colspan="1" class="td-price">
+                    <small>R$</small>2,346
+                  </td>
+                  <td colspan="1"></td>
+                  <td colspan="2" class="text-right">
+                    
+
+
+                  </td>
+                </tr>
+                <!-- <tr>
+                <td colspan="6"></td>
+                <td colspan="2" class="text-right">
+                  <button type="button" class="btn btn-info btn-round">Complete Purchase <i class="material-icons">keyboard_arrow_right</i></button>
+                </td>
+              </tr> -->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -403,7 +391,7 @@
   <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
   <script src="/assets/js/plugins/moment.min.js"></script>
-  <!--  Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
   <script src="/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
@@ -411,15 +399,15 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGat1sgDZ-3y6fFe6HD7QUziVC6jlJNog"></script>
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!--  Plugin for Sharrre btn -->
+  <!--	Plugin for Sharrre btn -->
   <script src="/assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
-  <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="/assets/js/plugins/bootstrap-tagsinput.js"></script>
-  <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
   <script src="/assets/js/plugins/bootstrap-selectpicker.js" type="text/javascript"></script>
-  <!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
   <script src="/assets/js/plugins/jasny-bootstrap.min.js" type="text/javascript"></script>
-  <!--  Plugin for Small Gallery in Product Page -->
+  <!--	Plugin for Small Gallery in Product Page -->
   <script src="/assets/js/plugins/jquery.flexisel.js" type="text/javascript"></script>
   <!-- Plugins for presentation and navigation  -->
   <script src="/assets/demo/modernizr.js" type="text/javascript"></script>
