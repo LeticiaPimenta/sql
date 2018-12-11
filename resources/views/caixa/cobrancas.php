@@ -124,6 +124,7 @@
   var carts = $firebaseArray(ref_carts);
   var cart_formatado = [];
   var total_usuario = [];
+ // var produtos_carrinho = [];
 
   carts.$loaded().then(function() {
     $scope.carts_origin = carts;
@@ -141,6 +142,7 @@
               console.log(compras.$key);
               if(qtd.value){
                 console.log(qtd);
+                
                 cart_formatado[key]=cart_formatado[key]+parseFloat(qtd.value);
                 total_usuario[qtd.user]=total_usuario[qtd.user]+parseFloat(qtd.value);
               }
@@ -153,6 +155,7 @@
           });
         });
       });
+     // $scope.produtos_carrinho = produtos_carrinho;
       console.log(cart_formatado);
       console.log(total_usuario);
       $scope.carts = cart_formatado;
@@ -337,9 +340,9 @@
                       <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
                         <td>{{users_id[origins.$id].name}}</td>
-                        <td><span ng-repeat="produtinho in item"> <span ng-repeat="produtinhos in produtinho"><strong>{{produtinhos.hora | date:'MM/dd @ h:mma' }}</strong> :{{products_id[produtinhos.product].text}} = R$  {{produtinhos.value}}{{total = +parseFloat(produtinhos.value)| number}} <br> </span></span></td>
+                        <td><span ng-repeat="produto in item.products"> {{produto.value}} + </span></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-right">R${{total}}</td>
+                        <td class="text-right">R$ {{item.value}}</td>
                         <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">person</i>
