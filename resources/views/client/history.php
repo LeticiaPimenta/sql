@@ -340,9 +340,9 @@
                       <tr >
                         <td class="text-center">1</td>{{dia}}
                         <td>{{users_id[origins.$id].name}}</td>
-                        <td><span ng-repeat="produto in item.products"> {{produto}} + </span></td>
+                        <td><span ng-repeat="produto in item.products">{{product[produto.product].text}}{{produto.value}} + </span></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-right">R$ {{origins}}</td>
+                        <td class="text-right">R$ {{item.value}}</td>
                         <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">person</i>
