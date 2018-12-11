@@ -90,14 +90,14 @@
     // create a synchronized array
     $scope.products = $firebaseArray(ref);
     var products_id = [];
-    products.$loaded().then(function() {
+    $scope.products.$loaded().then(function() {
       var cont = 1;
-      angular.forEach(products, function(value, key) {
+      angular.forEach($scope.products, function(value, key) {
         
         products_id[value.$id]=value;
       });
     //  console.log(products_id);
-    $scope.products = products;
+    //$scope.products = products;
     $scope.products_id = products_id;
   });
 
@@ -396,28 +396,34 @@ $scope.carrinhos = carts_atualizado;
                     </div>
                   </td>
                   <td class="td-name" style="color:#999">
-                    <a href="#jacket"><span ng-repeat="item in produto">
-                      {{products_id[item.product]}}
+                    <a href="#jacket"><span ng-repeat="item in produto" ng-show="$first" >
+                      {{products_id[item.product].text}}
+
                      </span></a>
                     <br />
                     <small>Pedido</small>
                   </td>
                   <td class="td-number text-right">
-                    <small>R$ </small>
-                    <span ng-repeat="item in produto">
-                      {{item.value}}
+                    <small> 
+                    <span ng-repeat="item in produto" ng-init="counter += 1">
+                      {{$index+1}} : R$ {{item.value}} {{item.hora | date:'@ h:mma'}}<br>
                     </span>
+                    </small>
                       
                   </td>
                   <td class="td-number">
-                    x{{produto.length}}x
-                    <div class="btn-group btn-group-sm">
+                    <span ng-repeat="item in produto" ng-init="counter += 1" ng-show="$last">
+                      {{$index+1}}
+                    </span>
+                    <!--div class="btn-group btn-group-sm">
                       <button class="btn btn-round btn-warning" ng-click="carts.$remove(produto)"> <i class="material-icons">remove</i> </button>
                       <button class="btn btn-round btn-warning" ng-click="carts.$add(produto)"> <i class="material-icons">add</i> </button>
-                    </div>
+                    </div-->
                   </td>
                   <td class="td-number">
-                    <small>R$</small>.{{nome_linha}}.
+                    <small>R$</small><span ng-repeat="item in produto" ng-init="counter += 1" ng-show="$last">
+                      {{item.value * ($index+1)}}
+                    </span>
                   </td>
                   <td class="td-actions">
                     <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link" ng-click="carts.$remove(produto)">
@@ -432,7 +438,7 @@ $scope.carrinhos = carts_atualizado;
                     Total
                   </td>
                   <td colspan="1" class="td-price">
-                    <small>R$</small> {{valor_total}}
+                    <small>R$</small> {{valor_total.toFixed(2)}}
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
