@@ -341,9 +341,10 @@
                       <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
                         <td>{{users_id[item.user].name}}</td>
-                        <td><span ng-repeat="produto in item.products"> {{produto.value}} + </span></td>
+                        <td><small><span ng-repeat="produto in item.products"> {{products_id[produto.product].text}}(R$ {{produto.value}})  
+                          <span ng-show="!$last">+ </span></small></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-right">R$ {{item.value}}</td>
+                        <td class="text-right">R$ {{item.value.toFixed(2)}}</td>
                         <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">person</i>
