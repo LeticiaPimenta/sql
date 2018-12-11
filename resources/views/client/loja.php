@@ -190,8 +190,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
-              <i class="material-icons">local_cafe</i> Expresso
+            <a href="#1" class="dropdown nav-link" data-number="2" class="">
+              <i class="material-icons">local_cafe</i> Café Espresso
             </a>
       <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
@@ -206,9 +206,9 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
             </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+            <a href="#2" class="dropdown nav-link" data-number="2" class="">
               <i class="material-icons">local_cafe</i> Mais Amados
-            </a>
+            </a>            
       <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../sections.html#headers" class="dropdown-item">
                 <i class="material-icons">dns</i> Headers
@@ -237,7 +237,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
             </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+            <a href="#3" class="dropdown nav-link" data-number="2" class="">
               <i class="material-icons">local_cafe</i> Especiais
             </a>
       <!--  <div class="dropdown-menu dropdown-with-icons">
@@ -288,8 +288,23 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
             </a>
           </li>
         </ul>
-      </div>
+      </div>      
     </div>
+
+  <!-- alert -->
+      <div class="alert alert-warning" role="alert">
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">check</i>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+          </button>
+          <b>Feito!:</b> Aguarde seu pedido.
+        </div>
+      </div>
+  <!-- end alert -->
+
   </nav>
   <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('/assets/img/croissant-chocolate-aberto.jpg');">
     <div class="container">
@@ -352,7 +367,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
             </div>
             <!--End carouse-->    
 
-          <div class="col-md-4" ng-repeat="product in products">
+          <div class="col-md-4" id="1" ng-repeat="product in products">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#pablo">
@@ -431,8 +446,54 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
    
     <!-- section -->
     <div class="section">
-      <div class="container">
+      <div class="container" id="2">
         <h2 class="section-title">Mais Amados</h2>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4" ng-repeat="product in products">
+                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                  <div class="card-header card-header-image">
+                    <a href="#">
+                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <a href="#">
+                      <h4 class="card-title">{{product.text}}</h4>
+                    </a>
+                    <p class="description">
+                      Impeccably tailored in Italy from lightweight navy wool.
+                    </p>
+                  </div>
+                  <div class="card-footer">
+                <div class="price-container">
+                  <span class="price price-new">R$ {{product.value}}</span>
+                </div>
+                <div class="stats ml-auto">
+                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">modal</button>
+                  <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
+                    <i class="material-icons">favorite</i>
+                  </button>
+                </div>
+              </div>
+                </div>
+                <!-- end card -->
+              </div>
+          <!--    <div class="col-md-3 ml-auto mr-auto">
+                <button rel="tooltip" class="btn btn-warning btn-round" data-original-title="" title="">Mais produtos...</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <br>       
+      </div>
+    
+    <!-- section -->
+
+<!-- section -->
+    <div class="section">
+      <div class="container" id="3">
+        <h2 class="section-title">Especiais</h2>
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-4" ng-repeat="product in products">
@@ -474,22 +535,26 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       </div>
     </div>
     <!-- section -->
+
+
   </div>
   <!-- end-main-raised -->
-  <div class="section section-blog">
-   <div class="copyright float-right"> 
-        <a href="https://www.facebook.com/BenjaminAPadaria/" target="_blank">
-        <button class="btn btn-link btn-facebook">
-          <i class="fa fa-facebook-square"></i> facebook
-        </button>
-        </a>
-        <a href="https://www.instagram.com/benjaminapadaria/" target="_blank">
-        <button class="btn btn-link btn-instagram">
-          <i class="fa fa-instagram"></i> instagram
-        </button>  
-        </a>      
-      </div>
-  </div>
+   <footer class="footer">
+    <div class="container">      
+       <div class="copyright float-center"> 
+            <a href="https://www.facebook.com/BenjaminAPadaria/" target="_blank">
+            <button class="btn btn-link btn-facebook">
+              <i class="fa fa-facebook-square"></i> facebook
+            </button>
+            </a>
+            <a href="https://www.instagram.com/benjaminapadaria/" target="_blank">
+            <button class="btn btn-link btn-instagram">
+              <i class="fa fa-instagram"></i> instagram
+            </button>  
+            </a>      
+        </div>
+    </div>
+  </footer>
   <!-- section -->
   
   <!-- modal -->
@@ -503,14 +568,20 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           <h5>Seu pedido foi aceito. </h5>
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-link" data-dismiss="modal">Continuar<div class="ripple-container"><div class="ripple-decorator ripple-on ripple-out" style="left: 57.5px; top: 22.65px; background-color: rgb(153, 153, 153); transform: scale(12.875);"></div></div></button>
+          <button type="button" class="btn btn-link" data-dismiss="modal">Continuar<div class="ripple-container">
+            <div class="ripple-decorator ripple-on ripple-out" style="left: 57.5px; top: 22.65px; background-color: rgb(153, 153, 153); transform: scale(12.875);">
+            </div>
+          </div>
+          </button>
           <button type="button" class="btn btn-danger btn-link" ng-click="cancelarPedido()" data-dismiss="modal">Desfazer<div class="ripple-container"></div></button>
         </div>
       </div>
     </div>
   </div>
   <!-- end modal -->
-  
+
+
+
   <!--   Core JS Files   -->
   <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>

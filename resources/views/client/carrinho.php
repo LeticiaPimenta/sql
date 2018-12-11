@@ -190,10 +190,10 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
               <i class="material-icons">local_cafe</i> Expresso
             </a>
-            <div class="dropdown-menu dropdown-with-icons">
+      <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
                 <i class="material-icons">layers</i> Presentation
               </a>
@@ -203,13 +203,13 @@
               <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
                 <i class="material-icons">content_paste</i> Documentation
               </a>
-            </div>
+            </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">local_cafe</i> Da Vitrine pra você
+            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+              <i class="material-icons">local_cafe</i> Mais Amados
             </a>
-            <div class="dropdown-menu dropdown-with-icons">
+      <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../sections.html#headers" class="dropdown-item">
                 <i class="material-icons">dns</i> Headers
               </a>
@@ -234,13 +234,13 @@
               <a href="../sections.html#contactus" class="dropdown-item">
                 <i class="material-icons">call</i> Contacts
               </a>
-            </div>
+            </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
               <i class="material-icons">local_cafe</i> Especiais
             </a>
-            <div class="dropdown-menu dropdown-with-icons">
+      <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../examples/about-us.html" class="dropdown-item">
                 <i class="material-icons">account_balance</i> About Us
               </a>
@@ -280,7 +280,7 @@
               <a href="../examples/error.html" class="dropdown-item">
                 <i class="material-icons">error</i> Error Page
               </a>
-            </div>
+            </div> -->
           </li>
           <li class="button-container nav-item iframe-extern">
             <a href="/client/history/<?php echo $cliente;?>" class="btn  btn-warning   btn-round btn-block">
@@ -363,7 +363,7 @@
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
-                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar <i class="material-icons">keyboard_arrow_right</i></button>
+                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>
                     <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>">
                     <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
                     </a>
@@ -385,38 +385,19 @@
     </div>
   </div>
   <footer class="footer">
-    <div class="container">
-      <nav class="float-left">
-        <ul>
-          <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
+    <div class="container">      
+       <div class="copyright float-center"> 
+            <a href="https://www.facebook.com/BenjaminAPadaria/" target="_blank">
+            <button class="btn btn-link btn-facebook">
+              <i class="fa fa-facebook-square"></i> facebook
+            </button>
             </a>
-          </li>
-          <li>
-            <a href="https://creative-tim.com/presentation">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="http://blog.creative-tim.com">
-              Blog
-            </a>
-          </li>
-          <li>
-            <a href="https://www.creative-tim.com/license">
-              Licenses
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright float-right">
-        &copy;
-        <script>
-          document.write(new Date().getFullYear())
-        </script>, made with <i class="material-icons">favorite</i> by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-      </div>
+            <a href="https://www.instagram.com/benjaminapadaria/" target="_blank">
+            <button class="btn btn-link btn-instagram">
+              <i class="fa fa-instagram"></i> instagram
+            </button>  
+            </a>      
+        </div>
     </div>
   </footer>
   <!--   Core JS Files   -->
