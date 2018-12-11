@@ -145,7 +145,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
+        <a class="navbar-brand" href="">
           {{users_id[<?php echo $cliente;?>].name}}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
@@ -157,10 +157,10 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
               <i class="material-icons">local_cafe</i> Expresso
             </a>
-            <div class="dropdown-menu dropdown-with-icons">
+      <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
                 <i class="material-icons">layers</i> Presentation
               </a>
@@ -170,13 +170,13 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
                 <i class="material-icons">content_paste</i> Documentation
               </a>
-            </div>
+            </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="material-icons">local_cafe</i> Da Vitrine pra você
+            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+              <i class="material-icons">local_cafe</i> Mais Amados
             </a>
-            <div class="dropdown-menu dropdown-with-icons">
+      <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../sections.html#headers" class="dropdown-item">
                 <i class="material-icons">dns</i> Headers
               </a>
@@ -201,13 +201,13 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               <a href="../sections.html#contactus" class="dropdown-item">
                 <i class="material-icons">call</i> Contacts
               </a>
-            </div>
+            </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
               <i class="material-icons">local_cafe</i> Especiais
             </a>
-            <div class="dropdown-menu dropdown-with-icons">
+      <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../examples/about-us.html" class="dropdown-item">
                 <i class="material-icons">account_balance</i> About Us
               </a>
@@ -247,7 +247,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               <a href="../examples/error.html" class="dropdown-item">
                 <i class="material-icons">error</i> Error Page
               </a>
-            </div>
+            </div> -->
           </li> 
           <li class="button-container nav-item iframe-extern">
             <a href="/client/carrinho/<?php echo $loja;?>/<?php echo $cliente;?>" class="btn  btn-warning   btn-round btn-block">
@@ -274,7 +274,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
         <div class="row">
 
           <!--Start carouse-->
-            <div class="card card-raised card-carousel" style="margin: 15%; margin-top: 30px; width: 80%;">
+            <div class="card card-raised card-carousel" style="margin: 20%; margin-top: 30px; width: 80%; margin-bottom: 8%;">
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
@@ -283,28 +283,28 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="/assets/img/Cafefiltrado-2.jpg" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
+                    <img class="d-block w-100" src="/assets/img/frappe.png" alt="First slide">
+                <!--    <div class="carousel-caption d-none d-md-block">
                       <h4>
                         <i class="material-icons">location_on</i> Yellowstone National Park, United States
-                      </h4>
-                    </div>
+                      </h4> 
+                    </div> -->
                   </div>
                   <div class="carousel-item active">
-                    <img class="d-block w-100" src="/assets/img/croissant-chocolate-aberto.jpg" alt="Second slide">
-                    <div class="carousel-caption d-none d-md-block">
+                    <img class="d-block w-100" src="/assets/img/chocomaltine.png" alt="Second slide">
+                <!--    <div class="carousel-caption d-none d-md-block">
                       <h4>
                         <i class="material-icons">location_on</i> Somewhere Beyond, United States
                       </h4>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="/assets/img/croissant-chocolate-aberto.jpg" alt="Third slide">
-                    <div class="carousel-caption d-none d-md-block">
+                    <img class="d-block w-100" src="/assets/img/delicia-de-coco.png" alt="Third slide">
+                <!--    <div class="carousel-caption d-none d-md-block">
                       <h4>
                         <i class="material-icons">location_on</i> Yellowstone National Park, United States
                       </h4>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -399,7 +399,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
     <!-- section -->
     <div class="section">
       <div class="container">
-        <h2 class="section-title">Da Vitrine pra você</h2>
+        <h2 class="section-title">Mais Amados</h2>
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-4" ng-repeat="product in products">
@@ -417,20 +417,23 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                       Impeccably tailored in Italy from lightweight navy wool.
                     </p>
                   </div>
-                  <div class="card-footer justify-content-between">
-                    <div class="price-container">
-                      <span class="price">R$ {{product.value}}</span>
-                    </div>
-                    <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Remove from wishlist">
-                      <i class="material-icons">favorite</i>
-                    </button>
-                  </div>
+                  <div class="card-footer">
+                <div class="price-container">
+                  <span class="price price-new">R$ {{product.value}}</span>
+                </div>
+                <div class="stats ml-auto">
+                  <button type="button" class="btn btn-warning" ng-click="addCart(product.$id,product.text,product.value)">pedir</button>
+                  <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
+                    <i class="material-icons">favorite</i>
+                  </button>
+                </div>
+              </div>
                 </div>
                 <!-- end card -->
               </div>
-              <div class="col-md-3 ml-auto mr-auto">
+          <!--    <div class="col-md-3 ml-auto mr-auto">
                 <button rel="tooltip" class="btn btn-warning btn-round" data-original-title="" title="">Mais produtos...</button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -441,7 +444,18 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   </div>
   <!-- end-main-raised -->
   <div class="section section-blog">
-   
+   <div class="copyright float-right"> 
+        <a href="https://www.facebook.com/BenjaminAPadaria/" target="_blank">
+        <button class="btn btn-link btn-facebook">
+          <i class="fa fa-facebook-square"></i> facebook
+        </button>
+        </a>
+        <a href="https://www.instagram.com/benjaminapadaria/" target="_blank">
+        <button class="btn btn-link btn-instagram">
+          <i class="fa fa-instagram"></i> instagram
+        </button>  
+        </a>      
+      </div>
   </div>
   <!-- section -->
   
