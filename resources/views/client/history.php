@@ -320,11 +320,9 @@
     <div class="container">
       <div class="card card-plain">
         <div class="card-body">
-          <br/>
-         
-
+          
           <div class="table-responsive">
-                <table class="table"  ng-repeat="(dia,origins) in carts_origin">
+                <table class="table"  ng-repeat="origins in carts_origin">
                     <thead>
                       <tr>
                         <th class="text-center">#</th>
@@ -338,7 +336,7 @@
             
                     <tbody ng-repeat="item in origins">
                       <tr >
-                        <td class="text-center">1</td>{{dia}}
+                        <td class="text-center">1</td>
                         <td> # <span ng-repeat="produto in item.products" ng-show="$first">{{produto.shop}}</span></td>
                         <td><span ng-repeat="produto in item.products">{{produto.value}} <span ng-show="!$last"> +</span> </span></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
@@ -355,7 +353,7 @@
                           </button>
                         </td>
                       </tr>
-                     {{total}}
+                    
                     </tbody>
                   </table>
           </div>
