@@ -339,7 +339,7 @@
                     <tbody ng-repeat="item in origins">
                       <tr >
                         <td class="text-center">1</td>{{dia}}
-                        <td>{{users_id[origins.$id].name}}</td>
+                        <td>Unidade # <span ng-repeat="produto in item.products" ng-show="$first">{{produto.shop}}</span></td>
                         <td><span ng-repeat="produto in item.products">{{produto.value}} + </span></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R$ {{item.value}}</td>
