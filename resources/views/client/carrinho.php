@@ -380,8 +380,8 @@ $scope.carrinhos = carts_atualizado;
                 <tr>
                   <th class="text-center"></th>
                   <th>Produto</th>
-                  <th class="text-right">Preço</th>
-                  <th class="text-center">Quantidade</th>
+                  <th class="text-right">Detalhes</th>
+                  <th class="text-right">Quantidade</th>
                   <th class="text-right">Total</th>
                   
                 </tr>
@@ -406,14 +406,14 @@ $scope.carrinhos = carts_atualizado;
                   </td>
                   <td class="td-number text-right">
                     <small> 
-                    <span ng-repeat="item in produto" ng-init="counter += 1">
+                    <span ng-repeat="item in produto">
                       {{$index+1}} - hora: {{item.hora | date:' h:mma'}}<br>
                     </span>
                     </small>
                       
                   </td>
-                  <td class="td-number">
-                    <span ng-repeat="item in produto" ng-init="counter += 1" ng-show="$last">
+                  <td class="td-number text-right">
+                    <span ng-repeat="item in produto"  ng-show="$last">
                       {{$index+1}}
                     </span>
                     <!--div class="btn-group btn-group-sm">
@@ -422,15 +422,11 @@ $scope.carrinhos = carts_atualizado;
                     </div-->
                   </td>
                   <td class="td-number">
-                    <small>R$</small><span ng-repeat="item in produto" ng-init="counter += 1" ng-show="$last">
+                    <small>R$</small><span ng-repeat="item in produto" ng-show="$last">
                       {{item.value * ($index+1)}}
                     </span>
                   </td>
-                  <td class="td-actions">
-                    <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link" ng-click="carts.$remove(produto)">
-                      <i class="material-icons">close</i>
-                    </button>
-                  </td>
+                 
                 </tr>
                
                 <tr>
