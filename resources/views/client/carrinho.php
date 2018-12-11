@@ -89,6 +89,18 @@
     var ref = firebase.database().ref().child("products");
     // create a synchronized array
     $scope.products = $firebaseArray(ref);
+    var products_id = [];
+    products.$loaded().then(function() {
+      var cont = 1;
+      angular.forEach(products, function(value, key) {
+        
+        products_id[value.$id]=value;
+      });
+    //  console.log(products_id);
+    $scope.products = products;
+    $scope.products_id = products_id;
+  });
+
 
 
     var ref_users = firebase.database().ref().child("users");
@@ -113,12 +125,12 @@
   var cart_formatado = [];
   var valor_total = 0;  
   var produtos_carrinho= [];
-
-  carts.$loaded().then(function() {
+$scope.carrinhos = carts;
+  $scope.carrinhos.$loaded().then(function() {
     $scope.carts_origin = carts;
       var cont = 1;
       var valor_total_produto=0;
-      angular.forEach(carts, function(produtos, key) {
+      angular.forEach($scope.carrinhos, function(produtos, key) {
         console.log(produtos);
         console.log(key);
         angular.forEach(produtos, function(produto) {
@@ -161,6 +173,11 @@
   // create a synchronized array
               var obj_carts = $firebaseObject(ref_carts);
               $scope.obj_carts = obj_carts;
+
+
+  var carts_atualizado = $firebaseArray(ref_carts);
+
+$scope.carrinhos = carts_atualizado;
 
          
 
@@ -370,7 +387,7 @@
                 </tr>
               </thead>
               <tbody>
-             {{nome_linha = ""}}
+       
        
                 <tr ng-repeat="produto in carts_origin">
                   <td>
@@ -379,14 +396,18 @@
                     </div>
                   </td>
                   <td class="td-name" style="color:#999">
-                    <a href="#jacket">NOme</a>
+                    <a href="#jacket"><span ng-repeat="item in produto">
+                      {{products_id[item.product]}}
+                     </span></a>
                     <br />
                     <small>Pedido</small>
                   </td>
                   <td class="td-number text-right">
                     <small>R$ </small>
                     <span ng-repeat="item in produto">
-                    {{nome_linha = parseFloat(item.value)}} </span>
+                      {{item.value}}
+                    </span>
+                      
                   </td>
                   <td class="td-number">
                     x{{produto.length}}x

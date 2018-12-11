@@ -299,8 +299,8 @@
             </div> -->
           </li> 
           <li class="button-container nav-item iframe-extern">
-            <a href="/client/history" class="btn  btn-warning   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i>Historico
+            <a href="javascript:history.back()" class="btn  btn-warning   btn-round btn-block">
+              <i class="material-icons">shopping_cart</i>Voltar para Loja
             </a>
           </li>
         </ul>
