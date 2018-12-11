@@ -190,8 +190,8 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
-              <i class="material-icons">local_cafe</i> Expresso
+            <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>" class="dropdown nav-link">
+              <i class="material-icons">local_cafe</i> Espressos
             </a>
       <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
@@ -206,7 +206,7 @@
             </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+            <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>" class="dropdown nav-link">
               <i class="material-icons">local_cafe</i> Mais Amados
             </a>
       <!--  <div class="dropdown-menu dropdown-with-icons">
@@ -237,7 +237,7 @@
             </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+            <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>" class="dropdown nav-link">
               <i class="material-icons">local_cafe</i> Especiais
             </a>
       <!--  <div class="dropdown-menu dropdown-with-icons">
