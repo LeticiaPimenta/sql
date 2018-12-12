@@ -13,7 +13,8 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
-  <link rel="canonical" href="https://www.creative-tim.com/product/material-kit-pro" />
+  <link rel="manifest" href="/manifest.json">
+  <link rel="canonical" href="https://benjaminapadaria.com.br" />
   <!--  Social tags      -->
   <meta name="keywords" content=" Benjamin a Padaria Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular">
   <meta name="description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular">
@@ -23,17 +24,17 @@
   <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/46/original/opt_mkp_thumbnail.jpg">
   <!-- Twitter Card data -->
   <meta name="twitter:card" content="product">
-  <meta name="twitter:site" content="@creativetim">
+  <meta name="twitter:site" content="@benjaminapadaria">
   <meta name="twitter:title" content="Benjamin a Padaria">
   <meta name="twitter:description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular">
-  <meta name="twitter:creator" content="@creativetim">
+  <meta name="twitter:creator" content="@benjaminapadaria">
   <meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/46/original/opt_mkp_thumbnail.jpg">
   <!-- Open Graph data -->
   <meta property="fb:app_id" content="655968634437471">
   <meta property="og:title" content="Benjamin a Padaria" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://demos.creative-tim.com/material-kit-pro/presentation.html" />
-  <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/46/original/opt_mkp_thumbnail.jpg" />
+  <meta property="og:url" content="https://benjaminapadaria.com.br" />
+  <meta property="og:image" content="https://s3.img" />
   <meta property="og:description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular" />
   <meta property="og:site_name" content="Benjamin a Padaria" />
   <!--     Fonts and icons     -->
