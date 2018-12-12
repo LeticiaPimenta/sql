@@ -8,6 +8,11 @@ $router->get('/select', function () use ($router) {
     return view('adm/select', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
 
+$router->get('/pwa', function () use ($router) {
+    return view('adm/pwa', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+});
+
+
 $router->get('/unidade/{unidade}', function ($unidade) use ($router) {
     return view('adm/unidade', ['unidade' => $unidade , 'public' => '/adm/']);
 });
