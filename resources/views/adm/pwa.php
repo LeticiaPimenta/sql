@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="sampleApp">
 
 <head>
   <meta charset="utf-8" />
@@ -65,7 +65,7 @@
   <!-- End Google Tag Manager -->
 </head>
 
-<body class="blog-post sidebar-collapse">
+<body class="blog-post sidebar-collapse"  ng-controller="SampleCtrl">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -85,7 +85,7 @@
         <div class="col-md-8 ml-auto mr-auto text-center">
           <h1 class="title">Faça seu login com o facebook </h1>
           <br>
-          <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
+          <a href="#" ng-click="login_facebook()" class="btn btn-social btn-fill btn-facebook">
             <i class="fa fa-facebook-square"></i>   Logar com o Facebook
           </a>
           <div class="ripple-container"></div>
@@ -228,6 +228,44 @@
   }
 
 
+</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <!-- End Google Tag Manager -->
+<script>
+  // Initialize the Firebase SDK
+  var config = {
+    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
+    authDomain: "benjamin-a-padaria.firebaseapp.com",
+    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
+    projectId: "benjamin-a-padaria",
+    storageBucket: "benjamin-a-padaria.appspot.com",
+    messagingSenderId: "579576076240"
+  };
+  firebase.initializeApp(config);
+</script>
+<script type="text/javascript">
+  
+  	var app = angular.module("sampleApp", ["firebase" ]);
+	app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth) {
+  		var auth = $firebaseAuth();
+		// login with Facebook
+
+		$scope.login_facebook = function(){
+			auth.$signInWithPopup("facebook").then(function(firebaseUser) {
+				console.log("Signed in as:", firebaseUser.uid);
+			}).catch(function(error) {
+				console.log("Authentication failed:", error);
+			});
+		}
+		
+
+	});
 </script>
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
