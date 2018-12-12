@@ -1,7 +1,7 @@
 <?php
 
 $router->get('/', function () use ($router) {
-    return view('client/landing', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+    echo "ambiente de testes :: benjamin-a-padaria";
 });
 
 $router->get('/select', function () use ($router) {
