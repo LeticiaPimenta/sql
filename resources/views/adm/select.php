@@ -243,7 +243,7 @@
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   <script src="/assets/js/material-kit.min.js?v=2.1.1" type="text/javascript"></script>
   <script>
-    $(document).ready(function() {
+   /* $(document).ready(function() {
 
 
       var _gaq = _gaq || [];
@@ -287,8 +287,20 @@
         console.log('Facebook Track Error:', err);
       }
 
-    });
+
+    });*/
+
   </script>
+  <script type="text/javascript">
+  
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('service-worker.js')
+             .then(function() { console.log('Service Worker Registered'); });
+  }
+
+
+</script>
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
   </noscript>
