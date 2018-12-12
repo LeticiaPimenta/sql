@@ -162,7 +162,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
               value:parseFloat($value),
               hora:new Date().getTime()
             });
-            toastr.success('Produto Adicionado!', 'Seu Produto Chegou na Nossa Cozinha!');
+            toastr.success('Seu Produto Chegou na Nossa Cozinha!', 'Produto Adicionado!');
           }, 3000);
     };
   // click on `index.html` above to see $remove() and $save() in action
