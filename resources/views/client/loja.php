@@ -370,15 +370,15 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           <div class="col-md-4" id="1" ng-repeat="product in products">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
-                <a href="#pablo">
-                  <img src="/assets/img/examples/Cafe filtrado-2.jpg" alt="">
+                <a href="#">
+                  <img ng-src="{{product.image}}" alt="">
                 </a>
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">
-                  <a href="#pablo">{{product.text}}</a>
+                  <a href="#">{{product.text}}</a>
                 </h4>
-                <p class="card-description">The structured shoulders and sleek detailing ensure a sharp silhouette. Team it with a silk pocket square and leather loafers.</p>
+                <p class="card-description">{{product.image}}</p>
               </div>
               <div class="card-footer">
                 <div class="price-container">
