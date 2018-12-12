@@ -250,21 +250,19 @@
   firebase.initializeApp(config);
 </script>
 <script type="text/javascript">
-  
   	var app = angular.module("sampleApp", ["firebase" ]);
-	app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth) {
-  		var auth = $firebaseAuth();
-		// login with Facebook
+    app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth){
+      var auth = $firebaseAuth();
+		  // login with Facebook
 
-		$scope.login_facebook = function(){
-			auth.$signInWithPopup("facebook").then(function(firebaseUser) {
-				console.log("Signed in as:", firebaseUser.uid);
-			}).catch(function(error) {
-				console.log("Authentication failed:", error);
-			});
-		}
-		
-
+      $scope.login_facebook = function(){
+        auth.$signInWithPopup("facebook").then(function(firebaseUser){
+          console.log("Signed in as:", firebaseUser.uid);
+          console.log(firebaseUser);
+        }).catch(function(error) {
+          console.log("Authentication failed:", error);
+        });
+      }
 	});
 </script>
   <noscript>
