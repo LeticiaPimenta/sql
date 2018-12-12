@@ -83,11 +83,13 @@
 </script>
 <script type="text/javascript">
   
-  var app = angular.module("sampleApp", ["firebase"]);
-app.controller("SampleCtrl", function($scope, $firebaseArray) {
+  var app = angular.module("sampleApp", ["firebase" ,  'toastr']);
+app.controller("SampleCtrl", function($scope, $firebaseArray , toastr) {
   var ref = firebase.database().ref().child("products");
   // create a synchronized array
   $scope.products = $firebaseArray(ref);
+
+  toastr.success('Hello world!', 'Toastr fun!');
   // add new items to the array
   // the product is automatically added to our Firebase database!
   $scope.addProduct = function() {

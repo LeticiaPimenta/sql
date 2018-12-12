@@ -35,6 +35,7 @@
   <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/46/original/opt_mkp_thumbnail.jpg" />
   <meta property="og:description" content="Start Your Development With A Badass Bootstrap 4 UI Kit inspired by Material Design" />
   <meta property="og:site_name" content="Creative Tim" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.css">
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -62,7 +63,7 @@
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.tpls.js"></script>
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
 
@@ -83,11 +84,12 @@
 </script>
 <script type="text/javascript">
   
-  var app = angular.module("sampleApp", ["firebase"]);
-app.controller("SampleCtrl", function($scope, $firebaseArray) {
+  var app = angular.module("sampleApp", ["firebase" , "toastr"]);
+app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   var ref = firebase.database().ref().child("products");
   // create a synchronized array
   $scope.products = $firebaseArray(ref);
+  
 
 
   var ref_users = firebase.database().ref().child("users");
@@ -160,6 +162,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
               value:parseFloat($value),
               hora:new Date().getTime()
             });
+            toastr.success('Produto Adicionado!', 'Seu Produto Chegou na Nossa Cozinha!');
           }, 3000);
     };
   // click on `index.html` above to see $remove() and $save() in action
