@@ -88,19 +88,19 @@
   app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseObject) {
     var ref = firebase.database().ref().child("products");
     // create a synchronized array
-    var products = $firebaseArray(ref);
-
+    $scope.products = $firebaseArray(ref);
     var products_id = [];
-    products.$loaded().then(function() {
+    $scope.products.$loaded().then(function() {
       var cont = 1;
-      angular.forEach(products, function(value, key) {
+      angular.forEach($scope.products, function(value, key) {
         
         products_id[value.$id]=value;
       });
     //  console.log(products_id);
-    $scope.products = products;
+    //$scope.products = products;
     $scope.products_id = products_id;
   });
+
 
 
     var ref_users = firebase.database().ref().child("users");
@@ -112,65 +112,118 @@
     users.$loaded().then(function() {
       var cont = 1;
       angular.forEach(users, function(value, key) {
-        //console.log(value, key);
+        console.log(value, key);
         users_id[value.$id]=value;
       });
     $scope.users_id = users_id;
   });
 
 
-  var ref_carts = firebase.database().ref().child("users/<?php echo $cliente;?>/compras");
+  var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
   // create a synchronized array
   var carts = $firebaseArray(ref_carts);
   var cart_formatado = [];
-  var total_usuario = [];
- // var produtos_carrinho = [];
-
-  carts.$loaded().then(function() {
+  var valor_total = 0;  
+  var produtos_carrinho= [];
+$scope.carrinhos = carts;
+  $scope.carrinhos.$loaded().then(function() {
     $scope.carts_origin = carts;
       var cont = 1;
-      angular.forEach(carts, function(compras) {
-        //console.log(compras.$id);
-        //console.log(dia);
-        angular.forEach(compras, function(compra) {
-          //console.log(compra);
-          //console.log(dia);
-          angular.forEach(compra, function(produto) {
-           // console.log(produto);
-            angular.forEach(produto, function( item) {
-              angular.forEach(item, function( qtd , key) {
-              console.log(compras.$key);
-              if(qtd.value){
-                console.log(qtd);
-                
-                cart_formatado[key]=cart_formatado[key]+parseFloat(qtd.value);
-                total_usuario[qtd.user]=total_usuario[qtd.user]+parseFloat(qtd.value);
-              }
-              //console.log(dia);
-              
-            });
-              
-            });
-            
-          });
+      var valor_total_produto=0;
+      angular.forEach($scope.carrinhos, function(produtos, key) {
+        console.log(produtos);
+        console.log(key);
+        angular.forEach(produtos, function(produto) {
+          //cart_formatado[produtos.$id]=produto;
+          //valor_total=valor_total+produto.value;
+          //console.log(produto.value);
+          if(typeof produto === 'object' && produto !== null){
+            produtos_carrinho.push(produto);
+            valor_total=valor_total+parseFloat(produto.value);
+            id_produto = produto.product;
+            if(valor_total_produto[id_produto] == null){
+              valor_total_produto[id_produto]=0;
+            }
+            valor_total_produto[id_produto]=valor_total_produto[id_produto]+parseFloat(produto.value);
+            console.log(produto.value);
+            console.log(valor_total_produto);
+            console.log(valor_total);
+          }
         });
       });
-     // $scope.produtos_carrinho = produtos_carrinho;
-      console.log(cart_formatado);
-      console.log(total_usuario);
+      console.log(valor_total);
+      console.log(valor_total_produto);
+      $scope.valor_total = valor_total;
+      $scope.produtos_carrinho = produtos_carrinho;
       $scope.carts = cart_formatado;
   });
 
-  $scope.soma = function($carrinho){
-      
-      for (var i = 0; i < $carrinho.length; i++) {
-        
-        console.log($carrinho[i].value);
-      }
-  }
 
-  $scope.total = parseFloat(0);
+  $scope.encerrar_carrinho = function(){
+               // var disputa = disputas.$getRecord(id);
+             /*    var novo_estilo = firebase.database().ref().child("historico");
+                var novo = $firebaseArray(novo_estilo);
+                novo.$add($scope.disputa);
+                $scope.disputa.inicio = 0; // This print null
+                $scope.disputa.encerrando = 0; // This print null
+                $scope.disputa.estilos = []; // This print null
+                $scope.disputa.votacao = []; // This print null*/
 
+                var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
+  // create a synchronized array
+              var obj_carts = $firebaseObject(ref_carts);
+              $scope.obj_carts = obj_carts;
+
+
+  var carts_atualizado = $firebaseArray(ref_carts);
+
+$scope.carrinhos = carts_atualizado;
+
+         
+
+                var hoje = new Date().getTime();
+               // alert(hoje);
+                var ref_caixa = firebase.database().ref().child("caixa/<?php echo $loja;?>/<?php echo $cliente.'/';?>"+hoje);
+  // create a synchronized array
+                var caixa = $firebaseArray(ref_caixa);
+                console.log("caixa/<?php echo $loja;?>/<?php echo $cliente.'/';?>"+hoje);
+                console.log(produtos_carrinho);
+                caixa.$add({
+      shop: <?php echo $loja;?>,
+      user : <?php echo $cliente;?>,
+     // name:$name,
+     products: produtos_carrinho,
+     value:$scope.valor_total,
+      hora:new Date().getTime()
+    }).catch(function(error) {
+                   console.error(error); //or
+                   console.log(error);
+                   alert('Not Saved.');
+                 });
+
+                var ref_compra = firebase.database().ref().child("users/<?php echo $cliente;?>/compras/<?php echo $loja;?>");
+                var compras = $firebaseArray(ref_compra);
+                compras.$add({
+    
+      shop: <?php echo $loja;?>,
+      user : <?php echo $cliente;?>,
+     // name:$name,
+      products: produtos_carrinho,
+     value:$scope.valor_total,
+      hora:new Date().getTime()
+    }).catch(function(error) {
+                   console.error(error); //or
+                   console.log(error);
+                   alert('Not Saved.');
+                 })
+               // $scope.carts.$remove();
+
+                var ref_carts_remove = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
+                var carts_remove = $firebaseObject(ref_carts_remove);
+                carts_remove.$remove();
+                alert("Vai Fechar sua compra , veja os detalhes em seus historicos !");
+
+            }
   // add new items to the array
   // the product is automatically added to our Firebase database!
  
@@ -195,7 +248,7 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-         ... </a>
+          {{users_id[<?php echo $cliente;?>].name}} </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -206,8 +259,8 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
-              <i class="material-icons">local_cafe</i> Expresso
+            <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>" class="dropdown nav-link">
+              <i class="material-icons">local_cafe</i> Espressos
             </a>
       <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
@@ -222,7 +275,7 @@
             </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+            <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>" class="dropdown nav-link">
               <i class="material-icons">local_cafe</i> Mais Amados
             </a>
       <!--  <div class="dropdown-menu dropdown-with-icons">
@@ -253,7 +306,7 @@
             </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+            <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>" class="dropdown nav-link">
               <i class="material-icons">local_cafe</i> Especiais
             </a>
       <!--  <div class="dropdown-menu dropdown-with-icons">
@@ -297,10 +350,10 @@
                 <i class="material-icons">error</i> Error Page
               </a>
             </div> -->
-          </li> 
+          </li>
           <li class="button-container nav-item iframe-extern">
-            <a href="javascript:history.back()" class="btn  btn-warning   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i>Voltar para Loja
+            <a href="/client/history/<?php echo $cliente;?>" class="btn  btn-warning   btn-round btn-block">
+              <i class="material-icons">shopping_cart</i>Historico
             </a>
           </li>
         </ul>
@@ -311,7 +364,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">Todos os Pedidos</h2>
+          <h2 class="title">Meus Pedidos</h2>
         </div>
       </div>
     </div>
@@ -320,48 +373,104 @@
     <div class="container">
       <div class="card card-plain">
         <div class="card-body">
-          
+          <br/>
           <div class="table-responsive">
-                <table class="table"  ng-repeat="origins in carts_origin">
-                    <thead>
-                      <tr>
-                        <th class="text-center">#</th>
-                        <th>Unidade</th>
-                        <th>itens</th>
-                        <th>Hora</th>
-                        <th class="text-right">Valor</th>
-                        <th class="text-right">Ações</th>
-                      </tr>
-                    </thead>
-            
-                    <tbody ng-repeat="item in origins">
-                      <tr >
-                        <td class="text-center">1</td>
-                        <td> # <span ng-repeat="produto in item.products" ng-show="$first">{{produto.shop}}</span></td>
-                        <td><span ng-repeat="produto in item.products">{{produto.value}} <span ng-show="!$last"> +</span> </span></td>
-                        <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-right">R$ {{item.value}}</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
+            <table class="table table-shopping">
+              <thead>
+                <tr>
+                  <th class="text-center"></th>
+                  <th>Produto</th>
+<<<<<<< HEAD
+                  <th class="text-right">Preço</th>
+=======
+                  <th class="text-right">Detalhes</th>
+                  <th class="text-right">Quantidade</th>
+>>>>>>> e25c9ebed8ca4b9616aad18f1a9c11720988185e
+                  <th class="text-right">Total</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+       
+       
+                <tr ng-repeat="produto in carts_origin">
+                  <td>
+                    <div class="img-container">
+                      <img src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
+                    </div>
+                  </td>
+                  <td class="td-name" style="color:#999">
+<<<<<<< HEAD
+                    <a href="#jacket">Nome</a>
+                    <br />
+                    <small>Pedido</small>
+=======
+                    <a href="#"><span ng-repeat="item in produto" ng-show="$first" >
+                      {{products_id[item.product].text}} 
+                      
+                      <br />
+                    <small>R$ {{products_id[item.product].value}}</small>
+                     </span></a>
                     
-                    </tbody>
-                  </table>
+>>>>>>> e25c9ebed8ca4b9616aad18f1a9c11720988185e
+                  </td>
+                  <td class="td-number text-right">
+                    <small> 
+                    <span ng-repeat="item in produto">
+                      {{$index+1}} - hora: {{item.hora | date:' h:mma'}}<br>
+                    </span>
+                    </small>
+                      
+                  </td>
+                  <td class="td-number text-right">
+                    <span ng-repeat="item in produto"  ng-show="$last">
+                      {{$index+1}}
+                    </span>
+                    <!--div class="btn-group btn-group-sm">
+                      <button class="btn btn-round btn-warning" ng-click="carts.$remove(produto)"> <i class="material-icons">remove</i> </button>
+                      <button class="btn btn-round btn-warning" ng-click="carts.$add(produto)"> <i class="material-icons">add</i> </button>
+                    </div-->
+                  </td>
+                  <td class="td-number">
+                    <small>R$</small><span ng-repeat="item in produto" ng-show="$last">
+                      {{item.value * ($index+1)}}
+                    </span>
+                  </td>
+                 
+                </tr>
+               
+                <tr>
+                  <td colspan="0"></td>
+                  <td class="td-total">
+                    Total
+                  </td>
+                  <td colspan="1" class="td-price">
+                    <small>R$</small> {{valor_total.toFixed(2)}}
+                  </td>
+                  <td colspan="1"></td>
+                  <td colspan="2" class="text-right">
+                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>
+                    <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>">
+                    <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
+                    </a>
+
+
+                  </td>
+                </tr>
+                <!-- <tr>
+                <td colspan="6"></td>
+                <td colspan="2" class="text-right">
+                  <button type="button" class="btn btn-info btn-round">Complete Purchase <i class="material-icons">keyboard_arrow_right</i></button>
+                </td>
+              </tr> -->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
-<footer class="footer">
+  <footer class="footer">
     <div class="container">      
        <div class="copyright float-center"> 
             <a href="https://www.facebook.com/BenjaminAPadaria/" target="_blank">
@@ -382,7 +491,7 @@
   <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
   <script src="/assets/js/plugins/moment.min.js"></script>
-  <!--  Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
   <script src="/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
@@ -390,15 +499,15 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGat1sgDZ-3y6fFe6HD7QUziVC6jlJNog"></script>
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!--  Plugin for Sharrre btn -->
+  <!--	Plugin for Sharrre btn -->
   <script src="/assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
-  <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="/assets/js/plugins/bootstrap-tagsinput.js"></script>
-  <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
   <script src="/assets/js/plugins/bootstrap-selectpicker.js" type="text/javascript"></script>
-  <!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
   <script src="/assets/js/plugins/jasny-bootstrap.min.js" type="text/javascript"></script>
-  <!--  Plugin for Small Gallery in Product Page -->
+  <!--	Plugin for Small Gallery in Product Page -->
   <script src="/assets/js/plugins/jquery.flexisel.js" type="text/javascript"></script>
   <!-- Plugins for presentation and navigation  -->
   <script src="/assets/demo/modernizr.js" type="text/javascript"></script>

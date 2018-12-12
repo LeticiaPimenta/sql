@@ -292,7 +292,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
     </div>
 
   <!-- alert -->
-      <div class="alert alert-warning" role="alert">
+      <div class="alert alert-warning" role="alert" style="display: none;" aria-hidden="true">
         <div class="container">
           <div class="alert-icon">
             <i class="material-icons">check</i>
@@ -370,22 +370,22 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
           <div class="col-md-4" id="1" ng-repeat="product in products">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
-                <a href="#pablo">
-                  <img src="/assets/img/examples/Cafe filtrado-2.jpg" alt="">
+                <a href="#">
+                  <img ng-src="{{product.image}}" alt="">
                 </a>
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">
-                  <a href="#pablo">{{product.text}}</a>
+                  <a href="#">{{product.text}}</a>
                 </h4>
-                <p class="card-description">The structured shoulders and sleek detailing ensure a sharp silhouette. Team it with a silk pocket square and leather loafers.</p>
+                <p class="card-description">{{product.desc}}</p>
               </div>
               <div class="card-footer">
                 <div class="price-container">
                   <span class="price price-new">R$ {{product.value}}</span>
                 </div>
                 <div class="stats ml-auto">                  
-                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">modal</button>
+                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>
@@ -470,7 +470,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                   <span class="price price-new">R$ {{product.value}}</span>
                 </div>
                 <div class="stats ml-auto">
-                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">modal</button>
+                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>

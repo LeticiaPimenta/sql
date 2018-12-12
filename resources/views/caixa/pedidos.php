@@ -314,7 +314,7 @@
                     <tbody ng-repeat="items in origins">
                       <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
-                        <td>{{users_id[item.user].name}}</td>
+                        <td>{{users_id[item.user].configs.name}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R$ {{item.value}}</td>
