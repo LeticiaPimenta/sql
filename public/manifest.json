@@ -2,7 +2,7 @@
 {
   "name": "Aplicativo Benjamin",
   "short_name": "Aplicativo Benjamin",
-  "start_url": "/select",
+  "start_url": "/pwa.html",
   "display": "standalone",
   "icons": [{
     "src": "/assets/img/favicon.png",
