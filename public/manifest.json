@@ -2,7 +2,7 @@
 {
   "name": "Aplicativo Benjamin",
   "short_name": "Aplicativo Benjamin",
-  "start_url": "index.html",
+  "start_url": "/select",
   "display": "standalone",
   "icons": [{
     "src": "/assets/img/favicon.png",
