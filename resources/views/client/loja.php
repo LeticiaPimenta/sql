@@ -378,7 +378,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
                 <h4 class="card-title">
                   <a href="#">{{product.text}}</a>
                 </h4>
-                <p class="card-description">{{product.image}}</p>
+                <p class="card-description">{{product.desc}}</p>
               </div>
               <div class="card-footer">
                 <div class="price-container">
