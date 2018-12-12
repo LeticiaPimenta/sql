@@ -364,7 +364,6 @@
                   <th class="text-center"></th>
                   <th>Produto</th>
                   <th class="text-right">Preço</th>
-                  <th class="text-center">Quantidade</th>
                   <th class="text-right">Total</th>
                   
                 </tr>
@@ -379,7 +378,7 @@
                     </div>
                   </td>
                   <td class="td-name" style="color:#999">
-                    <a href="#jacket">NOme</a>
+                    <a href="#jacket">Nome</a>
                     <br />
                     <small>Pedido</small>
                   </td>
