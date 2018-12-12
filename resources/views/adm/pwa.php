@@ -83,7 +83,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h1 class="title">Escolha a unidade que deseja</h1>
+          <h1 class="title">Faça seu login com o facebook </h1>
           <br>
           <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
             <i class="fa fa-facebook-square"></i>   Logar com o Facebook
@@ -97,79 +97,7 @@
     <div class="container">
 
   
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="title text-center">Unidades </h2>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card card-blog">
-                <div class="card-header card-header-image">
-                  <a href="unidade/600">
-                    <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="category text-info">#600</h6>
-                  <h4 class="card-title">
-                    <a href="unidade/600">Central</a>
-                  </h4>
-                  <p class="card-description">
-                    A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.
-                    <a href="unidade/600"> Visitar </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-blog">
-                <div class="card-header card-header-image">
-                  <a href="unidade/40">
-                    <img class="img img-raised" src="/assets/img/UniBenjamin.jpg">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="category text-success">
-                    #40
-                  </h6>
-                  <h4 class="card-title">
-                    <a href="unidade/40">Haddock</a>
-                  </h4>
-                  <p class="card-description">
-                    Haddock Lobo é a segunda unidade inaugarada pela Benjamin A Padaria, costuma ter grande número de pessoas, ideal para encontrar seu grupo de amigos e interagir com o fluxo constante da Av. Paulista.
-                    <a href="unidade/40"> Visitar </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-blog">
-                <div class="card-header card-header-image">
-                  <a href="unidade/1">
-                    <img class="img img-raised" src="/assets/img/benjamin4.jpg">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="category text-danger">
-                    #1
-                  </h6>
-                  <h4 class="card-title">
-                    <a href="unidade/1">Pamplona</a>
-                  </h4>
-                  <p class="card-description">
-                    Nossa unidade localizada no coração da Av. Pamplona ideal para seu café da manhã antes do trabalho.
-                    <a href="unidade/1"> Visitar </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   <footer class="footer">
     <div class="container">
 <!--      <nav class="float-left">
