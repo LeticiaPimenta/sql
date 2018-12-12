@@ -17,6 +17,10 @@ $router->get('/unidade/{unidade}', function ($unidade) use ($router) {
     return view('adm/unidade', ['unidade' => $unidade , 'public' => '/adm/']);
 });
 
+$router->get('/termos', function () use ($router) {
+    return view('client/termos', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+});
+
 $router->get('/client/', function () use ($router) {
     return view('client/index', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
