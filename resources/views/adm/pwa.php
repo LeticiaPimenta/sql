@@ -252,6 +252,16 @@
 <script type="text/javascript">
   	var app = angular.module("sampleApp", ["firebase" ]);
     app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth){
+
+      if($scope.logado){
+        $scope.usuario = localStorage.getItem("usuario");
+        $scope.access_token = localStorage.getItem("access_token");
+        $scope.usuario_logado = JSON.parse($scope.usuario);
+        $scope.usuario_uid = $scope.usuario_logado.providerData[0].uid;
+        $scope.foto_logado = localStorage.getItem("foto");
+        $scope.nome_logado = $scope.usuario_logado.displayName;
+        alert("logado");
+      }
       var auth = $firebaseAuth();
 		  // login with Facebook
 
@@ -259,6 +269,19 @@
         auth.$signInWithPopup("facebook").then(function(firebaseUser){
           console.log("Signed in as:", firebaseUser.uid);
           console.log(firebaseUser);
+
+          $scope.usuario_logado = firebaseUser.user;
+          console.log("Logado como :", firebaseUser.user.displayName);
+          console.log(firebaseUser);
+          localStorage.setItem("usuario" , JSON.stringify(firebaseUser.user));
+          localStorage.setItem("foto" , firebaseUser.user.photoURL);
+          localStorage.setItem("access_token" , firebaseUser.credential.accessToken);
+          $scope.foto_logado = firebaseUser.user.photoURL;
+          $scope.nome_logado = firebaseUser.user.displayName;
+          localStorage.setItem("logado" , true);
+          $scope.logado = true;
+          console.log($scope.usuario_logado);
+
         }).catch(function(error) {
           console.log("Authentication failed:", error);
         });
