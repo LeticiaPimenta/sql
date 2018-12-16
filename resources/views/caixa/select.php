@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" ng-app="sampleApp">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -65,7 +65,7 @@
   <!-- End Google Tag Manager -->
 </head>
 
-<body class="blog-post sidebar-collapse"  ng-controller="SampleCtrl">
+<body class="blog-post sidebar-collapse">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -83,9 +83,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h1 class="title">Faça seu login com o facebook </h1>
+          <h1 class="title">Escolha a unidade que deseja</h1>
           <br>
-          <a href="#" ng-click="login_facebook()" class="btn btn-social btn-fill btn-facebook">
+          <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
             <i class="fa fa-facebook-square"></i>   Logar com o Facebook
           </a>
           <div class="ripple-container"></div>
@@ -97,7 +97,148 @@
     <div class="container">
 
   
-  
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="title text-center">Pedidos </h2>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="/caixa/pedidos/600">
+                    <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-info">#600</h6>
+                  <h4 class="card-title">
+                    <a href="/caixa/pedidos/600">Central</a>
+                  </h4>
+                  <p class="card-description">
+                    A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.
+                    <a href="/caixa/pedidos/600"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="/caixa/pedidos/40">
+                    <img class="img img-raised" src="/assets/img/UniBenjamin.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-success">
+                    #40
+                  </h6>
+                  <h4 class="card-title">
+                    <a href="/caixa/pedidos/40">Haddock</a>
+                  </h4>
+                  <p class="card-description">
+                    Haddock Lobo é a segunda unidade inaugarada pela Benjamin A Padaria, costuma ter grande número de pessoas, ideal para encontrar seu grupo de amigos e interagir com o fluxo constante da Av. Paulista.
+                    <a href="/caixa/pedidos/40"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="/caixa/pedidos/1">
+                    <img class="img img-raised" src="/assets/img/benjamin4.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-danger">
+                    #1
+                  </h6>
+                  <h4 class="card-title">
+                    <a href="/caixa/pedidos/1">Pamplona</a>
+                  </h4>
+                  <p class="card-description">
+                    Nossa unidade localizada no coração da Av. Pamplona ideal para seu café da manhã antes do trabalho.
+                    <a href="/caixa/pedidos/1"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="title text-center">Carrinhos </h2>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="/caixa/pedidos/600">
+                    <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-info">#600</h6>
+                  <h4 class="card-title">
+                    <a href="/caixa/cobrancas/600">Central</a>
+                  </h4>
+                  <p class="card-description">
+                    A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.
+                    <a href="/caixa/cobrancas/600"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="/caixa/cobrancas/40">
+                    <img class="img img-raised" src="/assets/img/UniBenjamin.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-success">
+                    #40
+                  </h6>
+                  <h4 class="card-title">
+                    <a href="/caixa/cobrancas/40">Haddock</a>
+                  </h4>
+                  <p class="card-description">
+                    Haddock Lobo é a segunda unidade inaugarada pela Benjamin A Padaria, costuma ter grande número de pessoas, ideal para encontrar seu grupo de amigos e interagir com o fluxo constante da Av. Paulista.
+                    <a href="/caixa/cobrancas/40"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="/caixa/cobrancas/1">
+                    <img class="img img-raised" src="/assets/img/benjamin4.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-danger">
+                    #1
+                  </h6>
+                  <h4 class="card-title">
+                    <a href="/caixa/cobrancas/1">Pamplona</a>
+                  </h4>
+                  <p class="card-description">
+                    Nossa unidade localizada no coração da Av. Pamplona ideal para seu café da manhã antes do trabalho.
+                    <a href="/caixa/cobrancas/1"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer class="footer">
     <div class="container">
 <!--      <nav class="float-left">
@@ -228,68 +369,6 @@
   }
 
 
-</script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
-
-<!-- AngularFire -->
-<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-  <!-- End Google Tag Manager -->
-<script>
-  // Initialize the Firebase SDK
-  var config = {
-    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
-    authDomain: "benjamin-a-padaria.firebaseapp.com",
-    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
-    projectId: "benjamin-a-padaria",
-    storageBucket: "benjamin-a-padaria.appspot.com",
-    messagingSenderId: "579576076240"
-  };
-  firebase.initializeApp(config);
-</script>
-<script type="text/javascript">
-  	var app = angular.module("sampleApp", ["firebase" ]);
-    app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth){
-
-      $scope.logado = false;
-      $scope.logado = localStorage.getItem("logado");
-
-      if($scope.logado){
-        $scope.usuario = localStorage.getItem("usuario");
-        $scope.access_token = localStorage.getItem("access_token");
-        $scope.usuario_logado = JSON.parse($scope.usuario);
-        $scope.usuario_uid = $scope.usuario_logado.providerData[0].uid;
-        $scope.foto_logado = localStorage.getItem("foto");
-        $scope.nome_logado = $scope.usuario_logado.displayName;
-        alert("logado");
-      }
-      var auth = $firebaseAuth();
-		  // login with Facebook
-
-      $scope.login_facebook = function(){
-        auth.$signInWithPopup("facebook").then(function(firebaseUser){
-          console.log("Signed in as:", firebaseUser.uid);
-          console.log(firebaseUser);
-
-          $scope.usuario_logado = firebaseUser.user;
-          console.log("Logado como :", firebaseUser.user.displayName);
-          console.log(firebaseUser);
-          localStorage.setItem("usuario" , JSON.stringify(firebaseUser.user));
-          localStorage.setItem("foto" , firebaseUser.user.photoURL);
-          localStorage.setItem("access_token" , firebaseUser.credential.accessToken);
-          $scope.foto_logado = firebaseUser.user.photoURL;
-          $scope.nome_logado = firebaseUser.user.displayName;
-          localStorage.setItem("logado" , true);
-          $scope.logado = true;
-          console.log($scope.usuario_logado);
-
-        }).catch(function(error) {
-          console.log("Authentication failed:", error);
-        });
-      }
-	});
 </script>
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />

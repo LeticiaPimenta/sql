@@ -51,6 +51,10 @@ $router->get('/client/carrinho/{loja}/{cliente}', function ($loja, $cliente) use
     return view('client/carrinho', ['loja' => $loja, 'cliente' => $cliente , 'hoje' => $hoje]);
 });
 
+$router->get('/caixa/select', function () use ($router) {
+     return view('caixa/select', ['loja' => 'caixa']);
+});
+
 $router->get('/caixa/loja/{loja}', function ($loja) use ($router) {
      return view('caixa/loja', ['loja' => $loja]);
 });
