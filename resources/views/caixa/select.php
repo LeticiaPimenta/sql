@@ -81,16 +81,7 @@
   </nav>
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/panetone.jpg');">
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
-          <h1 class="title">Escolha a unidade que deseja</h1>
-          <br>
-          <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
-            <i class="fa fa-facebook-square"></i>   Logar com o Facebook
-          </a>
-          <div class="ripple-container"></div>
-        </div>
-      </div>
+      
     </div>
   </div>
   <div class="main main-raised">
