@@ -357,7 +357,7 @@
                           </button>
                         </td>
                       </tr>
-                     {{total}}
+                 
                     </tbody>
                   </table>
           </div>

@@ -167,7 +167,7 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a href="/caixa/pedidos/600">
+                  <a href="/caixa/cobrancas/600">
                     <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
                   </a>
                 </div>
