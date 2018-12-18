@@ -555,10 +555,10 @@ $scope.carrinhos = carts_atualizado;
                             <div class="input-group">
                               <div class="input-group-prepend">
                                 <span class="input-group-text">
-                                  <i class="material-icons">date_ranger</i>
+                                  <i class="material-icons">calendar_today</i>
                                 </span>
                               </div>
-                              <input type="password" placeholder="Data de vencimento" class="form-control" autocomplete="on">
+                              <input type="password" placeholder="Data de Vencimento" class="form-control" autocomplete="on">
                             </div>
                           </div>
                         </div>
