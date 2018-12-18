@@ -33,7 +33,7 @@
   <meta property="og:title" content="Benjamin a Padaria" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://benjamin-a-padaria.herokuapp.com/pesquisa" />
-  <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/46/original/opt_mkp_thumbnail.jpg" />
+  <meta property="og:image" content="https://benjamin-a-padaria.herokuapp.com/assets/img/example/Cafe_filtrado-2.jpg" />
   <meta property="og:description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular" />
   <meta property="og:site_name" content="Benjamin a Padaria" />
   <!--     Fonts and icons     -->
