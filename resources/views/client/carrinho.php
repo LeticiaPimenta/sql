@@ -439,7 +439,8 @@ $scope.carrinhos = carts_atualizado;
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
-                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>
+          <!--          <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button> -->
+                    <button type="button" class="btn btn-warning btn-round" data-toggle="modal" data-target="#loginModal">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>
                     <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>">
                     <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
                     </a>
@@ -476,6 +477,76 @@ $scope.carrinhos = carts_atualizado;
         </div>
     </div>
   </footer>
+
+  <!--start modal-->
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" style="display: none; padding-right: 10px;">
+    <div class="modal-dialog modal-login" role="document">
+      <div class="modal-content">
+        <div class="card card-signup card-plain">
+          <div class="modal-header">
+            <div class="card-header card-header-warning text-center">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+              <h4 class="card-title">Faça seu pagamento</h4>
+      <!--        <div class="social-line">
+                <a href="#pablo" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-facebook-square"></i>
+                </a>
+                <a href="#pablo" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-twitter"></i>
+                </a>
+                <a href="#pablo" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-google-plus"></i>
+                </a>
+              </div> -->
+            </div>
+          </div>
+          <div class="modal-body">
+            <form class="form" method="" action="" autocomplete="on">
+              <p class="description text-center">Pagamento com cartão de crédito</p>
+              <div class="card-body">
+                <div class="form-group bmd-form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="First Name..." autocomplete="on">
+                  </div>
+                </div>
+                <div class="form-group bmd-form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">mail</i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Email..." autocomplete="on">
+                  </div>
+                </div>
+                <div class="form-group bmd-form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">lock_outline</i>
+                      </span>
+                    </div>
+                    <input type="password" placeholder="Password..." class="form-control" autocomplete="on">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <a href="#pablo" class="btn btn-warning btn-link btn-wd btn-lg">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!--end modal-->
+
   <!--   Core JS Files   -->
   <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
