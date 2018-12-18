@@ -85,7 +85,7 @@
 <script type="text/javascript">
   
   var app = angular.module("sampleApp", ["firebase"]);
-  app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseObject) {
+  app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseObject , $http) {
     var ref = firebase.database().ref().child("products");
     // create a synchronized array
     $scope.products = $firebaseArray(ref);
@@ -158,6 +158,19 @@ $scope.carrinhos = carts;
       $scope.carts = cart_formatado;
   });
 
+
+  $scope.pagar_carrinho = function (){
+    console.log("vai pagar");
+   /* $.post("caixa/cobrar", {"cartao":"3812739837391", "cvv":"123" , "Vencimento":"20/2020" , ""}).done(function(response){
+      console.log(response);
+    });*/
+  /*  $.post( "/caixa/cobrar", {"cartao":$("#cartao_carrinho").val(), "cvv":"123" , "Vencimento":"20/2020" , "nome":$("#nome_carrinho").val() , "valor":$("#valor_carrinho").val()})
+      .done(function( data ) {
+        alert( "Data Loaded: " + data );
+      });
+*/
+
+  }
 
   $scope.encerrar_carrinho = function(){
                // var disputa = disputas.$getRecord(id);
@@ -435,7 +448,7 @@ $scope.carrinhos = carts_atualizado;
                     Total
                   </td>
                   <td colspan="1" class="td-price">
-                    <small>R$</small> {{valor_total.toFixed(2)}}
+                    <small>R$</small> <input type="hidden" name="valor_carrinho" id="valor_carrinho" value="{{valor_total.toFixed(2)}}">{{valor_total.toFixed(2)}}
                   </td>
                   <td colspan="1"></td>
                   <td colspan="2" class="text-right">
@@ -528,7 +541,7 @@ $scope.carrinhos = carts_atualizado;
                                   <i class="material-icons">face</i>
                                 </span>
                               </div>
-                              <input type="text" class="form-control" placeholder="Nome..." autocomplete="on">
+                              <input type="text" class="form-control" placeholder="Nome..." autocomplete="on" id="nome_carrinho">
                             </div>
                           </div>
                           <div class="form-group bmd-form-group">
@@ -538,7 +551,7 @@ $scope.carrinhos = carts_atualizado;
                                 <i class="material-icons">credit_card</i>
                                 </span>
                               </div>
-                                <input type="text" class="form-control" placeholder="Número do cartão" autocomplete="on">
+                                <input type="text" class="form-control" placeholder="Número do cartão" autocomplete="on" value="5448280000000007" id="cartao_carrinho">
                             </div>
                           </div>
                           <div class="form-group bmd-form-group">
@@ -559,6 +572,13 @@ $scope.carrinhos = carts_atualizado;
                                 </span>
                               </div>
                               <input type="password" placeholder="Data de Vencimento" class="form-control" autocomplete="on">
+                             
+                            </div>
+                          </div>
+                          <div class="form-group bmd-form-group">
+                            <div class="input-group padding-right">
+                              
+                              <button type="button" class="btn btn-warning btn-round" ng-click="pagar_carrinho()">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>
                             </div>
                           </div>
                         </div>
