@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="sampleApp">
 
 <head>
   <meta charset="utf-8" />
@@ -65,7 +65,7 @@
   <!-- End Google Tag Manager -->
 </head>
 
-<body class="blog-post sidebar-collapse">
+<body class="blog-post sidebar-collapse"  ng-controller="SampleCtrl">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -83,11 +83,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h1 class="title">Escolha a unidade que deseja</h1>
+          <h1 class="title">Termos de uso do app </h1>
           <br>
-          <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
-            <i class="fa fa-facebook-square"></i>   Logar com o Facebook
-          </a>
+          
           <div class="ripple-container"></div>
         </div>
       </div>
@@ -97,79 +95,7 @@
     <div class="container">
 
   
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="title text-center">Unidades </h2>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card card-blog">
-                <div class="card-header card-header-image">
-                  <a href="unidade/600">
-                    <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="category text-info">#600</h6>
-                  <h4 class="card-title">
-                    <a href="unidade/600">Central</a>
-                  </h4>
-                  <p class="card-description">
-                    A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.
-                    <a href="unidade/600"> Visitar </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-blog">
-                <div class="card-header card-header-image">
-                  <a href="unidade/40">
-                    <img class="img img-raised" src="/assets/img/UniBenjamin.jpg">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="category text-success">
-                    #40
-                  </h6>
-                  <h4 class="card-title">
-                    <a href="unidade/40">Haddock</a>
-                  </h4>
-                  <p class="card-description">
-                    Haddock Lobo é a segunda unidade inaugarada pela Benjamin A Padaria, costuma ter grande número de pessoas, ideal para encontrar seu grupo de amigos e interagir com o fluxo constante da Av. Paulista.
-                    <a href="unidade/40"> Visitar </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-blog">
-                <div class="card-header card-header-image">
-                  <a href="unidade/1">
-                    <img class="img img-raised" src="/assets/img/benjamin4.jpg">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="category text-danger">
-                    #1
-                  </h6>
-                  <h4 class="card-title">
-                    <a href="unidade/1">Pamplona</a>
-                  </h4>
-                  <p class="card-description">
-                    Nossa unidade localizada no coração da Av. Pamplona ideal para seu café da manhã antes do trabalho.
-                    <a href="unidade/1"> Visitar </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   <footer class="footer">
     <div class="container">
 <!--      <nav class="float-left">
@@ -242,65 +168,8 @@
   <script src="/assets/demo/demo.js" type="text/javascript"></script>
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   <script src="/assets/js/material-kit.min.js?v=2.1.1" type="text/javascript"></script>
-  <script>
-   /* $(document).ready(function() {
 
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-46172202-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ga, s);
-      })();
-
-      // Facebook Pixel Code Don't Delete
-      ! function(f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function() {
-          n.callMethod ?
-            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s)
-      }(window,
-        document, 'script', '//connect.facebook.net/en_US/fbevents.js');
-
-      try {
-        fbq('init', '111649226022273');
-        fbq('track', "PageView");
-
-      } catch (err) {
-        console.log('Facebook Track Error:', err);
-      }
-
-
-    });*/
-
-  </script>
-  <script type="text/javascript">
-  
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('service-worker.js')
-             .then(function() { console.log('Service Worker Registered'); });
-  }
-
-
-</script>
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
   </noscript>
