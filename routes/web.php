@@ -73,9 +73,12 @@ $router->get('/caixa/cobrancas/{loja}', function ($loja) use ($router) {
 $router->post('/caixa/cobrar', function () use ($router) {
     // return view('caixa/cobrancas', ['loja' => $loja]);
 
-    $nome = $_POST['nome'];
-    $cartao = $_POST['cartao'];
-    $valor = $_POST['valor'];
+    $postdata = file_get_contents("php://input");
+    $request = json_decode($postdata , true);
+
+    $nome = $request['nome'];
+    $cartao = $request['cartao'];
+    $valor = $request['valor'];
  
 
     $environment = \Rede\Environment::sandbox();
@@ -83,7 +86,7 @@ $router->post('/caixa/cobrar', function () use ($router) {
     $store = new \Rede\Store('10002466', '0556abce8ba144c787f9dad825a35bd2',$environment);
     // Transação que será autorizada
     $transaction = (new \Rede\Transaction($valor, 'pedido' . time()))->creditCard(
-        $_POST['cartao'],
+        $request['cartao'],
         '235',
         '12',
         '2020',

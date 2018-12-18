@@ -168,7 +168,27 @@ $scope.carrinhos = carts;
       .done(function( data ) {
         alert( "Data Loaded: " + data );
       });
-*/
+*/    
+$("#cobranca").slideUp();
+$("#cobrando").slideDown();
+      var req = {
+       method: 'POST',
+       url: '/caixa/cobrar',
+       headers: {
+         'Content-Type': 'text/'
+       },
+       data: {"cartao":$("#cartao_carrinho").val(), "cvv":"123" , "Vencimento":"20/2020" , "nome":$("#nome_carrinho").val() , "valor":$("#valor_carrinho").val()}
+      }
+
+      $http(req).then(function(response){
+        console.log(response);
+        $("#cobrando").slideUp();
+        $("#cobrado").slideDown();
+        $scope.retorno = response;
+
+      }, function(response){
+        console.log(response);
+      });
 
   }
 
@@ -518,7 +538,28 @@ $scope.carrinhos = carts_atualizado;
             <form class="form" method="" action="" autocomplete="on">
               <p class="description text-center">
               <small>R$</small> {{valor_total.toFixed(2)}}</p>
-              <div class="card-body">
+              <div class="card-body" style="display: none;" id="cobrado">
+                <div class="row">
+                  <div class="col-md-12">
+                    {{retorno.data}}
+                    <br>
+                    O ID da transacao é : {{retorno.tid}}
+                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-body" style="display: none;" id="cobrando">
+                <div class="row">
+                  <div class="col-md-12">
+                    <center>
+                     <img src="/assets/img/loader.gif">
+                    </center>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body" id="cobranca">
               <div id="collapse">
               <div class="row">
                 <div class="col-md-12">
@@ -533,7 +574,8 @@ $scope.carrinhos = carts_atualizado;
                         </h5>
                       </div>
                       <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
-                        <div class="card-body">
+                        
+                        <div class="card-body" >
                           <div class="form-group bmd-form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
