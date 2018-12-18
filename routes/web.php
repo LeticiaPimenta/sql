@@ -16,7 +16,6 @@ $router->get('/pwa', function () use ($router) {
     return view('adm/pwa', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
 
-
 $router->get('/unidade/{unidade}', function ($unidade) use ($router) {
     return view('adm/unidade', ['unidade' => $unidade , 'public' => '/adm/']);
 });
@@ -70,6 +69,31 @@ $router->get('/caixa/pedidos/{loja}', function ($loja) use ($router) {
 $router->get('/caixa/cobrancas/{loja}', function ($loja) use ($router) {
      return view('caixa/cobrancas', ['loja' => $loja]);
 });
+
+$router->get('/caixa/cobrar', function () use ($router) {
+    // return view('caixa/cobrancas', ['loja' => $loja]);
+
+    $environment = \Rede\Environment::sandbox();
+    // Configuração da loja
+    $store = new \Rede\Store('10002466', '0556abce8ba144c787f9dad825a35bd2',$environment);
+    // Transação que será autorizada
+    $transaction = (new \Rede\Transaction(20.99, 'pedido' . time()))->creditCard(
+        '5448280000000007',
+        '235',
+        '12',
+        '2020',
+        'John Snow'
+    );
+
+    // Autoriza a transação
+    $transaction = (new \Rede\eRede($store))->create($transaction);
+    if ($transaction->getReturnCode() == '00') {
+        printf("Transação autorizada com sucesso; tid=%s\n", $transaction->getTid());
+    }else{
+        var_dump($transaction);
+    }
+});
+
 
 $router->get('/adm/cardapio', function () use ($router) {
     return view('adm/cardapio', ['app_name' => 'app de teste' , 'public' => '/adm/']);

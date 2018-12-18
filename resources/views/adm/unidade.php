@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="sampleApp">
 
 <head>
   <meta charset="utf-8" />
@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Kit PRO by Creative Tim
+     .:: Meus Pedidos :: Padaria Benjamin :: SP @Brasil ::.
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
@@ -62,9 +62,71 @@
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
   </script>
   <!-- End Google Tag Manager -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <!-- End Google Tag Manager -->
+<script>
+  // Initialize the Firebase SDK
+  var config = {
+    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
+    authDomain: "benjamin-a-padaria.firebaseapp.com",
+    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
+    projectId: "benjamin-a-padaria",
+    storageBucket: "benjamin-a-padaria.appspot.com",
+    messagingSenderId: "579576076240"
+  };
+  firebase.initializeApp(config);
+</script>
+<script type="text/javascript">
+  
+  var app = angular.module("sampleApp", ["firebase"]);
+  app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseObject) {
+    var ref = firebase.database().ref().child("products");
+    // create a synchronized array
+    $scope.products = $firebaseArray(ref);
+    var products_id = [];
+    $scope.products.$loaded().then(function() {
+      var cont = 1;
+      angular.forEach($scope.products, function(value, key) {
+        
+        products_id[value.$id]=value;
+      });
+    //  console.log(products_id);
+    //$scope.products = products;
+    $scope.products_id = products_id;
+  });
+
+
+
+    var ref_users = firebase.database().ref().child("users");
+    // create a synchronized array
+    var users = $firebaseArray(ref_users);
+    var users_id=[];
+    $scope.username = "";
+
+    users.$loaded().then(function() {
+      angular.forEach(users, function(value, key) {
+        console.log(value, key);
+        users_id[value.$id]=value;
+      });
+    $scope.users_id = users_id;
+    $scope.users = users;
+  });
+
+
+});
+</script>
+
 </head>
 
-<body class="blog-post sidebar-collapse">
+
+<body class="blog-post sidebar-collapse" ng-controller="SampleCtrl">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -102,68 +164,27 @@
         <div class="col-md-12">
           <h2 class="title text-center">Usuarios </h2>
           <br>
-          <div class="row">
+          <div class="row" ng-repeat="usuario in users">
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a href="/client/cardapio/<?php echo $unidade; ?>/1">
+                  <a href="/client/cardapio/<?php echo $unidade; ?>/{{usuario.$id}}">
                     <img class="img img-raised" src="/assets/img/rick.jpg">
                   </a>
                 </div>
                 <div class="card-body">
                   <h6 class="category text-info">#<?php echo $unidade; ?></h6>
                   <h4 class="card-title">
-                    <a href="/client/cardapio/<?php echo $unidade; ?>/1">Usuario Joãozinho</a>
+                    <a href="/client/cardapio/<?php echo $unidade; ?>/{{usuario.$id}}">{{usuario.configs.name}}</a>
                   </h4>
                   <p class="card-description">
-                    Aqui entramos como se fosse o usuario Joãozinho pra testes
-                    <a href="/client/cardapio/<?php echo $unidade; ?>/1"> Entrar como Joãozinho </a>
+                    Aqui entramos como se fosse o usuario {{usuario.configs.name}} pra testes
+                     <a href="/client/cardapio/<?php echo $unidade; ?>/{{usuario.$id}}"> Entrar como {{usuario.configs.name}} </a>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card card-blog">
-                <div class="card-header card-header-image">
-                  <a href="/client/cardapio/<?php echo $unidade; ?>/2">
-                    <img class="img img-raised" src="/assets/img/examples/blog8.jpg">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="category text-success">
-                    Pedro
-                  </h6>
-                  <h4 class="card-title">
-                    <a href="/client/cardapio/<?php echo $unidade; ?>/2">Usuario Pedro</a>
-                  </h4>
-                  <p class="card-description">
-                    Entrar como o Pedro
-                    <a href="/client/cardapio/<?php echo $unidade; ?>/2"> Entrar como o Pedro </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-blog">
-                <div class="card-header card-header-image">
-                  <a href="/client/cardapio/<?php echo $unidade; ?>/3">
-                    <img class="img img-raised" src="/assets/img/bg11.jpg">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="category text-danger">
-                    #3
-                  </h6>
-                  <h4 class="card-title">
-                    <a href="/client/cardapio/<?php echo $unidade; ?>/3">Maria</a>
-                  </h4>
-                  <p class="card-description">
-                    Entrar para testes com o Usuario da Maria
-                    <a href="/client/cardapio/<?php echo $unidade; ?>/3"> Entrar como Maria</a>
-                  </p>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>

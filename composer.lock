@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af56e7a23d3ddd421d9471400cef323a",
+    "content-hash": "7d00edf55548286d0fb38191f4ae1eb7",
     "packages": [
         {
             "name": "behat/gherkin",
@@ -229,6 +229,48 @@
             ],
             "description": "Flexible Stub wrapper for PHPUnit's Mock Builder",
             "time": "2018-07-26T11:55:37+00:00"
+        },
+        {
+            "name": "developersrede/erede-php",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DevelopersRede/erede-php.git",
+                "reference": "a442a9b5c27c82084428e55b003312af52d80020"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DevelopersRede/erede-php/zipball/a442a9b5c27c82084428e55b003312af52d80020",
+                "reference": "a442a9b5c27c82084428e55b003312af52d80020",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.6",
+                "psr/log": ">=1.0"
+            },
+            "suggest": {
+                "monolog/monolog": "Allows more advanced logging of the application flow"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rede\\": "src//Rede"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "João Batista Neto",
+                    "email": "neto.joaobatista@gmail.com"
+                }
+            ],
+            "description": "e.Rede integration SDK",
+            "time": "2018-10-23T15:18:20+00:00"
         },
         {
             "name": "doctrine/inflector",
