@@ -20,14 +20,14 @@
   <!-- Schema.org markup for Google+ -->
   <meta itemprop="name" content="Benjamin a Padaria">
   <meta itemprop="description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular">
-  <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/46/original/opt_mkp_thumbnail.jpg">
+  <meta itemprop="image" content="https://benjamin-a-padaria.herokuapp.com/assets/img/example/Cafe_filtrado-2.jpg">
   <!-- Twitter Card data -->
   <meta name="twitter:card" content="product">
   <meta name="twitter:site" content="@creativetim">
   <meta name="twitter:title" content="Benjamin a Padaria">
   <meta name="twitter:description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular">
   <meta name="twitter:creator" content="@creativetim">
-  <meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/46/original/opt_mkp_thumbnail.jpg">
+  <meta name="twitter:image" content="https://benjamin-a-padaria.herokuapp.com/assets/img/example/Cafe_filtrado-2.jpg">
   <!-- Open Graph data -->
   <meta property="fb:app_id" content="655968634437471">
   <meta property="og:title" content="Benjamin a Padaria" />
