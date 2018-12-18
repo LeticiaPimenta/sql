@@ -13,7 +13,7 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
-  <link rel="canonical" href="https://www.creative-tim.com/product/material-kit-pro" />
+  <link rel="canonical" href="https://benjamin-a-padaria.herokuapp.com/pesquisa" />
   <!--  Social tags      -->
   <meta name="keywords" content=" Benjamin a Padaria Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular">
   <meta name="description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular">
@@ -32,7 +32,7 @@
   <meta property="fb:app_id" content="655968634437471">
   <meta property="og:title" content="Benjamin a Padaria" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://demos.creative-tim.com/material-kit-pro/presentation.html" />
+  <meta property="og:url" content="https://benjamin-a-padaria.herokuapp.com/pesquisa" />
   <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/46/original/opt_mkp_thumbnail.jpg" />
   <meta property="og:description" content="Faça seus pedidos e acompanhe a sua conta na facilidade do seu celular" />
   <meta property="og:site_name" content="Benjamin a Padaria" />
