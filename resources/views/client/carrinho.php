@@ -170,6 +170,7 @@ $scope.carrinhos = carts;
       });
 */    
 $("#cobranca").slideUp();
+$("#titulo_pagamento").html("Fechando seu Pagamento , aguarde .");
 $("#cobrando").slideDown();
       var req = {
        method: 'POST',
@@ -183,8 +184,10 @@ $("#cobrando").slideDown();
       $http(req).then(function(response){
         console.log(response);
         $("#cobrando").slideUp();
+        $("#titulo_pagamento").html("Pagamento Finalizado");
         $("#cobrado").slideDown();
         $scope.retorno = response;
+        $("#titulo_pagamento").html("Pagamento Finalizado "+response.data);
 
       }, function(response){
         console.log(response);
@@ -226,6 +229,7 @@ $scope.carrinhos = carts_atualizado;
       user : <?php echo $cliente;?>,
      // name:$name,
      products: produtos_carrinho,
+     retorno : $scope.retorno,
      value:$scope.valor_total,
       hora:new Date().getTime()
     }).catch(function(error) {
@@ -254,7 +258,8 @@ $scope.carrinhos = carts_atualizado;
                 var ref_carts_remove = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
                 var carts_remove = $firebaseObject(ref_carts_remove);
                 carts_remove.$remove();
-                alert("Vai Fechar sua compra , veja os detalhes em seus historicos !");
+                //alert("Vai Fechar sua compra , veja os detalhes em seus historicos !");
+                window.location.replace("/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>");
 
             }
   // add new items to the array
@@ -519,8 +524,8 @@ $scope.carrinhos = carts_atualizado;
         <div class="card card-signup card-plain">
           <div class="modal-header">
             <div class="card-header card-header-warning text-center">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
-              <h4 class="card-title">Faça seu pagamento</h4>
+             
+              <h4 class="card-title" id="titulo_pagamento">Faça seu pagamento</h4>
       <!--        <div class="social-line">
                 <a href="#pablo" class="btn btn-just-icon btn-link">
                   <i class="fa fa-facebook-square"></i>
@@ -543,8 +548,8 @@ $scope.carrinhos = carts_atualizado;
                   <div class="col-md-12">
                     {{retorno.data}}
                     <br>
-                    O ID da transacao é : {{retorno.tid}}
-                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>
+                    
+                    <button type="button" class="btn btn-warning btn-round" ng-click="encerrar_carrinho()">Ok ! Retornar Para a Loja <i class="material-icons">keyboard_arrow_right</i></button>
 
                   </div>
                 </div>
