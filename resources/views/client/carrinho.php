@@ -503,91 +503,102 @@ $scope.carrinhos = carts_atualizado;
           </div>
           <div class="modal-body">
             <form class="form" method="" action="" autocomplete="on">
-              <p class="description text-center">Formas de pagamento</p>
+              <p class="description text-center">
+              <small>R$</small> {{valor_total.toFixed(2)}}</p>
               <div class="card-body">
               <div id="collapse">
-      <div class="row">
-        <div class="col-md-12">
-          <div id="accordion" role="tablist">
-            <div class="card card-collapse">
-              <div class="card-header" role="tab" id="headingOne">
-                <h5 class="mb-0">
-                <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
-                Cartão de Crédito
-                <i class="material-icons">keyboard_arrow_down</i>
-                </a>
-                </h5>
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="accordion" role="tablist">
+                    <div class="card card-collapse">
+                      <div class="card-header" role="tab" id="headingOne">
+                        <h5 class="mb-0">
+                        <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
+                        Cartão de Crédito
+                        <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                        </h5>
+                      </div>
+                      <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                        <div class="card-body">
+                          <div class="form-group bmd-form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">face</i>
+                                </span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="Nome..." autocomplete="on">
+                            </div>
+                          </div>
+                          <div class="form-group bmd-form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                <i class="material-icons">credit_card</i>
+                                </span>
+                              </div>
+                                <input type="text" class="form-control" placeholder="Número do cartão" autocomplete="on">
+                            </div>
+                          </div>
+                          <div class="form-group bmd-form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">lock_outline</i>
+                                </span>
+                              </div>
+                              <input type="password" placeholder="CVV" class="form-control" autocomplete="on">
+                            </div>
+                          </div>
+                          <div class="form-group bmd-form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">date_ranger</i>
+                                </span>
+                              </div>
+                              <input type="password" placeholder="Data de vencimento" class="form-control" autocomplete="on">
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="card card-collapse">
+                          <div class="card-header" role="tab" id="headingTwo">
+                            <h5 class="mb-0">
+                              <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Dinheiro - Totem
+                                <i class="material-icons">keyboard_arrow_down</i>
+                              </a>
+                            </h5>
+                          </div>
+                          <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                              Dirija-se ao totem para pagamento.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card card-collapse">
+                          <div class="card-header" role="tab" id="headingThree">
+                            <h5 class="mb-0">
+                              <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Cartão de Débito
+                                <i class="material-icons">keyboard_arrow_down</i>
+                              </a>
+                            </h5>
+                          </div>
+                          <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                              A definir.
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
-                <div class="card-body">
-                  <div class="form-group bmd-form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="material-icons">face</i>
-                        </span>
-                      </div>
-                      <input type="text" class="form-control" placeholder="First Name..." autocomplete="on">
-                    </div>
-                  </div>
-                  <div class="form-group bmd-form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                        <i class="material-icons">mail</i>
-                        </span>
-                      </div>
-                        <input type="text" class="form-control" placeholder="Email..." autocomplete="on">
-                    </div>
-                  </div>
-                  <div class="form-group bmd-form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="material-icons">lock_outline</i>
-                        </span>
-                      </div>
-                      <input type="password" placeholder="Password..." class="form-control" autocomplete="on">
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <div class="card card-collapse">
-                  <div class="card-header" role="tab" id="headingTwo">
-                    <h5 class="mb-0">
-                      <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Dinheiro - Totem
-                        <i class="material-icons">keyboard_arrow_down</i>
-                      </a>
-                    </h5>
-                  </div>
-                  <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                    <div class="card-body">
-                      Dirija-se ao totem para pagamento.
-                    </div>
-                  </div>
-                </div>
-                <div class="card card-collapse">
-                  <div class="card-header" role="tab" id="headingThree">
-                    <h5 class="mb-0">
-                      <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Cartão de Débito
-                        <i class="material-icons">keyboard_arrow_down</i>
-                      </a>
-                    </h5>
-                  </div>
-                  <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                    <div class="card-body">
-                      A definir.
-                    </div>
-                  </div>
-                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
 
   <!--end modal-->
 
