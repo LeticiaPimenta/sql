@@ -370,7 +370,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
             </div>
             <!--End carouse-->    
 
-          <div class="col-md-4" id="1" ng-repeat="product in products">
+          <div class="col-md-4" id="1" ng-repeat="product in products | filter:{ priority : '1' }">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
                 <a href="#">
@@ -453,20 +453,18 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
         <h2 class="section-title">Mais Amados</h2>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-4" ng-repeat="product in products">
+              <div class="col-md-4" ng-repeat="product in products | filter:{ priority : '2' }">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
+                    <img ng-src="{{product.image}}" alt="">
                     </a>
                   </div>
                   <div class="card-body">
                     <a href="#">
                       <h4 class="card-title">{{product.text}}</h4>
                     </a>
-                    <p class="description">
-                      Impeccably tailored in Italy from lightweight navy wool.
-                    </p>
+                  <p class="card-description">{{product.desc}}</p>
                   </div>
                   <div class="card-footer">
                 <div class="price-container">
@@ -499,20 +497,18 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
         <h2 class="section-title">Especiais</h2>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-4" ng-repeat="product in products">
+              <div class="col-md-4" ng-repeat="product in products | filter:{ priority : '3' }">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                      <img src="/assets/img/examples/cesta-benjamin.jpg" alt="...">
+                    <img ng-src="{{product.image}}" alt="">
                     </a>
                   </div>
                   <div class="card-body">
                     <a href="#">
                       <h4 class="card-title">{{product.text}}</h4>
                     </a>
-                    <p class="description">
-                      Impeccably tailored in Italy from lightweight navy wool.
-                    </p>
+                    <p class="card-description">{{product.desc}}</p>
                   </div>
                   <div class="card-footer">
                 <div class="price-container">
