@@ -235,7 +235,7 @@ $scope.carrinhos = carts_atualizado;
     }).catch(function(error) {
                    console.error(error); //or
                    console.log(error);
-                   alert('Not Saved.');
+
                  });
 
                 var ref_compra = firebase.database().ref().child("users/<?php echo $cliente;?>/compras/<?php echo $loja;?>");
