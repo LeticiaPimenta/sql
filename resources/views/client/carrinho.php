@@ -480,7 +480,7 @@ $scope.carrinhos = carts_atualizado;
 
   <!--start modal-->
 
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" style="display: none; padding-right: 10px;">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" style="display: none; padding-right: 10px; padding-left: 17px;">
     <div class="modal-dialog modal-login" role="document">
       <div class="modal-content">
         <div class="card card-signup card-plain">
@@ -501,7 +501,7 @@ $scope.carrinhos = carts_atualizado;
               </div> -->
             </div>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" style="padding-left: 17px;">
             <form class="form" method="" action="" autocomplete="on">
               <p class="description text-center">
               <small>R$</small> {{valor_total.toFixed(2)}}</p>
