@@ -87,6 +87,8 @@
   var app = angular.module("sampleApp", ["firebase"]);
   app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseObject , $http) {
     var ref = firebase.database().ref().child("products");
+    $scope.retorno = 0;
+    $scope.valor_total = 0;
     // create a synchronized array
     $scope.products = $firebaseArray(ref);
     var products_id = [];
@@ -125,7 +127,7 @@
   var cart_formatado = [];
   var valor_total = 0;  
   var produtos_carrinho= [];
-$scope.carrinhos = carts;
+  $scope.carrinhos = carts;
   $scope.carrinhos.$loaded().then(function() {
     $scope.carts_origin = carts;
       var cont = 1;
@@ -160,18 +162,11 @@ $scope.carrinhos = carts;
 
 
   $scope.pagar_carrinho = function (){
-    console.log("vai pagar");
-   /* $.post("caixa/cobrar", {"cartao":"3812739837391", "cvv":"123" , "Vencimento":"20/2020" , ""}).done(function(response){
-      console.log(response);
-    });*/
-  /*  $.post( "/caixa/cobrar", {"cartao":$("#cartao_carrinho").val(), "cvv":"123" , "Vencimento":"20/2020" , "nome":$("#nome_carrinho").val() , "valor":$("#valor_carrinho").val()})
-      .done(function( data ) {
-        alert( "Data Loaded: " + data );
-      });
-*/    
-$("#cobranca").slideUp();
-$("#titulo_pagamento").html("Fechando seu Pagamento , aguarde .");
-$("#cobrando").slideDown();
+      console.log("vai pagar");
+      
+      $("#cobranca").slideUp();
+      $("#titulo_pagamento").html("Fechando seu Pagamento , aguarde .");
+      $("#cobrando").slideDown();
       var req = {
        method: 'POST',
        url: '/caixa/cobrar',
@@ -211,11 +206,9 @@ $("#cobrando").slideDown();
               $scope.obj_carts = obj_carts;
 
 
-  var carts_atualizado = $firebaseArray(ref_carts);
+                var carts_atualizado = $firebaseArray(ref_carts);
 
-$scope.carrinhos = carts_atualizado;
-
-         
+                $scope.carrinhos = carts_atualizado;
 
                 var hoje = new Date().getTime();
                // alert(hoje);
@@ -225,33 +218,32 @@ $scope.carrinhos = carts_atualizado;
                 console.log("caixa/<?php echo $loja;?>/<?php echo $cliente.'/';?>"+hoje);
                 console.log(produtos_carrinho);
                 caixa.$add({
-      shop: <?php echo $loja;?>,
-      user : <?php echo $cliente;?>,
-     // name:$name,
-     products: produtos_carrinho,
-     retorno : $scope.retorno,
-     value:$scope.valor_total,
-      hora:new Date().getTime()
-    }).catch(function(error) {
-                   console.error(error); //or
-                   console.log(error);
-
+                    shop: <?php echo $loja;?>,
+                    user : <?php echo $cliente;?>,
+                   // name:$name,
+                   products: produtos_carrinho,
+                   retorno : $scope.retorno,
+                   value:$scope.valor_total,
+                    hora:new Date().getTime()
+                  }).catch(function(error) {
+                     console.error(error); //or
+                     console.log(error);
                  });
 
                 var ref_compra = firebase.database().ref().child("users/<?php echo $cliente;?>/compras/<?php echo $loja;?>");
                 var compras = $firebaseArray(ref_compra);
                 compras.$add({
     
-      shop: <?php echo $loja;?>,
-      user : <?php echo $cliente;?>,
-     // name:$name,
-      products: produtos_carrinho,
-     value:$scope.valor_total,
-      hora:new Date().getTime()
-    }).catch(function(error) {
+                  shop: <?php echo $loja;?>,
+                  user : <?php echo $cliente;?>,
+                 // name:$name,
+                  products: produtos_carrinho,
+                 value:$scope.valor_total,
+                  hora:new Date().getTime()
+                }).catch(function(error) {
                    console.error(error); //or
                    console.log(error);
-                   alert('Not Saved.');
+                  // alert('Not Saved.');
                  })
                // $scope.carts.$remove();
 
@@ -461,7 +453,7 @@ $scope.carrinhos = carts_atualizado;
                   </td>
                   <td class="td-number">
                     <small>R$</small><span ng-repeat="item in produto" ng-show="$last">
-                      {{item.value * ($index+1)}}
+                      {{(item.value * ($index+1)).toFixed(2)}}
                     </span>
                   </td>
                  
@@ -588,7 +580,7 @@ $scope.carrinhos = carts_atualizado;
                                   <i class="material-icons">face</i>
                                 </span>
                               </div>
-                              <input type="text" class="form-control" placeholder="Nome..." autocomplete="on" id="nome_carrinho">
+                              <input type="text" class="form-control" placeholder="Nome..." autocomplete="on" id="nome_carrinho" value="{{users_id[<?php echo $cliente;?>].name}}">
                             </div>
                           </div>
                           <div class="form-group bmd-form-group">
