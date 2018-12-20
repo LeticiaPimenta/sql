@@ -404,12 +404,7 @@
       <div class="card card-plain">
         <div class="card-body">
           <br/>
-           <img id='barcode' 
-            src="https://api.qrserver.com/v1/create-qr-code/?data=carrinho-<?php echo $loja;?>-<?php echo $cliente;?>&amp;size=100x100" 
-            alt="" 
-            title="Local e mesa" 
-            width="50" 
-            height="50" />
+          
           <div class="table-responsive">
             <table class="table table-shopping">
               <thead>
@@ -480,6 +475,12 @@
                     <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>">
                     <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
                     </a>
+                     <img id='barcode' 
+                        src="https://api.qrserver.com/v1/create-qr-code/?data=carrinho-<?php echo $loja;?>-<?php echo $cliente;?>&amp;size=100x100" 
+                        alt="" 
+                        title="Hash do Carrinho" 
+                        width="50" 
+                        height="50" />  
 
 
                   </td>
