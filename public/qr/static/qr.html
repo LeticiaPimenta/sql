@@ -20,7 +20,7 @@
         margin-bottom: 16px;
     }
 </style>
-
+<h1>Scan from WebCam:</h1>
 <div>
     <video muted autoplay playsinline id="qr-video"></video>
     <canvas id="debug-canvas"></canvas>
@@ -39,6 +39,10 @@
 <span id="cam-qr-result">None</span>
 <hr>
 
+<h1>Scan from File:</h1>
+<input type="file" id="file-selector">
+<b>Detected QR code: </b>
+<span id="file-qr-result">None</span>
 
 <script type="module">
     import QrScanner from "../qr-scanner.min.js";
