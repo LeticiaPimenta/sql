@@ -295,7 +295,8 @@
        var foto =   localStorage.getItem("foto");
        $scope.foto =   localStorage.getItem("foto");
        var token =  localStorage.getItem("access_token");
-       console.log($scope.usuario);
+       console.log($scope.usuario.providerData[0].uid);
+       var logado_id = $scope.usuario.providerData[0].uid;
 	});
 </script>
 <script type="module">
@@ -311,6 +312,7 @@
     function setResult(label, result) {
         label.textContent = result;
         alert(result);
+        alert(logado_id);
         
         label.style.color = 'teal';
         clearTimeout(label.highlightTimeout);
