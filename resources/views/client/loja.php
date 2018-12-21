@@ -124,6 +124,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   $scope.addCart = function($product, $name , $value) {
     var ref_carts_targer = firebase.database().ref().child("pedidos/<?php echo $loja;?>/<?php echo $cliente;?>/"+$product);
   // create a synchronized array
+  comanda = localStorage.getItem("comanda");
+  console.log(comanda);
   $scope.carts_clicado = $firebaseArray(ref_carts_targer);
     $scope.carts_clicado.$add({
       product: $product,
@@ -158,6 +160,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
     $scope.timerCarrinho = setTimeout(function(){ 
         $('#smallAlertModal').modal('hide');
         $scope.carts_clicado = $firebaseArray(ref_carts_targer);
+        comanda = localStorage.getItem("comanda");
+  console.log(comanda);
             $scope.carts_clicado.$add({
               product: $product,
               comanda : comanda ,
