@@ -279,6 +279,7 @@
   firebase.initializeApp(config);
 </script>
 <script type="text/javascript">
+	var logado_id = 0;
   	var app = angular.module("sampleApp", ["firebase" ]);
     app.controller("SampleCtrl", function($scope, $firebaseArray){
 
@@ -296,7 +297,7 @@
        $scope.foto =   localStorage.getItem("foto");
        var token =  localStorage.getItem("access_token");
        console.log($scope.usuario.providerData[0].uid);
-       var logado_id = $scope.usuario.providerData[0].uid;
+       logado_id = $scope.usuario.providerData[0].uid;
 	});
 </script>
 <script type="module">
@@ -312,7 +313,9 @@
     function setResult(label, result) {
        // label.textContent = result;
         alert(result);
-        alert(logado_id);
+        user_logado = JSON.parse(localStorage.getItem("usuario"));
+       
+       logado_id = user_logado.providerData[0].uid;
          window.location.replace("/client/cardapio/600/"+logado_id);
         
         label.style.color = 'teal';
