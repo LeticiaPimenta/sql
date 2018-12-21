@@ -108,7 +108,7 @@
                 <div class="card card-profile card-plain">
                   <div class="card-avatar">
                     <a href="#pablo">
-                      <img class="img" src="./assets/img/faces/marc.jpg">
+             
                       <img class="img" ng-src="{{foto}}">
                     </a>
                   </div>
@@ -116,9 +116,8 @@
                     <h6 class="card-category text-gray">CEO / Co-Founder</h6>
                     <h4 class="card-title">Alec Thompson</h4>
                     <p class="card-description">
-                      Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                    </p>
-                    <a href="#pablo" class="btn btn-info btn-round">Follow</a>
+                      {{usuario}}</p>
+                    <a href="#pablo" class="btn btn-info btn-round">qual unidade ?</a>
                   </div>
                 </div>
               </div>
@@ -292,6 +291,7 @@
       }
 
        var usuario = localStorage.getItem("usuario");
+       $scope.usuario = JSON.parse(localStorage.getItem("usuario"));
        var foto =   localStorage.getItem("foto");
        $scope.foto =   localStorage.getItem("foto");
        var token =  localStorage.getItem("access_token");
