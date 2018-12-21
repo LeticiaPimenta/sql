@@ -313,7 +313,7 @@
     function setResult(label, result) {
        // label.textContent = result;
         alert(result);
-        user_logado = JSON.parse(localStorage.getItem("usuario"));
+        var user_logado = JSON.parse(localStorage.getItem("usuario"));
        
        logado_id = user_logado.providerData[0].uid;
          window.location.replace("/client/cardapio/600/"+logado_id);
