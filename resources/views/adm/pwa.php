@@ -263,7 +263,8 @@
         $scope.usuario_uid = $scope.usuario_logado.providerData[0].uid;
         $scope.foto_logado = localStorage.getItem("foto");
         $scope.nome_logado = $scope.usuario_logado.displayName;
-        alert("logado");
+        alert("vc ja esta logado e vai ser redirecionado ");
+        window.location.replace("/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>");
       }
       var auth = $firebaseAuth();
 		  // login with Facebook
@@ -284,6 +285,8 @@
           localStorage.setItem("logado" , true);
           $scope.logado = true;
           console.log($scope.usuario_logado);
+          redirect firebaseUser.uid
+          window.location.replace("/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>");
 
         }).catch(function(error) {
           console.log("Authentication failed:", error);
