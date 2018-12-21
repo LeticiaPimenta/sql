@@ -310,9 +310,10 @@
     const fileQrResult = document.getElementById('file-qr-result');
 
     function setResult(label, result) {
-        label.textContent = result;
+       // label.textContent = result;
         alert(result);
         alert(logado_id);
+         window.location.replace("/client/cardapio/600/"+logado_id);
         
         label.style.color = 'teal';
         clearTimeout(label.highlightTimeout);
