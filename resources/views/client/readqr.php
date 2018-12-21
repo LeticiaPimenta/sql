@@ -312,11 +312,11 @@
 
     function setResult(label, result) {
        // label.textContent = result;
-        alert(result);
+        var comanda = result.split("-");
         var user_logado = JSON.parse(localStorage.getItem("usuario"));
        
        logado_id = user_logado.providerData[0].uid;
-         window.location.replace("/client/cardapio/600/"+logado_id);
+         window.location.replace("/client/cardapio/"+comanda[0]+"/"+logado_id);
         
         label.style.color = 'teal';
         clearTimeout(label.highlightTimeout);
