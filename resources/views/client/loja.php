@@ -86,6 +86,7 @@
   
   var app = angular.module("sampleApp", ["firebase" , "toastr"]);
 app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
+  var comanda = localStorage.getItem("comanda");
   var ref = firebase.database().ref().child("products");
   // create a synchronized array
   $scope.products = $firebaseArray(ref);
@@ -124,6 +125,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   $scope.carts_clicado = $firebaseArray(ref_carts_targer);
     $scope.carts_clicado.$add({
       product: $product,
+      comanda : comanda ,
       shop: <?php echo $loja;?>,
       user : <?php echo $cliente;?>,
       name:$name,
@@ -156,6 +158,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
         $scope.carts_clicado = $firebaseArray(ref_carts_targer);
             $scope.carts_clicado.$add({
               product: $product,
+              comanda : comanda ,
               shop: <?php echo $loja;?>,
               user : <?php echo $cliente;?>,
               name:$name,

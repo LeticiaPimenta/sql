@@ -240,6 +240,7 @@
                   user : <?php echo $cliente;?>,
                  // name:$name,
                   products: produtos_carrinho,
+                  comanda: comanda,
                  value:$scope.valor_total,
                   hora:new Date().getTime()
                 }).catch(function(error) {
