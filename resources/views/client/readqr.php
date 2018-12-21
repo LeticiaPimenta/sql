@@ -113,11 +113,11 @@
                     </a>
                   </div>
                   <div class="card-body ">
-                    <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-                    <h4 class="card-title">Alec Thompson</h4>
+                    <h6 class="card-category text-gray">{{usuario.displayName}}</h6>
+                    <h4 class="card-title">{{usuario.email}}</h4>
                     <p class="card-description">
                       {{usuario}}</p>
-                    <a href="#pablo" class="btn btn-info btn-round">qual unidade ?</a>
+                    <a href="#" class="btn btn-info btn-round">qual unidade ?</a>
                   </div>
                 </div>
               </div>
