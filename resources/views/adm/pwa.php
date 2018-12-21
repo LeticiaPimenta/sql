@@ -264,7 +264,7 @@
         $scope.foto_logado = localStorage.getItem("foto");
         $scope.nome_logado = $scope.usuario_logado.displayName;
         alert("vc ja esta logado e vai ser redirecionado ");
-        window.location.replace("/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>");
+        window.location.replace("/client/qrunidade");
       }
       var auth = $firebaseAuth();
 		  // login with Facebook
@@ -286,7 +286,7 @@
           $scope.logado = true;
           console.log($scope.usuario_logado);
           redirect firebaseUser.uid
-          window.location.replace("/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>");
+          window.location.replace("/client/qrunidade");
 
         }).catch(function(error) {
           console.log("Authentication failed:", error);
