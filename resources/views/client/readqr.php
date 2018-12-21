@@ -252,7 +252,7 @@
   
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-             .register('service-worker.js')
+             .register('qr-service-worker.js')
              .then(function() { console.log('Service Worker Registered'); });
   }
 
@@ -299,7 +299,7 @@
 	});
 </script>
 <script type="module">
-    import QrScanner from "../qr-scanner.min.js";
+    import QrScanner from "/qr/qr-scanner.min.js";
     const video = document.getElementById('qr-video');
     const debugCheckbox = document.getElementById('debug-checkbox');
     const debugCanvas = document.getElementById('debug-canvas');
