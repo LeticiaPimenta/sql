@@ -88,6 +88,7 @@
 app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   var comanda = localStorage.getItem("comanda");
   console.log(comanda);
+  alert(comanda);
   var ref = firebase.database().ref().child("products");
   // create a synchronized array
   $scope.products = $firebaseArray(ref);
