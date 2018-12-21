@@ -215,6 +215,7 @@
                 var ref_caixa = firebase.database().ref().child("caixa/<?php echo $loja;?>/<?php echo $cliente.'/';?>"+hoje);
   // create a synchronized array
                 var caixa = $firebaseArray(ref_caixa);
+                var comanda = localStorage.getItem("comanda");
                 console.log("caixa/<?php echo $loja;?>/<?php echo $cliente.'/';?>"+hoje);
                 console.log(produtos_carrinho);
                 caixa.$add({
@@ -224,6 +225,7 @@
                    products: produtos_carrinho,
                    retorno : $scope.retorno,
                    value:$scope.valor_total,
+                   comanda: comanda,
                     hora:new Date().getTime()
                   }).catch(function(error) {
                      console.error(error); //or
