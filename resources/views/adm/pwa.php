@@ -285,7 +285,7 @@
           localStorage.setItem("logado" , true);
           $scope.logado = true;
           console.log($scope.usuario_logado);
-          redirect firebaseUser.uid
+          //redirect firebaseUser.uid
           window.location.replace("/client/qrunidade");
 
         }).catch(function(error) {
