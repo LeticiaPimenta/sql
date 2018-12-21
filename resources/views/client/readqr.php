@@ -295,7 +295,7 @@
        var foto =   localStorage.getItem("foto");
        $scope.foto =   localStorage.getItem("foto");
        var token =  localStorage.getItem("access_token");
-       console.log(usuario);
+       console.log(usuario.providerData);
 	});
 </script>
 <script type="module">
