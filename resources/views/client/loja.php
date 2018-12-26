@@ -318,7 +318,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   <!-- end alert -->
 
   </nav>
-  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('/assets/img/croissant-chocolate-aberto.jpg');">
+  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('/assets/img/produtos/croissant-chocolate-aberto.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
@@ -524,7 +524,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
                   <span class="price price-new">R$ {{product.value}}</span>
                 </div>
                 <div class="stats ml-auto">
-                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">modal</button>
+                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>
