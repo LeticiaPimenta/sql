@@ -96,6 +96,20 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+          <form class='rd-mailform rd-mailform-1' method="post" id="form_pesquisa">
+            <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group bmd-form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Seu nome" autocomplete="on">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group bmd-form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Seu email" autocomplete="on">
+                          </div>
+                        </div>
+                      </div>
+
           <div class="row">
             <div class="col-md-4">
               <div class="title">
@@ -209,6 +223,7 @@
               </div>
             </div>
           </div>
+        </form>
 
           <div class="row">
           <br>
@@ -217,8 +232,8 @@
 
         <form class="col-md-12">
           <span class="bmd-form-group"><textarea class="form-control" placeholder="Escreva aqui seu comentario" rows="6" autocomplete="on"></textarea></span>
-          <div class="media-footer">                       
-          <a href="#pablo" class="btn btn-warning float-right">Enviar!</a>
+          <div class="media-footer">          
+          <button class="btn btn-warning float-righ" id="envia_pesquisa" type="button">Enviar</button>            
           </div>
         </form>
 
@@ -307,6 +322,35 @@
 
     });
   </script>
+
+  <script type="text/javascript">
+        $(function() {
+
+          var data_atual = {'name':'criado','value':new Date()}
+          
+          $('#envia_pesquisa').click( function() {
+            var dados = $('form#form_pesquisa').serializeArray();
+            dados.push(data_atual);
+            dados = JSON.stringify(dados);
+               $.post( 'https://benjamin-a-padaria.firebaseio.com/ben-pesquisa.json',dados , function(data) {
+                  console.log(data);
+                  alert("Pesquisa recebida com sucesso !");
+               });
+            });
+
+         $( ".pergunta" ).change(function() {
+            $('.depends_'+$(this).attr('name')).slideDown();
+            return;
+         });
+
+         $("#dia").html(data_atual.value.getDate());
+         $("#mes").html(data_atual.value.getMonth()+1);
+         $("#ano").html(data_atual.value.getFullYear());
+
+        });
+
+  </script>
+
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
   </noscript>
