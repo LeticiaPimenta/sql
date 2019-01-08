@@ -88,6 +88,7 @@
           <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
             <i class="fa fa-facebook-square"></i>   Logar com o Facebook
           </a>
+          <button ng-click="auth.$signOut()">Sign Out</button>
           <div class="ripple-container"></div>
         </div>
       </div>
