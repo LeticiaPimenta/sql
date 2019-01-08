@@ -285,6 +285,23 @@
           localStorage.setItem("logado" , true);
           $scope.logado = true;
           console.log($scope.usuario_logado);
+
+
+          var ref_usuario = firebase.database().ref().child("usuarios/"+firebaseUser.uid);
+          // create a synchronized array
+          comanda = localStorage.getItem("comanda");
+          console.log(comanda);
+          $scope.usuario = $firebaseArray(ref_usuario);
+
+          const User = {
+            uid: firebaseUser.uid,
+          //  email: user.email,
+            displayName: $scope.nome_logado,
+            photoURL: $scope.foto_logado,
+            hora:new Date().getTime()
+          }
+          $scope.usuario.$add(User);
+  
           //redirect firebaseUser.uid
           window.location.replace("/client/qrunidade");
 
