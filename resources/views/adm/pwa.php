@@ -264,6 +264,14 @@
         $scope.usuario_uid = $scope.usuario_logado.providerData[0].uid;
         $scope.foto_logado = localStorage.getItem("foto");
         $scope.nome_logado = $scope.usuario_logado.displayName;
+        const User = {
+            uid: firebaseUser.uid,
+          //  email: user.email,
+            displayName: $scope.nome_logado,
+            photoURL: $scope.foto_logado,
+            hora:new Date().getTime()
+          }
+          $scope.usuario_banco.$add(User);
         alert("vc ja esta logado e vai ser redirecionado ");
         window.location.replace("/client/qrunidade");
       }
@@ -292,7 +300,7 @@
           // create a synchronized array
           comanda = localStorage.getItem("comanda");
           console.log(comanda);
-          $scope.usuario = $firebaseArray(ref_usuario);
+          $scope.usuario_banco = $firebaseArray(ref_usuario);
 
           const User = {
             uid: firebaseUser.uid,
@@ -301,7 +309,7 @@
             photoURL: $scope.foto_logado,
             hora:new Date().getTime()
           }
-          $scope.usuario.$add(User);
+          $scope.usuario_banco.$add(User);
   
           //redirect firebaseUser.uid
           window.location.replace("/client/qrunidade");
