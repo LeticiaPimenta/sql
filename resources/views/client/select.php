@@ -139,7 +139,7 @@
                   </h4>
                   <p class="card-description">
                     Haddock Lobo é a segunda unidade inaugarada pela Benjamin A Padaria, costuma ter grande número de pessoas, ideal para encontrar seu grupo de amigos e interagir com o fluxo constante da Av. Paulista.
-                    <a ng-href="client/cardapio/40/{{usuario_uid}"> Visitar </a>
+                    <a href="client/cardapio/40/{{usuario_uid}"> Visitar </a>
                   </p>
                 </div>
               </div>
@@ -156,11 +156,11 @@
                     #1
                   </h6>
                   <h4 class="card-title">
-                    <a ng-href="client/cardapio/1">Pamplona</a>
+                    <a href="client/cardapio/1">Pamplona</a>
                   </h4>
                   <p class="card-description">
                     Nossa unidade localizada no coração da Av. Pamplona ideal para seu café da manhã antes do trabalho.
-                    <a ng-href="client/cardapio/1"> Visitar </a>
+                    <a href="client/cardapio/1"> Visitar </a>
                   </p>
                 </div>
               </div>
