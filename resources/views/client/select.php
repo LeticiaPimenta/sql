@@ -107,18 +107,18 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a ng-href="client/cardapio/600/{{usuario_uid}}">
+                  <a ng-href="/client/cardapio/600/{{usuario_uid}}">
                     <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
                   </a>
                 </div>
                 <div class="card-body">
                   <h6 class="category text-info">#600</h6>
                   <h4 class="card-title">
-                    <a ng-href="client/cardapio/600/{{usuario_uid}}">Central</a>
+                    <a ng-href="/client/cardapio/600/{{usuario_uid}}">Central</a>
                   </h4>
                   <p class="card-description">
                     A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.
-                    <a ng-href="client/cardapio/600/{{usuario_uid}}"> Visitar </a>
+                    <a ng-href="/client/cardapio/600/{{usuario_uid}}"> Visitar </a>
                   </p>
                 </div>
               </div>
@@ -126,7 +126,7 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a ng-href="client/cardapio/40/{{usuario_uid}}">
+                  <a ng-href="/client/cardapio/40/{{usuario_uid}}">
                     <img class="img img-raised" src="/assets/img/UniBenjamin.jpg">
                   </a>
                 </div>
@@ -135,11 +135,11 @@
                     #40
                   </h6>
                   <h4 class="card-title">
-                    <a ng-href="client/cardapio/40/{{usuario_uid}}">Haddock</a>
+                    <a ng-href="/client/cardapio/40/{{usuario_uid}}">Haddock</a>
                   </h4>
                   <p class="card-description">
                     Haddock Lobo é a segunda unidade inaugarada pela Benjamin A Padaria, costuma ter grande número de pessoas, ideal para encontrar seu grupo de amigos e interagir com o fluxo constante da Av. Paulista.
-                    <a href="client/cardapio/40/{{usuario_uid}}"> Visitar </a>
+                    <a href="/client/cardapio/40/{{usuario_uid}}"> Visitar </a>
                   </p>
                 </div>
               </div>
@@ -147,7 +147,7 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-header card-header-image">
-                  <a ng-href="client/cardapio/1">
+                  <a ng-href="/client/cardapio/{{usuario_uid}}">
                     <img class="img img-raised" src="/assets/img/benjamin4.jpg">
                   </a>
                 </div>
@@ -156,11 +156,11 @@
                     #1
                   </h6>
                   <h4 class="card-title">
-                    <a href="client/cardapio/1">Pamplona</a>
+                    <a href="/client/cardapio/{{usuario_uid}}">Pamplona</a>
                   </h4>
                   <p class="card-description">
                     Nossa unidade localizada no coração da Av. Pamplona ideal para seu café da manhã antes do trabalho.
-                    <a href="client/cardapio/1"> Visitar </a>
+                    <a href="/client/cardapio/{{usuario_uid}}"> Visitar </a>
                   </p>
                 </div>
               </div>
