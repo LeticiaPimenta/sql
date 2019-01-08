@@ -36,6 +36,11 @@ $router->get('/client/qrunidade', function () use ($router) {
      return view('client/readqr');
 });
 
+$router->get('/client/select', function () use ($router) {
+    return view('client/select', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+});
+
+
 $router->get('/client/history/{id}', function ($id) use ($router) {
      return view('client/history', ['usuario' => $id,'cliente' => $id]);
 });

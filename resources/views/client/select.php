@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" ng-app="sampleApp">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -65,7 +65,7 @@
   <!-- End Google Tag Manager -->
 </head>
 
-<body class="blog-post sidebar-collapse"  ng-controller="SampleCtrl">
+<body class="blog-post sidebar-collapse">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -83,51 +83,93 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h1 class="title">Aponte para o Qr code da comanda</h1>
-          
-         
-          
+          <h1 class="title">Escolha a unidade que deseja</h1>
+          <br>
+          <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
+            <i class="fa fa-facebook-square"></i>   Logar com o Facebook
+          </a>
+          <div class="ripple-container"></div>
         </div>
       </div>
     </div>
   </div>
   <div class="main main-raised">
-    <div id="cards" class="cd-section">
-      
-      <div class="section-white">
-       
-        <!--     *********    END BLOG CARDS      *********      -->
-        <!--     *********    PROFILE CARDS     *********      -->
-        <div class="cards">
-          <div class="container">
-            <div class="row">
-      
-              <div class="col-md-12">
-                <div class="card card-profile card-plain">
-                  <div class="card-avatar">
-                    <a href="#pablo">
-             
-                      <img class="img" ng-src="{{foto}}">
-                    </a>
-                  </div>
-                  <div class="card-body ">
-                    <h6 class="card-category text-gray">{{usuario.displayName}}</h6>
-                    <h4 class="card-title">{{usuario.email}}</h4>
-                    <p class="card-description">
-                    	<video muted autoplay playsinline id="qr-video" width="200px"></video>
-    					         <canvas id="debug-canvas"></canvas>
-    				        </p>
-                   
-                    <a href="/cliente/select" class="btn btn-info btn-round">Retirar na loja</a>
-                  </div>
+    <div class="container">
+
+  
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="title text-center">Unidades </h2>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="unidade/600">
+                    <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-info">#600</h6>
+                  <h4 class="card-title">
+                    <a href="unidade/600">Central</a>
+                  </h4>
+                  <p class="card-description">
+                    A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.
+                    <a href="unidade/600"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="unidade/40">
+                    <img class="img img-raised" src="/assets/img/UniBenjamin.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-success">
+                    #40
+                  </h6>
+                  <h4 class="card-title">
+                    <a href="unidade/40">Haddock</a>
+                  </h4>
+                  <p class="card-description">
+                    Haddock Lobo é a segunda unidade inaugarada pela Benjamin A Padaria, costuma ter grande número de pessoas, ideal para encontrar seu grupo de amigos e interagir com o fluxo constante da Av. Paulista.
+                    <a href="unidade/40"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="unidade/1">
+                    <img class="img img-raised" src="/assets/img/benjamin4.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-danger">
+                    #1
+                  </h6>
+                  <h4 class="card-title">
+                    <a href="unidade/1">Pamplona</a>
+                  </h4>
+                  <p class="card-description">
+                    Nossa unidade localizada no coração da Av. Pamplona ideal para seu café da manhã antes do trabalho.
+                    <a href="unidade/1"> Visitar </a>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!--     *********    END PROFILE CARDS      *********      -->
       </div>
     </div>
+  </div>
   <footer class="footer">
     <div class="container">
 <!--      <nav class="float-left">
@@ -251,117 +293,20 @@
   </script>
   <script type="text/javascript">
   
-  if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-     .register('qr-service-worker.js')
-     .then(function() { console.log('Service Worker Registered'); });
-  }
-
-
-</script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
-
-<!-- AngularFire -->
-<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-  <!-- End Google Tag Manager -->
-<script>
-  // Initialize the Firebase SDK
-  var config = {
-    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
-    authDomain: "benjamin-a-padaria.firebaseapp.com",
-    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
-    projectId: "benjamin-a-padaria",
-    storageBucket: "benjamin-a-padaria.appspot.com",
-    messagingSenderId: "579576076240"
-  };
-  firebase.initializeApp(config);
-</script>
-<script type="text/javascript">
-	var logado_id = 0;
-  	var app = angular.module("sampleApp", ["firebase" ]);
-    app.controller("SampleCtrl", function($scope, $firebaseArray){
-
-      $scope.logado = false;
+  $scope.logado = false;
       $scope.logado = localStorage.getItem("logado");
 
-      if(!$scope.logado){
-       
-        alert("não logado");
+      if($scope.logado){
+        $scope.usuario = localStorage.getItem("usuario");
+        $scope.access_token = localStorage.getItem("access_token");
+        $scope.usuario_logado = JSON.parse($scope.usuario);
+        $scope.usuario_uid = $scope.usuario_logado.providerData[0].uid;
+        $scope.foto_logado = localStorage.getItem("foto");
+        $scope.nome_logado = $scope.usuario_logado.displayName;
+        //alert("vc ja esta logado e vai ser redirecionado ");
+        //window.location.replace("/client/qrunidade");
       }
 
-       var usuario = localStorage.getItem("usuario");
-       $scope.usuario = JSON.parse(localStorage.getItem("usuario"));
-       var foto =   localStorage.getItem("foto");
-       $scope.foto =   localStorage.getItem("foto");
-       var token =  localStorage.getItem("access_token");
-       console.log($scope.usuario.providerData[0].uid);
-       logado_id = $scope.usuario.providerData[0].uid;
-	});
-</script>
-<script type="module">
-    import QrScanner from "/qr/qr-scanner.min.js";
-    const video = document.getElementById('qr-video');
-    const debugCheckbox = document.getElementById('debug-checkbox');
-    const debugCanvas = document.getElementById('debug-canvas');
-    const debugCanvasContext = debugCanvas.getContext('2d');
-    const camQrResult = document.getElementById('cam-qr-result');
-    const fileSelector = document.getElementById('file-selector');
-    const fileQrResult = document.getElementById('file-qr-result');
-
-    function setResult(label, result) {
-       // label.textContent = result;
-        var comanda = result.split("-");
-        alert("Sua comando é a "+comanda[1]);
-        localStorage.setItem("comanda",comanda[1]);
-        var user_logado = JSON.parse(localStorage.getItem("usuario"));
-       
-       logado_id = user_logado.providerData[0].uid;
-         window.location.replace("/client/cardapio/"+comanda[0]+"/"+logado_id);
-        
-        label.style.color = 'teal';
-        clearTimeout(label.highlightTimeout);
-        label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
-    }
-
-    // ####### Web Cam Scanning #######
-
-    const scanner = new QrScanner(video, result => setResult(camQrResult, result));
-    scanner.start();
-
-
-    // ####### debug mode related code #######
-
-    //debugCheckbox.addEventListener('change', () => setDebugMode(debugCheckbox.checked));
-
-    function setDebugMode(isDebug) {
-        const worker = scanner._qrWorker;
-        worker.postMessage({
-            type: 'setDebug',
-            data: isDebug
-        });
-        if (isDebug) {
-            debugCanvas.style.display = 'block';
-            worker.addEventListener('message', handleDebugImage);
-        } else {
-            debugCanvas.style.display = 'none';
-            worker.removeEventListener('message', handleDebugImage);
-        }
-    }
-
-    function handleDebugImage(event) {
-        const type = event.data.type;
-        if (type === 'debugImage') {
-            const imageData = event.data.data;
-            if (debugCanvas.width !== imageData.width || debugCanvas.height !== imageData.height) {
-                debugCanvas.width = imageData.width;
-                debugCanvas.height = imageData.height;
-            }
-            debugCanvasContext.putImageData(imageData, 0, 0);
-        }
-    }
 </script>
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
