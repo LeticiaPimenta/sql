@@ -121,6 +121,7 @@
                     <a href="/client/select" class="btn btn-info btn-round">Retirar na loja</a>
                   </div>
                 </div>
+                <button ng-click="auth.$signOut()">Sign Out</button>
               </div>
             </div>
           </div>
