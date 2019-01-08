@@ -118,7 +118,7 @@
     					         <canvas id="debug-canvas"></canvas>
     				        </p>
                    
-                    <a href="/cliente/select" class="btn btn-info btn-round">Retirar na loja</a>
+                    <a href="/client/select" class="btn btn-info btn-round">Retirar na loja</a>
                   </div>
                 </div>
               </div>
