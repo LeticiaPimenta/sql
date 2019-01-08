@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="sampleApp">
 
 <head>
   <meta charset="utf-8" />
@@ -65,7 +65,7 @@
   <!-- End Google Tag Manager -->
 </head>
 
-<body class="blog-post sidebar-collapse">
+<body class="blog-post sidebar-collapse"   ng-controller="SampleCtrl">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -291,7 +291,30 @@
     });*/
 
   </script>
-  <script type="text/javascript">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <!-- End Google Tag Manager -->
+<script>
+  // Initialize the Firebase SDK
+  var config = {
+    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
+    authDomain: "benjamin-a-padaria.firebaseapp.com",
+    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
+    projectId: "benjamin-a-padaria",
+    storageBucket: "benjamin-a-padaria.appspot.com",
+    messagingSenderId: "579576076240"
+  };
+  firebase.initializeApp(config);
+</script>
+<script type="text/javascript">
+    var app = angular.module("sampleApp", ["firebase" ]);
+    app.controller("SampleCtrl", function($scope, $firebaseArray){
+
   
   $scope.logado = false;
       $scope.logado = localStorage.getItem("logado");
@@ -308,6 +331,9 @@
       }
 
       localStorage.setItem("comanda",'retirar');
+
+
+    });
 
 </script>
   <noscript>
