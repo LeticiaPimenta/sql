@@ -265,15 +265,15 @@
         $scope.foto_logado = localStorage.getItem("foto");
         $scope.nome_logado = $scope.usuario_logado.displayName;
         const User = {
-            uid: firebaseUser.uid,
+            uid: $scope.usuario_uid,
           //  email: user.email,
             displayName: $scope.nome_logado,
             photoURL: $scope.foto_logado,
             hora:new Date().getTime()
           }
           $scope.usuario_banco.$add(User);
-        alert("vc ja esta logado e vai ser redirecionado ");
-        window.location.replace("/client/qrunidade");
+          alert("vc ja esta logado e vai ser redirecionado ");
+          window.location.replace("/client/qrunidade");
       }
       var auth = $firebaseAuth();
 		  // login with Facebook
