@@ -89,6 +89,7 @@
             <i class="fa fa-facebook-square"></i>   Logar com o Facebook
           </a>
           <div class="ripple-container"></div>
+          <button ng-click="auth.$signOut()">Sign Out</button>
         </div>
       </div>
     </div>
