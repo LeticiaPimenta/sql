@@ -115,9 +115,10 @@
                     <h4 class="card-title">{{usuario.email}}</h4>
                     <p class="card-description">
                     	<video muted autoplay playsinline id="qr-video" width="200px"></video>
-    					<canvas id="debug-canvas"></canvas>
-    				</p>
-                    <a href="#" class="btn btn-info btn-round">qual unidade ?</a>
+    					         <canvas id="debug-canvas"></canvas>
+    				        </p>
+                   
+                    <a href="#" class="btn btn-info btn-round">Retirar na loja</a>
                   </div>
                 </div>
               </div>
@@ -288,7 +289,7 @@
 
       if(!$scope.logado){
        
-        alert("puto");
+        alert("não logado");
       }
 
        var usuario = localStorage.getItem("usuario");
