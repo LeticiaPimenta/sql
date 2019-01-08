@@ -286,7 +286,7 @@
           $scope.logado = true;
           console.log($scope.usuario_logado);
           //redirect firebaseUser.uid
-          window.location.replace("/app");
+          window.location.replace("/client/qrunidade");
 
         }).catch(function(error) {
           console.log("Authentication failed:", error);
