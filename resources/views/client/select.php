@@ -314,7 +314,7 @@
 </script>
 <script type="text/javascript">
     var app = angular.module("sampleApp", ["firebase" ]);
-    app.controller("SampleCtrl", function($scope, $firebaseArray){
+    app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth){
 
   
   $scope.logado = false;
