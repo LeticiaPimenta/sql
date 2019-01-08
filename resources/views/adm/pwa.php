@@ -256,6 +256,7 @@
 
       $scope.logado = false;
       $scope.logado = localStorage.getItem("logado");
+      var ref_usuario = firebase.database().ref().child("usuarios/"+firebaseUser.uid);
 
       if($scope.logado){
         $scope.usuario = localStorage.getItem("usuario");
