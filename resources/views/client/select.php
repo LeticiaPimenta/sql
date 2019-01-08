@@ -88,7 +88,7 @@
           <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
             <i class="fa fa-facebook-square"></i>   Logar com o Facebook
           </a>
-          <button ng-click="auth.$signOut()">Sign Out</button>
+          <button ng-click="logoff_facebook()">Sign Out</button>
           <div class="ripple-container"></div>
         </div>
       </div>
@@ -316,8 +316,16 @@
     var app = angular.module("sampleApp", ["firebase" ]);
     app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth){
 
+      var auth = $firebaseAuth();
+      // login with Facebook
+
+      $scope.logoff_facebook = function(){
+        auth.$signOut();
+        alert("vai fazer logoff");
+        }
+
   
-  $scope.logado = false;
+      $scope.logado = false;
       $scope.logado = localStorage.getItem("logado");
 
       if($scope.logado){
