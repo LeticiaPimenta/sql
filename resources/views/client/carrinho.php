@@ -408,13 +408,12 @@
         <div class="card-body">
           <br/>
           
-          <div class="table-responsive">
+          <div class="table-responsive d-none d-xl-block">
             <table class="table table-shopping">
               <thead>
                 <tr>
-                  <th class="text-center"></th>
                   <th>Produto</th>
-                  <th class="text-right">Detalhes</th>
+                  <th class="text-right">Horário</th>
                   <th class="text-right">Quantidade</th>
                   <th class="text-right">Total</th>
                   
@@ -423,12 +422,7 @@
               <tbody>
        
        
-                <tr ng-repeat="produto in carts_origin">
-                  <td>
-                    <div class="img-container">
-                      <img src="/assets/img/Bejamin Produtos-531.jpg" alt="...">
-                    </div>
-                  </td>
+                <tr ng-repeat="produto in carts_origin">                  
                   <td class="td-name" style="color:#999">
                     <a href="#"><span ng-repeat="item in produto" ng-show="$first" >
                       {{products_id[item.product].text}} 
@@ -441,7 +435,7 @@
                   <td class="td-number text-right">
                     <small> 
                     <span ng-repeat="item in produto">
-                      {{$index+1}} - hora: {{item.hora | date:' h:mma'}}<br>
+                      {{item.hora | date:' h:mma'}}<br>
                     </span>
                     </small>
                       
@@ -464,7 +458,6 @@
                 </tr>
                
                 <tr>
-                  <td colspan="0"></td>
                   <td class="td-total">
                     Total
                   </td>
@@ -497,6 +490,42 @@
               </tbody>
             </table>
           </div>
+
+
+          <div class="col-md-8 d-xl-none">
+              <div id="accordion" role="tablist">
+                <div class="card card-collapse">
+                  <div class="card-header" role="tab" id="headingOne">
+                    <h5 class="mb-0">
+                      <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed" ng-repeat="item in produto" ng-show="$first">
+                        {{products_id[item.product].text}}
+                        <i class="material-icons">keyboard_arrow_down</i>
+                      </a>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                    <div class="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+                
+                <button type="button" class="btn btn-warning btn-round" data-toggle="modal" data-target="#loginModal">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>
+                    <a href="/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>">
+                    <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
+                    </a>
+                     <img id='barcode' 
+                        src="https://api.qrserver.com/v1/create-qr-code/?data=carrinho-<?php echo $loja;?>-<?php echo $cliente;?>&amp;size=100x100" 
+                        alt="" 
+                        title="Hash do Carrinho" 
+                        width="50" 
+                        height="50" />
+              </div>
+            </div>
+
+
+
+
         </div>
       </div>
     </div>

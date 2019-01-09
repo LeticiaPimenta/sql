@@ -8,6 +8,10 @@ $router->get('/select', function () use ($router) {
     return view('adm/select', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
 
+$router->get('/selectunidade', function () use ($router) {
+    return view('adm/selectunidade', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+});
+
 $router->get('/pesquisa', function () use ($router) {
     return view('adm/pesquisa', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
@@ -50,6 +54,10 @@ $router->get('/client/produtos', function () use ($router) {
 
 $router->get('/client/cardapio/{loja}/{cliente}', function ($loja, $cliente) use ($router) {
      return view('client/loja', ['loja' => $loja, 'cliente' => $cliente]);
+});
+
+$router->get('/client/lojatest/{loja}/{cliente}', function ($loja, $cliente) use ($router) {
+     return view('client/lojatest', ['loja' => $loja, 'cliente' => $cliente]);
 });
 
 $router->get('/client/carrinho/{loja}/{cliente}', function ($loja, $cliente) use ($router) {
