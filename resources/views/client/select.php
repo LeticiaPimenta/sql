@@ -65,7 +65,7 @@
   <!-- End Google Tag Manager -->
 </head>
 
-<body class="blog-post sidebar-collapse"  ng-controller="SampleCtrl">
+<body class="blog-post sidebar-collapse"   ng-controller="SampleCtrl">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -83,13 +83,13 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h1 class="title">Faça seu login com o facebook </h1>
+          <h1 class="title">Escolha a unidade que deseja</h1>
           <br>
-          <a href="#" ng-click="login_facebook()" class="btn btn-social btn-fill btn-facebook">
+          <a href="#pablo" class="btn btn-social btn-fill btn-facebook">
             <i class="fa fa-facebook-square"></i>   Logar com o Facebook
           </a>
+          <button ng-click="logoff_facebook()">Sign Out</button>
           <div class="ripple-container"></div>
-          <button ng-click="auth.$signOut()">Sign Out</button>
         </div>
       </div>
     </div>
@@ -98,7 +98,79 @@
     <div class="container">
 
   
-  
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="title text-center">Unidades </h2>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a ng-href="/client/cardapio/600/{{usuario_uid}}">
+                    <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-info">#600</h6>
+                  <h4 class="card-title">
+                    <a ng-href="/client/cardapio/600/{{usuario_uid}}">Central</a>
+                  </h4>
+                  <p class="card-description">
+                    A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.
+                    <a ng-href="/client/cardapio/600/{{usuario_uid}}"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a ng-href="/client/cardapio/40/{{usuario_uid}}">
+                    <img class="img img-raised" src="/assets/img/UniBenjamin.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-success">
+                    #40
+                  </h6>
+                  <h4 class="card-title">
+                    <a ng-href="/client/cardapio/40/{{usuario_uid}}">Haddock</a>
+                  </h4>
+                  <p class="card-description">
+                    Haddock Lobo é a segunda unidade inaugarada pela Benjamin A Padaria, costuma ter grande número de pessoas, ideal para encontrar seu grupo de amigos e interagir com o fluxo constante da Av. Paulista.
+                    <a href="/client/cardapio/40/{{usuario_uid}}"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a ng-href="/client/cardapio/{{usuario_uid}}">
+                    <img class="img img-raised" src="/assets/img/benjamin4.jpg">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="category text-danger">
+                    #1
+                  </h6>
+                  <h4 class="card-title">
+                    <a href="/client/cardapio/{{usuario_uid}}">Pamplona</a>
+                  </h4>
+                  <p class="card-description">
+                    Nossa unidade localizada no coração da Av. Pamplona ideal para seu café da manhã antes do trabalho.
+                    <a href="/client/cardapio/{{usuario_uid}}"> Visitar </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer class="footer">
     <div class="container">
 <!--      <nav class="float-left">
@@ -220,16 +292,6 @@
     });*/
 
   </script>
-  <script type="text/javascript">
-  
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('service-worker.js')
-             .then(function() { console.log('Service Worker Registered'); });
-  }
-
-
-</script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 
 <!-- Firebase -->
@@ -251,12 +313,20 @@
   firebase.initializeApp(config);
 </script>
 <script type="text/javascript">
-  	var app = angular.module("sampleApp", ["firebase" ]);
+    var app = angular.module("sampleApp", ["firebase" ]);
     app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth){
 
+      var auth = $firebaseAuth();
+      // login with Facebook
+
+      $scope.logoff_facebook = function(){
+        auth.$signOut();
+        alert("vai fazer logoff");
+        }
+
+  
       $scope.logado = false;
       $scope.logado = localStorage.getItem("logado");
-      var ref_usuario = firebase.database().ref().child("usuarios/"+firebaseUser.uid);
 
       if($scope.logado){
         $scope.usuario = localStorage.getItem("usuario");
@@ -265,61 +335,15 @@
         $scope.usuario_uid = $scope.usuario_logado.providerData[0].uid;
         $scope.foto_logado = localStorage.getItem("foto");
         $scope.nome_logado = $scope.usuario_logado.displayName;
-        const User = {
-            uid: $scope.usuario_uid,
-          //  email: user.email,
-            displayName: $scope.nome_logado,
-            photoURL: $scope.foto_logado,
-            hora:new Date().getTime()
-          }
-          $scope.usuario_banco.$add(User);
-          alert("vc ja esta logado e vai ser redirecionado ");
-          window.location.replace("/client/qrunidade");
+        //alert("vc ja esta logado e vai ser redirecionado ");
+        //window.location.replace("/client/qrunidade");
       }
-      var auth = $firebaseAuth();
-		  // login with Facebook
 
-      $scope.login_facebook = function(){
-        auth.$signInWithPopup("facebook").then(function(firebaseUser){
-          console.log("Signed in as:", firebaseUser.uid);
-          console.log(firebaseUser);
-
-          $scope.usuario_logado = firebaseUser.user;
-          console.log("Logado como :", firebaseUser.user.displayName);
-          console.log(firebaseUser);
-          localStorage.setItem("usuario" , JSON.stringify(firebaseUser.user));
-          localStorage.setItem("foto" , firebaseUser.user.photoURL);
-          localStorage.setItem("access_token" , firebaseUser.credential.accessToken);
-          $scope.foto_logado = firebaseUser.user.photoURL;
-          $scope.nome_logado = firebaseUser.user.displayName;
-          localStorage.setItem("logado" , true);
-          $scope.logado = true;
-          console.log($scope.usuario_logado);
+      localStorage.setItem("comanda",'retirar');
 
 
-          var ref_usuario = firebase.database().ref().child("usuarios/"+firebaseUser.uid);
-          // create a synchronized array
-          comanda = localStorage.getItem("comanda");
-          console.log(comanda);
-          $scope.usuario_banco = $firebaseArray(ref_usuario);
+    });
 
-          const User = {
-            uid: firebaseUser.uid,
-          //  email: user.email,
-            displayName: $scope.nome_logado,
-            photoURL: $scope.foto_logado,
-            hora:new Date().getTime()
-          }
-          $scope.usuario_banco.$add(User);
-  
-          //redirect firebaseUser.uid
-          window.location.replace("/client/qrunidade");
-
-        }).catch(function(error) {
-          console.log("Authentication failed:", error);
-        });
-      }
-	});
 </script>
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
