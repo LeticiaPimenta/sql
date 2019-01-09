@@ -497,7 +497,7 @@
                 <div class="card card-collapse">
                   <div class="card-header" role="tab" id="headingOne">
                     <h5 class="mb-0">
-                      <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed" ng-repeat="item in produto" ng-show="$first">
+                      <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
                         {{products_id[item.product].text}}
                         <i class="material-icons">keyboard_arrow_down</i>
                       </a>
