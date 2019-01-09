@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    .:: Meus Pedidos :: Padaria Benjamin :: SP @Brasil ::.
+     Meus Pedidos :: Padaria Benjamin :: SP @Brasil 
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
@@ -494,20 +494,34 @@
 
           <div class="col-md-8 d-xl-none">
               <div id="accordion" role="tablist">
-                <div class="card card-collapse">
+                <div class="card card-collapse" ng-repeat="produto in carts_origin">
                   <div class="card-header" role="tab" id="headingOne">
                     <h5 class="mb-0">
-                      <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                        {{products_id[item.product].text}}
+                      <a data-toggle="collapse" href="#collapse-{{products_id[item.product].$id}}" aria-expanded="false" aria-controls="collapse-{{products_id[item.product].$id}}" class="collapsed" ng-repeat="item in produto" ng-show="$first" >
+                        {{products_id[item.product].text}} 
                         <i class="material-icons">keyboard_arrow_down</i>
                       </a>
                     </h5>
                   </div>
-                  <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
-                    <div class="card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  <div id="collapse-{{products_id[item.product].$id}}" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="" ng-repeat="item in produto">
+                    <div class="card-body"> 
+                      Valor
+                    <small>R$ {{products_id[item.product].value}}</small>
+                    <p>Horário
+                    <small>{{item.hora | date:' h:mma'}}</small></p>  
+                      Quantidade
+                    <small ng-repeat="item in produto"  ng-show="$last">{{$index+1}}</small>
+                    <p>Total
+                      <small>R$</small><span ng-repeat="item in produto" ng-show="$last">
+                      {{(item.value * ($index+1)).toFixed(2)}}
+                    </span></p> 
                     </div>
                   </div>
+                </div> </br>
+                <div>
+                  <span ng-repeat="produto in carts_origin" ng-show="$last">
+                    <h3><small>R$</small> <input type="hidden" name="valor_carrinho" id="valor_carrinho" value="{{valor_total.toFixed(2)}}">{{valor_total.toFixed(2)}}</h3>
+                  </span>
                 </div>
                 
                 <button type="button" class="btn btn-warning btn-round" data-toggle="modal" data-target="#loginModal">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>

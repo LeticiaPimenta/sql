@@ -203,17 +203,20 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
             <a href="#" class="dropdown nav-link" data-number="2" class="" data-toggle="dropdown" aria-expanded="false">
-              <i class="material-icons">local_cafe</i> Café Espresso
+              <i class="material-icons">local_cafe</i> Para beber
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
-                <i class="material-icons">layers</i> cafés
+                <i class="material-icons">local_cafe</i> Cafés
               </a>
               <a href="../index.html" class="dropdown-item">
-                <i class="material-icons">line_style</i> Sucos
+                <i class="material-icons">local_cafe</i> Sucos
               </a>
               <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
-                <i class="material-icons">content_paste</i> Outras bebidas
+                <i class="material-icons">local_cafe</i> Outras bebidas
+              </a>
+              <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Outras bebidas
               </a>
             </div> 
           </li>
