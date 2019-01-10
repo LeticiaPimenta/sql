@@ -91,6 +91,10 @@ $router->get('/caixa/cobrancas/{loja}', function ($loja) use ($router) {
      return view('caixa/cobrancas', ['loja' => $loja]);
 });
 
+$router->get('/caixa/lancamentos/{loja}', function ($loja) use ($router) {
+     return view('caixa/lancamentos', ['loja' => $loja]);
+});
+
 $router->post('/caixa/cobrar', function () use ($router) {
     // return view('caixa/cobrancas', ['loja' => $loja]);
 
