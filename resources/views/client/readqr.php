@@ -114,7 +114,7 @@
                     <h6 class="card-category text-gray">{{usuario.displayName}}</h6>
                     <h4 class="card-title">{{usuario.email}}</h4>
                     <p class="card-description">
-                    	<video muted autoplay playsinline id="qr-video" width="200px"></video>
+                    	<center><video muted autoplay playsinline id="qr-video" width="200px"></video></center>
     					         <canvas id="debug-canvas"></canvas>
     				        </p>
                    
