@@ -265,14 +265,14 @@
         $scope.usuario_uid = $scope.usuario_logado.providerData[0].uid;
         $scope.foto_logado = localStorage.getItem("foto");
         $scope.nome_logado = $scope.usuario_logado.displayName;
-        const User = {
+     /*   const User = {
             uid: $scope.usuario_uid,
           //  email: user.email,
             displayName: $scope.nome_logado,
             photoURL: $scope.foto_logado,
             hora:new Date().getTime()
           }
-          $scope.usuario_banco.$add(User);
+          $scope.usuario_banco.$add(User);*/
           alert("vc ja esta logado e vai ser redirecionado ");
           window.location.replace("/client/qrunidade");
       }
