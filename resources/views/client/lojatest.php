@@ -89,7 +89,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   var comanda = localStorage.getItem("comanda");
   console.log(comanda);
  // alert(comanda);
-  var ref = firebase.database().ref().child("products");
+  var ref = firebase.database().ref().child("listados");
   // create a synchronized array
   $scope.products = $firebaseArray(ref);
   
@@ -232,13 +232,13 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
                 <i class="material-icons">local_cafe</i> Tortas e quiches 
               </a>
               <a href="../index.html" class="dropdown-item">
-                <i class="material-icons">local_cafe</i> Sucos
+                <i class="material-icons">local_cafe</i> Mix Padaria
               </a>
               <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
-                <i class="material-icons">local_cafe</i> Outras bebidas
+                <i class="material-icons">local_cafe</i> Pão francês e Integral
               </a>
               <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
-                <i class="material-icons">local_cafe</i> Outras bebidas
+                <i class="material-icons">local_cafe</i> Croissant
               </a>
             </div>      
       <!--  <div class="dropdown-menu dropdown-with-icons">
@@ -274,16 +274,19 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
             </a>
             <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
-                <i class="material-icons">local_cafe</i> aaaa
+                <i class="material-icons">local_cafe</i> Beirutes
               </a>
               <a href="../index.html" class="dropdown-item">
-                <i class="material-icons">local_cafe</i> Sucos
+                <i class="material-icons">local_cafe</i> Tostex
               </a>
               <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
-                <i class="material-icons">local_cafe</i> Outras bebidas
+                <i class="material-icons">local_cafe</i> Tapiocas  Ovos 
               </a>
               <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
-                <i class="material-icons">local_cafe</i> Outras bebidas
+                <i class="material-icons">local_cafe</i> Sanduiches
+              </a>
+              <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Ovos
               </a>
             </div>
       <!--  <div class="dropdown-menu dropdown-with-icons">
@@ -415,7 +418,36 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
               </div>
             </div>
             <!--End carouse-->    
-
+          <div class="col-md-12">
+            <div class="row">
+            <h2 class="section-title">Para Beber</h2>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+            <h3 class="section-title">Cafés</h3>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+            <h3 class="section-title">Sucos</h3>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+            <h3 class="section-title">Iogurt</h3>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+            <h3 class="section-title">Vitamina</h3>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+            <h3 class="section-title">Açaí</h3>
+            </div>
+          </div>
           <div class="col-md-3" id="1" ng-repeat="product in products | filter:{ priority : '1' }">
             <div class="card card-product card-plain">
               <div class="card-header card-header-image">
@@ -499,22 +531,22 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
         <h2 class="section-title">Mais Amados</h2>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-3" ng-repeat="product in products | filter:{ priority : '2' }">
+              <div class="col-md-3" ng-repeat="(id_categoria,categorias) in products"> -{{id_categoria}}+{{categorias}}
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                    <img ng-src="{{product.image}}" alt="">
+                    <img ng-src="" alt="">
                     </a>
                   </div>
                   <div class="card-body">
                     <a href="#">
-                      <h4 class="card-title">{{product.text}}</h4>
+                      <h4 class="card-title"><span ng-repeat="SubCategoria in categorias"><span ng-repeat="product in SubCategoria"><br></span></span></h4>
                     </a>
-                  <p class="card-description">{{product.desc}}</p>
+                  <p class="card-description"></p>
                   </div>
                   <div class="card-footer">
                 <div class="price-container">
-                  <span class="price price-new">R$ {{product.value}}</span>
+                  <span class="price price-new">R$ </span>
                 </div>
                 <div class="stats ml-auto">
                   <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
@@ -543,16 +575,16 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
         <h2 class="section-title">Especiais</h2>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-3" ng-repeat="product in products | filter:{ priority : '3' }">
+              <div class="col-md-3" ng-repeat="product in products | filter:{ SubCategoria : '3' }">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
-                    <img ng-src="{{product.image}}" alt="">
+                    <img ng-src="" alt="">
                     </a>
                   </div>
                   <div class="card-body">
                     <a href="#">
-                      <h4 class="card-title">{{product.text}}</h4>
+                      <h4 class="card-title">{{product}}</h4>
                     </a>
                     <p class="card-description">{{product.desc}}</p>
                   </div>

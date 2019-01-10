@@ -63,6 +63,31 @@
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
   </script>
   <!-- End Google Tag Manager -->
+  <script>
+  // Initialize the Firebase SDK
+  var config = {
+    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
+    authDomain: "benjamin-a-padaria.firebaseapp.com",
+    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
+    projectId: "benjamin-a-padaria",
+    storageBucket: "benjamin-a-padaria.appspot.com",
+    messagingSenderId: "579576076240"
+  };
+  firebase.initializeApp(config);
+  </script>
+  <script type="text/javascript">
+  
+  var app = angular.module("sampleApp", ["firebase" , "toastr"]);
+app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
+  var comanda = localStorage.getItem("comanda");
+  console.log(comanda);
+ // alert(comanda);
+  var ref = firebase.database().ref().child("unidades");
+  // create a synchronized array
+  $scope.unidades = $firebaseArray(ref);}
+
+
+  </script>
 </head>
 
 <body class="blog-post sidebar-collapse">
