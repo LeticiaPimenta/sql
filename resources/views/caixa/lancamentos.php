@@ -410,16 +410,17 @@
           <button type="button" class="close" data-dismiss="modal" ng-click="cancelarPedido()" aria-hidden="true"><i class="material-icons">clear</i></button>
         </div>
         <div class="modal-body text-center">
-          <h5>Insira o código de barra da Linx. </h5>
+          <h5>Insira a senha de super usuário. </h5>
 
           <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    <i class="material-icons">receipt</i>
+                    <i class="material-icons">lock_outline</i>
                   </span>
                 </div>
-              <input type="text" class="form-control" placeholder="Email..." autocomplete="on">
+              <input type="text" class="form-control" placeholder="senha..." autocomplete="on">
           </div>
+          <h6>WhatsApp (11) 992683232. </h6>
         </div>
 
         

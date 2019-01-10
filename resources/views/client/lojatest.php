@@ -213,17 +213,34 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
                 <i class="material-icons">local_cafe</i> Sucos
               </a>
               <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Iogurt  
+              </a>
+              <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Vitamina
+              </a>
+              <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Açai
+              </a>
+            </div> 
+          </li>
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown nav-link" data-number="2" class="" data-toggle="dropdown" aria-expanded="false">
+              <i class="material-icons">local_cafe</i> Mais Amados
+            </a>      
+            <div class="dropdown-menu dropdown-with-icons">
+              <a href="../presentation.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Tortas e quiches 
+              </a>
+              <a href="../index.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Sucos
+              </a>
+              <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
                 <i class="material-icons">local_cafe</i> Outras bebidas
               </a>
               <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
                 <i class="material-icons">local_cafe</i> Outras bebidas
               </a>
-            </div> 
-          </li>
-          <li class="dropdown nav-item">
-            <a href="#2" class="dropdown nav-link" data-number="2" class="">
-              <i class="material-icons">local_cafe</i> Mais Amados
-            </a>            
+            </div>      
       <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../sections.html#headers" class="dropdown-item">
                 <i class="material-icons">dns</i> Headers
@@ -252,9 +269,23 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
             </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#3" class="dropdown nav-link" data-number="2" class="">
+            <a href="#" class="dropdown nav-link" data-number="2" class="" data-toggle="dropdown" aria-expanded="false">
               <i class="material-icons">local_cafe</i> Especiais
             </a>
+            <div class="dropdown-menu dropdown-with-icons">
+              <a href="../presentation.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> aaaa
+              </a>
+              <a href="../index.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Sucos
+              </a>
+              <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Outras bebidas
+              </a>
+              <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                <i class="material-icons">local_cafe</i> Outras bebidas
+              </a>
+            </div>
       <!--  <div class="dropdown-menu dropdown-with-icons">
               <a href="../examples/about-us.html" class="dropdown-item">
                 <i class="material-icons">account_balance</i> About Us
