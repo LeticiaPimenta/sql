@@ -49,6 +49,10 @@ $router->get('/client/history/{id}', function ($id) use ($router) {
      return view('client/history', ['usuario' => $id,'cliente' => $id]);
 });
 
+$router->get('/client/historytest/{id}', function ($id) use ($router) {
+     return view('client/historytest', ['usuario' => $id,'cliente' => $id]);
+});
+
 $router->get('/client/cardapio', function () use ($router) {
     return view('client/cardapio', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
