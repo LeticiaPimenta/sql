@@ -85,30 +85,30 @@
 <script type="text/javascript">
   
   var app = angular.module("sampleApp", ["firebase" , "toastr"]);
-app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
-  var comanda = localStorage.getItem("comanda");
-  console.log(comanda);
- // alert(comanda);
-  var ref = firebase.database().ref().child("listados");
-  // create a synchronized array
-  $scope.products = $firebaseArray(ref);
-  
+  app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
+    var comanda = localStorage.getItem("comanda");
+    console.log(comanda);
+   // alert(comanda);
+    var ref = firebase.database().ref().child("listados");
+    // create a synchronized array
+    $scope.products = $firebaseArray(ref);
 
+    console.log($scope.products);
 
-  var ref_users = firebase.database().ref().child("users");
-  // create a synchronized array
-  var users = $firebaseArray(ref_users);
-  var users_id=[];
-  $scope.username = "";
+    var ref_users = firebase.database().ref().child("users");
+    // create a synchronized array
+    var users = $firebaseArray(ref_users);
+    var users_id=[];
+    $scope.username = "";
 
-  users.$loaded().then(function() {
-    var cont = 1;
-  angular.forEach(users, function(value, key) {
-  console.log(value, key);
-  users_id[value.$id]=value;
-  });
-  $scope.users_id = users_id;
-  });
+    users.$loaded().then(function() {
+      var cont = 1;
+      angular.forEach(users, function(value, key) {
+        console.log(value, key);
+        users_id[value.$id]=value;
+      });
+      $scope.users_id = users_id;
+    });
 
 
 
@@ -531,7 +531,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
         <h2 class="section-title">Mais Amados</h2>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-3" ng-repeat="(id_categoria,categorias) in products"> -{{id_categoria}}+{{categorias}}
+              <div class="col-md-3" ng-repeat="(id,categorias) in products">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
@@ -540,7 +540,13 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
                   </div>
                   <div class="card-body">
                     <a href="#">
-                      <h4 class="card-title"><span ng-repeat="SubCategoria in categorias"><span ng-repeat="product in SubCategoria"><br></span></span></h4>
+                      <h4 class="card-title">
+                        
+                        <div ng-repeat="categoria in categorias">{{categoria}}..</div>
+                          {{categorias.$id}}
+                          {{categorias}}
+                     
+                      </h4>
                     </a>
                   <p class="card-description"></p>
                   </div>
