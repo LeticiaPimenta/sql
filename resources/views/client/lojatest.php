@@ -531,7 +531,7 @@
         <h2 class="section-title">Mais Amados</h2>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-3" ng-repeat="(id,categorias) in products">
+              <div class="col-md-3" ng-repeat="categorias in products">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
@@ -542,9 +542,7 @@
                     <a href="#">
                       <h4 class="card-title">
                         
-                        <div ng-repeat="categoria in categorias">{{categoria}}..</div>
-                          {{categorias.$id}}
-                          {{categorias}}
+                        {{categorias}}
                      
                       </h4>
                     </a>
