@@ -33,6 +33,49 @@ $router->get('/produtos', function () use ($router) {
     echo json_encode($listados);
 });
 
+
+$router->get('/categorias', function () use ($router) {
+   // $produtos = json_decode(file_get_contents('categorias.json') , true);
+
+    $categorias = array(
+                    1=>array(
+                        'name'=>'1nome',
+                        1=>array(
+                            'name'=>'1nome1'
+                            )
+                        ,
+                        2=>array(
+                            'name'=>'1nome2'
+                            )
+                        )
+                    ,
+
+                    2=>array(
+                        'name'=>'2nome',
+                        1=>array(
+                            'name'=>'2nome1'
+                            )
+                        ,
+                        2=>array(
+                            'name'=>'2nome2'
+                            )
+                        )
+                    )
+                   ; 
+
+                   //print_r($categorias);
+                   echo json_encode($categorias);
+                   die();
+    $listados = array();
+    foreach ($produtos as $produto) {
+       // $item = array('id' => 'nome', 'nome'=>'nome' );
+        print_r($produto);
+        //$listados[$produto['Categoria']][$produto['Sub-Categoria']][$produto['PRO_CODIGO']] = $produto;
+
+    }
+    echo json_encode($categorias);
+});
+
 $router->get('/unidade/{unidade}', function ($unidade) use ($router) {
     return view('adm/unidade', ['unidade' => $unidade , 'public' => '/adm/']);
 });

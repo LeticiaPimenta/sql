@@ -1,0 +1,48 @@
+{
+  1: [
+    {
+      "trait_id": "big5_openness",
+      "name": "Openness",
+      "category": "personality",
+      "percentile": 0.8011555009553,
+      "raw_score": 0.77565404255038,
+      "significant": true,
+      1: [
+        {
+          "trait_id": "facet_adventurousness",
+          "name": "Adventurousness",
+          "category": "personality",
+          "percentile": 0.89755869047319,
+          "raw_score": 0.54990704031219,
+          "significant": true
+        }
+      ]
+    },
+    {
+      2: "big5_conscientiousness",
+      "name": "Conscientiousness",
+      "category": "personality",
+      "percentile": 0.81001753184176,
+      "raw_score": 0.66899984888815,
+      "significant": true,
+      1: [
+        {
+          "trait_id": "facet_achievement_striving",
+          "name": "Achievement striving",
+          "category": "personality",
+          "percentile": 0.84613299226628,
+          "raw_score": 0.74240118454888,
+          "significant": true
+        },
+        {
+          "trait_id": "facet_achievement_striving",
+          "name": "Achievement striving",
+          "category": "personality",
+          "percentile": 0.84613299226628,
+          "raw_score": 0.74240118454888,
+          "significant": true
+        }
+      ]
+    }
+  ]
+}

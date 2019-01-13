@@ -152,13 +152,9 @@
     });
 
 
-    var categorias = [1:{'nome':'catetogoria1' , 'id':1 , 'subcategoria':
-                        {'nome':'SubCategoria', 'id':1,
-                          'nome':'SubCategoria1', 'id':2
-                         }
-                        }];
+    var lista_categorias = {"1":{"name":"1nome","1":{"name":"1nome1"},"2":{"name":"1nome2"}},"2":{"name":"2nome","1":{"name":"2nome1"},"2":{"name":"2nome2"}}};
 
-    $scope.categorias = categorias;
+    $scope.lista_categorias = lista_categorias;
 
 
 
@@ -590,9 +586,12 @@
                   <div class="card-body">
                     <a href="#">
                       <h4 class="card-title">
-                        <span ng-repeat="subcategoria in categorias"><span ng-repeat="produto in subcategoria">{{produto.PRO_DESCRICAO}} --{{categorias[1][1]}}---</span></span>
-                        
-                     
+                        <span ng-repeat="subcategoria in categorias">
+                          {{lista_categorias[1].name}}--<br>
+                          <span ng-repeat="produto in subcategoria">
+                            {{lista_categorias[1][1].name}}{{produto.PRO_DESCRICAO}}<hr></span>
+
+                        </span>
                       </h4>
                     </a>
                   <p class="card-description"></p>
