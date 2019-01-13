@@ -570,10 +570,10 @@
     <div class="section">
       <div class="container" id="2">
         <h2 class="section-title">Mais Amados</h2>
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-3" ng-repeat="categorias in produtos">
-                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+          <div class="col-md-12" ng-repeat="categorias in produtos">
+            <div class="row" >
+              <div class="col-md-3"  ng-repeat="SubCategoria in categorias">
+                <div class="card card-product card-plain no-shadow" data-colored-shadow="false" ng-repeat="produto in SubCategoria">
                   <div class="card-header card-header-image">
                     <a href="#">
                     <img ng-src="" alt="">
@@ -582,16 +582,16 @@
                   <div class="card-body">
                     <a href="#">
                       <h4 class="card-title">
-                        <span ng-repeat="subcategoria in categorias"><span ng-repeat="produto in subcategoria">{{produto.PRO_DESCRICAO}}</span></span>
+                        <span >{{produto.PRO_DESCRICAO}}</span>
                         
                      
                       </h4>
                     </a>
-                  <p class="card-description"></p>
+                  <p class="card-description">{{produto.PRO_DESCRICAO}}</p>
                   </div>
                   <div class="card-footer">
                 <div class="price-container">
-                  <span class="price price-new">R$ </span>
+                  <span class="price price-new" >R$ {{product.PNI_VALUE}}</span>
                 </div>
                 <div class="stats ml-auto">
                   <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
