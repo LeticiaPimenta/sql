@@ -63,6 +63,13 @@
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
   </script>
   <!-- End Google Tag Manager -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.tpls.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
   <script>
   // Initialize the Firebase SDK
   var config = {
@@ -80,14 +87,36 @@
   var app = angular.module("sampleApp", ["firebase" , "toastr"]);
 app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   var comanda = localStorage.getItem("comanda");
-  console.log(comanda);
  // alert(comanda);
   var ref = firebase.database().ref().child("unidades");
+  console.log(ref);
+  
   // create a synchronized array
-  $scope.unidades = $firebaseArray(ref);}
+  $scope.unidades = $firebaseArray(ref);
 
 
-  </script>
+
+
+  var ref_users = firebase.database().ref().child("users");
+  // create a synchronized array
+  var users = $firebaseArray(ref_users);
+  var users_id=[];
+  $scope.username = "";
+
+  users.$loaded().then(function() {
+    var cont = 1;
+  angular.forEach(users, function(value, key) {
+  console.log(value, key);
+  users_id[value.$id]=value;
+  });
+  $scope.users_id = users_id;
+  });
+
+
+
+  // click on `index.html` above to see $remove() and $save() in action
+});  
+</script>
 </head>
 
 <body class="blog-post sidebar-collapse">
@@ -137,7 +166,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="title text-center">Unidades </h2>
+          <h2 class="title text-center" ng-repeat="unidade in unidades">{{unidades}}</h2>
           <br>
           <div class="row">
             <div class="col-md-4">
@@ -322,16 +351,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
     });*/
 
   </script>
-  <script type="text/javascript">
-  
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('service-worker.js')
-             .then(function() { console.log('Service Worker Registered'); });
-  }
 
-
-</script>
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
   </noscript>
