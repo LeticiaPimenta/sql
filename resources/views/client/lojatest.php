@@ -152,6 +152,14 @@
     });
 
 
+    var categorias = [1:{'nome':'catetogoria1' , 'id':1 , 'subcategoria':
+                        {'nome':'SubCategoria', 'id':1,
+                          'nome':'SubCategoria1', 'id':2
+                         }
+                        }];
+
+    $scope.categorias = categorias;
+
 
 
   var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
@@ -582,7 +590,7 @@
                   <div class="card-body">
                     <a href="#">
                       <h4 class="card-title">
-                        <span ng-repeat="subcategoria in categorias"><span ng-repeat="produto in subcategoria">{{produto.PRO_DESCRICAO}}</span></span>
+                        <span ng-repeat="subcategoria in categorias"><span ng-repeat="produto in subcategoria">{{produto.PRO_DESCRICAO}} --{{categorias[1][1]}}---</span></span>
                         
                      
                       </h4>
