@@ -581,14 +581,7 @@
             <div class="row">
               <div class="col-md-3" ng-repeat="product in products | filter:{ SubCategoria : '3' }">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                  <div class="card-header card-header-image">
-                    <a href="#">
-                    <img ng-src="" alt="">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <a href="#">
-                      <h4 class="card-title">{{product}}</h4>
+                  <div class="card-header card-header-imagproduct.PRO_DESCRICAO}}</h4>
                     </a>
                     <p class="card-description">{{product.desc}}</p>
                   </div>
