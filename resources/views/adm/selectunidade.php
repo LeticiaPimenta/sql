@@ -164,16 +164,16 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   
   <div class="section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="title text-center" ng-repeat="unidade in unidades">{{unidades}}</h2>
+      <div class="row" >
+        <div class="col-md-12" >
+          <h2 class="title text-center" ></h2>
           <br>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" ng-repeat="unidade in unidades">
               <div class="card card-blog">                
                 <div class="card-body">
                   <h3 class="card-title">
-                    <a href="unidade/600">Central</a>
+                    <a href="unidade/600">{{unidade}}</a>
                   </h3>
                   <p class="card-description">
                     <h4>
