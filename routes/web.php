@@ -125,6 +125,14 @@ $router->get('/client/lojatest/{loja}/{cliente}', function ($loja, $cliente) use
      return view('client/lojatest', ['loja' => $loja, 'cliente' => $cliente]);
 });
 
+$router->get('/client/lojatest/{loja}/{cliente}/{categoria}', function ($loja, $cliente , $categoria) use ($router) {
+     return view('client/lojatest', ['loja' => $loja, 'cliente' => $cliente, 'categoria' => $categoria]);
+});
+
+$router->get('/client/lojatest/{loja}/{cliente}/{categoria}/{subcategoria}', function ($loja, $cliente , $categoria, $subcategoria) use ($router) {
+     return view('client/lojatest', ['loja' => $loja, 'cliente' => $cliente, 'categoria' => $categoria, 'subcategoria' => $subcategoria]);
+});
+
 $router->get('/client/carrinho/{loja}/{cliente}', function ($loja, $cliente) use ($router) {
 	$now = new DateTime();
 	$hoje = $now->getTimestamp();

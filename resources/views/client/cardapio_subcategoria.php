@@ -93,7 +93,7 @@
     //// create a synchronized array
     //$scope.products = $firebaseArray(ref);
 
-    $http.get("/produtos")
+    $http.get("/produtos/<?php echo $categoria;?>/<?php echo $subcategoria;?>")
     .then(function(response) {
         $scope.produtos = response.data;
     });
