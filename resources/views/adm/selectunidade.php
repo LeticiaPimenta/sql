@@ -90,7 +90,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
  // alert(comanda);
   var ref = firebase.database().ref().child("unidades");
   console.log(ref);
-  
+
   // create a synchronized array
   $scope.unidades = $firebaseArray(ref);
 
@@ -166,7 +166,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="title text-center" ng-repeat="unidade in unidades">{{unidades}}</h2>
+          <h2 class="title text-center" ng-repeat="unidade in unidades">{{unidade}}</h2>
           <br>
           <div class="row">
             <div class="col-md-4">
