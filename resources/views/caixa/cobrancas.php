@@ -302,9 +302,9 @@
           <li class="button-container nav-item iframe-extern">
             <form class="form-inline auto" autocomplete="on">
           <div class="form-group has-warning bmd-form-group">
-                <input type="text" class="form-control" placeholder="Search" autocomplete="on">
+                <input type="text" class="form-control" placeholder="Search" autocomplete="on" ng-model="busca">
           </div>
-          <button type="submit" class="btn btn-warning btn-raised btn-fab btn-round" autocomplete="on">
+          <button type="button" class="btn btn-warning btn-raised btn-fab btn-round" autocomplete="on">
            <i class="material-icons">search</i>
           </button>
       </form>
@@ -347,7 +347,7 @@
                       <tr ng-repeat="(key,item) in items">
                         <td class="text-center">1</td>
                         <td>{{users_id[item.user].name}}</td>
-                        <td><small><span ng-repeat="produto in item.products"> {{products_id[produto.product].text}}(R$ {{produto.value}})  
+                        <td><small><span ng-repeat="produto in item.products | filter: busca"> {{products_id[produto.product].text}}(R$ {{produto.value}})  
                           <span ng-show="!$last">+ </span></small></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R$ {{item.value.toFixed(2)}}</td>
