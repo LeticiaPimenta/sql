@@ -20,6 +20,19 @@ $router->get('/pwa', function () use ($router) {
     return view('adm/pwa', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
 
+$router->get('/produtos', function () use ($router) {
+    $produtos = json_decode(file_get_contents('prods.json') , true);
+
+    $listados = array();
+    foreach ($produtos as $produto) {
+        $item = array('id' => 'nome', 'nome'=>'nome' );
+        //print_r($item);
+        $listados[$produto['Categoria']][$produto['Sub-Categoria']][$produto['PRO_CODIGO']] = $produto;
+
+    }
+    echo json_encode($listados);
+});
+
 $router->get('/unidade/{unidade}', function ($unidade) use ($router) {
     return view('adm/unidade', ['unidade' => $unidade , 'public' => '/adm/']);
 });

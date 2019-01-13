@@ -85,15 +85,56 @@
 <script type="text/javascript">
   
   var app = angular.module("sampleApp", ["firebase" , "toastr"]);
-  app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
+  app.controller("SampleCtrl", function($scope, $firebaseArray  , $http  ,toastr) {
     var comanda = localStorage.getItem("comanda");
     console.log(comanda);
    // alert(comanda);
-    var ref = firebase.database().ref().child("listados");
-    // create a synchronized array
-    $scope.products = $firebaseArray(ref);
+    //var ref = firebase.database().ref("listados");
+    //// create a synchronized array
+    //$scope.products = $firebaseArray(ref);
 
-    console.log($scope.products);
+    $http.get("/produtos")
+    .then(function(response) {
+        $scope.produtos = response.data;
+    });
+
+ /*   function snapshotToArray(snapshot) {
+      var returnArr = [];
+
+      snapshot.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = childSnapshot.key;
+
+          returnArr.push(item);
+      });
+
+      return returnArr;
+  };
+
+    firebase.database().ref('listados').on('value', function(snapshot) {
+    $scope.produtos = snapshotToArray(snapshot);
+//});
+
+    
+    for (var i = 0; i < $scope.products.length; i++) {
+      
+      for (var x = 0; x < $scope.products[i].length; x++) {
+        console.log($scope.products[i][x]);
+      }
+    }
+   /*  var produtos=[];
+    $scope.products.$loaded().then(function() {
+      angular.forEach($scope.products, function(value, key) {
+       // angular.forEach(value, function(valor, chave) {
+          produtos[value.$id]=value;
+       // });  
+        //console.log(value, key);
+       // users_id[value.$id]=value;
+      });
+      //$scope.users_id = users_id;
+    });
+
+    console.log(produtos);*/
 
     var ref_users = firebase.database().ref().child("users");
     // create a synchronized array
@@ -531,7 +572,7 @@
         <h2 class="section-title">Mais Amados</h2>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-3" ng-repeat="categorias in products">
+              <div class="col-md-3" ng-repeat="categorias in produtos">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
@@ -541,8 +582,8 @@
                   <div class="card-body">
                     <a href="#">
                       <h4 class="card-title">
+                        <span ng-repeat="subcategoria in categorias"><span ng-repeat="produto in subcategoria">{{produto.PRO_DESCRICAO}}</span></span>
                         
-                        {{categorias}}
                      
                       </h4>
                     </a>
