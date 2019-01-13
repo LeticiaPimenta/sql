@@ -334,7 +334,6 @@
                 <table class="table"  ng-repeat="(dia,origins) in carts_origin">
                     <thead>
                       <tr>
-                        <th class="text-center">#</th>
                         <th>Cliente</th>
                         <th>Produto</th>
                         <th>Hora</th>
@@ -344,8 +343,7 @@
                     </thead>
             
                     <tbody ng-repeat="items in origins">
-                      <tr ng-repeat="(key,item) in items">
-                        <td class="text-center">1</td>
+                      <tr ng-repeat="(key,item) in items">                        
                         <td>{{users_id[item.user].name}}</td>
                         <td><small><span ng-repeat="produto in item.products | filter: busca"> {{products_id[produto.product].text}}(R$ {{produto.value}})  
                           <span ng-show="!$last">+ </span></small></td>
