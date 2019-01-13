@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="sampleApp">
 
 <head>
   <meta charset="utf-8" />
@@ -63,63 +63,9 @@
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
   </script>
   <!-- End Google Tag Manager -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.tpls.js"></script>
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
-
-  <!-- AngularFire -->
-  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-  <script>
-  // Initialize the Firebase SDK
-  var config = {
-    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
-    authDomain: "benjamin-a-padaria.firebaseapp.com",
-    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
-    projectId: "benjamin-a-padaria",
-    storageBucket: "benjamin-a-padaria.appspot.com",
-    messagingSenderId: "579576076240"
-  };
-  firebase.initializeApp(config);
-  </script>
-  <script type="text/javascript">
-  
-  var app = angular.module("sampleApp", ["firebase" , "toastr"]);
-app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
-  var comanda = localStorage.getItem("comanda");
- // alert(comanda);
-  var ref = firebase.database().ref().child("unidades");
-  console.log(ref);
-  
-  // create a synchronized array
-  $scope.unidades = $firebaseArray(ref);
-
-
-
-
-  var ref_users = firebase.database().ref().child("users");
-  // create a synchronized array
-  var users = $firebaseArray(ref_users);
-  var users_id=[];
-  $scope.username = "";
-
-  users.$loaded().then(function() {
-    var cont = 1;
-  angular.forEach(users, function(value, key) {
-  console.log(value, key);
-  users_id[value.$id]=value;
-  });
-  $scope.users_id = users_id;
-  });
-
-
-
-  // click on `index.html` above to see $remove() and $save() in action
-});  
-</script>
 </head>
 
-<body class="blog-post sidebar-collapse">
+<body class="blog-post sidebar-collapse"  ng-controller="SampleCtrl">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -131,17 +77,6 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
       <div class="navbar-translate">
         <img src="../assets/img/benjamin.png" style="width: 20%; height: auto;">        
       </div>
-
-      <form class="form-inline auto" autocomplete="on">
-          <div class="form-group has-warning bmd-form-group">
-                <input type="text" class="form-control" placeholder="Search" autocomplete="on">
-          </div>
-          <button type="submit" class="btn btn-warning btn-raised btn-fab btn-round" autocomplete="on">
-           <i class="material-icons">search</i>
-          </button>
-      </form>
-
-
     </div>
   </nav>
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/panetone.jpg');">
@@ -164,21 +99,26 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   
   <div class="section">
     <div class="container">
-      <div class="row" >
-        <div class="col-md-12" >
-          <h2 class="title text-center" ></h2>
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="title text-center">Unidades </h2>
           <br>
           <div class="row">
-            <div class="col-md-4" ng-repeat="unidade in unidades">
-              <div class="card card-blog">                
+            <div class="col-md-4" ng-repeat="unidade in unidades"> 
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  <a href="unidade/600">
+                    <img class="img img-raised" src="/assets/img/UniPamplona.jpg">
+                  </a>
+                </div>
                 <div class="card-body">
-                  <h3 class="card-title">
+                  <h6 class="category text-info">#600</h6>
+                  <h4 class="card-title">
                     <a href="unidade/600">{{unidade}}</a>
-                  </h3>
+                  </h4>
                   <p class="card-description">
-                    <h4>
-                    A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.</h4>
-                    <h3><a href="unidade/600" style="color: #e8aa21"> Retirar nesta unidade </a> </h3>
+                    A unidade Casa Branca da padaria Benjamin, uma das mais belas padarias da nossa empresa é ideal para sua reunião, encontro familiar, ou somente para apreciar uma de nossas especialidades.
+                    <a href="unidade/600"> Visitar </a>
                   </p>
                 </div>
               </div>
@@ -275,7 +215,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
   <script src="/assets/js/plugins/moment.min.js"></script>
-  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <!--  Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
   <script src="/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
@@ -283,15 +223,15 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGat1sgDZ-3y6fFe6HD7QUziVC6jlJNog"></script>
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!--	Plugin for Sharrre btn -->
+  <!--  Plugin for Sharrre btn -->
   <script src="/assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
-  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="/assets/js/plugins/bootstrap-tagsinput.js"></script>
-  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
   <script src="/assets/js/plugins/bootstrap-selectpicker.js" type="text/javascript"></script>
-  <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
   <script src="/assets/js/plugins/jasny-bootstrap.min.js" type="text/javascript"></script>
-  <!--	Plugin for Small Gallery in Product Page -->
+  <!--  Plugin for Small Gallery in Product Page -->
   <script src="/assets/js/plugins/jquery.flexisel.js" type="text/javascript"></script>
   <!-- Plugins for presentation and navigation  -->
   <script src="/assets/demo/modernizr.js" type="text/javascript"></script>
@@ -351,6 +291,38 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
     });*/
 
   </script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.tpls.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <!-- End Google Tag Manager -->
+<script>
+  // Initialize the Firebase SDK
+  var config = {
+    apiKey: "AIzaSyD-UL1Fe_a3woT2tpdeRzVvOASQhxr7H4E",
+    authDomain: "benjamin-a-padaria.firebaseapp.com",
+    databaseURL: "https://benjamin-a-padaria.firebaseio.com",
+    projectId: "benjamin-a-padaria",
+    storageBucket: "benjamin-a-padaria.appspot.com",
+    messagingSenderId: "579576076240"
+  };
+  firebase.initializeApp(config);
+</script>
+<script type="text/javascript">
+  
+  var app = angular.module("sampleApp", ["firebase" , "toastr"]);
+  app.controller("SampleCtrl", function($scope, $firebaseArray  , $http  ,toastr) {
+    var comanda = localStorage.getItem("comanda");
+    console.log(comanda);
+   // alert(comanda);
+    var ref = firebase.database().ref("unidades");
+    //// create a synchronized array
+    $scope.unidades = $firebaseArray(ref);
+  });
+</script>
 
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
