@@ -352,7 +352,7 @@
                     <tbody ng-repeat="item in origins">
                       <tr >
                         <td class="text-center">{{$index+1}}</td>
-                        <td> # <span ng-repeat="produto in item.hora">{{produto.shop}}</span></td>
+                        <td> # <span ng-repeat="produto in item.shop">{{item.shop}}</span></td>
                         <td><span ng-repeat="produto in item.products">{{produto.value.toFixed(2) | currency: 'R$' }} <span ng-show="!$last"> +</span> </span></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R$ {{item.value}}</td>

@@ -206,7 +206,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-          <li class="dropdown nav-item">
+    <!--      <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
               <i class="material-icons">local_cafe</i> Expresso
             </a>
@@ -298,13 +298,19 @@
                 <i class="material-icons">error</i> Error Page
               </a>
             </div>
-          </li>
+          </li> -->
           <li class="button-container nav-item iframe-extern">
-            <a href="/client/history" class="btn  btn-warning   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i>Historico
-            </a>
+            <form class="form-inline auto" autocomplete="on">
+          <div class="form-group has-warning bmd-form-group">
+                <input type="text" class="form-control" placeholder="Search" autocomplete="on">
+          </div>
+          <button type="submit" class="btn btn-warning btn-raised btn-fab btn-round" autocomplete="on">
+           <i class="material-icons">search</i>
+          </button>
+      </form>
           </li>
-        </ul>
+        </ul> 
+
       </div>
     </div>
   </nav>
