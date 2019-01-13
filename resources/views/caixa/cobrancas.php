@@ -206,7 +206,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-          <li class="dropdown nav-item">
+    <!--      <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
               <i class="material-icons">local_cafe</i> Expresso
             </a>
@@ -298,13 +298,19 @@
                 <i class="material-icons">error</i> Error Page
               </a>
             </div>
-          </li>
+          </li> -->
           <li class="button-container nav-item iframe-extern">
-            <a href="/client/history" class="btn  btn-warning   btn-round btn-block">
-              <i class="material-icons">shopping_cart</i>Historico
-            </a>
+            <form class="form-inline auto" autocomplete="on">
+          <div class="form-group has-warning bmd-form-group">
+                <input type="text" class="form-control" placeholder="Search" autocomplete="on" ng-model="busca">
+          </div>
+          <button type="button" class="btn btn-warning btn-raised btn-fab btn-round" autocomplete="on">
+           <i class="material-icons">search</i>
+          </button>
+      </form>
           </li>
-        </ul>
+        </ul> 
+
       </div>
     </div>
   </nav>
@@ -328,7 +334,6 @@
                 <table class="table"  ng-repeat="(dia,origins) in carts_origin">
                     <thead>
                       <tr>
-                        <th class="text-center">#</th>
                         <th>Cliente</th>
                         <th>Produto</th>
                         <th>Hora</th>
@@ -338,10 +343,9 @@
                     </thead>
             
                     <tbody ng-repeat="items in origins">
-                      <tr ng-repeat="(key,item) in items">
-                        <td class="text-center">1</td>
+                      <tr ng-repeat="(key,item) in items">                        
                         <td>{{users_id[item.user].name}}</td>
-                        <td><small><span ng-repeat="produto in item.products"> {{products_id[produto.product].text}}(R$ {{produto.value}})  
+                        <td><small><span ng-repeat="produto in item.products | filter: busca"> {{products_id[produto.product].text}}(R$ {{produto.value}})  
                           <span ng-show="!$last">+ </span></small></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R$ {{item.value.toFixed(2)}}</td>

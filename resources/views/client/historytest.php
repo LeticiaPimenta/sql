@@ -325,7 +325,7 @@
               <div id="accordion" role="tablist" ng-repeat="origins in carts_origin">
                 <div class="card card-collapse">
                   <div class="card-header" role="tab" id="headingOne" >
-                    <h5 class="mb-0" > {{origins}}
+                    <h5 class="mb-0" > 
                       <a data-toggle="collapse" href="#collapse-{{origins.hora}}" aria-expanded="true" aria-controls="collapse-{{products_id[item.shop].$id}}" ng-repeat="item in origins" ng-show="$first" >
                         {{item.shop}}
                         <i class="material-icons">keyboard_arrow_down</i>
@@ -351,9 +351,9 @@
             
                     <tbody ng-repeat="item in origins">
                       <tr >
-                        <td class="text-center">+{{item['shop']}}++{{$index+1}}</td>
-                        <td> # <span ng-repeat="produto in item.hora">{{produto.shop}}</span></td>
-                        <td><span ng-repeat="produto in item.products">{{produto.value}} <span ng-show="!$last"> +</span> </span></td>
+                        <td class="text-center">{{$index+1}}</td>
+                        <td> # <span ng-repeat="produto in item.shop">{{item.shop}}</span></td>
+                        <td><span ng-repeat="produto in item.products">{{produto.value.toFixed(2) | currency: 'R$' }} <span ng-show="!$last"> +</span> </span></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-right">R$ {{item.value}}</td>
                         <td class="td-actions text-right">
