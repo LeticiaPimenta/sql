@@ -573,7 +573,7 @@
     <!-- section -->
     <div class="section">
       <div class="container" id="2">
-        <h2 class="section-title" >Mais Amados</h2>
+        <h2 class="section-title">Mais Amados</h2>
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-3" ng-repeat="categorias in produtos">
