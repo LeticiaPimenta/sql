@@ -88,19 +88,7 @@
   app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseObject) {
     var ref = firebase.database().ref().child("products");
     // create a synchronized array
-    var products = $firebaseArray(ref);
-
-    var products_id = [];
-    products.$loaded().then(function() {
-      var cont = 1;
-      angular.forEach(products, function(value, key) {
-        
-        products_id[value.$id]=value;
-      });
-    //  console.log(products_id);
-    $scope.products = products;
-    $scope.products_id = products_id;
-  });
+    $scope.products = $firebaseArray(ref);
 
 
     var ref_users = firebase.database().ref().child("users");
@@ -110,67 +98,54 @@
     $scope.username = "";
 
     users.$loaded().then(function() {
-    console.log(users);
       var cont = 1;
       angular.forEach(users, function(value, key) {
-        console.log(value.$id);
-        users_id[value.$id]=value.configs;
+        console.log(value, key);
+        users_id[value.$id]=value;
       });
     $scope.users_id = users_id;
   });
 
 
-  var ref_carts = firebase.database().ref().child("caixa/<?php echo $loja;?>");
+  var ref_carts = firebase.database().ref().child("pedidos/<?php echo $loja;?>");
   // create a synchronized array
   var carts = $firebaseArray(ref_carts);
   var cart_formatado = [];
-  var total_usuario = [];
- // var produtos_carrinho = [];
 
   carts.$loaded().then(function() {
     $scope.carts_origin = carts;
       var cont = 1;
-      angular.forEach(carts, function(compras) {
-        //console.log(compras.$id);
-        //console.log(dia);
-        angular.forEach(compras, function(compra) {
-          //console.log(compra);
-          //console.log(dia);
-          angular.forEach(compra, function(produto) {
-           // console.log(produto);
-            angular.forEach(produto, function( item) {
-              angular.forEach(item, function( qtd , key) {
-              console.log(compras.$key);
-              if(qtd.value){
-                console.log(qtd);
-                
-                cart_formatado[key]=cart_formatado[key]+parseFloat(qtd.value);
-                total_usuario[qtd.user]=total_usuario[qtd.user]+parseFloat(qtd.value);
-              }
-              //console.log(dia);
-              
-            });
-              
-            });
-            
-          });
-        });
+      angular.forEach(carts, function(value, key) {
+        console.log(value);
+        console.log(key);
+        cart_formatado[value.$id]=value;
       });
-     // $scope.produtos_carrinho = produtos_carrinho;
       console.log(cart_formatado);
-      console.log(total_usuario);
       $scope.carts = cart_formatado;
   });
 
-  $scope.soma = function($carrinho){
-      
-      for (var i = 0; i < $carrinho.length; i++) {
-        
-        console.log($carrinho[i].value);
-      }
+  $scope.recebido = function($usuario , $produto , $chave , $value){
+;
+     var ref_pedidos = firebase.database().ref("pedidos/<?php echo $loja;?>/"+$usuario+"/"+$produto+"/"+$chave);
+  // create a synchronized array
+    var pedido = $firebaseObject(ref_pedidos);
+    console.log(pedido);
+
+    var ref_carts_targer = firebase.database().ref().child("carts/<?php echo $loja;?>/"+$usuario+"/"+$produto);
+  // create a synchronized array
+  $scope.carts_clicado = $firebaseArray(ref_carts_targer);
+    $scope.carts_clicado.$add({
+      product: $produto,
+      shop: <?php echo $loja;?>,
+      user : $usuario,
+     // name:$name,
+      value:parseFloat($value),
+      hora:new Date().getTime()
+    });
+  
+    pedido.$remove();
   }
 
-  $scope.total = parseFloat(0);
 
   // add new items to the array
   // the product is automatically added to our Firebase database!
@@ -184,76 +159,3 @@
 </script>
 
 </head>
-
-<body class="shopping-cart sidebar-collapse" ng-controller="SampleCtrl">
-  <!-- Extra details for Live View on GitHub Pages -->
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <?php
-
-  require_once "../resources/views/caixa/navbar.php";
-
-  ?>
-  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('/assets/img/examples/bg2.jpg');">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">Todos os Pedidos</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="main main-raised">
-    <div class="container">
-      <div class="card card-plain">
-        <div class="card-body">
-          <br/>
-         
-
-          <div class="table-responsive">
-                <table class="table"  ng-repeat="(dia,origins) in carts_origin">
-                    <thead>
-                      <tr>
-                        <th>Cliente</th>
-                        <th>Produto</th>
-                        <th>Hora</th>
-                        <th class="text-right">Valor</th>
-                        <th class="text-right">Ações</th>
-                      </tr>
-                    </thead>
-            
-                    <tbody ng-repeat="items in origins">
-                      <tr ng-repeat="(key,item) in items">                        
-                        <td>{{users_id[item.user].name}}</td>
-                        <td><small><span ng-repeat="produto in item.products | filter: busca"> {{products_id[produto.product].text}}(R$ {{produto.value}})  
-                          <span ng-show="!$last">+ </span></small></td>
-                        <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-right">R$ {{item.value.toFixed(2)}}</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                 
-                    </tbody>
-                  </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <?php
-
-  require_once "../resources/views/caixa/footer.php";
-
-  ?>

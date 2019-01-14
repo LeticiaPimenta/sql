@@ -1,7 +1,7 @@
 <?php
 
 $router->get('/', function () use ($router) {
-    echo "ambiente de testes :: benjamin-a-padaria";
+    return view('index', ['app_name' => 'app de teste' , 'public' => '/adm/']);
 });
 
 $router->get('/select', function () use ($router) {
@@ -148,7 +148,8 @@ $router->get('/caixa/loja/{loja}', function ($loja) use ($router) {
 });
 
 $router->get('/caixa/pedidos/{loja}', function ($loja) use ($router) {
-     return view('caixa/pedidos', ['loja' => $loja]);
+    $js = 'caixa/pedidos';
+     return view('caixa/_pedidos', ['loja' => $loja , 'js'=> $js ]);
 });
 
 $router->get('/caixa/cobrancas/{loja}', function ($loja) use ($router) {
