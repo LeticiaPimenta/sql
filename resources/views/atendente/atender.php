@@ -46,7 +46,7 @@ require '../resources/views/caixa/header.php';
                         <th>Cliente</th>
                         <th>Produto</th>
                         <th>Hora</th>
-                        <th class="text-right">Valor</th>
+  
                         <th class="text-right">Ações</th>
                       </tr>
                     </thead>
@@ -56,7 +56,7 @@ require '../resources/views/caixa/header.php';
                         <td>{{users_id[item.user].configs.name}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.hora | date:'h:mma' }} @ comanda :{{item.comanda}}</td>
-                        <td class="text-right">R$ {{item.value}}</td>
+
                         <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">edit</i>

@@ -40,17 +40,17 @@
                         <th>Cliente</th>
                         <th>Produto</th>
                         <th>Hora</th>
-                        <th class="text-right">Valor</th>
+                     
                         <th class="text-right">Ações</th>
                       </tr>
                     </thead>
-                    <tbody ng-repeat="items in origins">
-                      <tr ng-repeat="(key,item) in items">
+                    <tbody ng-repeat="items in origins | toArray:true | filter:busca ">
+                      <tr ng-repeat="(key,item) in items ">
                         <td class="text-center">1</td>
                         <td>{{users_id[item.user].configs.name}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.hora | date:'h:mma' }} @ comanda :{{item.comanda}}</td>
-                        <td class="text-right">R$ {{item.value}}</td>
+      
                         <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="atender(item.user,item.product,key , item.value)">
                             <i class="material-icons">edit</i>
