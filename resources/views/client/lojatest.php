@@ -626,16 +626,18 @@
       <div class="container" id="3">
         <h2 class="section-title">Especiais</h2>
           <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-3" ng-repeat="product in products | filter:{ SubCategoria : '3' }">
-                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                  <div class="card-header card-header-imagproduct.PRO_DESCRICAO}}</h4>
-                    </a>
-                    <p class="card-description">{{product.desc}}</p>
+            <div class="row" ng-repeat="categorias in produtos">
+              <div class="col-md-3" ng-repeat="subcategoria in categorias">
+                <div class="card card-product card-plain no-shadow" data-colored-shadow="false" ng-repeat="produto in subcategoria">
+                  <div class="card-body text-center" >
+                  <h4 class="card-title">
+                    <a href="#">{{produto.PRO_DESCRICAO}}</a>
+                  </h4>
+                  <p class="card-description">{{product.desc}}</p>
                   </div>
                   <div class="card-footer">
                 <div class="price-container">
-                  <span class="price price-new">R$ {{product.value}}</span>
+                  <span class="price price-new">R$ {{produto.PNI_VALOR}}</span>
                 </div>
                 <div class="stats ml-auto">
                   <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
