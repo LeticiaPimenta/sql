@@ -125,7 +125,7 @@
   });
 
 
-var ref_atendimentos = firebase.database().ref().child("pedidos/<?php echo $loja;?>");
+var ref_atendimentos = firebase.database().ref().child("atendimentos/<?php echo $loja;?>");
   // create a synchronized array
   var atendimentos = $firebaseArray(ref_atendimentos);
   $scope.atendimentos = atendimentos;

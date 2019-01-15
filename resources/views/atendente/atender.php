@@ -1,8 +1,8 @@
 <?php
-require '../resources/views/header.php';
+require '../resources/views/caixa/header.php';
 ?>
 
-<body class="shopping-cart sidebar-collapse" ng-controller="MainCtrl">
+<body class="shopping-cart sidebar-collapse" ng-controller="SampleCtrl">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -139,7 +139,7 @@ require '../resources/views/header.php';
       <div class="card card-plain">
         <div class="card-body">
           <br/>
-         {{atendimentos}}
+         {{atendimentos}}.
 
           <div class="table-responsive">
                 <table class="table"  ng-repeat="origins in atendimentos">
@@ -162,7 +162,7 @@ require '../resources/views/header.php';
                         <td class="text-right">R$ {{item.value}}</td>
                         <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
-                            <i class="material-icons">coffee</i>
+                            <i class="material-icons">local_cafe</i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
                             <i class="material-icons">edit</i>
@@ -182,5 +182,5 @@ require '../resources/views/header.php';
   </div>
 
   <?php
-    require '../resources/views/footer.php';
+    require '../resources/views/caixa/footer.php';
   ?>

@@ -201,5 +201,5 @@ $router->get('/adm/cardapio', function () use ($router) {
 
 
 $router->get('/atendente/atender/{loja}', function ($loja) use ($router) {
-     return view('caixa/_pedidos', ['loja' => $loja  ]);
+     return view('atendente/atender', ['loja' => $loja , 'js' => '' ]);
 });
