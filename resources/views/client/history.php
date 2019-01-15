@@ -335,7 +335,7 @@
                     <tbody ng-repeat="item in origins">
                       <tr >
                         <td> # <span ng-repeat="produto in item.products" ng-show="$first">{{produto.shop}}</span></td>
-                        <td><span ng-repeat="produto in item.products">{{produto.value}} <span ng-show="!$last"> +</span> </span></td>
+                        <td><small><span ng-repeat="produto in item.products | filter: busca"> {{products_id[produto.product].text}} <span ng-show="!$last">+ </span></small></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
                         <td class="text-center">R$ {{item.value}}</td>
                 <!--        <td class="td-actions text-right">

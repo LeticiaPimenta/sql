@@ -171,7 +171,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
               value:parseFloat($value),
               hora:new Date().getTime()
             });
-            toastr.success('Seu Produto Chegou na Nossa Cozinha!', 'Produto Adicionado!');
+            toastr.success('Seu produto chegou na cossa cozinha!', 'Produto Adicionado!');
           }, 3000);
     };
   // click on `index.html` above to see $remove() and $save() in action
