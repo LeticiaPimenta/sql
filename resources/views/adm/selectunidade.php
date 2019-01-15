@@ -132,46 +132,11 @@
       </div>
     </div>
   </div>
-  <footer class="footer">
-    <div class="container">
-<!--      <nav class="float-left">
-        <ul>
-          <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
-            </a>
-          </li>
-          <li>
-            <a href="https://creative-tim.com/presentation">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="http://blog.creative-tim.com">
-              Blog
-            </a>
-          </li>
-          <li>
-            <a href="https://www.creative-tim.com/license">
-              Licenses
-            </a>
-          </li>
-        </ul>
-      </nav> -->
-      <div class="copyright float-right"> 
-        <a href="https://www.facebook.com/BenjaminAPadaria/" target="_blank">
-        <button class="btn btn-link btn-facebook">
-          <i class="fa fa-facebook-square"></i> facebook
-        </button>
-        </a>
-        <a href="https://www.instagram.com/benjaminapadaria/" target="_blank">
-        <button class="btn btn-link btn-instagram">
-          <i class="fa fa-instagram"></i> instagram
-        </button>  
-        </a>      
-      </div>
-    </div>
-  </footer>
+  <?php
+
+  require_once "../resources/views/caixa/footer.php";
+
+  ?>
   <!--   Core JS Files   -->
   <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
