@@ -28,7 +28,7 @@ require '../resources/views/caixa/header.php';
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">Todos os Pedidos</h2>
+          <h2 class="title">Pedidos a serem atendidos</h2>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@ require '../resources/views/caixa/header.php';
                     </tbody>
                   </table>
                   <a href="/atendente/pedidos/<?php echo $loja;?>">
-                  <button type="button" class="btn btn-success btn-round" >Meus pedidos a serem atendidos <i class="material-icons">keyboard_arrow_right</i>
+                  <button type="button" class="btn btn-success btn-round" >Todos os pedidos<i class="material-icons">keyboard_arrow_right</i>
                       </button></a>
           </div>
         </div>
