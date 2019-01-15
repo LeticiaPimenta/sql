@@ -200,6 +200,10 @@ $router->get('/adm/cardapio', function () use ($router) {
 });
 
 
+$router->get('/atendente/pedidos/{loja}', function ($loja) use ($router) {
+     return view('atendente/pedidos', ['loja' => $loja , 'js' => '' ]);
+});
+
 $router->get('/atendente/atender/{loja}', function ($loja) use ($router) {
      return view('atendente/atender', ['loja' => $loja , 'js' => '' ]);
 });
