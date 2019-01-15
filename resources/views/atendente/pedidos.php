@@ -53,10 +53,10 @@
                         <td class="text-right">R$ {{item.value}}</td>
                         <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="atender(item.user,item.product,key , item.value)">
-                            <i class="material-icons">person</i>
+                            <i class="material-icons">edit</i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
-                            <i class="material-icons">edit</i>
+                            <i class="material-icons">assignment</i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
                             <i class="material-icons">close</i>
