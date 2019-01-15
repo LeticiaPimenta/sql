@@ -169,7 +169,6 @@ $router->post('/caixa/cobrar', function () use ($router) {
     $request = json_decode($postdata , true);
 
     $nome = $request['nome'];
-    $identificador = $request['identificador'];
     $cartao = $request['cartao'];
     $valor = $request['valor'];
  
@@ -178,7 +177,7 @@ $router->post('/caixa/cobrar', function () use ($router) {
     // Configuração da loja
     $store = new \Rede\Store('10002466', '0556abce8ba144c787f9dad825a35bd2',$environment);
     // Transação que será autorizada
-    $transaction = (new \Rede\Transaction($valor, 'pedido-'.$identificador.'-' . time()))->creditCard(
+    $transaction = (new \Rede\Transaction($valor, 'pedido' . time()))->creditCard(
         $request['cartao'],
         '235',
         '12',
@@ -202,5 +201,5 @@ $router->get('/adm/cardapio', function () use ($router) {
 
 
 $router->get('/atendente/atender/{loja}', function ($loja) use ($router) {
-     return view('caixa/_pedidos', ['loja' => $loja ]);
+     return view('caixa/_pedidos', ['loja' => $loja  ]);
 });
