@@ -194,8 +194,7 @@
   <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-         ... </a>
+        <img src="/assets/img/benjamin.png" style="width: 20%; height: auto;">       
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -328,7 +327,7 @@
                         <th>Unidade</th>
                         <th>itens</th>
                         <th>Hora</th>
-                        <th class="text-right">Valor</th>
+                        <th class="text-center">Valor</th>
                 <!--        <th class="text-right">Ações</th> -->
                       </tr>
                     </thead>
@@ -338,7 +337,7 @@
                         <td> # <span ng-repeat="produto in item.products" ng-show="$first">{{produto.shop}}</span></td>
                         <td><span ng-repeat="produto in item.products">{{produto.value}} <span ng-show="!$last"> +</span> </span></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-right">R$ {{item.value}}</td>
+                        <td class="text-center">R$ {{item.value}}</td>
                 <!--        <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">person</i>
