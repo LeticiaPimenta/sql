@@ -224,7 +224,7 @@
                     user : <?php echo $cliente;?>,
                    // name:$name,
                    products: produtos_carrinho,
-                   retorno : $scope.retorno,
+                   retorno : $scope.retorno.data,
                    value:$scope.valor_total,
                    comanda: comanda,
                     hora:new Date().getTime()
