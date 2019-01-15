@@ -194,8 +194,7 @@
   <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-         ... </a>
+        <img src="/assets/img/benjamin.png" style="width: 20%; height: auto;">       
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -206,10 +205,10 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+          <!--  <a href="#" class="dropdown nav-link" data-toggle="dropdown">
               <i class="material-icons">local_cafe</i> Expresso
             </a>
-      <!--  <div class="dropdown-menu dropdown-with-icons">
+        <div class="dropdown-menu dropdown-with-icons">
               <a href="../presentation.html" class="dropdown-item">
                 <i class="material-icons">layers</i> Presentation
               </a>
@@ -222,10 +221,10 @@
             </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+      <!--      <a href="#" class="dropdown nav-link" data-toggle="dropdown">
               <i class="material-icons">local_cafe</i> Mais Amados
             </a>
-      <!--  <div class="dropdown-menu dropdown-with-icons">
+        <div class="dropdown-menu dropdown-with-icons">
               <a href="../sections.html#headers" class="dropdown-item">
                 <i class="material-icons">dns</i> Headers
               </a>
@@ -253,10 +252,10 @@
             </div> -->
           </li>
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+      <!--      <a href="" class="dropdown nav-link" data-toggle="dropdown">
               <i class="material-icons">local_cafe</i> Especiais
             </a>
-      <!--  <div class="dropdown-menu dropdown-with-icons">
+        <div class="dropdown-menu dropdown-with-icons">
               <a href="../examples/about-us.html" class="dropdown-item">
                 <i class="material-icons">account_balance</i> About Us
               </a>
@@ -325,23 +324,21 @@
                 <table class="table"  ng-repeat="origins in carts_origin">
                     <thead>
                       <tr>
-                        <th class="text-center">#</th>
                         <th>Unidade</th>
                         <th>itens</th>
                         <th>Hora</th>
-                        <th class="text-right">Valor</th>
-                        <th class="text-right">Ações</th>
+                        <th class="text-center">Valor</th>
+                <!--        <th class="text-right">Ações</th> -->
                       </tr>
                     </thead>
             
                     <tbody ng-repeat="item in origins">
                       <tr >
-                        <td class="text-center">1</td>
                         <td> # <span ng-repeat="produto in item.products" ng-show="$first">{{produto.shop}}</span></td>
-                        <td><span ng-repeat="produto in item.products">{{produto.value}} <span ng-show="!$last"> +</span> </span></td>
+                        <td><small><span ng-repeat="produto in item.products | filter: busca"> {{products_id[produto.product].text}} <span ng-show="!$last">+ </span></small></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-right">R$ {{item.value}}</td>
-                        <td class="td-actions text-right">
+                        <td class="text-center">R$ {{item.value}}</td>
+                <!--        <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">person</i>
                           </button>
@@ -351,7 +348,7 @@
                           <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
                             <i class="material-icons">close</i>
                           </button>
-                        </td>
+                        </td> -->
                       </tr>
                     
                     </tbody>

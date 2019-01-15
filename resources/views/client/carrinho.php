@@ -165,7 +165,7 @@
       console.log("vai pagar");
       
       $("#cobranca").slideUp();
-      $("#titulo_pagamento").html("Fechando seu Pagamento , aguarde .");
+      $("#titulo_pagamento").html("Fechando seu pagamento , aguarde .");
       $("#cobrando").slideDown();
       var req = {
        method: 'POST',
