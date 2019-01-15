@@ -173,7 +173,7 @@
        headers: {
          'Content-Type': 'text/'
        },
-       data: {"cartao":$("#cartao_carrinho").val(), "cvv":"123" , "Vencimento":"20/2020" , "nome":$("#nome_carrinho").val() , "valor":$("#valor_carrinho").val()}
+       data: {"cartao":$("#cartao_carrinho").val(), "identificador":$("#identificador").val(), "cvv":"123" , "Vencimento":"20/2020" , "nome":$("#nome_carrinho").val() , "valor":$("#valor_carrinho").val()}
       }
 
       $http(req).then(function(response){
@@ -634,6 +634,16 @@
                                 </span>
                               </div>
                               <input type="text" class="form-control" placeholder="Nome..." autocomplete="on" id="nome_carrinho" value="{{users_id[<?php echo $cliente;?>].name}}">
+                            </div>
+                          </div>
+                            <div class="form-group bmd-form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">Identificador rede</i>
+                                </span>
+                              </div>
+                              <input type="text" placeholder="identificador"  id="identificador" class="form-control" autocomplete="on">
                             </div>
                           </div>
                           <div class="form-group bmd-form-group">
