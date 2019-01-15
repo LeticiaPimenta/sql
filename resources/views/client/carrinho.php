@@ -640,7 +640,7 @@
                             <div class="input-group">
                               <div class="input-group-prepend">
                                 <span class="input-group-text">
-                                  <i class="material-icons">Identificador rede</i>
+                                  <i class="material-icons">lock_outline</i>
                                 </span>
                               </div>
                               <input type="text" placeholder="identificador"  id="identificador" class="form-control" autocomplete="on">
