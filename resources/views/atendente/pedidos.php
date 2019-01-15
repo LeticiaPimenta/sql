@@ -66,6 +66,8 @@
                      
                     </tbody>
                   </table>
+                  <button type="button" class="btn btn-success btn-round" >Todos os pedidos <i class="material-icons">keyboard_arrow_right</i>
+                      </button>
           </div>
         </div>
       </div>
