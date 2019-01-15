@@ -139,7 +139,7 @@ require '../resources/views/header.php';
       <div class="card card-plain">
         <div class="card-body">
           <br/>
-         {{carts_origin}}
+         {{atendimentos}}
 
           <div class="table-responsive">
                 <table class="table"  ng-repeat="origins in atendimentos">
