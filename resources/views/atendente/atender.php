@@ -139,8 +139,6 @@ require '../resources/views/caixa/header.php';
       <div class="card card-plain">
         <div class="card-body">
           <br/>
-         {{atendimentos}}.
-
           <div class="table-responsive">
                 <table class="table"  ng-repeat="origins in atendimentos">
                     <thead>
