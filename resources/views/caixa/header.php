@@ -124,16 +124,44 @@
       $scope.carts = cart_formatado;
   });
 
-  $scope.recebido = function($usuario , $produto , $chave , $value){
-;
+
+var ref_atendimentos = firebase.database().ref().child("pedidos/<?php echo $loja;?>");
+  // create a synchronized array
+  var atendimentos = $firebaseArray(ref_atendimentos);
+  $scope.atendimentos = atendimentos;
+
+
+  $scope.atender = function($usuario , $produto , $chave , $value){
      var ref_pedidos = firebase.database().ref("pedidos/<?php echo $loja;?>/"+$usuario+"/"+$produto+"/"+$chave);
   // create a synchronized array
     var pedido = $firebaseObject(ref_pedidos);
     console.log(pedido);
 
-    var ref_carts_targer = firebase.database().ref().child("carts/<?php echo $loja;?>/"+$usuario+"/"+$produto);
+    var ref_carts_targer = firebase.database().ref().child("atendimentos/<?php echo $loja;?>/"+$usuario+"/"+$produto);
   // create a synchronized array
   $scope.carts_clicado = $firebaseArray(ref_carts_targer);
+    $scope.carts_clicado.$add({
+      product: $produto,
+      shop: <?php echo $loja;?>,
+      user : $usuario,
+     // name:$name,
+      value:parseFloat($value),
+      hora:new Date().getTime()
+    });
+  
+    pedido.$remove();
+  }
+
+
+  $scope.recebido = function($usuario , $produto , $chave , $value){
+     var ref_pedidos = firebase.database().ref("atendimentos/<?php echo $loja;?>/"+$usuario+"/"+$produto+"/"+$chave);
+  // create a synchronized array
+    var pedido = $firebaseObject(ref_pedidos);
+    console.log(pedido);
+
+    var ref_carts_targer = firebase.database().ref().child("carts/<?php echo $loja;?>/"+$usuario+"/"+$produto);
+    // create a synchronized array
+    $scope.carts_clicado = $firebaseArray(ref_carts_targer);
     $scope.carts_clicado.$add({
       product: $produto,
       shop: <?php echo $loja;?>,
