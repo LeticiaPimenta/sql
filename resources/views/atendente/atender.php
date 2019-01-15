@@ -161,7 +161,7 @@ require '../resources/views/header.php';
                         <td>{{item.hora | date:'h:mma' }} @ comanda :{{item.comanda}}</td>
                         <td class="text-right">R$ {{item.value}}</td>
                         <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="atender(item.user,item.product,key , item.value)">
+                          <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">coffee</i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
