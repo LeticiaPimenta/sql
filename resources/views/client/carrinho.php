@@ -183,6 +183,7 @@
         $("#cobrado").slideDown();
         $scope.retorno = response;
         $("#titulo_pagamento").html("Pagamento Finalizado "+response.data);
+        $scope.encerrar_carrinho();
 
       }, function(response){
         console.log(response);
@@ -253,7 +254,7 @@
                 var ref_carts_remove = firebase.database().ref().child("carts/<?php echo $loja;?>/<?php echo $cliente;?>");
                 var carts_remove = $firebaseObject(ref_carts_remove);
                 carts_remove.$remove();
-                //alert("Vai Fechar sua compra , veja os detalhes em seus historicos !");
+                alert("Vai Fechar sua compra , veja os detalhes em seus historicos !");
                 window.location.replace("/client/cardapio/<?php echo $loja;?>/<?php echo $cliente;?>");
 
             }
