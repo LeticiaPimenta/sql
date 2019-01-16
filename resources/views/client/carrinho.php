@@ -426,7 +426,7 @@
                 <tr ng-repeat="produto in carts_origin">                  
                   <td class="td-name" style="color:#999">
                     <a href="#"><span ng-repeat="item in produto" ng-show="$first" >
-                      {{products_id[item.product].text}} 
+                      {{products_id[item.product].descricao}} 
                       
                       <br />
                     <small>R$ {{products_id[item.product].value}}</small>
@@ -499,7 +499,7 @@
                   <div class="card-header" role="tab" id="headingOne">
                     <h5 class="mb-0">
                       <a data-toggle="collapse" href="#collapse-{{products_id[item.product].$id}}" aria-expanded="false" aria-controls="collapse-{{products_id[item.product].$id}}" class="collapsed" ng-repeat="item in produto" ng-show="$first" >
-                        {{products_id[item.product].text}} 
+                        {{products_id[item.product].descricao}} 
                         <i class="material-icons">keyboard_arrow_down</i>
                       </a>
                     </h5>

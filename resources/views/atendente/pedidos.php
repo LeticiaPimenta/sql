@@ -66,7 +66,7 @@
                      
                     </tbody>
                   </table>
-                  <a href="/atendente/atender/<?php echo $loja;?>">
+                  <a href="/atendente/atender/<?php echo $loja;?>/">
                   <button type="button" class="btn btn-success btn-round" >Pedidos a serem atendidos<i class="material-icons">keyboard_arrow_right</i>
                       </button>
                     </a>
