@@ -128,7 +128,24 @@
 var ref_atendimentos = firebase.database().ref().child("atendimentos/<?php echo $loja;?>");
   // create a synchronized array
   var atendimentos = $firebaseArray(ref_atendimentos);
-  $scope.atendimentos = atendimentos;
+  //atendimentos = atendimentos;
+
+   var atendimentos_formatado = [];
+
+  atendimentos.$loaded().then(function() {
+    //$scope.carts_origin = carts;
+      var cont = 1;
+      angular.forEach(atendimentos, function(value, key) {
+        console.log(value);
+        console.log(key);
+        atendimentos_formatado[value.$id]=value;
+      });
+      console.log(atendimentos_formatado);
+     // $scope.atendimentos = atendimentos;
+
+      $scope.atendimentos = atendimentos_formatado;
+
+});
 
 
   $scope.atender = function($usuario , $produto , $chave , $value){
