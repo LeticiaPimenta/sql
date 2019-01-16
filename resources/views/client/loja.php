@@ -146,6 +146,9 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
     }
 
     $scope.modalPedido = function($product, $name , $value) {
+      console.log( $value);
+      console.log($name );
+      console.log($product);
     var ref_carts_targer = firebase.database().ref().child("pedidos/<?php echo $loja;?>/<?php echo $cliente;?>/"+$product);
   // create a synchronized array
 /*  $scope.carts_clicado = $firebaseArray(ref_carts_targer);
@@ -391,16 +394,16 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">
-                  <a href="#">{{product.text}}</a>
+                  <a href="#">product/{{product.$id}}</a>
                 </h4>
-                <p class="card-description">{{product.desc}}</p>
+                <p class="card-description">{{product.descricao}}</p>
               </div>
               <div class="card-footer">
                 <div class="price-container">
                   <span class="price price-new">R$ {{product.value}}</span>
                 </div>
                 <div class="stats ml-auto">                  
-                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
+                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.descricao,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>

@@ -33,7 +33,7 @@
          
 
           <div class="table-responsive">
-                <table class="table"  ng-repeat="origins in carts_origin">
+                <table class="table"  ng-repeat="origins in carts_origin ">
                     <thead>
                       <tr>
                         <th class="text-center">#</th>
@@ -44,7 +44,7 @@
                         <th class="text-right">Ações</th>
                       </tr>
                     </thead>
-                    <tbody ng-repeat="items in origins | toArray:true | filter:busca ">
+                    <tbody ng-repeat="items in origins ">
                       <tr ng-repeat="(key,item) in items ">
                         <td class="text-center">1</td>
                         <td>{{users_id[item.user].configs.name}}</td>
