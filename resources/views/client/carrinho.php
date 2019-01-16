@@ -426,7 +426,7 @@
                 <tr ng-repeat="produto in carts_origin">                  
                   <td class="td-name" style="color:#999">
                     <a href="#"><span ng-repeat="item in produto" ng-show="$first" >
-                      {{products_id[item.product].descricao}} 
+                      {{products_id[item.product].descricao}} {{item.product}}
                       
                       <br />
                     <small>R$ {{products_id[item.product].value}}</small>

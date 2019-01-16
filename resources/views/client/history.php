@@ -335,9 +335,10 @@
                     <tbody ng-repeat="item in origins">
                       <tr >
                         <td> # <span ng-repeat="produto in item.products" ng-show="$first">{{produto.shop}}</span></td>
-                        <td><small><span ng-repeat="produto in item.products | filter: busca"> {{products_id[produto.product].text}} <span ng-show="!$last">+ </span></small></td>
+                        <td><small><span ng-repeat="produto in item.products"> {{products_id[produto.product].descricao}} <span ng-show="!$last">+ </span></small></td>
                         <td>{{item.hora | date:'MM/dd @ h:mma' }}</td>
-                        <td class="text-center">R$ {{item.value}}</td>
+                        <td class="text-center">R$ {{item}}</td>
+                    
                 <!--        <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(item.user,item.product,key , item.value)">
                             <i class="material-icons">person</i>
