@@ -200,10 +200,19 @@ $router->get('/adm/cardapio', function () use ($router) {
 });
 
 
-$router->get('/atendente/pedidos/{loja}', function ($loja) use ($router) {
+$router->get('/atendente', function () use ($router) {
+    return view('atendente/select', [ 'public' => '/adm/']);
+});
+
+$router->get('/atendente/{unidade}', function ($unidade) use ($router) {
+    return view('atendente/unidade', ['unidade' => $unidade , 'public' => '/adm/']);
+});
+
+
+$router->get('/atendente/pedidos/{loja}/{atendente}', function ($loja, $atendente) use ($router) {
      return view('atendente/pedidos', ['loja' => $loja , 'js' => '' ]);
 });
 
-$router->get('/atendente/atender/{loja}', function ($loja) use ($router) {
-     return view('atendente/atender', ['loja' => $loja , 'js' => '' ]);
+$router->get('/atendente/atender/{loja}/{atendente}', function ($loja, $atendente) use ($router) {
+     return view('atendente/atender', ['loja' => $loja , 'js' => '', 'atendente' => $atendente ]);
 });
