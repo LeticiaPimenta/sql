@@ -71,7 +71,7 @@ require '../resources/views/caixa/header.php';
                       </tr>                                          
                     </tbody>
                   </table>
-                  <a href="/atendente/pedidos/<?php echo $loja;?>">
+                  <a href="/atendente/pedidos/<?php echo $loja;?>/<?php echo $atendente;?>">
                   <button type="button" class="btn btn-success btn-round" >Todos os pedidos<i class="material-icons">keyboard_arrow_right</i>
                       </button></a>
           </div>
