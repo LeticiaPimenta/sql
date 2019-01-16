@@ -391,7 +391,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
               </div>
               <div class="card-body text-center">
                 <h4 class="card-title">
-                  <a href="#">{{product.text}}</a>
+                  <a href="#">{{product.descricao}}</a>
                 </h4>
                 <p class="card-description">{{product.desc}}</p>
               </div>
@@ -465,7 +465,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
         <h2 class="section-title">Mais Amados</h2>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-3" ng-repeat="product in products | filter:{ priority : '2' }">
+              <div class="col-md-3" ng-repeat="product in products">
                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
@@ -474,7 +474,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
                   </div>
                   <div class="card-body">
                     <a href="#">
-                      <h4 class="card-title">{{product.text}}</h4>
+                      <h4 class="card-title">{{product.descricao}}</h4>
                     </a>
                   <p class="card-description">{{product.desc}}</p>
                   </div>
