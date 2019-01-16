@@ -490,7 +490,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
                   <span class="price price-new">R$ {{product.PNI_VALOR}}</span>
                 </div>
                 <div class="stats ml-auto">
-                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
+                  <button type="button" class="btn btn-warning" ng-click="modalPedido(product.PRO_CODIGO,product.PRO_DESCRICAO,product.PNI_VALOR)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
                   <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                     <i class="material-icons">favorite</i>
                   </button>
@@ -517,7 +517,23 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-3" ng-repeat="product in produtos | filter:{ Peso : '3' }">
-                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                <div class="card bg-warning">
+                      <div class="card-body ">
+                        <h5 class="card-category card-category-social">
+                          <i class="fa fa-coffee"></i> 
+                        </h5>
+                        <h4 class="card-title">
+                          <a href="">{{product.PRO_DESCRICAO}}</a>
+                        </h4>
+                        <p class="card-description">
+                          <span class="price price-new">R$ {{product.PNI_VALOR}}</span>
+                        </p>
+                        <div class="card-stats justify-content-center">
+                          <button type="button" class="btn btn-white btn-round" ng-click="modalPedido(product.PRO_CODIGO,product.PRO_DESCRICAO,product.PNI_VALOR)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>                          
+                        </div>
+                      </div>
+                    </div>
+          <!--      <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
                     <img ng-src="{{product.image}}" alt="">
@@ -540,7 +556,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
                   </button>
                 </div>
               </div>
-                </div>
+                </div> -->
                 <!-- end card -->
               </div>
           <!--    <div class="col-md-3 ml-auto mr-auto">
