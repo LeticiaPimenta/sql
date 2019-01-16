@@ -145,7 +145,7 @@ var ref_atendimentos = firebase.database().ref().child("atendimentos/<?php echo 
 
       $scope.atendimentos = atendimentos_formatado;
 
-}
+});
 
 
   $scope.atender = function($usuario , $produto , $chave , $value){
