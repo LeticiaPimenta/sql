@@ -527,11 +527,11 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
                     <a href="#">
                       <h4 class="card-title">{{product.PRO_DESCRICAO}}</h4>
                     </a>
-                    <p class="card-description">{{product.desc}}</p>
+                    <p class="card-description">{{product.PRO_DESCRICAO}}</p>
                   </div>
                   <div class="card-footer">
                 <div class="price-container">
-                  <span class="price price-new">R$ {{product.value}}</span>
+                  <span class="price price-new">R$ {{product.PNI_VALOR}}</span>
                 </div>
                 <div class="stats ml-auto">
                   <button type="button" class="btn btn-warning" ng-click="modalPedido(product.$id,product.text,product.value)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>
