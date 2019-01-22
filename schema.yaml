@@ -1,0 +1,33 @@
+User:
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    email:
+      schema: string
+      rules: required
+      tags: fillable
+    profile_img:
+      schema: string nullable
+      tags: fillable
+    raw_login_info:
+      schema: text nullable
+      tags: fillable
+    access_token:
+      schema: text nullable
+      tags: fillable   
+    expiration_time:
+      schema: text nullable
+      tags: fillable     
+Cart:
+  belongsTo: user
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    amount:
+      schema: text nullable
+      tags: fillable
+  add: timestamps   
