@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Shipiment extends Model {
+class Cart extends Model {
 
-    protected $fillable = ["name", "origin_country", "origin_city", "destiny_country", "destiny_city", "user_id"];
+    protected $fillable = ["name", "amount", "user_id"];
 
     protected $dates = [];
 

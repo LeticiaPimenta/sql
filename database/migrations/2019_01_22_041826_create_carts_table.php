@@ -3,18 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShipimentsTable extends Migration
+class CreateCartsTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('shipiments', function(Blueprint $table) {
+        Schema::create('carts', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->text('origin_country')->nullable();
-            $table->text('origin_city')->nullable();
-            $table->text('destiny_country')->nullable();
-            $table->text('destiny_city')->nullable();
+            $table->text('amount')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')
@@ -25,6 +22,6 @@ class CreateShipimentsTable extends Migration
 
     public function down()
     {
-        Schema::drop('shipiments');
+        Schema::drop('carts');
     }
 }
