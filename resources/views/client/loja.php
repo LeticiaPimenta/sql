@@ -473,7 +473,23 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-3" ng-repeat="product in produtos | filter:{ Peso : '2' }">
-                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                <div class="card bg-warning">
+                      <div class="card-body ">
+                        <h5 class="card-category card-category-social">
+                          <i class="fa fa-coffee"></i> 
+                        </h5>
+                        <h4 class="card-title">
+                          <a href="">{{product.PRO_DESCRICAO}}</a>
+                        </h4>
+                        <p class="card-description">
+                          <span class="price price-new">R$ {{product.PNI_VALOR}}</span>
+                        </p>
+                        <div class="card-stats justify-content-center">
+                          <button type="button" class="btn btn-white btn-round" ng-click="modalPedido(product.PRO_CODIGO,product.PRO_DESCRICAO,product.PNI_VALOR)" data-toggle="modal" data-target="#smallAlertModal">Pedir</button>                          
+                        </div>
+                      </div>
+                    </div>
+            <!--    <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                   <div class="card-header card-header-image">
                     <a href="#">
                     <img ng-src="{{product.PRO_IMAGEM}}" alt="">
@@ -496,7 +512,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray  , toastr) {
                   </button>
                 </div>
               </div>
-                </div>
+                </div> -->
                 <!-- end card -->
               </div>
           <!--    <div class="col-md-3 ml-auto mr-auto">
