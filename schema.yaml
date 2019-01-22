@@ -1,0 +1,48 @@
+User:
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    email:
+      schema: string
+      rules: required
+      tags: fillable
+    initial_role:
+      schema: string nullable
+      tags: fillable
+    profile_img:
+      schema: string nullable
+      tags: fillable
+    initial_message:
+      schema: text nullable
+      tags: fillable
+    raw_login_info:
+      schema: text nullable
+      tags: fillable
+    access_token:
+      schema: text nullable
+      tags: fillable   
+    expiration_time:
+      schema: text nullable
+      tags: fillable     
+Shipiment:
+  belongsTo: user
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    origin_country:
+      schema: text nullable
+      tags: fillable
+    origin_city:
+      schema: text nullable
+      tags: fillable  
+    destiny_country:
+      schema: text nullable
+      tags: fillable
+    destiny_city:
+      schema: text nullable
+      tags: fillable    
+  add: timestamps   

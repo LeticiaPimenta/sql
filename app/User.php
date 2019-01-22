@@ -1,32 +1,20 @@
-<?php
+<?php namespace App;
 
-namespace App;
-
-use Illuminate\Auth\Authenticatable;
-use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
-{
-    use Authenticatable, Authorizable;
+class User extends Model {
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email',
+    protected $fillable = ["name", "email", "initial_role", "profile_img", "initial_message", "raw_login_info", "access_token", "expiration_time"];
+
+    protected $dates = [];
+
+    public static $rules = [
+        "name" => "required",
+        "email" => "required",
     ];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-    ];
+    public $timestamps = false;
+
+    // Relationships
+
 }
