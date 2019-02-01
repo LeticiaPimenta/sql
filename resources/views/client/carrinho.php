@@ -721,7 +721,7 @@
                           <div class="card-header" role="tab" id="headingFour">
                             <h5 class="mb-0">
                               <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                Cartão de Débito
+                                Paypal
                                 <i class="material-icons">keyboard_arrow_down</i>
                               </a>
                             </h5>
