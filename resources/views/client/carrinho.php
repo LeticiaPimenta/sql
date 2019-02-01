@@ -717,6 +717,83 @@
                             </div>
                           </div>
                         </div>
+                        <div class="card card-collapse">
+                          <div class="card-header" role="tab" id="headingFour">
+                            <h5 class="mb-0">
+                              <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Cartão de Débito
+                                <i class="material-icons">keyboard_arrow_down</i>
+                              </a>
+                            </h5>
+                          </div>
+                          <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+                            <div class="card-body">
+                            <div id="paypal-button-container"></div>
+                            <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+                            <script>
+                            // Render the PayPal button
+                            paypal.Button.render({
+                            // Set your environment
+                            env: 'sandbox', // sandbox | production
+
+                            // Specify the style of the button
+                            style: {
+                              layout: 'vertical',  // horizontal | vertical
+                              size:   'medium',    // medium | large | responsive
+                              shape:  'rect',      // pill | rect
+                              color:  'gold'       // gold | blue | silver | white | black
+                            },
+
+                            // Specify allowed and disallowed funding sources
+                            //
+                            // Options:
+                            // - paypal.FUNDING.CARD
+                            // - paypal.FUNDING.CREDIT
+                            // - paypal.FUNDING.ELV
+                            funding: {
+                              allowed: [
+                                paypal.FUNDING.CARD,
+                                paypal.FUNDING.CREDIT
+                              ],
+                              disallowed: []
+                            },
+
+                            // Enable Pay Now checkout flow (optional)
+                            commit: true,
+
+                            // PayPal Client IDs - replace with your own
+                            // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+                            client: {
+                              sandbox: 'AVKZ00wV3OOCYXiAhaypTtA9r4-0EK3CIZqW8Z0xJmmBZCuLOOOUu9m1ePCQukU6Oogl1Rb4WQ_56wBD',
+                              production: 'AVKZ00wV3OOCYXiAhaypTtA9r4-0EK3CIZqW8Z0xJmmBZCuLOOOUu9m1ePCQukU6Oogl1Rb4WQ_56wBD'
+                            },
+
+                            payment: function (data, actions) {
+                              return actions.payment.create({
+                                payment: {
+                                  transactions: [
+                                    {
+                                      amount: {
+                                        total: '0.01',
+                                        currency: 'USD'
+                                      }
+                                    }
+                                  ]
+                                }
+                              });
+                            },
+
+                            onAuthorize: function (data, actions) {
+                              return actions.payment.execute()
+                                .then(function () {
+                                  window.alert('Payment Complete!');
+                                });
+                            }
+                            }, '#paypal-button-container');
+                            </script>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                   </div>
                 </div>
