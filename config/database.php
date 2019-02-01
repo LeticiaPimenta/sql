@@ -10,7 +10,7 @@ return [
         ],
         'testing' => [
             'driver'    => 'sqlite',
-            'database' => env('DB_DATABASE', storage_path('dev.sqlite')),
+            'database' => env('DB_DATABASE', storage_path('testing.sqlite')),
             'prefix'   => env('DB_PREFIX', ''),
         ],
         'sqlite' => [

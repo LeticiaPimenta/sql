@@ -10,6 +10,6 @@ class LandClientCest
     public function tryToTest(AcceptanceTester $I)
     {
     	$I->amOnPage('/client');
-        $I->see('Ecommerce Page!');
+        $I->see('Meus Pedidos');
     }
 }

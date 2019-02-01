@@ -143,6 +143,10 @@ $router->get('/caixa/select', function () use ($router) {
      return view('caixa/select', ['loja' => 'caixa']);
 });
 
+$router->get('/caixa/paypal', function () use ($router) {
+     print_r($_POST);
+});
+
 $router->get('/caixa/loja/{loja}', function ($loja) use ($router) {
      return view('caixa/loja', ['loja' => $loja]);
 });

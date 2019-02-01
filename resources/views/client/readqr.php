@@ -129,32 +129,9 @@
         <!--     *********    END PROFILE CARDS      *********      -->
       </div>
     </div>
+  </div>
   <footer class="footer">
     <div class="container">
-<!--      <nav class="float-left">
-        <ul>
-          <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
-            </a>
-          </li>
-          <li>
-            <a href="https://creative-tim.com/presentation">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="http://blog.creative-tim.com">
-              Blog
-            </a>
-          </li>
-          <li>
-            <a href="https://www.creative-tim.com/license">
-              Licenses
-            </a>
-          </li>
-        </ul>
-      </nav> -->
       <div class="copyright float-right"> 
         <a href="https://www.facebook.com/BenjaminAPadaria/" target="_blank">
         <button class="btn btn-link btn-facebook">
