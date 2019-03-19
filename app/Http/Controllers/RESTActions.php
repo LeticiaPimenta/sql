@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-trait RESTActions {
+trait RESTActions
+{
 
 
     public function all()
@@ -16,7 +17,7 @@ trait RESTActions {
     {
         $m = self::MODEL;
         $model = $m::find($id);
-        if(is_null($model)){
+        if (is_null($model)) {
             return $this->respond(Response::HTTP_NOT_FOUND);
         }
         return $this->respond(Response::HTTP_OK, $model);
@@ -34,7 +35,7 @@ trait RESTActions {
         $m = self::MODEL;
         $this->validate($request, $m::$rules);
         $model = $m::find($id);
-        if(is_null($model)){
+        if (is_null($model)) {
             return $this->respond(Response::HTTP_NOT_FOUND);
         }
         $model->update($request->all());
@@ -44,7 +45,7 @@ trait RESTActions {
     public function remove($id)
     {
         $m = self::MODEL;
-        if(is_null($m::find($id))){
+        if (is_null($m::find($id))) {
             return $this->respond(Response::HTTP_NOT_FOUND);
         }
         $m::destroy($id);
@@ -55,5 +56,4 @@ trait RESTActions {
     {
         return response()->json($data, $status);
     }
-
 }

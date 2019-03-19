@@ -8,11 +8,11 @@ class_name: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://localhost:8080
+            url: http://localhost:8000
         - \Helper\Acceptance
         - Lumen:
             part: ORM
             environment_file: .env.testing   
         - REST:
            depends: PhpBrowser
-           url: 'http://localhost:8080/'
+           url: 'http://localhost:8000/api/'

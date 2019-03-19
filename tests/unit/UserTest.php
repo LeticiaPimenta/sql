@@ -15,11 +15,13 @@ class UserTest extends \Codeception\Test\Unit
     }
 
     // tests
-    public function testDeveBuscarOUsuarioPeloToken()
+    public function _testSomeFeature()
     {
-        $usuario  =  new \App\Classes\User;
-        print_r($usuario::all());
-        print_r($usuario);
-        die();
+
+        $test ="teste";
+        $usuario = new \App\User;
+        $usuario->save();
+        die("morreu aquu");
+
     }
 }

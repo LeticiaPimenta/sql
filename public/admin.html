@@ -1,0 +1,516 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>General</title>
+    <meta name="google-site-verification" content="" />
+    <meta name='yandex-verification' content='' />
+    <meta name="msvalidate.01" content="" />
+    <meta property="og:site_name" content="Marketplace App">
+    <meta property="og:title" content="General">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href="/img/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <script type="text/javascript" src="/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/materialize.css"  media="screen,projection"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </head>
+<body>
+
+    
+        <header class="content">
+
+            <div class="navbar-fixed">
+
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="/admin/support.php">Support</a></li>
+                    <li><a href="/admin/settings.php">Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/admin/logout.php/?access_token=0&continue=/" class="waves-effect waves-teal">Logout</a></li>
+                </ul>
+
+                <nav class="top-nav light-blue">
+                    <div class="nav-wrapper">
+                        <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full">
+                            <i class="large material-icons">reorder</i>
+                        </a>
+                        <a href="#" class="page-title">Admin Panel</a>
+
+                        <ul class="right hide-on-med-and-down" style="margin-right: 250px;">
+                            <li><a href="/admin/profile_reports.php">Profile Reports</a></li>
+                            <li><a href="/admin/item_reports.php">Items Reports</a></li>
+                            <li><a href="/admin/stream_comments.php">Comments Stream</a></li>
+                            <li><a href="/admin/stream_messages.php">Messages Stream</a></li>
+                            <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i style="padding-left: 0px;" class="material-icons right">more_vert</i>QA Script</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+
+            <ul id="nav-mobile" class="side-nav fixed" style="left: 0px;">
+
+                <li class="collection-header grey lighten-5 center-align" style="line-height: normal"><br>
+                    <img class="responsive-img" style="max-width: 60%" src="/img/panel_logo.png"><br>
+                    <h4>Marketplace App</h4>
+                    <br>
+                </li>
+
+                <li class="bold active grey lighten-3">
+                    <a href="/admin/main.php" class="waves-effect waves-ripple"><b>General</b></a>
+                </li>
+
+                <li class="bold ">
+                    <a href="/admin/categories.php" class="waves-effect waves-ripple"><b>Categories</b></a>
+                </li>
+
+                <li class="bold ">
+                    <a href="/admin/items.php" class="waves-effect waves-ripple"><b>Items</b></a>
+                </li>
+
+                <li class="bold ">
+                    <a href="/admin/users.php" class="waves-effect waves-ripple"><b>Users</b></a>
+                </li>
+
+                <li class="bold ">
+                    <a href="/admin/admob.php" class="waves-effect waves-ripple"><b>AdMob</b></a>
+                </li>
+
+                <li class="bold ">
+                    <a href="/admin/gcm.php" class="waves-effect waves-ripple"><b>Push Notifications</b></a>
+                </li>
+
+                <li class="bold ">
+                    <a href="/admin/support.php" class="waves-effect waves-ripple"><b>Support</b></a>
+                </li>
+
+                <li class="bold ">
+                    <a href="/admin/settings.php" class="waves-effect waves-ripple"><b>Settings</b></a>
+                </li>
+
+                <li class="bold">
+                    <a href="/admin/logout.php/?access_token=0&continue=/" class="waves-effect waves-ripple"><b>Logout</b></a>
+                </li>
+
+            </ul>
+
+        </header>
+
+        
+<main class="content">
+    <div class="row">
+        <div class="col s12 m12 l12">
+
+            
+
+        <div class="card blue-grey lighten-2">
+            <div class="card-content white-text">
+                <span class="card-title">Warning! Enabled demo version mode! The changes you've made will not be saved.</span>
+            </div>
+        </div>
+
+        
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s12">
+
+                        <div class="row">
+                            <div class="col s2">
+                                <h4>Statistics</h4>
+                            </div>
+                        </div>
+
+				<div class="col s12">
+					<table class="striped responsive-table">
+							<tbody>
+                                <tr>
+                                    <th class="text-left">Name</th>
+                                    <th>Count</th>
+                                </tr>
+                                <tr>
+                                    <td>Accounts</td>
+                                    <td>5492</td>
+                                </tr>
+                                <tr>
+                                    <td>Active accounts</td>
+                                    <td>5386</td>
+                                </tr>
+                                <tr>
+                                    <td>Blocked accounts</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Total comments</td>
+                                    <td>3928</td>
+                                </tr>
+                                <tr>
+                                    <td>Total active comments (not removed)</td>
+                                    <td>3153</td>
+                                </tr>
+                                <tr>
+                                    <td>Total categories</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>Total active categories (not removed)</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>Total items</td>
+                                    <td>3092</td>
+                                </tr>
+                                <tr>
+                                    <td>Total active items (not removed)</td>
+                                    <td>2552</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Total chats</td>
+                                    <td>973</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Total active chats (not removed)</td>
+                                    <td>791</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Total messages</td>
+                                    <td>3980</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Total active messages (not removed)</td>
+                                    <td>2971</td>
+                                </tr>
+                            </tbody>
+                        </table>
+				</div>
+
+				<div class="row">
+					<div class="col s12">
+						<h4>The recently registered users</h4>
+					</div>
+				</div>
+
+				<div class="col s12">
+
+                    
+						<table class="bordered data-tables responsive-table">
+							<tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Account state</th>
+                                    <th>Username</th>
+                                    <th>Fullname</th>
+                                    <th>Facebook</th>
+                                    <th>Email</th>
+                                    <th>Sign up date</th>
+                                    <th>Ip address</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            
+        <tr>
+            <td>5492</td>
+            <td>Enabled</td>
+            <td>Barbara</td>
+            <td>Moya</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/2091019407816216">Facebook account link</a></td>
+            <td>barbarita.pichun@hotmail.com</td>
+            <td>2018-07-25 23:58:08</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5492">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5491</td>
+            <td>Enabled</td>
+            <td>maria1994</td>
+            <td>peiritsch</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/1803181839762019">Facebook account link</a></td>
+            <td>mariapeiritsch@hotmail.com</td>
+            <td>2018-07-25 21:21:19</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5491">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5490</td>
+            <td>Enabled</td>
+            <td>Danielroquecana893</td>
+            <td>roque caña</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/125265358397920">Facebook account link</a></td>
+            <td>danielroquecana@gmail.com</td>
+            <td>2018-07-25 21:12:29</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5490">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5489</td>
+            <td>Enabled</td>
+            <td>charcc</td>
+            <td>Charlene</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/1846365745408991">Facebook account link</a></td>
+            <td>charcc1987@hotmail.com</td>
+            <td>2018-07-25 20:09:01</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5489">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5488</td>
+            <td>Enabled</td>
+            <td>Handloomplus</td>
+            <td>YASIN ANSARI</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/932479523598677">Facebook account link</a></td>
+            <td>yasin151296@gmail.com</td>
+            <td>2018-07-25 19:38:33</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5488">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5487</td>
+            <td>Enabled</td>
+            <td>Sandeeplal</td>
+            <td>Sandeep Lal</td>
+            <td>Not connected to facebook.</td>
+            <td>sandeeplal62@gmail.com</td>
+            <td>2018-07-25 17:43:52</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5487">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5486</td>
+            <td>Enabled</td>
+            <td>MinasPersiana93</td>
+            <td>Allan Persiana</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/1785699918190298">Facebook account link</a></td>
+            <td>novinha100ingrid@hotmail.com</td>
+            <td>2018-07-25 16:45:26</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5486">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5485</td>
+            <td>Enabled</td>
+            <td>rkbbb</td>
+            <td>rkbbbbb</td>
+            <td>Not connected to facebook.</td>
+            <td>gggg@gmail.com</td>
+            <td>2018-07-25 16:19:33</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5485">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5484</td>
+            <td>Enabled</td>
+            <td>sakura</td>
+            <td>illy</td>
+            <td>Not connected to facebook.</td>
+            <td>suhaily456789@gmail.com</td>
+            <td>2018-07-25 15:57:28</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5484">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5483</td>
+            <td>Enabled</td>
+            <td>hiewpitlain</td>
+            <td>Hiew Pit Lain</td>
+            <td>Not connected to facebook.</td>
+            <td>cn-pitlain@hotmail.com</td>
+            <td>2018-07-25 15:08:45</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5483">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5482</td>
+            <td>Enabled</td>
+            <td>Lucyvimbai5</td>
+            <td>lucy mari</td>
+            <td>Not connected to facebook.</td>
+            <td>lucyvimbai5@gmail.com</td>
+            <td>2018-07-25 14:30:10</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5482">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5481</td>
+            <td>Enabled</td>
+            <td>jozef</td>
+            <td>staron</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/1730235707063729">Facebook account link</a></td>
+            <td>22munez222@azet.sk</td>
+            <td>2018-07-25 13:33:00</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5481">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5480</td>
+            <td>Blocked</td>
+            <td>anthony44</td>
+            <td>van den berg</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/2091944844397743">Facebook account link</a></td>
+            <td>anthony.vdb44@hotmail.fr</td>
+            <td>2018-07-25 12:15:22</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5480">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5479</td>
+            <td>Enabled</td>
+            <td>Rishi</td>
+            <td>Rishikoushal</td>
+            <td>Not connected to facebook.</td>
+            <td>johnklokdm@gmail.com</td>
+            <td>2018-07-25 10:39:52</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5479">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5478</td>
+            <td>Enabled</td>
+            <td>Abhinav69</td>
+            <td>Abhinav Srivastav</td>
+            <td>Not connected to facebook.</td>
+            <td>abhinavsrvstv69@gmail.com</td>
+            <td>2018-07-25 09:15:18</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5478">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5477</td>
+            <td>Enabled</td>
+            <td>syahmisksi</td>
+            <td>syahmisksi</td>
+            <td>Not connected to facebook.</td>
+            <td>syahmisksi@gmail.com</td>
+            <td>2018-07-25 09:06:42</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5477">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5476</td>
+            <td>Enabled</td>
+            <td>yesic</td>
+            <td>hr</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/1898492713546285">Facebook account link</a></td>
+            <td>yesica.vane@hotmail.com</td>
+            <td>2018-07-25 07:07:23</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5476">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5475</td>
+            <td>Enabled</td>
+            <td>tabita</td>
+            <td>tabita mallea muñoz</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/253777408736829">Facebook account link</a></td>
+            <td>tabita.m7mallea@gmail.com</td>
+            <td>2018-07-25 06:42:03</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5475">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5474</td>
+            <td>Enabled</td>
+            <td>firmansyah</td>
+            <td>firmansyah</td>
+            <td>Not connected to facebook.</td>
+            <td>agung.x008@gmail.com</td>
+            <td>2018-07-25 05:49:24</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5474">Go to account</a></td>
+        </tr>
+
+        
+        <tr>
+            <td>5473</td>
+            <td>Enabled</td>
+            <td>sudirman</td>
+            <td>sudirman</td>
+            <td>Not connected to facebook.</td>
+            <td>agung.x08@gmail.com</td>
+            <td>2018-07-25 04:38:21</td>
+            <td>It is not available in the demo version</td>
+            <td><a href="/admin/profile.php/?id=5473">Go to account</a></td>
+        </tr>
+
+        
+                            </tbody>
+                        </table>
+
+                        				</div>
+
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+</main>
+
+        
+<footer class="page-footer content light-blue">
+    <div class="footer-copyright">
+        <span>Marketplace App © 2018</span>
+        <span class="right"><a class="grey-text text-lighten-4" target="_blank" href="http://codecanyon.net/user/qascript/portfolio?ref=qascript">ifsoft.co.uk</a></span>
+    </div>
+</footer>
+
+
+        <script type="text/javascript">
+            (function($){
+              $(function(){
+
+                $('.button-collapse').sideNav();
+
+              }); // end of document ready
+            })(jQuery); // end of jQuery name space
+
+        </script>
+
+</body>
+</html>
+

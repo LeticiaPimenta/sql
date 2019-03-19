@@ -4,17 +4,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model {
 
-    protected $fillable = ["name", "email", "profile_img", "raw_login_info", "access_token", "expiration_time"];
+    protected $fillable = ["name", "email", "user_token", "password", "logado", "login", "imagem", "wallet", "profile_img", "raw_login_info", "parent_user", "access_token", "expiration_time", "group_id"];
 
     protected $dates = [];
 
     public static $rules = [
         "name" => "required",
         "email" => "required",
+        "user_token" => "required",
+        "logado" => "required",
+        "wallet" => "required",
+        "group_id" => "required|numeric",
     ];
 
-    public $timestamps = false;
+    public function group()
+    {
+        return $this->belongsTo("App\Group");
+    }
 
-    // Relationships
 
 }

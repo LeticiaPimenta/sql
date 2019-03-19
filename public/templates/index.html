@@ -1,0 +1,75 @@
+
+<body>
+
+    
+        <header class="content">
+
+            <div class="navbar-fixed">
+
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="/admin/support.php">Support</a></li>
+                    <li><a href="/admin/settings.php">Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/admin/logout.php/?access_token=0&continue=/" class="waves-effect waves-teal">Logout</a></li>
+                </ul>
+
+                <nav class="top-nav light-blue">
+                    <div class="nav-wrapper">
+                        <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full">
+                            <i class="large material-icons">reorder</i>
+                        </a>
+                        <a href="#" class="page-title">Administrativo</a>
+
+                        <ul class="right hide-on-med-and-down" style="margin-right: 250px;">
+                            <li><a href="admin#!/app/profile">Minha pagina</a></li>
+                         
+                            <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i style="padding-left: 0px;" class="material-icons right">more_vert</i>QA Script</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+
+            <ul id="nav-mobile" class="side-nav fixed" style="left: 0px;">
+
+                <li class="collection-header grey lighten-5 center-align" style="line-height: normal"><br>
+                    <img class="responsive-img" style="max-width: 60%" src="/img/panel_logo.png"><br>
+                    <h4>Capriatti</h4>
+                    <br>
+                </li>
+
+                <li class="bold active grey lighten-3">
+                    <a href="#!app/roletas" class="waves-effect waves-ripple"><b>Roletas</b></a>
+                </li>
+
+                 <li class="bold">
+                    <a href="#!app/usuarios" class="waves-effect waves-ripple"><b>Usuarios</b></a>
+                </li>
+
+                <li class="bold">
+                    <a href="#!app/leads" class="waves-effect waves-ripple"><b>Meus Indicadores</b></a>
+                </li>
+
+                <li class="bold ">
+                    <a href="/admin/users.php" class="waves-effect waves-ripple"><b>Treinamentos</b></a>
+                </li>
+
+                <li class="bold">
+                    <a href="/admin/logout.php/?access_token=0&continue=/" class="waves-effect waves-ripple"><b>Logout</b></a>
+                </li>
+
+            </ul>
+
+        </header>
+
+        
+ <ui-view></ui-view>
+
+        
+<footer class="page-footer content light-blue">
+    <div class="footer-copyright">
+        <span>Marketplace App © 2018</span>
+        <span class="right"><a class="grey-text text-lighten-4" target="_blank" href="http://codecanyon.net/user/qascript/portfolio?ref=qascript">ifsoft.co.uk</a></span>
+    </div>
+</footer>
+ 

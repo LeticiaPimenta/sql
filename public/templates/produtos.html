@@ -1,0 +1,89 @@
+<main class="content">
+    <div class="row">
+        <div class="col s12 m12 l12">
+
+            
+
+        <div class="card blue-grey lighten-2">
+            <div class="card-content white-text">
+                <span class="card-title">Cuidado porra! Enabled demo version mode! The changes you've made will not be saved.</span>
+            </div>
+        </div>
+
+        
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s12">
+
+                        <div class="row">
+                            <div class="col s2">
+                                <h4>Estatística</h4>
+                            </div>
+                        </div>
+
+                <div class="col s12">
+                    <table class="striped responsive-table">
+                            <tbody>
+                                <tr>
+                                    <th class="text-left">Nome</th>
+                                    <th>Conta</th>
+                                </tr>
+                                <tr>
+                                    <td>Accounts</td>
+                                    <td>5492</td>
+                                </tr>
+                             
+                            </tbody>
+                        </table>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <h4>Usuarios</h4>
+                    </div>
+                </div>
+
+                <div class="col s12">
+
+                    
+                        <table class="bordered data-tables responsive-table">
+                            <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Status</th>
+                                    <th>Nome de usuário</th>
+                                    <th>Facebook</th>
+                                    <th>Email</th>
+                                    <th>Data de inscrição</th>
+                                    <th>Adminstrador</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            
+        <tr ng-repeat="usuario in usuarios">
+            <td>{{usuario.id}}</td>
+            <td>{{usuario.activated}}</td>
+            <td>{{usuario.name}}</td>
+            <td><a target="_blank" href="https://www.facebook.com/app_scoped_user_id/">Facebook </a></td>
+            <td>{{usuario.email}}</td>
+            <td>{{usuario.created}}</td>
+            <td>{{usuario.is_admin}}</td>
+            <td><a href="/admin/profile.php/?id={{usuario.id}}">Visitar Perfil</a></td>
+        </tr>
+
+        
+       
+        
+                            </tbody>
+                        </table>
+
+                                        </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</main>

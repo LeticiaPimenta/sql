@@ -1,0 +1,72 @@
+<div class="content-wrapper">
+            <div class="content-heading">Leads em Andamento
+               <div class="ml-auto">
+                  <button class="btn btn-secondary btn-sm" type="button" ng-click="limpar_ofertas()">Limpar Ofertas</button>
+               	<button class="btn btn-secondary btn-sm" type="button" ng-click="sortear_roleta(1)">sortear Roleta</button>
+                  <button class="btn btn-secondary btn-sm" type="button" ng-click="iniciar_roleta()">Criar Roleta</button>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-xl-4 col-lg-6" ng-repeat="apontamento in appointments">
+                  <div class="card b">
+                     <div class="card-header">
+                        <div class="float-right">{{apontamento.status}}
+                           <div class="badge badge-warning" ng-if="apontamento.status == 0">Aguardando aceite</div>
+                           <div class="badge badge-info" ng-if="apontamento.status == 1">Aguardando Cliente</div>
+                           
+                        </div>
+                        <h4 class="m-0">{{apontamento.name}}</h4>
+                        <small class="text-muted">Oferta #{{apontamento.id}}</small>
+                     </div>
+                     <div class="card-body">
+                        <div class="d-flex align-items-center">
+                           <div class="w-100" data-toggle="tooltip" data-title="Health">
+                              <div class="progress progress-xs m-0">
+                                 <div class="progress-bar bg-warning" style="width:22%"></div>
+                              </div>
+                           </div>
+                           <div class="wd-xxs text-right">
+                              <div class="text-bold text-muted">22%</div>
+                           </div>
+                        </div>
+                     </div>
+                     <table class="table">
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <strong>Inicio</strong>
+                              </td>
+                              <td>{{apontamento.created_at}}</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <strong> Corretor</strong>
+                              </td>
+                              <td>
+                                 <a class="inline" href="#">
+                                    <img class="rounded-circle thumb24" ng-src="{{carregados[apontamento.user_id].imagem}}" src="img/user/05.jpg" alt="project member">
+                                 </a> - {{carregados[apontamento.user_id].name}}
+                              </td>
+                           </tr>
+                           
+                           <tr>
+                              <td>
+                                 <strong>Valor</strong>
+                              </td>
+                              <td>
+                                 R$ 0,00
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <div class="card-footer text-center">
+                        <button class="btn btn-secondary" type="button">
+                        <a href="admin#!/app/lead/{{apontamento.deal_id}}">
+                        Ver Lead </a></button>
+                     </div>
+                  </div>
+               </div>
+              
+          
+            </div>
+         </div>

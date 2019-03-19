@@ -1,4 +1,5 @@
 User:
+  belongsTo: group
   fields:
     name:
       schema: string
@@ -8,18 +9,54 @@ User:
       schema: string
       rules: required
       tags: fillable
+    user_token:
+      schema: string
+      rules: required
+      tags: fillable  
+    password:
+      schema: text nullable
+      tags: fillable
+    logado:
+      schema: integer
+      rules: required
+      tags: fillable
+    login:
+      schema: text nullable
+      tags: fillable
+    imagem:
+      schema: text nullable
+      tags: fillable     
+    wallet:
+      schema: double
+      rules: required
+      tags: fillable  
     profile_img:
       schema: string nullable
       tags: fillable
     raw_login_info:
       schema: text nullable
       tags: fillable
+    parent_user:
+      schema: integer nullable
+      tags: fillable  
     access_token:
       schema: text nullable
       tags: fillable   
     expiration_time:
       schema: text nullable
-      tags: fillable     
+      tags: fillable
+  add: timestamps   
+Group:
+  hasMany: users
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    desc:
+      schema: text nullable
+      tags: fillable
+  add: timestamps    
 Cart:
   belongsTo: user
   fields:
@@ -30,4 +67,110 @@ Cart:
     amount:
       schema: text nullable
       tags: fillable
+  add: timestamps
+Transfer:
+  belongsTo: user
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    amount:
+      schema: text nullable
+      tags: fillable
+    key:
+      schema: text nullable
+      tags: fillable
+    status:
+      schema: integer nullable
+      tags: fillable
+    receiver:
+      schema: integer nullable
+      tags: fillable
+    operation:
+      schema: integer nullable
+      tags: fillable       
+  add: timestamps
+Shop:
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    total:
+      schema: double nullable
+      tags: fillable
   add: timestamps   
+ShopManager:
+  fields:
+    shop_id:
+      schema: integer
+      rules: required
+      tags: fillable
+    manager_id:
+      schema: integer
+      rules: required
+      tags: fillable
+  add: timestamps
+Payment:
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    total:
+      schema: double nullable
+      tags: fillable
+    dados:
+      schema: text nullable
+      tags: fillable
+    shop:
+      schema: integer
+      rules: required
+      tags: fillable
+    type:
+      schema: integer
+      rules: required
+      tags: fillable  
+    user:
+      schema: integer
+      rules: required
+      tags: fillable
+    nfe:
+      schema: text nullable
+      tags: fillable
+    tid:
+      schema: string nullable
+      tags: fillable    
+  add: timestamps
+Message:
+  belongsTo: user
+  fields:
+    receiver:
+      schema: integer
+      rules: required
+      tags: fillable
+    text:
+      schema: text nullable
+      tags: fillable
+    status:
+      schema: integer nullable
+      tags: fillable  
+  add: timestamps 
+BenAmigo:
+  fields:
+    eu:
+      schema: text
+      rules: required
+      tags: fillable
+    amigo:
+      schema: text
+      rules: required
+      tags: fillable
+    relationship:
+      schema: integer nullable
+      tags: fillable
+    status:
+      schema: integer nullable
+      tags: fillable  
+  add: timestamps     

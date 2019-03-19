@@ -1,0 +1,1 @@
+[{"nome":"Andreia Aparecida","id_oferta":5,"oferta":"Valor Real - Pinhais Park"}]
