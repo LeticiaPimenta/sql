@@ -9,6 +9,7 @@ class BenjaminClientController extends Controller {
 		$this->actions = array(
         'preloading'=>array('view'=>'client/preloading','js'=>'client/preloading','navbar'=>'navbar'),
         'pwa'=>array('view'=>'client/index','js'=>'client/login','navbar'=>'navbar'),
+        'conectar'=>array('view'=>'client/conectar','js'=>'client/conectar','navbar'=>'navbar'),
         'termos'=>array('view'=>'client/termos','js'=>'empty','navbar'=>'navbar'),
         'logar_phone'=>array('view'=>'client/logar_phone','js'=>'client/celular','navbar'=>'navbar'),
         'registrar'=>array('view'=>'client/registrar','js'=>'client/registrar','navbar'=>'navbar'),
@@ -24,7 +25,11 @@ class BenjaminClientController extends Controller {
 		'carrinho'=>array('view'=>'client/carrinho','js' => 'client/cart' , 'navbar'=>'client/navbar_hist'),
         'creditar'=>array('view'=>'client/creditar','js' => 'client/creditar' , 'navbar'=>'client/navbar_hist'),
 		'historico'=>array('view'=>'client/historico','js' => 'client/history' , 'navbar'=>'client/navbar_cart'),
+        'retirar'=>array('view'=>'client/retirar','js' => 'client/retirar' , 'navbar'=>'client/navbar_cart'),
+        'history'=>array('view'=>'client/history','js' => 'client/historico' , 'navbar'=>'client/navbar_cart'),
+        'transito'=>array('view'=>'client/transito','js' => 'client/transito' , 'navbar'=>'client/navbar_cart'),
         'perfil'=>array('view'=>'client/perfil','js' => 'client/history' , 'navbar'=>'client/navbar_cart'),
+        'bencreditos'=>array('view'=>'client/bencreditos','js' => 'client/history' , 'navbar'=>'client/navbar_cart'),
         'adicionar_bem'=>array('view'=>'client/adicionar','js' => 'client/history' , 'navbar'=>'client/navbar_cart'),
         'ler_amigo'=>array('view'=>'client/leramigo','js' => 'client/logado' , 'navbar'=>'navbar'),
 		);
@@ -40,6 +45,11 @@ class BenjaminClientController extends Controller {
 
     public function registrar(){      
         $selected_action = $this->actions['registrar'];
+        return view('benjamin/indexsemfooter', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js']]);
+    }
+
+    public function conectar(){      
+        $selected_action = $this->actions['conectar'];
         return view('benjamin/indexsemfooter', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js']]);
     }
 
@@ -86,6 +96,65 @@ class BenjaminClientController extends Controller {
 
     public function celular(){      
         return $this->chamar_get('logar_phone');
+    }
+
+    public function retirar($loja){
+        //header('Content-Type: application/json'); 
+        $action = 'retirar';     
+
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
+
+        $user_token = $_SESSION['usuario_logado']['user_token'];
+        
+        $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.json';
+        //print_r($url);
+        //die();
+        //$url = 'https://benjamin-a-padaria.firebaseio.com/users/10155806288081606/compras.json';
+        //$url = 'https://benjamin-a-padaria.firebaseio.com/users/5ab4edea835919e0bc28b19dc0d5af7b/compras.json';
+        $retirar = file_get_contents($url);
+
+
+        $selected_action = $this->actions[$action];
+        return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] ,'retirar'=> $retirar , 'js_view'=> $selected_action['js'], 'loja'=>$loja]);
+    }
+
+    public function history($loja){
+        //header('Content-Type: application/json'); 
+        $action = 'history';     
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
+
+        $user_token = $_SESSION['usuario_logado']['user_token'];
+        
+        $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/compras.json';
+        //print_r($url);
+        //die();
+        //$url = 'https://benjamin-a-padaria.firebaseio.com/users/10155806288081606/compras.json';
+        //$url = 'https://benjamin-a-padaria.firebaseio.com/users/5ab4edea835919e0bc28b19dc0d5af7b/compras.json';
+        $retirar = file_get_contents($url);
+
+
+        $selected_action = $this->actions[$action];
+        return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] ,'retirar'=> $retirar , 'js_view'=> $selected_action['js'], 'loja'=>$loja]);
+    }
+
+    public function transito($loja){
+        //header('Content-Type: application/json'); 
+        $action = 'transito';     
+
+        $user_token = $_SESSION['usuario_logado']['user_token'];
+        
+        $url = 'https://benjamin-a-padaria.firebaseio.com/transito/'.$loja.'/'.$user_token.'.json';
+        //print_r($url);
+        //die();
+        //$url = 'https://benjamin-a-padaria.firebaseio.com/users/10155806288081606/compras.json';
+        //$url = 'https://benjamin-a-padaria.firebaseio.com/users/5ab4edea835919e0bc28b19dc0d5af7b/compras.json';
+        $retirar = file_get_contents($url);
+
+
+        $selected_action = $this->actions[$action];
+        return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] ,'retirar'=> $retirar , 'js_view'=> $selected_action['js'], 'loja'=>$loja]);
     }
 
     public function bemamigo($user_token){      
@@ -146,6 +215,95 @@ class BenjaminClientController extends Controller {
         return response()->json($response);
     }
 
+    public function subscription_id()
+    {
+        try {
+            
+            $user_token = $_SESSION['usuario_logado']['user_token'];
+
+        //print_r($request);
+        //echo $request['valor_transferencia'];
+        $user =  \App\User::where('user_token',$user_token)->first();
+            $user->subscription_id = $_POST['id'];
+            $user->save();
+            echo "OK";
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+    public function notificar_pedido()
+    {
+        try {
+            
+            $user_token = $_POST['user'];
+
+        //print_r($request);
+        //echo $request['valor_transferencia'];
+        $user =  \App\User::where('user_token',$user_token)->first();
+
+            
+
+
+            $api_key = "AAAAhvFtF9A:APA91bES6WRxy_X69FiQt8uBi-DYQz4_x29MTJJX_fDNLMIM-q8eQ8VQRXyeia4XQs6rYuCgFlOORMLIIGzC6Apno0U9TFFtebK4LzLpTQ4Q7QT3XN5gyPZuxmoF9G9Qy0LszXKluO0R";
+$ids = $user->subscription_id;
+// Client IDs from your application
+$registration_ids = array( $ids );
+
+$message = "Pedido saindo da cozinha para a mesa !!!";
+
+// URL to POST to
+$gcm_url = 'https://android.googleapis.com/gcm/send';
+
+// data to be posted
+$fields = array(
+                'registration_ids'  => $registration_ids,
+                'data'              => array( "message" => $message ),
+                );
+
+// headers for the request
+$headers = array( 
+                    'Authorization: key=' . $api_key,
+                    'Content-Type: application/json'
+                );
+
+$curl_handle = curl_init();
+
+// set CURL options
+curl_setopt( $curl_handle, CURLOPT_URL, $gcm_url );
+
+curl_setopt( $curl_handle, CURLOPT_POST, true );
+curl_setopt( $curl_handle, CURLOPT_HTTPHEADER, $headers);
+curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
+
+curl_setopt( $curl_handle, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+
+// send
+$response = curl_exec($curl_handle);
+
+curl_close($curl_handle);
+
+// let's check the response
+$data = json_decode($response);
+
+foreach ($data['results'] as $key => $value) {
+    if ($value['registration_id']) {
+        printf("%s has a new registration id: %s\r\n", $key, $value['registration_id']);
+    }
+    if ($value['error']) {
+        printf("%s encountered error: %s\r\n", $key, $value['error']);
+    }
+    if ($value['message_id']) {
+        printf("%s was successfully sent, message id: %s", $key, $value['message_id']);
+    }
+}
+
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
      public function registrar_usuario(){
         //$postdata = file_get_contents("php://input");
         //$_POST = json_decode($postdata  , true);
@@ -310,7 +468,8 @@ class BenjaminClientController extends Controller {
         $selected_action = $this->actions[$action];
         $nome ='Cardapio';
 
-
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
 
         return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js'],'loja'=>$loja ,  'nome' =>$nome]);
     }
@@ -319,6 +478,9 @@ class BenjaminClientController extends Controller {
         $action = 'combos';       
         $selected_action = $this->actions[$action];
         $nome ='Combos';
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
+            
         return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js'],'loja'=>$loja ,  'nome' =>$nome]);
 
 
@@ -328,12 +490,18 @@ class BenjaminClientController extends Controller {
     	$action = 'creditos';       
         $selected_action = $this->actions[$action];
         $nome ='BenCreditos';
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
+
         return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js'],'loja'=>$loja ,  'nome' =>$nome]);
     }
 
     public function campanha($nome , $loja, $cliente){ 
         $action = 'cardapio';       
         $selected_action = $this->actions[$action];
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
+
         return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js'],'loja'=>$loja , 'cliente'=> $cliente , 'nome' =>$nome]);
     }
 
@@ -341,6 +509,9 @@ class BenjaminClientController extends Controller {
      public function campanha_nome($nome , $loja){ 
         $action = 'sub_cardapio';       
         $selected_action = $this->actions[$action];
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
+
         return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js'],'loja'=>$loja , 'cliente'=> '1' , 'nome' =>$nome]);
     }
 
@@ -348,6 +519,9 @@ class BenjaminClientController extends Controller {
         $action = 'carrinho';       
         $selected_action = $this->actions[$action];
         $nome ='Carrinho';
+
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
 
         $me =  \App\User::where('user_token',$_SESSION['usuario_logado']['user_token'])->first()->toJson();
 
@@ -358,10 +532,13 @@ class BenjaminClientController extends Controller {
         $action = 'creditar';       
         $selected_action = $this->actions[$action];
         $nome ='Carrinho';
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
         return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js'],'loja'=>1 ,  'nome' =>$nome]);
     }
 
     public function historico($loja, $cliente){  	
+
     	return $this->chamar_get_loja_cliente('historico', $loja, $cliente);
     }
 
@@ -371,7 +548,15 @@ class BenjaminClientController extends Controller {
         $me = "[]";
         $amigos = "[]";
 
-        $me =  \App\User::where('user_token',$_SESSION['usuario_logado']['user_token'])->first()->toJson();
+        try {
+            if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
+
+            $me =  \App\User::where('user_token',$_SESSION['usuario_logado']['user_token'])->first()->toJson();
+            
+        } catch (Exception $e) {
+            return redirect('/login');
+        }
         $amigos = \App\User::where('parent_user',$_SESSION['usuario_logado']['user_token'])->get()->toJson();
         $benamigo = new \App\Classes\BenAmigo;
 
@@ -384,6 +569,26 @@ class BenjaminClientController extends Controller {
        // return $this->chamar_get_loja_cliente('perfil', $loja, $cliente);
     }
 
+    public function bencreditos($loja){  
+        $action = 'bencreditos';       
+        $selected_action = $this->actions[$action];
+        $me = "[]";
+        $amigos = "[]";
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
+
+        $me =  \App\User::where('user_token',$_SESSION['usuario_logado']['user_token'])->first()->toJson();
+        $amigos = \App\User::where('parent_user',$_SESSION['usuario_logado']['user_token'])->get()->toJson();
+        $benamigo = new \App\Classes\BenAmigo;
+
+        $total_amigos = $benamigo->listar_amigos($_SESSION['usuario_logado']['user_token']);
+        //print_r($total_amigos);
+
+        $nome ='BenCreditos';
+        return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js'],'loja'=>$loja ,  'nome' =>$nome,  'indicados' =>$amigos ,'benamigos' =>json_encode($total_amigos) ,   'me' =>$me]);   
+
+       // return $this->chamar_get_loja_cliente('perfil', $loja, $cliente);
+    }
     public function adicionar_amigo($amigo){  
         
         $benamigo = new \App\Classes\BenAmigo;
@@ -458,6 +663,8 @@ class BenjaminClientController extends Controller {
     }
 
     public function chamar_get_loja_cliente($action, $loja, $cliente){
+        if(!isset($_SESSION['usuario_logado']['user_token']))
+                return redirect('/login');
     	$selected_action = $this->actions[$action];
     	return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js'],'loja'=>$loja , 'cliente'=> $cliente]);
     }
@@ -465,6 +672,24 @@ class BenjaminClientController extends Controller {
     public function chamar_get($action){
     	$selected_action = $this->actions[$action];
     	return view('benjamin/index', ['partial'=>$selected_action['view'],'navbar'=>$selected_action['navbar'] , 'js_view'=> $selected_action['js']]);
+    }
+
+    public function benamigos(){
+        $benamigo = new \App\Classes\BenAmigo;
+        $total_amigos = $benamigo->listar_amigos($_SESSION['usuario_logado']['user_token']);
+        $benamigos = array();
+        foreach ($total_amigos as $amigo) {
+            $benamigos[]= array('id' => $amigo->id, 'nome' => $amigo->name);
+        }
+
+        $amigos = \App\User::where('parent_user',$_SESSION['usuario_logado']['user_token'])->get();
+
+        foreach ($amigos as $amigo) {
+            $benamigos[]= array('id' => $amigo->user_token, 'nome' => $amigo->name);
+        }
+        //$todo_mundo = array_merge((array)$total_amigos,(array)$amigos);
+
+        echo json_encode($benamigos);
     }
 
 }

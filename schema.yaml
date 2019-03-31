@@ -36,6 +36,9 @@ User:
     raw_login_info:
       schema: text nullable
       tags: fillable
+    subscription_id:
+      schema: text nullable
+      tags: fillable  
     parent_user:
       schema: integer nullable
       tags: fillable  

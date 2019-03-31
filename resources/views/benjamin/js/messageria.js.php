@@ -21,6 +21,7 @@ function callzinho(){
                 $scope.lead_apontado = ref.data;
             });
           }
+          
           $http.get('pipe/usuario/'+$stateParams.usuarioId).then(function(ref) {
                 console.log(ref);
                 $scope.usuario = ref.data.profile;  

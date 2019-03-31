@@ -69,10 +69,10 @@
                     <small>R$</small> <input type="hidden" name="valor_carrinho" id="valor_carrinho" value="{{valor_total.toFixed(2)}}">{{valor_total.toFixed(2)}} 
                   </td>
                   <td colspan="1">
-                    <input type="button" name="descontar" value="descontar 5" class="btn btn-round" ng-click="descontar_wallet(1)" ng-show="me.wallet > 5" ng-hide="valor_total < 5">
-                    <input type="button" name="descontar" value="descontar 10" class="btn btn-round" ng-click="descontar_wallet(2)" ng-show="me.wallet > 10" ng-hide="valor_total < 10">
-                    <input type="button" name="descontar" value="descontar 50" class="btn btn-round" ng-click="descontar_wallet(3)" ng-show="me.wallet > 50">
-                    <input type="button" name="descontar" value="descontar 100" class="btn btn-round" ng-click="descontar_wallet(4)" ng-show="me.wallet > 100" ng-show="valor_total > 100">
+                    <input type="button" name="descontar" value="descontar 5" class="btn btn-warning btn-sm" ng-click="descontar_wallet(1)" ng-show="me.wallet > 5 && valor_total > 5">
+                    <input type="button" name="descontar" value="descontar 10" class="btn btn-warning btn-sm" ng-click="descontar_wallet(2)" ng-show="me.wallet > 10 && valor_total > 10">
+                    <input type="button" name="descontar" value="descontar 50" class="btn btn-warning btn-sm" ng-click="descontar_wallet(3)" ng-show="me.wallet > 50">
+                    <input type="button" name="descontar" value="descontar 100" class="btn btn-warning btn-sm" ng-click="descontar_wallet(4)" ng-show="me.wallet > 100" ng-show="valor_total > 100">
                     <small>Meu Saldo : - R$ {{me.wallet}} </small>
                   </td>
                   <td colspan="2" class="text-right">
@@ -130,11 +130,16 @@
                 </div> </br>
 
                 <div>
-                  <span ng-repeat="produto in carts_origin" ng-show="$last">
-                    <h3><small>R$</small> <input type="hidden" name="valor_carrinho" id="valor_carrinho" value="{{valor_total.toFixed(2)}}">{{valor_total.toFixed(2)}}</h3>
-                  </span>
-                </div>
-                {{me}}
+                  <td colspan="1" class="td-price">
+                    <small>R$</small> <input type="hidden" name="valor_carrinho" id="valor_carrinho" value="{{valor_total.toFixed(2)}}">{{valor_total.toFixed(2)}} 
+                  </td>
+                  <td colspan="1"><br>
+                    <input type="button" name="descontar" value="descontar 5" class="btn btn-warning btn-sm" ng-click="descontar_wallet(1)" ng-show="me.wallet > 5 && valor_total > 5">
+                    <input type="button" name="descontar" value="descontar 10" class="btn btn-warning btn-sm" ng-click="descontar_wallet(2)" ng-show="me.wallet > 10 && valor_total > 10">
+                    <input type="button" name="descontar" value="descontar 50" class="btn btn-warning btn-sm" ng-click="descontar_wallet(3)" ng-show="me.wallet > 50">
+                    <input type="button" name="descontar" value="descontar 100" class="btn btn-warning btn-sm" ng-click="descontar_wallet(4)" ng-show="me.wallet > 100" ng-show="valor_total > 100"><br>
+                    <small>Meu Saldo : - R$ {{me.wallet}} </small>
+                  </td>
                 <button type="button" class="btn btn-warning btn-round" data-toggle="modal" data-target="#loginModal">Fechar Pedido <i class="material-icons">keyboard_arrow_right</i></button>
                     <a href="/client/cardapio/<?php echo $loja;?>/{{$scope.logado_id}}">
                     <button type="button" class="btn btn-success btn-round" >Comprar Mais <i class="material-icons">keyboard_arrow_right</i></button>
@@ -149,7 +154,7 @@
             </div>
 
 
-
+          </div>
 
         </div>
       </div>
@@ -171,7 +176,7 @@
           <div class="modal-body" style="padding-left: 17px;">
             <form class="form" method="" action="" autocomplete="on">
               <p class="description text-center">
-              <small>R$</small> <h2>{{valor_total.toFixed(2)}}</h2></p>
+              <small>R$</small><h3 class="text-center"> {{valor_total.toFixed(2)}}</h3></p>
               <div class="card-body" style="display: none;" id="cobrado">
                 <div class="row">
                   <div class="col-md-12">

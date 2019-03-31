@@ -32,6 +32,28 @@
     $scope.produtos = JSON.parse(localStorage.getItem('produtos'));
     $scope.produtos_id = JSON.parse(localStorage.getItem('produtos_id'));
     $scope.produtos_favoritos = JSON.parse(localStorage.getItem('produtos_favoritos'));
+
+
+     var usuario = localStorage.getItem("usuario_logado");
+    $scope.usuario = JSON.parse(localStorage.getItem("usuario_logado"));
+
+    var messageria = firebase.database().ref("messageria/"+$scope.usuario.user_token);
+$scope.messageria = $firebaseObject(messageria); 
+
+
+function callzinho2(){
+          console.log($scope.messageria.status);
+          if( $scope.messageria.status == 1){
+           // alert($scope.messageria.status);
+            //location.reload(); 
+                toastr.success($scope.messageria.msg, $scope.messageria.msg);
+              $scope.messageria.status = 0;
+              $scope.messageria.$save();
+          }
+
+
+        }
+$scope.$watch('messageria.status', callzinho2);
   
 	});
 

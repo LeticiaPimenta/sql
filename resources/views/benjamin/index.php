@@ -14,7 +14,7 @@ require "../resources/views/benjamin/head.php";
       	<?php 
       require "../resources/views/benjamin/".$navbar.".php";
 			require "../resources/views/benjamin/".$partial.".php";
-		?>
+		  ?>
       <!-- end-main-raised -->
       <footer class="footer">
          <div class="container">

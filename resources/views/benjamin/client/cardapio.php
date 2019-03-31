@@ -58,10 +58,10 @@
               </div>
             </div>
             <!--End carouse--> 
-          <div class="card-title">   
+          <div class="card-title" ng-show="produtos_favoritos">   
         <h2 class="section-title"> BenAmados</h2>
           </div>
-        <div class="col-md-12">
+        <div class="col-md-12" ng-show="produtos_favoritos">
           <div class="row">
           <div class="col-md-3 d-none d-xl-block" id="product_{{produtos_id[id_favorito].PRO_CODIGO}}" ng-repeat="id_favorito in produtos_favoritos | limitTo : 4">
             <div class="card bg-warning">

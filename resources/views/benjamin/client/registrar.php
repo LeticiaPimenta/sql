@@ -32,7 +32,7 @@
                   
                   <div class="col-md-12 mr-auto">
                     <div class="social text-center">
-                      <a href="#pablo" class="btn btn-just-icon btn-link btn-warning">
+                      <a href="/conectar" class="btn btn-just-icon btn-link btn-warning">
                         <i class="fa fa-facebook-square"></i>
                       </a>
                       <a href="/login" class="btn btn-just-icon btn-link btn-warning">

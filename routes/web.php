@@ -49,14 +49,22 @@ $router->get('/login', 'BenjaminClientController@login');
 $router->get('/termos', 'BenjaminClientController@termos');
 $router->post('/logar', 'BenjaminClientController@logar');
 $router->get('/registrar', 'BenjaminClientController@registrar');
+$router->get('/benamigos', 'BenjaminClientController@benamigos');
+$router->get('/conectar', 'BenjaminClientController@conectar');
 $router->get('/indicado/{amigo}', 'BenjaminClientController@indicado');
 $router->get('/benamigo/{amigo}', 'BenjaminClientController@adicionar_amigo');
 $router->post('/client/descontar_wallet', 'BenjaminClientController@descontar_wallet');
 
 $router->get('/client/leramigo/{loja}','BenjaminClientController@ler_amigo');
+$router->get('/client/retirar/{loja}','BenjaminClientController@retirar');
+$router->get('/client/history/{loja}','BenjaminClientController@history');
+$router->get('/client/transito/{loja}','BenjaminClientController@transito');
+$router->get('/client/listar_retirar','BenjaminClientController@listar_retirar');
 $router->post('/client/amigotransferir','BenjaminClientController@amigotransferir');
 $router->post('/client/fazertransferencia','BenjaminClientController@fazertransferencia');
 $router->post('/registrar_usuario', 'BenjaminClientController@registrar_usuario');
+$router->post('/client/subscription_id', 'BenjaminClientController@subscription_id');
+$router->post('/client/notificar_pedido', 'BenjaminClientController@notificar_pedido');
 $router->get('client/qrunidade', 'BenjaminClientController@qrunidade');
 $router->get('client/select', 'BenjaminClientController@select');
 $router->get('client/favoritos', 'BenjaminClientController@favoritos');
@@ -69,10 +77,22 @@ $router->get('client/carrinho/{loja}', 'BenjaminClientController@carrinho');
 $router->get('client/creditar', 'BenjaminClientController@creditar');
 $router->get('client/historico/{cliente}/{loja}', 'BenjaminClientController@historico');
 $router->get('client/perfil/{loja}', 'BenjaminClientController@perfil');
+$router->get('client/bencreditos/{loja}', 'BenjaminClientController@bencreditos');
 
 $router->get('attendant', 'BenjaminAttendantController@select');
 $router->get('attendant/{unidade}', 'BenjaminAttendantController@unidade');
 $router->get('attendant/pedidos/{unidade}/{colaborador}', 'BenjaminAttendantController@pedidos');
+
+/***
+Action emulada
+
+*/
+$router->get('caixa/pedidos/{unidade}/{colaborador}', 'BenjaminAttendantController@pedidos');
+
+/***
+Action emulada
+
+*/
 $router->get('attendant/atender/{unidade}/{colaborador}', 'BenjaminAttendantController@atender');
 
 

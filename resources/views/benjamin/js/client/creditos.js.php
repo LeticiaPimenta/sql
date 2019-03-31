@@ -206,6 +206,7 @@
       valor:parseFloat($valor),
       hora:new Date().getTime()
     });
+    toastr.success('Pague seus vouchers', 'Você adquiriu um voucher!');
   }
 
 

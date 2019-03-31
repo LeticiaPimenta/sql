@@ -12,6 +12,7 @@
        // label.textContent = result;
         var comanda = result.split("-");
      //   alert("Sua comando é a "+comanda[1]);
+        localStorage.setItem("loja",comanda[0]);
         localStorage.setItem("comanda",comanda[1]);
      //   var user_logado = JSON.parse(localStorage.getItem("usuario"));
        

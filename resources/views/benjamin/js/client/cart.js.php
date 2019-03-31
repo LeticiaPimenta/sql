@@ -27,6 +27,12 @@
       $scope.logado_id = $scope.usuario.user_token;
 
 
+      comanda = localStorage.getItem("comanda");
+      console.log(comanda);
+      if(comanda == null || comanda == 'retirar' )
+        comanda ='<?php echo $loja;?>-0';
+
+
 
   var ref_carts = firebase.database().ref().child("carts/<?php echo $loja;?>/"+$scope.logado_id);
   // create a synchronized array
@@ -67,6 +73,12 @@
       $scope.carts = cart_formatado;
   });
 
+  $scope.fecharPedido = function(){
+   // alert("modal");
+  //  $('#loginModal').modal('show');
+    $('#loginModal').modal('show');
+  }
+
 
   $scope.descontar_wallet = function(desconto){
     var voucher = [];
@@ -104,14 +116,17 @@
 
       $http(req).then(function(response){
         console.log(response);
-        //if (response.data.status == 1) {
+      if (response.data.status == 1) {
           $scope.addCartVoucher(produto_id, 'Voucher de '+valor_desconto , valor_desconto);
           $scope.me.wallet = response.wallet;
           location.reload();
          // $scope.valor_total = $scope.valor_total - voucher['valor']
-        //}
+        }else{
+          alert(response.data.msg);
+        }
       }, function(response){
         console.log(response);
+        
       });
     //
   }
@@ -119,10 +134,7 @@
     $scope.addCartVoucher = function($product, $name , $value) {
     var ref_carts_targer = firebase.database().ref().child("carts/<?php echo $loja;?>/"+$scope.logado_id+"/"+$product);
   // create a synchronized array
-  comanda = localStorage.getItem("comanda");
-  console.log(comanda);
-  if(comanda == null)
-      comanda ='retirar';
+
   $scope.carts_clicado = $firebaseArray(ref_carts_targer);
     $scope.carts_clicado.$add({
       product: 1,
@@ -190,7 +202,7 @@
 
                 var hoje = new Date().getTime();
                // alert(hoje);
-                var ref_caixa = firebase.database().ref("pedidos/<?php echo $loja;?>");
+                var ref_caixa = firebase.database().ref("users/"+$scope.logado_id+"/retirar");
   // create a synchronized array
                 var caixa = $firebaseArray(ref_caixa);
                 var comanda = localStorage.getItem("comanda");
@@ -198,10 +210,20 @@
                   comanda ='retirar';
                 console.log("caixa/<?php echo $loja;?>/"+$scope.logado_id+"/"+hoje);
                 console.log(produtos_carrinho);
-                caixa.$add(produtos_carrinho).catch(function(error) {
-                     console.error(error); //or
-                     console.log(error);
-                 });
+                caixa.$add({
+    
+                  shop: <?php echo $loja;?>,
+                  user : $scope.logado_id,
+                 // name:$name,
+                  products: produtos_carrinho,
+                  //comanda: comanda,
+                 // value:$scope.valor_total,
+                  hora:new Date().getTime()
+                }).catch(function(error) {
+                   console.error(error); //or
+                   console.log(error);
+                  // alert('Not Saved.');
+                 })
 
                 var ref_compra = firebase.database().ref().child("users/"+$scope.logado_id+"/compras/<?php echo $loja;?>");
                 var compras = $firebaseArray(ref_compra);
@@ -224,7 +246,7 @@
                 var ref_carts_remove = firebase.database().ref().child("carts/<?php echo $loja;?>/"+$scope.logado_id);
                 var carts_remove = $firebaseObject(ref_carts_remove);
                 carts_remove.$remove();
-                window.location.replace("/client/cardapio/<?php echo $loja;?>");
+                window.location.replace("/client/retirar/<?php echo $loja;?>");
 
             }
   // add new items to the array

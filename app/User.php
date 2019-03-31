@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model {
 
-    protected $fillable = ["name", "email", "user_token", "password", "logado", "login", "imagem", "wallet", "profile_img", "raw_login_info", "parent_user", "access_token", "expiration_time", "group_id"];
+    protected $fillable = ["name", "email", "user_token", "password", "logado", "login", "imagem", "wallet", "profile_img", "raw_login_info", "subscription_id", "parent_user", "access_token", "expiration_time", "group_id"];
 
     protected $dates = [];
 

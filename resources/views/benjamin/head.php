@@ -41,7 +41,13 @@
       <!-- CSS Just for demo purpose, don't include it in your project -->
       <link href="/assets/demo/demo.css" rel="stylesheet" />
       <link href="/assets/demo/vertical-nav.css" rel="stylesheet" />
+      <link rel="manifest" href="/manifest.json">
       <!-- Google Tag Manager -->
+      <script type="text/javascript">
+        
+        var nome_importado = "Benjamin";
+
+      </script>
       <script>
          (function(w, d, s, l, i) {
            w[l] = w[l] || [];

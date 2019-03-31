@@ -13,12 +13,17 @@
             <div class="collapse navbar-collapse">
                <ul class="navbar-nav ml-auto">
                   <li class="dropdown nav-item">
-                     <a href="#" class="dropdown nav-link" data-number="2" class="" data-toggle="dropdown" aria-expanded="false">
-                      Encomendas
+                     <a href="/client/cardapio/<?php echo $loja;?>/{{$scope.logado_id}}" class="nav-link">
+                      Home
                      </a>
                   </li>
                   <li class="dropdown nav-item">
-                     <a href="/client/creditos/<?php echo $loja; ?>" class=" nav-link">
+                     <a href="/client/retirar/<?php echo $loja;?>/{{$scope.logado_id}}" class="nav-link">
+                      Retirar
+                     </a>
+                  </li>
+                  <li class="dropdown nav-item">
+                     <a href="/client/bencreditos/<?php echo $loja; ?>" class=" nav-link">
                       BenCréditos
                      </a>
                   <!--   <div class="dropdown-menu dropdown-with-icons">
@@ -147,7 +152,7 @@
                   <li class="dropdown nav-item d-none d-xl-block show" style="margin-left: 10px;" >
                     <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
                       <div class="profile-photo-small">
-                        <img ng-src="/assets/img/avatar.png" alt="Circle Image" class="rounded-circle img-fluid">
+                        <img ng-src="{{foto}}" src="{{foto}}" onerror="this.src='/assets/img/avatar.png'" alt="Circle Image" class="rounded-circle img-fluid">
                       </div>
                     <div class="ripple-container"></div></a>
                     <div class="dropdown-menu dropdown-menu-right hiding" style="margin-top: 10px;">

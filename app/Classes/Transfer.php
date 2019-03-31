@@ -43,6 +43,7 @@ class Transfer extends \App\Transfer{
     public function pagar( $sender_id , $shop_id , $amount){
         $status = 0;
 
+
        // $hash = "2018-256-1220-0-1-200-1-0";
 
         $sender = \App\User::find($sender_id);

@@ -14,7 +14,7 @@
       </div>
     </nav>
     <div class="page-header header-filter" filter-color="warning" style="background-image: url('../assets/img/benjamin4.jpg'); background-size: cover; background-position: top center;">
-      <div class="container" style="margin-top: auto;">
+      <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
           <form class="form" method="" action="">
@@ -22,7 +22,7 @@
               <div class="card-header card-header-warning text-center">
                 <h4 class="card-title">Login</h4>
                 <div class="social-line">
-                  <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
+                  <a href="/conectar" class="btn btn-just-icon btn-link btn-white">
                     <i class="fa fa-facebook-square"></i>
                   </a>
                 </div>

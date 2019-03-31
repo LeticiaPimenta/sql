@@ -3323,3 +3323,1059 @@ $factory->define(App\BenAmigo::class, function ($faker) {
         // Fields here
     ];
 });
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+<<<<<<< HEAD
+=======
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+>>>>>>> benja/alteracoes
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Cart.
+ */
+$factory->define(App\Cart::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Transfer.
+ */
+$factory->define(App\Transfer::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ShopManager.
+ */
+$factory->define(App\ShopManager::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Message.
+ */
+$factory->define(App\Message::class, function ($faker) {
+    return [
+        'user_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});

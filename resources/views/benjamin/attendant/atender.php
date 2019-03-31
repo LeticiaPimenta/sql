@@ -25,12 +25,12 @@
                   </thead>
                   <tbody >
                      <tr ng-repeat="origins in atendimentos">
-                        <td class="text-center">1</td>
+                        <td class="text-center">{{$index+1}}</td>
                         <td>{{origins.user_name}}</td>
                         <td>{{origins.name}}</td>
                         <td>{{origins.hora | date:'h:mma' }} @ comanda :{{origins.comanda}}</td>
                         <td class="td-actions text-right">
-                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(origins.user,origins.product,origins.$id , origins.value , origins.name , origins.user_name )">
+                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="recebido(origins)">
                            <i class="material-icons">edit</i>
                            </button>
                            <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">

@@ -28,22 +28,22 @@
                <table class="table"  ng-repeat="(hash ,carrinho) in carts">
                  
                   <tbody >
-                     <tr ng-repeat="(chave_carrinho, produto) in carrinho track by $index" ng-hide="produto.name == undefined">
+                     <tr >
                         
-                        <td class="text-center">1{{produto.comanda}}</td>
-                        <td>{{chave_carrinho}}{{produto.user_name}}</td>
+                        <td class="text-center">{{carrinho.comanda}}</td>
+                        <td>{{chave_carrinho}}{{carrinho.user_name}}</td>
                         <td>
                           
                            
-                              {{produto.name}} - {{produto.hora | date:'h:mm a'}} 
+                              {{carrinho.name}} - {{carrinho.hora | date:'h:mm a'}} 
                            
                         
                           
                         </td>
-                        <td> comanda :{{produto.comanda}}</td>
+                        <td> comanda :{{carrinho.comanda}}</td>
       
                         <td class="td-actions text-right">
-                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="atender(produto.user, carrinho.$id ,chave_carrinho,produto.value ,produto.user_name, produto.name , produto)">
+                           <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="" ng-click="atender(carrinho)">
                                  <i class="material-icons">edit</i>
                               </button>
                            <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">

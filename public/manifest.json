@@ -1,12 +1,11 @@
-
 {
   "name": "Aplicativo Benjamin",
   "short_name": "Aplicativo Benjamin",
-  "start_url": "/pwa.html",
+  "start_url": "./client/retirar/1",
   "display": "standalone",
+  "gcm_sender_id": "579576076240",
   "icons": [{
     "src": "/assets/img/favicon.png",
     "type": "image/png"
   }]
 }
-

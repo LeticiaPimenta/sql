@@ -68,17 +68,19 @@
                 </a><button class="btn btn-warning btn-round" ng-click-copy="https://benjamin-homolog.herokuapp.com/indicado/{{usuario.user_token}}">Copiar o meu Link de indicação</button></h5>
               </a><button class="btn btn-warning btn-round" ng-click-copy="https://benjamin-homolog.herokuapp.com/benamigo/{{usuario.user_token}}">Copiar o meu Link de amigo</button></h5>
                 <br>
-                <hr>
+                <hr> 
+                <div class=" d-none d-xl-block">
                 <a href="/client/adicionarbem/<?php echo $loja; ?>">
                   <button class="btn btn-warning btn-round">Adicionar Um Bem amigo</button>
                 </a> 
 
                 <span ng-show="parent_user">
                   <br>
-                {{parent_user.nome}}<div class="btn btn-just-icon btn-warning btn-round" ng-click="modal_transferir(parent_user.user_token)">$</div></span>
+                {{parent_user.nome}}<div class="btn btn-just-icon btn-warning btn-round" ng-click="modal_transferir(parent_user.user_token)"><i class="material-icons">reply</i></div></span>
                   <br>
-                <div ng-repeat="indicado in indicados">{{indicado.name}}- {{indicado.email}}<div class="btn btn-just-icon btn-warning btn-round" ng-click="modal_transferir(indicado.user_token)">$</div><br></div>
-                <div ng-repeat="indicado in benamigos">{{indicado.name}}- {{indicado.email}}<div class="btn btn-just-icon btn-warning btn-round" ng-click="modal_transferir(indicado.user_token)">$</div><br></div>
+                <div ng-repeat="indicado in indicados">{{indicado.name}}- {{indicado.email}}<div class="btn btn-just-icon btn-warning btn-round" ng-click="modal_transferir(indicado.user_token)"><i class="material-icons">reply</i></div><br></div>
+                <div ng-repeat="indicado in benamigos">{{indicado.name}}- {{indicado.email}}<div class="btn btn-just-icon btn-warning btn-round" ng-click="modal_transferir(indicado.user_token)"><i class="material-icons">reply</i></div><br></div>
+                </div>
                
               </div>
             </div>
@@ -103,7 +105,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#media" role="tab" data-toggle="tab">
+                  <a class="nav-link" href="/client/history/<?php echo $loja ?>" role="tab" data-toggle="tab">
                     <i class="material-icons">shop_two</i> Ultimas compras
                   </a>
                 </li>
@@ -170,13 +172,15 @@
                     <div class="card card-background" style="background-image: url('/assets/img/foto.jpg')">
                       <a href="#"></a>
                       <div class="card-body">
-                        <a href="#">
+                        <a href="/client/history/<?php echo $loja ?>">
                           <h2 class="card-title" style="margin-top: 50px;">Veja seu histórico!</h2>
                         </a><br>
                         <div class="stats">
-                          <button type="button" name="button" class="btn btn-white btn-round btn-link">
-                            <i class="material-icons">bookmark</i> Histórico
-                          </button>
+                          <a href="/client/history/<?php echo $loja ?>">
+                            <button type="button" name="button" class="btn btn-white btn-round btn-link">
+                              <i class="material-icons">bookmark</i> Histórico
+                            </button>
+                          </a>
                         </div>
                       </div>
                     </div>

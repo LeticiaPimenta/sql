@@ -244,7 +244,7 @@
         </div>
         <div class="modal-footer">
           <div class="container">R$ {{credito_selecionado}}</div>
-          <button type="button" class="btn btn-warning" ng-click="add_credito(credito_selecionado)" data-toggle="modal" data-target="#smallAlertModal" data-dismiss="#modal_produto">Pedir</button>
+          <button type="button" class="btn btn-warning" ng-click="add_credito(credito_selecionado)">Pedir</button>
           <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Fechar</button>
         </div>
       </div>
