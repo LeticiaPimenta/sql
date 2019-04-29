@@ -21,7 +21,9 @@ $router->get('/celular', function () use ($router) {
 });
 
 $router->get('/payments', function () use ($router) {
-    return "rodando do celular do inferno";
+    $pagamento =  \App\Classes\Payment::all()->toJson();
+    print_r($pagamento);
+
 });
 
 $router->get('/compra/retorno/{idcompra}', 'EcomController@renderizar');
