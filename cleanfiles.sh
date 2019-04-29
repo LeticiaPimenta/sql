@@ -7,4 +7,3 @@ cp routes/web.php routes/web1.php
 php artisan wn:resources schema.yaml --force
 rm -rf routes/web.php
 mv routes/web1.php routes/web.php
-cp storage/dev.sqlite storage/database.sqlite

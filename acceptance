@@ -1,0 +1,39 @@
+ Snippets found in: 
+  - user.feature 
+ Generated Snippets: 
+ ----------------------------------------- 
+    /**
+     * @Given i have user with email is xxx
+     */
+     public function iHaveUserWithEmailIsXxx()
+     {
+         throw new \Codeception\Exception\Incomplete("Step `i have user with email is xxx` is not defined");
+     }
+
+    /**
+     * @Given i have user with password xxx
+     */
+     public function iHaveUserWithPasswordXxx()
+     {
+         throw new \Codeception\Exception\Incomplete("Step `i have user with password xxx` is not defined");
+     }
+
+    /**
+     * @When i go to login process
+     */
+     public function iGoToLoginProcess()
+     {
+         throw new \Codeception\Exception\Incomplete("Step `i go to login process` is not defined");
+     }
+
+    /**
+     * @Then i should see that login is successfull
+     */
+     public function iShouldSeeThatLoginIsSuccessfull()
+     {
+         throw new \Codeception\Exception\Incomplete("Step `i should see that login is successfull` is not defined");
+     }
+
+ ----------------------------------------- 
+ 4 snippets proposed
+ Copy generated snippets to AcceptanceTester or a specific Gherkin context 

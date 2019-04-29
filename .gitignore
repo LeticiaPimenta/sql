@@ -1,2 +1,5 @@
-vendor/
-/nbproject/private/
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env

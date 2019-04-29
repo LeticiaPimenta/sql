@@ -1,0 +1,157 @@
+User:
+  belongsTo: group
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    email:
+      schema: string
+      rules: required
+      tags: fillable 
+    password:
+      schema: string
+      rules: required
+      tags: fillable   
+  add: timestamps softDeletes
+Group:
+  hasMany: users
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    desc:
+      schema: text nullable
+      tags: fillable
+  add: timestamps  
+Team:
+  hasMany: Players
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    fundacao:
+      schema: string
+      rules: required
+      tags: fillable
+    cep:
+      schema: string
+      rules: required
+      tags: fillable 
+    rua:
+      schema: string
+      rules: required
+      tags: fillable  
+    bairro:
+      schema: string
+      rules: required
+      tags: fillable
+    cidade:
+      schema: string
+      rules: required
+      tags: fillable
+    uf:
+      schema: string
+      rules: required
+      tags: fillable        
+    celular:
+      schema: string
+      rules: required
+      tags: fillable    
+    desc:
+      schema: text nullable
+      tags: fillable
+    hash:
+      schema: text nullable
+      tags: fillable  
+  add: timestamps softDeletes
+Tryout:
+  hasMany: Players
+  belongsTo: team
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    player:
+      schema: integer
+      rules: required
+      tags: fillable 
+    status:
+      schema: string
+      rules: required
+      tags: fillable
+    response:
+      schema: integer
+      rules: required
+      tags: fillable   
+  add: timestamps  
+Player:
+  belongsTo: team
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    psn:
+      schema: string
+      rules: required
+      tags: fillable
+    posicao:
+      schema: string
+      rules: required
+      tags: fillable   
+    points:
+      schema: integer nullable
+      tags: fillable   
+    desc:
+      schema: text nullable
+      tags: fillable
+  add: timestamps
+Championship:
+  hasMany: ChampionshipTeams
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    min:
+      schema: integer nullable
+      tags: fillable   
+    max:
+      schema: integer nullable
+      tags: fillable
+    status:
+      schema: integer unsigned
+      rules: required
+      tags: fillable  
+    due:
+      schema: date nullable
+      rules: date
+      tags: date fillable  
+  add: timestamps
+ChampionshipTeam:
+  belongsTo: Championship
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    team_id:
+      schema: integer unsigned
+      rules: required numeric
+      tags: fillable 
+    status:
+      schema: integer unsigned
+      rules: required numeric
+      tags: fillable     
+    points:
+      schema: integer
+      rules: required
+      tags: fillable   
+    desc:
+      schema: text nullable
+      tags: fillable
+  add: timestamps  

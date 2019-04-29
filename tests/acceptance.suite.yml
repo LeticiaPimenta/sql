@@ -4,15 +4,15 @@
 # Perform tests in browser using the WebDriver or PhpBrowser.
 # If you need both WebDriver and PHPBrowser tests - create a separate suite.
 
-class_name: AcceptanceTester
+actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://localhost:8000
+            url: https://ben-facil.herokuapp.com/
         - \Helper\Acceptance
         - Lumen:
             part: ORM
             environment_file: .env.testing   
         - REST:
            depends: PhpBrowser
-           url: 'http://localhost:8000/api/'
+           url: 'http://localhost:8080/'

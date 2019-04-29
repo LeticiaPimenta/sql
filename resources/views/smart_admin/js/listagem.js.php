@@ -1,1 +1,0 @@
-todoList.listagem = <?php echo $listagem; ?>;

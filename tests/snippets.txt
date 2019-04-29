@@ -1,0 +1,23 @@
+ Snippets found in: 
+  - user.feature 
+ Generated Snippets: 
+ ----------------------------------------- 
+    /**
+     * @When i call login
+     */
+     public function iCallLogin()
+     {
+         throw new \Codeception\Exception\Incomplete("Step `i call login` is not defined");
+     }
+
+    /**
+     * @Then i should see that login is successfull
+     */
+     public function iShouldSeeThatLoginIsSuccessfull()
+     {
+         throw new \Codeception\Exception\Incomplete("Step `i should see that login is successfull` is not defined");
+     }
+
+ ----------------------------------------- 
+ 2 snippets proposed
+ Copy generated snippets to AcceptanceTester or a specific Gherkin context 

@@ -1,7 +1,8 @@
 {
-  "name": "Aplicativo Benjamin",
-  "short_name": "Aplicativo Benjamin",
-  "start_url": "./client/retirar/1",
+  "name": "Benjamin a Padaria",
+  "short_name": "Benjamin",
+  "background_color": "#C2752A",
+  "start_url": "carrinho.html",
   "display": "standalone",
   "gcm_sender_id": "579576076240",
   "icons": [{
