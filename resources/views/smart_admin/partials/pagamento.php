@@ -176,17 +176,18 @@
 														<th>ITEM</th>
 														<th>DESCRIÇÃO</th>
 														<th>TOTAL</th>
-														<th>SUBTOTAL</th>
+														
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td class="text-center"><strong>1</strong></td>
-														<td><a href="javascript:void(0);">Venda no app</a></td>
-														<td>Essa venda é descrita no profile do cliente</td>
-														<td>${{todoList.pagamento.total}}</td>
+
+													<tr ng-repeat="item in todoList.produtos.cart">
+														<td class="text-center"><strong>{{$index}}</strong></td>
+														<td><a href="javascript:void(0);">{{item.PRESENTATION_NAME}}</a></td>
+														<td>{{item.PRESENTATION_NAME}}</td>
+														<td>${{item.VALUE}}</td>
 				
-														<td>${{todoList.pagamento.total}}</td>
+														
 													</tr>
 													
 													<tr>

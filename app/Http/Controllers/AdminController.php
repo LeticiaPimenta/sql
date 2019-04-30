@@ -87,8 +87,13 @@ class AdminController extends Controller {
         //$produtos = \DB::table('produto')->take(500)->get()->toJson();
 
         $usuario_logado = $_SESSION['usuario_logado'];
+
+        $dados = \App\Payment::find($id);
+        $json_dados = json_decode($dados->dados);
+
+
        
-        return view('smart_admin/index', ['partial'=>'pagamento' ,'entidade'=>'pagamento', 'pagamento'=>\App\Payment::find($id)->toJson()  , 'usuario'=>$usuario_logado, 'js'=>'pagamento']);
+        return view('smart_admin/index', ['partial'=>'pagamento' ,'entidade'=>'pagamento', 'pagamento'=>\App\Payment::find($id)->toJson(), 'produtos'=> json_encode($json_dados) , 'usuario'=>$usuario_logado, 'js'=>'pagamento']);
     }
 
 
