@@ -116,7 +116,7 @@ carrinho
                          setLocalData("BENJAMIN_USER_VAULT_KEY", response.name);
                          setLocalData("BENJAMIN_USERCART", null);
                          // return response.json();
-                         window.location.replace("/pocket.html");
+                         window.location.replace("/vault.html");
                               }
                           })
 

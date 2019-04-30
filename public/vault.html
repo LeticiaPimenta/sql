@@ -292,17 +292,27 @@
                  cart.hash_email_cliente = hash;
              }
 
-             cart.solicitar = function() {
-              var oldVault = cart.user_vault;
-              cart.vault = [];
-              angular.forEach(oldVault, function(item_vault) {
-                if (item_vault.done) cart.vault.push(item_vault);
-              });
+            cart.solicitar = function() {
+                var oldVault = cart.user_vault;
+                cart.vault = [];
+                angular.forEach(oldVault, function(item_vault) {
+                    if (item_vault.done) cart.vault.push(item_vault);
+                });
 
-              alert("vai solicitar"+JSON.stringify(cart.vault))
-              console.log(cart.vault);
-              //console.log(oldVault);
-              //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
+                alert("vai solicitar"+JSON.stringify(cart.vault))
+                console.log(cart.vault);
+                //console.log(oldVault);
+                //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
+            };
+
+
+            cart.solicitar_tudo = function() {
+               
+
+                alert("vai solicitar"+JSON.stringify(cart.user_vault))
+                console.log(cart.user_vault);
+                //console.log(oldVault);
+                //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
             };
 
      
@@ -495,13 +505,13 @@
             <h4 class="font300 mb30">
                
                 Voce tem {{cart.user_vault.length}} a retirar agora !
-
+                <a  class="btn btn-primary" ng-click="cart.solicitar_tudo()">Solicitar Tudo</a>
             </h4>
             <table class="table table-condensed table-responsive cart-table mb40">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Product</th>
+                        <th>Produto</th>
                        
                         <th></th>
                     </tr>
@@ -513,7 +523,7 @@
                         </td>
                         <td class="product-name">{{produto.PRESENTATION_NAME}}</td>
                        
-                        <td class="product-delete"> <input type="checkbox" ng-model="produto.done"></td>
+                        <td class="product-delete"> Selecionar<input type="checkbox" ng-model="produto.done"></td>
                     </tr>
                    
                 </tbody>
@@ -524,7 +534,7 @@
     </div>
      <div class="col-sm-6 text-right">
          
-        <a  class="btn btn-primary" ng-click="cart.solicitar()">Solicitar tudo</a>
+        <a  class="btn btn-primary" ng-click="cart.solicitar()">Solicitar selecionados</a>
     </div>
 </div>
         </div>
