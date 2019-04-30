@@ -23,6 +23,7 @@ class Payment extends \App\Payment {
         $registrar->dados = $json_cart;
         $registrar->type = $cart->method;
         $registrar->user = $hash_user;
+        $registrar->total = $total;
         $registrar->shop = 1;
         $registrar->save();
 
@@ -35,23 +36,11 @@ class Payment extends \App\Payment {
 
 
         $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$hash_user.'/retirar.json';
- 
-        //Initiate cURL.
         $ch = curl_init($url);
-
-        //Encode the array into JSON.
         $jsonDataEncoded = json_encode($retirar);
-         
-        //Tell cURL that we want to send a POST request.
         curl_setopt($ch, CURLOPT_POST, 1);
-         
-        //Attach our encoded JSON string to the POST fields.
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
-         
-        //Set the content type to application/json
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
-         
-        //Execute the request
         $result = curl_exec($ch);
 
         return $result;
