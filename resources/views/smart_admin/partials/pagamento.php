@@ -188,11 +188,11 @@
 													</tr>
 													
 													<tr>
-														<td colspan="4">Total</td>
+														<td colspan="3">Total</td>
 														<td><strong>{{todoList.pagamento.total|currency:"R$"}}</strong></td>
 													</tr>
 													<tr>
-														<td colspan="4">PIS/COFINS</td>
+														<td colspan="3">PIS/COFINS</td>
 														<td><strong>13%</strong></td>
 													</tr>
 												</tbody>
