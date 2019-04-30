@@ -20,6 +20,25 @@ $router->get('/celular', function () use ($router) {
     return "rodando do celular do inferno";
 });
 
+$router->get('/ler', function () use ($router) {
+	$FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/7683a66bb9f308d716cdf8c0cebebc23/retirar/-Ldg9-I76TLSdwVFR02E/";
+	$NODE_GET = "products.json";
+	$curl = curl_init();
+	curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
+	curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+	$response = curl_exec( $curl );
+	curl_close( $curl );
+	$produtos = json_decode($response);
+	foreach ($produtos as $key => $produto) {
+		if(isset($produto->CODE)){
+			print_r($key);
+			echo "<br>";
+			print_r($produto->CODE);
+			echo "<hr>";	
+		}
+	}
+});
+
 $router->get('/apaga', function () use ($router) {
     
 
