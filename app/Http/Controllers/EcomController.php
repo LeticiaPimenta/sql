@@ -31,8 +31,8 @@ class EcomController extends Controller
         $data = json_decode($json);
         $pagamento = new \App\Classes\Payment;
 
-        echo '{"name":"-LdcBFf0rhGBqu23Kvbj"}';
-      //  echo $pagamento->register($json);
+        //echo '{"name":"-LdcBFf0rhGBqu23Kvbj"}';
+        $pagamento->register($json);
         die();
         //return $pagamento->register($json);
         //return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);

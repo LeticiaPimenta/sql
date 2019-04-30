@@ -17,23 +17,24 @@ class Payment extends \App\Payment {
             $total+=$item->VALUE;
         }
 
+        $hash_user = md5($cart->user);
         $registrar = new \App\Payment;
-        $registrar->name = $cart->user;
+        $registrar->name = $hash_user;
         $registrar->dados = $json_cart;
         $registrar->type = $cart->method;
-        $registrar->user = $cart->user;
+        $registrar->user = $hash_user;
         $registrar->shop = 1;
         $registrar->save();
 
        $retirar = array();
 
        $retirar['hora'] =  (new \DateTime())->getTimestamp();
-       $retirar['user'] =  $cart->user;
+       $retirar['user'] =  $hash_user;
        $retirar['shop'] =  $registrar->shop;
        $retirar['products'] =  $produtos;
 
 
-        $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$cart->user.'/retirar.json';
+        $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$hash_user.'/retirar.json';
  
         //Initiate cURL.
         $ch = curl_init($url);

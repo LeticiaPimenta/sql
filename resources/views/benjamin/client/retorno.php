@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="/js/jquery.min.js"></script>
 	<title></title>
 </head>
 <body>
 carrinho
-</body>
-<script src="/js/crypto.js"></script>
+
+
  <script type="text/javascript">
 
     var produtos = new Array();
@@ -56,7 +57,7 @@ carrinho
             cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
             console.log(cartObj);
 
-             var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
+             var hash_email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
 
             var dados = {
             	"user":hash_email_cliente,
@@ -64,7 +65,7 @@ carrinho
             	"method":"paypal"
             }
 
-            fetch('/compra/registrar',{
+          /*  fetch('/compra/registrar',{
       			  method: 'POST', // or 'PUT'
       			  body: JSON.stringify(dados), // data can be `string` or {object}!
       			  headers:{
@@ -80,7 +81,8 @@ carrinho
                 //vault['key'] = response;
                 vault['cart'] = getLocalData("BENJAMIN_USERCART");
 
-                //console.log(response['name']);
+                console.log(response);
+                console.log(response.json());
                 console.log(vault);
                 console.log(JSON.stringify(vault));
 
@@ -90,19 +92,42 @@ carrinho
                 setLocalData("BENJAMIN_USER_VAULT", getLocalData("BENJAMIN_USERCART"));
                setLocalData("BENJAMIN_USERCART", null);
       			   // return response.json();
-               window.location.replace("/carrinho.html");
+               //window.location.replace("/carrinho.html");
       			  })
       			  .then(function(myJson) {
       			    console.log(JSON.stringify(myJson));
-      			  });
+      			  });*/
 
-          }else{
-            console.log("\t[CART-BENJAMIN] Carrinho esta vazio!");
-          }
-      }
-      
+
+               $.ajax({
+                    type: "POST",
+                    //the url where you want to sent the userName and password to
+                    url: '/compra/registrar',
+                    dataType: 'json',
+                    async: false,
+                    //json object to sent to the authentication url
+                    data: JSON.stringify(dados),
+                    success: function (response) {
+                       cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+
+                          console.log(response);
+                        
+                         setLocalData("BENJAMIN_USER_VAULT", getLocalData("BENJAMIN_USERCART"));
+                         setLocalData("BENJAMIN_USER_VAULT_KEY", response.name);
+                         setLocalData("BENJAMIN_USERCART", null);
+                         // return response.json();
+                         window.location.replace("/carrinho.html");
+                              }
+                          })
+
+                    }else{
+                      console.log("\t[CART-BENJAMIN] Carrinho esta vazio!");
+                    }
+                }
+                
 
           cart_initCart();
 
           </script>
+          </body>
 </html>
