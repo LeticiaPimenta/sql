@@ -218,7 +218,7 @@
                  return $sce.trustAsHtml(text);
              };
              }])
-             .controller('CartController', function($sce) {
+             .controller('CartController', function($sce, $http) {
              var cart = this;
              cart.produtos = produtos;
              cart.catalogo = catalogo;
@@ -227,6 +227,9 @@
              cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
              cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
              cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
+             $http.get("benjamin-a-padaria-unidades.json").then(function(response){
+                cart.unidades = response.data;
+             })
              
              if(cart.email_cliente)
              cart.hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
@@ -295,12 +298,20 @@
             cart.solicitar = function() {
                 var oldVault = cart.user_vault;
                 cart.vault = [];
+                cart.itens = [];
                 angular.forEach(oldVault, function(item_vault) {
-                    if (item_vault.done) cart.vault.push(item_vault);
+                    if (item_vault.done){
+                        cart.vault.push(item_vault);
+                        cart.itens.push(item_vault.CODE);
+                    }
                 });
 
-                alert("vai solicitar"+JSON.stringify(cart.vault))
-                console.log(cart.vault);
+              //  alert("vai solicitar"+JSON.stringify(cart.itens))
+                console.log(cart.itens);
+                var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
+                $.post("retirar", {"itens":cart.itens, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
+                    console.log(response);
+                })
                 //console.log(oldVault);
                 //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
             };
@@ -534,7 +545,7 @@
     </div>
      <div class="col-sm-6 text-right">
          
-        <a  class="btn btn-primary" ng-click="cart.solicitar()">Solicitar selecionados</a>
+        <a  class="btn btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#exampleModalLong">Solicitar selecionados</a>
     </div>
 </div>
         </div>
@@ -629,6 +640,47 @@
                
             </div>
         </footer>
+        <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Solicitar os produtos</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4 ng-show="loja">Voce está na Loja  {{loja}} </h4>
+                                      <div ng-hide="loja"><strong>VOCE NAO SELECIONOU SUA LOJA, </strong><br><a href="/client/qrunidade">Leia o QR de UMA MESA </a><br>OU selecione uma na listagem !</div>
+                                      <span ng-show="loja">
+                                      Se estiver em loja errada ! <a href="/client/qrunidade">vai pra seleção de unidades</a></span>
+                                      <br>
+                                      <select id="loja_selecionado" ng-change="mudar_loja()" ng-model="loja">
+                                        <option  ng-repeat="loja in cart.unidades" value="{{loja.loja}}">Loja {{loja.loja}} - {{loja.nome}}</option>
+                                      </select>
+                                    <p>
+                                     
+                    <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
+                                  <!-- Card 1 -->
+                                  <div class="card" ng-repeat="produto in cart.user_vault" ng-show="produto.done">
+                                    <div class="card-header accordion-header" role="tab" id="heading{{produto.CODE}}2"> <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{produto.CODE}}List" aria-expanded="true" aria-controls="collapse{{produto.CODE}}"> {{produto.PRESENTATION_NAME}} </a> </div>
+                                    <div id="collapse{{produto.CODE}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{produto.CODE}}1">
+                                      <div class="card-body">
+                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..."></textarea></div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary">Solicitar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--modal-->
         <!--back to top  -->
         <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->

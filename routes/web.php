@@ -20,6 +20,11 @@ $router->get('/celular', function () use ($router) {
     return "rodando do celular do inferno";
 });
 
+
+$router->post('/retirar', function () use ($router) {
+    print_r($_POST);
+});
+
 $router->get('/ler', function () use ($router) {
 	$FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/7683a66bb9f308d716cdf8c0cebebc23/retirar/-Ldg9-I76TLSdwVFR02E/";
 	$NODE_GET = "products.json";
