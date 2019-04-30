@@ -743,16 +743,47 @@
                 map = new GMaps({
                     scrollwheel: false,
                     el: '#markermap',
-                    lat: 26.981942,
-                    lng: 75.684486
+                    lat: -23.561414,
+                    lng: -46.6580706
 
                 });
                 map.addMarker({
-                    lat: 26.981942,
-                    lng: 75.684486,
-                    title: 'Marker with InfoWindow',
+                    lat: -23.561224,
+                    lng: -46.6580116,
+                    title: 'Benjamin Paulista',
+                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
                     infoWindow: {
-                        content: '<h4>Assan Restaurant</h4><p>Classic foods & drinks</p>'
+                        content: '<h4>Benjamin</h4><p>Unidade Paulista <br> Aberta agora</p>'
+                    }
+                });
+
+                map.addMarker({
+                    lat: -23.5702433,
+                    lng: -46.6634681,
+                    title: 'Benjamin Pamplona',
+                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                    infoWindow: {
+                        content: '<h4>Benjamin</h4><p>Unidade Pamplona <br> Aberta agora</p>'
+                    }
+                });
+
+                map.addMarker({
+                    lat: -23.5620054,
+                    lng: -46.6721896,
+                    title: 'Benjamin Oscar Freire I',
+                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                    infoWindow: {
+                        content: '<h4>Benjamin</h4><p>Unidade Oscar Freire I <br> Rua Oscar Freire, 1052 – Cerqueira César<br> <span style="color:green"> Aberta agora &#10004;</span><br><span class="btn btn-primary ">Solicitar aqui</span></p>'
+                    }
+                });
+
+                map.addMarker({
+                    lat: -23.5650046,
+                    lng: -46.6686824,
+                    title: 'Benjamin Oscar Freire II',
+                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                    infoWindow: {
+                        content: '<h4>Benjamin</h4><p>Unidade Oscar Freire II <br> Rua Oscar Freire, 562 – Cerqueira César<br> <span style="color:green"> Aberta agora &#10004;</span><br><span class="btn btn-primary ">Solicitar aqui</span></p>'
                     }
                 });
             });
