@@ -124,7 +124,7 @@
 												</address>
 											</div>
 											<div class="pull-right">
-												<h1 class="font-400">{{todoList.pagamento.total}}</h1>
+												<h1 class="font-400">{{todoList.pagamento.total|currency:"R$"}}</h1>
 											</div>
 											<div class="clearfix"></div>
 											<br>
@@ -161,7 +161,7 @@
 													<div class="well well-sm  bg-color-darken txt-color-white no-border">
 														<div class="fa-lg">
 															Total :
-															<span class="pull-right"> R$ {{todoList.pagamento.total}} </span>
+															<span class="pull-right"> {{todoList.pagamento.total|currency:"R$"}} </span>
 														</div>
 				
 													</div>
@@ -172,26 +172,24 @@
 											<table class="table table-hover">
 												<thead>
 													<tr>
-														<th class="text-center">QTY</th>
+														<th class="text-center">#</th>
 														<th>ITEM</th>
 														<th>DESCRIÇÃO</th>
 														<th>TOTAL</th>
-														<th>SUBTOTAL</th>
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td class="text-center"><strong>1</strong></td>
-														<td><a href="javascript:void(0);">Venda no app</a></td>
-														<td>Essa venda é descrita no profile do cliente</td>
-														<td>${{todoList.pagamento.total}}</td>
-				
-														<td>${{todoList.pagamento.total}}</td>
+
+													<tr ng-repeat="item in todoList.produtos.cart">
+														<td class="text-center"><strong>{{$index+1}}</strong></td>
+														<td><a href="javascript:void(0);">{{item.PRESENTATION_NAME}}</a></td>
+														<td>{{item.PRESENTATION_NAME}}</td>
+														<td>{{item.VALUE|currency:"R$"}}</td>
 													</tr>
 													
 													<tr>
 														<td colspan="4">Total</td>
-														<td><strong>R$ {{todoList.pagamento.total}}</strong></td>
+														<td><strong>{{todoList.pagamento.total|currency:"R$"}}</strong></td>
 													</tr>
 													<tr>
 														<td colspan="4">PIS/COFINS</td>
@@ -215,7 +213,7 @@
 													</div>
 													<div class="col-sm-5">
 														<div class="invoice-sum-total pull-right">
-															<h3><strong>Total: <span class="text-success">R$ {{todoList.pagamento.total}}</span></strong></h3>
+															<h3><strong>Total: <span class="text-success">R$ {{todoList.pagamento.total|currency:"R$"}}</span></strong></h3>
 														</div>
 													</div>
 				

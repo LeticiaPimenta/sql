@@ -10,8 +10,7 @@ $.get( "https://benjamin-a-padaria.firebaseio.com/unidades/"+todoList.pagamento.
 });
 
 
-
-
+todoList.produtos = <?php echo $produtos; ?>;
 
 todoList.tipos_pagamentos = [];
 todoList.tipos_pagamentos[1] = "cartao";
