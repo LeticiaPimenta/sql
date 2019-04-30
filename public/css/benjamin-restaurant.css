@@ -147,3 +147,7 @@ Responsive style (always bottom in main style file)
     color: #fff !important;
     margin-left: 10px;
 }
+
+.tabs-menu-nav > li > a.active {
+  border-bottom-color: #ff9800;
+}

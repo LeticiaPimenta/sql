@@ -334,10 +334,11 @@
                         <ul class="navbar-nav  ml-auto">
                             <li class="nav-item"><a data-scroll class="nav-link active" href="#home"> Home</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#about"> QR Code</a></li>
+                            <li class="nav-item"><a data-scroll class="nav-link" href="#foods"> BenAmados</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#contact"> Contato</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link btn btn-primary" href="" ng-click="cart.pega_email()"> Logar</a></li>
+                            <li class="nav-item"><a data-scroll class="nav-link btn btn-primary" href="#"> Logar</a></li>
                         </ul>   
                     </div>
                 </div>
@@ -422,7 +423,7 @@
                              data-transform_idle="o:1;" 
                              data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
                              data-transform_out="auto:auto;s:300;" 
-                             data-start="1500"><a href="" class="btn float-right btn-outline-white" ng-click="cart.pega_email()">Logar</a></div>
+                             data-start="1500"><a href="#" class="btn float-right btn-outline-white">Logar</a></div>
                     </li>
                     <li data-transition="random"> 
                         <!-- MAIN IMAGE -->
@@ -484,7 +485,34 @@
             </div>
         </div><!--intro-->
 
+        <div class="bg-primary pt90 pb90" id="foods">
+            <div class="container">
+                <div class="center-title">
+                    <h2 class="text-white">BenAmados</h2>
+                </div>
 
+                <div class="row">
+                    <div class="owl-carousel owl-theme carousel-cards">
+                        <div class="item" ng-repeat="produto in cart.produtos |filter:product_filter" ng-show="produto.PRESENTATION_NAME !=''">
+
+                            <div class="card card-body text-center">
+                                <h4 class="card-title">
+                                    {{produto.PRESENTATION_NAME}}
+                                </h4>
+                                <button class="btn float-right btn-outline-primary" ng-click=cart.adicionar(produto.CODE)>Adicionar <i class="ti-plus"></i></button> 
+                            </div>
+
+
+                        <!--    <a class="card-image">
+                                <img src="images/resto/food1.jpg" alt="" class="img-fluid">
+                                <h4>{{produto.PRESENTATION_NAME}}<button class="btn float-right btn-outline-white" ng-click=cart.adicionar(produto.CODE)>Adicionar <i class="ti-plus"></i></button></h4>
+                            </a> -->
+                        </div><!--item-->
+                        
+                    </div>
+                </div>
+            </div>
+        </div><!--foods-->
 
         <div class="bg-parallax parallax-overlay pt100 pb100" id='menu' data-jarallax='{"speed": 0.2}' style="background:url(images/resto/Imagem9.png) no-repeat;">
             <div class="container">
@@ -506,7 +534,11 @@
                                 <div class='row'>
                                     <div class='col-md-6 mb20'>
                                         <article class="media" ng-repeat="produto_code in cart.campanhas[campanha_lojas].PRODUCTS">
-                                            
+                                            <!-- Article Image -->
+                                            <a class="g-width-100" href="#">
+                                                <img class="img-fluid mr-4" width='80' src="images/resto/food1.jpg" alt="Menu title">
+                                            </a>
+                                            <!--Image -->
                                             <!--Content -->
                                             <div class="media-body align-self-center g-pl-10">
                                                 <div class="d-flex justify-content-between mb10">
@@ -514,9 +546,11 @@
 
                                                     <div class="align-self-center">
                                                         <strong class="text-white font700">
-                                                            <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="text-white" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
+                                                            <button class="social-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><i class="ti-plus"></i></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
                                                     </div>
                                                 </div>
+
+                                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                             </div>
                                             <!--/Content -->
                                         </article>
@@ -534,7 +568,7 @@
             <div class="container">
                 <div class="center-title" ng-show="!cart.email_cliente">
                     <h2>Carrinho</h2>
-                    <p>Você precisa logar para pagar seu carrinho. <a href="" ng-click="cart.pega_email()">Logar.</a></p>
+                    <p>Você precisa logar para pagar seu carrinho. <a ng-click="cart.pega_email()">Logar.</a></p>
                 </div>
                 <div class="center-title" ng-show="cart.email_cliente">
                     <h2>Carrinho</h2>
@@ -553,7 +587,7 @@
 
                                         <div class="align-self-center">
                                             <strong class="text-white font700">
-                                                <button class="btn-icon-sm float-right si-red si-dark-round si-round" ng-click=cart.removeItem($index)><a class="text-white" href=""><i class="ti-close"></i></a></button> {{produto.VALUE|currency:"R$"}}</strong>
+                                                <button class="social-icon-sm float-right si-red si-dark-round si-round" ng-click=cart.removeItem($index)><i class="ti-close"></i></button> {{produto.VALUE|currency:"R$"}}</strong>
                                         </div>
                                     </div>
                                     <hr>
