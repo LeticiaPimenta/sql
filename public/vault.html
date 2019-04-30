@@ -15,6 +15,13 @@
         <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
         <link href="css/style-restaurant.css" rel="stylesheet">
         <link href="css/benjamin-restaurant.css" rel="stylesheet">
+        <style type="text/css">
+            
+            tr.selected td {
+    background-color: #333;
+    color: #fff;    
+}
+        </style>
         <script src="js/angular.min.js"></script>
         <script src="js/crypto.js"></script>
         <script type="text/javascript">
@@ -273,17 +280,32 @@
              }
              
              cart.pega_email = function(){
-             var email = prompt("Qual é o seu email?");
-             
-             //if (email.toLowerCase() == "escorpião") {
-               var hash = Crypto.MD5(email);
-               //alert(email);
-               //alert(hash);
-             //  }
-             setLocalData("BENJAMIN_USERCART_EMAIL",email);
-             cart.email_cliente = email;
-             cart.hash_email_cliente = hash;
+                 var email = prompt("Qual é o seu email?");
+                 
+                 //if (email.toLowerCase() == "escorpião") {
+                   var hash = Crypto.MD5(email);
+                   //alert(email);
+                   //alert(hash);
+                 //  }
+                 setLocalData("BENJAMIN_USERCART_EMAIL",email);
+                 cart.email_cliente = email;
+                 cart.hash_email_cliente = hash;
              }
+
+             cart.solicitar = function() {
+              var oldVault = cart.user_vault;
+              cart.vault = [];
+              angular.forEach(oldVault, function(item_vault) {
+                if (item_vault.done) cart.vault.push(item_vault);
+              });
+
+              alert("vai solicitar"+JSON.stringify(cart.vault))
+              console.log(cart.vault);
+              //console.log(oldVault);
+              setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
+            };
+
+     
              
              cart.total = carrinho_local();
              cart_initCart (); 
@@ -489,9 +511,9 @@
                         <td class="product-image">
                             <img src="images/shop/p1.jpg" alt="" width="50">
                         </td>
-                        <td class="product-name"><a href="#">{{produto.PRESENTATION_NAME}}</a></td>
+                        <td class="product-name">{{produto.PRESENTATION_NAME}}</td>
                        
-                        <td class="product-delete"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Solicitar produto"><i class="fa fa-arrow-down"></i></a></td>
+                        <td class="product-delete"> <input type="checkbox" ng-model="produto.done"></td>
                     </tr>
                    
                 </tbody>
@@ -501,10 +523,8 @@
         <a href="/pocket.html" class="btn btn-outline-secondary">Pedir Outra hora</a>
     </div>
      <div class="col-sm-6 text-right">
-         <div class="pb20">
-             <h3><small>Total do Pedido - </small> {{cart.total |currency:"R$" }}</h3>
-         </div>
-        <a href="/pocket.html" class="btn btn-primary">Solicitar tudo</a>
+         
+        <a  class="btn btn-primary" ng-click="cart.solicitar()">Solicitar tudo</a>
     </div>
 </div>
         </div>
@@ -657,6 +677,18 @@
                     infoWindow: {
                         content: '<h4>Assan Restaurant</h4><p>Classic foods & drinks</p>'
                     }
+                });
+
+
+                $(".item_vault").on("click", function() {
+                    alert("aqui");
+                   /* var tr = $(this).parent();
+                    if(tr.hasClass("selected")) {
+                        tr.removeClass("selected");
+                    } else {
+                        tr.addClass("selected");
+                    }*/
+
                 });
             });
         </script> 
