@@ -91,6 +91,8 @@ class AdminController extends Controller {
         $dados = \App\Payment::find($id);
         $json_dados = json_decode($dados->dados);
 
+       // print_r($dados);
+
 
        
         return view('smart_admin/index', ['partial'=>'pagamento' ,'entidade'=>'pagamento', 'pagamento'=>\App\Payment::find($id)->toJson(), 'produtos'=> json_encode($json_dados) , 'usuario'=>$usuario_logado, 'js'=>'pagamento']);

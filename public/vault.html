@@ -22,6 +22,7 @@
     color: #fff;    
 }
         </style>
+        <script src="js/jquery.min.js"></script>
         <script src="js/angular.min.js"></script>
         <script src="js/crypto.js"></script>
         <script type="text/javascript">
@@ -224,6 +225,7 @@
              cart.catalogo = catalogo;
              cart.campanhas = campanhas;
              cart.campanhas_lojas = campanhas_lojas;
+             cart.loja = getLocalData("BENJAMIN_SHOP");
              cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
              cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
              cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
@@ -282,6 +284,14 @@
                cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
              }
              
+             cart.solicitar_itens = function(id){
+                var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
+                $.post("/compra/retirar", {"itens":cart.itens,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
+                    console.log(response);
+                })
+             }
+
+
              cart.pega_email = function(){
                  var email = prompt("Qual é o seu email?");
                  
@@ -308,10 +318,7 @@
 
               //  alert("vai solicitar"+JSON.stringify(cart.itens))
                 console.log(cart.itens);
-                var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
-                $.post("retirar", {"itens":cart.itens, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
-                    console.log(response);
-                })
+                
                 //console.log(oldVault);
                 //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
             };
@@ -325,6 +332,10 @@
                 //console.log(oldVault);
                 //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
             };
+
+            cart.mudar_loja = function(){
+                setLocalData("BENJAMIN_SHOP",cart.loja);
+            }
 
      
              
@@ -539,15 +550,15 @@
                    
                 </tbody>
             </table><hr class="mb40">
-<div class="row">
-    <div class="col-sm-6">
-        <a href="/pocket.html" class="btn btn-outline-secondary">Pedir Outra hora</a>
-    </div>
-     <div class="col-sm-6 text-right">
-         
-        <a  class="btn btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#exampleModalLong">Solicitar selecionados</a>
-    </div>
-</div>
+        <div class="row">
+            <div class="col-sm-6">
+                <a href="/pocket.html" class="btn btn-outline-secondary">Pedir Outra hora</a>
+            </div>
+             <div class="col-sm-6 text-right">
+                 
+                <a  class="btn btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#exampleModalLong">Solicitar selecionados</a>
+            </div>
+        </div>
         </div>
         </div><!--intro-->
 
@@ -632,7 +643,7 @@
                          <div class='pt30'>
                              <span>Sac</span>
                              <p class="lead">sac@benjaminapadaria.com.br</p>
-                    &copy; Copyright 2017. All Right Reserved. 
+                    &copy; Copyright 2019. All Right Reserved. 
                 </div>
                     </div>
                 
@@ -643,6 +654,7 @@
         <!-- Modal -->
                     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
+                            <form id="form_retirar">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLongTitle">Solicitar os produtos</h5>
@@ -656,7 +668,8 @@
                                       <span ng-show="loja">
                                       Se estiver em loja errada ! <a href="/client/qrunidade">vai pra seleção de unidades</a></span>
                                       <br>
-                                      <select id="loja_selecionado" ng-change="mudar_loja()" ng-model="loja">
+                                      <input type="hidden" name="cart_loja" value="{{cart.loja}}">
+                                      <select id="loja_selecionado" name="loja" ng-change="cart.mudar_loja()" ng-model="cart.loja">
                                         <option  ng-repeat="loja in cart.unidades" value="{{loja.loja}}">Loja {{loja.loja}} - {{loja.nome}}</option>
                                       </select>
                                     <p>
@@ -676,9 +689,10 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary">Solicitar</button>
+                                    <button type="button" class="btn btn-primary" ng-click="cart.solicitar_itens()">Solicitar</button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div><!--modal-->
         <!--back to top  -->

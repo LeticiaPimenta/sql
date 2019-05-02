@@ -11,7 +11,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Home</li><li>Pagamentos</li><li>Pagamento # {{todoList.pagamento.id}}</li>
+					<li>Home</li><li>Pagamentos</li><li>Pagamento # {{todoList.pagamento.id}}@{{todoList.pagamento.tid}}</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -58,7 +58,7 @@
 								-->
 								<header>
 									<span class="widget-icon"> <i class="fa fa-barcode"></i> </span>
-									<h2>Pagamento #{{todoList.pagamento.id}} </h2>
+									<h2>Pagamento #{{todoList.pagamento.id}} @ {{todoList.pagamento.tid}} </h2>
 				
 								</header>
 				
@@ -146,7 +146,7 @@
 													<div>
 														<div>
 															<strong>Número da transação :</strong>
-															<span class="pull-right"> # {{todoList.pagamento.id}} </span>
+															<span class="pull-right"> # {{todoList.pagamento.id}} @{{todoList.pagamento.tid}}</span>
 														</div>
 				
 													</div>
