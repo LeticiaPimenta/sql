@@ -82,7 +82,7 @@ class EcomController extends Controller
             foreach ($produtos as $key => $produto) {
                 if(isset($produto->CODE) && $produto->CODE == $item){
                    // print_r($key);
-                    $atendimentos[]=$produto;
+                    $produtos_atendimento[]=$produto;
                     $NODE_DELETE = $key.".json";
 
                     $curl = curl_init();
@@ -99,10 +99,17 @@ class EcomController extends Controller
             }
         }
 
-        $json = json_encode( $atendimentos );
+        $atendimento = array('user_email' => $dados['user_email'],
+                            'user_hash' => md5($dados['user_email']),
+                            'shop'=> $dados['loja'],
+                            'products'=>$produtos_atendimento,
+                            'tid'=>$dados['vault_key'],
+                            'hora'=> (new \DateTime())->getTimestamp());
+
+        $json = json_encode( $atendimento );
 
 
-        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/atendimentos/".$dados['vault_key']."/";
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/atendimentos/".$dados['loja']."/".md5($dados['user_email'])."/".$dados['vault_key']."/";
         $NODE_GET = "products.json";
        // echo $FIREBASE . $NODE_GET ;
         $curl = curl_init();
