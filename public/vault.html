@@ -326,9 +326,13 @@
 
             cart.solicitar_tudo = function() {
                
+                angular.forEach(cart.user_vault, function(item_vault) {
+                    item_vault.done = true;
+                });
 
                 alert("vai solicitar"+JSON.stringify(cart.user_vault))
                 console.log(cart.user_vault);
+                $('#modal-solicitar').modal('show')
                 //console.log(oldVault);
                 //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
             };
@@ -556,7 +560,7 @@
             </div>
              <div class="col-sm-6 text-right">
                  
-                <a  class="btn btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#exampleModalLong">Solicitar selecionados</a>
+                <a  class="btn btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#modal-solicitar">Solicitar selecionados</a>
             </div>
         </div>
         </div>
@@ -652,12 +656,12 @@
             </div>
         </footer>
         <!-- Modal -->
-                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal fade" id="modal-solicitar" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <form id="form_retirar">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Solicitar os produtos</h5>
+                                    <h5 class="modal-title" id="modal-solicitarTitle">Solicitar os produtos</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
