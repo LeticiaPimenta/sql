@@ -79,12 +79,8 @@ class EcomController extends Controller
         
             foreach ($produtos as $key => $produto) {
                 if(isset($produto->CODE) && $produto->CODE == $item){
-                    print_r($key);
-                    //echo "<br>";
-                    echo " # ";
-                    print_r($produto);
-                    echo "<hr>";  
-
+                   // print_r($key);
+                   
                     $NODE_DELETE = $key.".json";
 
                     $curl = curl_init();
