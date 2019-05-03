@@ -285,6 +285,7 @@
              }
              
              cart.solicitar_itens = function(id){
+                console.log(cart);
                 var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
                 $.post("/compra/retirar", {"itens":cart.itens,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
                     console.log(response);
@@ -311,7 +312,7 @@
                 cart.itens = [];
                 angular.forEach(oldVault, function(item_vault) {
                     if (item_vault.done){
-                        cart.vault.push(item_vault);
+                       // cart.vault.push(item_vault);
                         cart.itens.push(item_vault.CODE);
                     }
                 });
@@ -325,11 +326,13 @@
 
 
             cart.solicitar_tudo = function() {
-               
+               cart.itens = [];
                 angular.forEach(cart.user_vault, function(item_vault) {
                     item_vault.done = true;
+                    cart.itens.push(item_vault.CODE);
                 });
 
+                //cart.itens = cart.user_vault;
                 alert("vai solicitar"+JSON.stringify(cart.user_vault))
                 console.log(cart.user_vault);
                 $('#modal-solicitar').modal('show')
@@ -545,7 +548,7 @@
                 <tbody>
                     <tr ng-repeat="produto in cart.user_vault">
                         <td class="product-image">
-                            <img src="images/shop/p1.jpg" alt="" width="50">
+                            <img src="images/shop/p1.jpg" alt="{{produto.PRESENTATION_NAME}}" width="50">
                         </td>
                         <td class="product-name">{{produto.PRESENTATION_NAME}}</td>
                        
@@ -681,10 +684,11 @@
                     <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
                                   <!-- Card 1 -->
                                   <div class="card" ng-repeat="produto in cart.user_vault" ng-show="produto.done">
-                                    <div class="card-header accordion-header" role="tab" id="heading{{produto.CODE}}2"> <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{produto.CODE}}List" aria-expanded="true" aria-controls="collapse{{produto.CODE}}"> {{produto.PRESENTATION_NAME}} </a> </div>
+                                    <div class="card-header accordion-header" role="tab" id="heading{{produto.CODE}}2"> 
+                                        <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{produto.CODE}}List" aria-expanded="true" aria-controls="collapse{{produto.CODE}}"> {{produto.PRESENTATION_NAME}} </a> </div>
                                     <div id="collapse{{produto.CODE}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{produto.CODE}}1">
                                       <div class="card-body">
-                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..."></textarea></div>
+                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs_{{produto.CODE}}-{{$index}}" ng-model="produto.obs"></textarea></div>
                                     </div>
                                   </div>
                                   

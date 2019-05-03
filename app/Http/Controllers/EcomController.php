@@ -61,11 +61,12 @@ class EcomController extends Controller
 
     public function retirar(){
         $dados = $_POST;
+       // print_r($dados);
 
 
         $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
         $NODE_GET = "products.json";
-        echo $FIREBASE . $NODE_GET ;
+       // echo $FIREBASE . $NODE_GET ;
         $curl = curl_init();
         curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
         curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
@@ -73,16 +74,42 @@ class EcomController extends Controller
         curl_close( $curl );
         $produtos = json_decode($response);
         $x=0;
-        foreach ($produtos as $key => $produto) {
-            if(isset($produto->CODE)){
-                //print_r($key);
-                //echo "<br>";
-                echo $x." # ";
-                print_r($produto);
-                echo "<hr>";  
-                $x++;  
+        foreach ($dados['itens'] as  $item) {
+            # code...
+        
+            foreach ($produtos as $key => $produto) {
+                if(isset($produto->CODE) && $produto->CODE == $item){
+                    print_r($key);
+                    //echo "<br>";
+                    echo " # ";
+                    print_r($produto);
+                    echo "<hr>";  
+
+                    $NODE_DELETE = $key.".json";
+
+                    $curl = curl_init();
+
+                     curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
+                     curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+                    curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+
+                    $response = curl_exec( $curl );
+                    curl_close( $curl );
+                    break;
+                }
+
             }
         }
+
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
+        $NODE_GET = "products.json";
+       // echo $FIREBASE . $NODE_GET ;
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+        print_r($response);
     }
 
 }
