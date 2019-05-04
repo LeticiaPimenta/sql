@@ -287,9 +287,16 @@
              cart.solicitar_itens = function(id){
                 console.log(cart);
                 var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
+                $('#modal-solicitar').modal('hide');
                 $.post("/compra/retirar", {"itens":cart.itens,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
                     console.log(response);
                     cart.user_vault = response;
+
+                    $(".solicitar").slideUp();
+                    $(".solicitado").slideDown();
+                    setLocalData("BENJAMIN_USER_VAULT", null);
+                    setLocalData("BENJAMIN_USER_VAULT_KEY", null);
+                    setLocalData("BENJAMIN_USERCART", null);
                 })
              }
 
@@ -336,7 +343,7 @@
                 //cart.itens = cart.user_vault;
                 alert("vai solicitar"+JSON.stringify(cart.user_vault))
                 console.log(cart.user_vault);
-                $('#modal-solicitar').modal('show')
+                $('#modal-solicitar').modal('show');
                 //console.log(oldVault);
                 //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
             };
@@ -529,8 +536,29 @@
             </div><!-- END REVOLUTION SLIDER -->
         </div><!-- END OF SLIDER WRAPPER -->
         <!--end slider revolution-->
+        <div class="bg-white solicitado" style="display: none">
+            <div class="container pb60">
+            <h4 class="font300 mb30">
+               
+                Seu pedido foi aceito na nossa cozinha !<br>
+        
+            </h4>
+            </div>
+        </div>
 
-        <div class="bg-white" id="about">
+        <div class="bg-white"  ng-hide="cart.user_vault.length">
+            <div class="container pb60">
+            <h4 class="font300 mb30">
+               
+               
+        Se você tiver algum item a retirar entre em sua conta e veja o que tem disponivel !</div>
+                <a  class="btn btn-primary" href="/perfil">Minha Conta </a>
+            </h4>
+            </div>
+        </div>
+       
+
+        <div class="bg-white solicitar" id="about" ng-show="cart.user_vault.length">
             <div class="container pb60">
             <h4 class="font300 mb30">
                
@@ -547,7 +575,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="produto in cart.user_vault">
+                    <tr ng-repeat="produto in cart.user_vault" ng-show="produto.PRESENTATION_NAME">
                         <td class="product-image">
                             <img src="images/shop/p1.jpg" alt="{{produto.PRESENTATION_NAME}}" width="50">
                         </td>
@@ -558,7 +586,7 @@
                    
                 </tbody>
             </table><hr class="mb40">
-        <div class="row">
+        <div class="row solicitar">
             <div class="col-sm-6">
                 <a href="/pocket.html" class="btn btn-outline-secondary">Pedir Outra hora</a>
             </div>

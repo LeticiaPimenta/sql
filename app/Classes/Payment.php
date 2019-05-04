@@ -11,10 +11,11 @@ class Payment extends \App\Payment {
         $produtos = array();
 
         foreach ($cart->cart as $item) {
+            if(isset($item->VALUE)){
+                $produtos[]=$item;
 
-            $produtos[]=$item;
-
-            $total+=$item->VALUE;
+                $total+=$item->VALUE;  
+            }
         }
         $hash_user = md5($cart->user);
         $retirar = array();
