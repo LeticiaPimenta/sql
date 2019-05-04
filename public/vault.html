@@ -286,13 +286,14 @@
              
              cart.solicitar_itens = function(id){
                 console.log(cart);
+                $(".solicitar").slideUp();
                 var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
                 $('#modal-solicitar').modal('hide');
                 $.post("/compra/retirar", {"itens":cart.itens,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
                     console.log(response);
                     cart.user_vault = response;
 
-                    $(".solicitar").slideUp();
+                    
                     $(".solicitado").slideDown();
                     setLocalData("BENJAMIN_USER_VAULT", null);
                     setLocalData("BENJAMIN_USER_VAULT_KEY", null);
@@ -546,14 +547,14 @@
             </div>
         </div>
 
-        <div class="bg-white"  ng-hide="cart.user_vault.length">
+        <div class="bg-white solicitado"  ng-hide="cart.user_vault.length">
             <div class="container pb60">
             <h4 class="font300 mb30">
                
                
-        Se você tiver algum item a retirar entre em sua conta e veja o que tem disponivel !</div>
-                <a  class="btn btn-primary" href="/perfil">Minha Conta </a>
+        Se você tiver algum item a retirar entre em sua conta e veja o que tem disponivel !
             </h4>
+                <a  class="btn btn-primary" href="/perfil">Minha Conta </a>
             </div>
         </div>
        
