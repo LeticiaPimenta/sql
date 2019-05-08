@@ -96,7 +96,7 @@ class EcomController extends Controller
 
                             $response = curl_exec( $curl );
                             curl_close( $curl );
-                            //break;
+                            break;
                         }
                     }
                 }else{
