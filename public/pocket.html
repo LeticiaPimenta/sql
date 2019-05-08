@@ -218,6 +218,7 @@
              cart.campanhas = campanhas;
              cart.campanhas_lojas = campanhas_lojas;
              cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+             cart.cart_ci = JSON.parse(getLocalData("BENJAMIN_USERCART_CI"));
              cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
              cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
              
@@ -322,7 +323,39 @@
                     </div>
                 </div>
             </div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-faded">           
+             <!-- Pushy Menu -->
+        <aside class="pushy pushy-right">
+            <div class="cart-content">
+                <div class="clearfix">
+                    <a href="javascript:void(0)" class="pushy-link text-white-gray">X</a>
+                </div>
+                <ul class="list-unstyled">
+                    <li class="clearfix" ng-repeat="produto in cart.carrinho track by $index" ng-show="produto.PRESENTATION_NAME">
+                        <a href="#" class="float-left">
+                            <img src="images/shop/p1.jpg" class="img-fluid" alt="" width="60">
+                        </a>
+                        <div class="oHidden">
+                            <span class="close" ng-click=cart.removeItem($index><i class="ti-close"></i></span>
+                            <h4><a href="#">{{produto.PRESENTATION_NAME}}</a></h4>
+                            <p class="text-white-gray"><strong>{{produto.VALUE}}</strong></p>
+                        </div>
+                    </li><!--/cart item-->
+                    
+
+                </ul>
+            </div>
+        </aside>
+        <!-- Site Overlay -->
+        <div class="site-overlay"></div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-faded"> 
+                      
+             <div class="search-inline">
+                <form>
+                    <input type="text" class="form-control" placeholder="Digite e aperte enter...">
+                    <button type="submit"><i class="ti-search"></i></button>
+                    <a href="javascript:void(0)" class="search-close"><i class="ti-close"></i></a>
+                </form>
+            </div><!--/search form-->          
                 <div class="container">
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarRestaurant" aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -335,11 +368,17 @@
                             <li class="nav-item"><a data-scroll class="nav-link active" href="#home"> Home</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#about"> QR Code</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
+                            <li class="nav-item"><a data-scroll class="nav-link" \href="javascript:void(0)"> Carrinho</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#contact"> Contato</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link btn si-orange btn-primary" href="" ng-click="cart.pega_email()"> Logar</a></li>
                         </ul>   
                     </div>
+                    <div class=" navbar-right-elements">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart si-orange"></i> <span class="badge badge-default si-orange btn-primary">{{cart.carrinho.length}}</span></a></li>
+                    </ul>
+                </div>
                 </div>
             </nav>
         </header><!--/header-->
@@ -553,7 +592,7 @@
 
                                         <div class="align-self-center">
                                             <strong class="text-white font700">
-                                                <button class="btn-icon-sm float-right si-red si-dark-round si-round" ng-click=cart.removeItem($index)><a class="text-white" href=""><i class="ti-close"></i></a></button> {{produto.VALUE|currency:"R$"}}</strong>
+                                                <button class="btn-icon-sm float-right si-red si-dark-round si-round" ng-click="cart.removeItem($index)"><a class="text-white" href="#"><i class="ti-close"></i></a></button> {{produto.VALUE|currency:"R$"}}</strong>
                                         </div>
                                     </div>
                                     <hr>
@@ -593,14 +632,18 @@
                      <input type="hidden" name="currency_code" value="BRL" />
                      <input type="hidden" name="tx" value="{{cart.hash_email_cliente}}">
                      <input type="hidden" name="payer_id" value="{{cart.hash_email_cliente}}">
+                     <input type="hidden" name="invoice" value="{{cart.hash_email_cliente}}@{{cart.cart_ci}}">
                      <input type="hidden" name="custom" value="{{cart.hash_email_cliente}}">
                      <input type="hidden" name="at" value="{{cart.hash_email_cliente}}">
                      <!--Informações sobre o produto e seu valor-->
                      <input type="hidden" name="amount" value="{{cart.total}}" />
                      <input type="hidden" name="item_name" value="Servico" />
                      <input type="hidden" name="quantity" value="1" />
+                     <input type="hidden" name="item_number_1" value="bolinho" />
+                     <input type="hidden" name="item_number_2" value="Sonho" />
+
                      <!--Botão para submissão do formulário-->
-                     <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente" /> - {{cart.hash_email_cliente}}#{{cart.user_vault}}
+                     <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente" />
                   </form>
             </div>
         </div>
@@ -743,16 +786,47 @@
                 map = new GMaps({
                     scrollwheel: false,
                     el: '#markermap',
-                    lat: 26.981942,
-                    lng: 75.684486
+                    lat: -23.561414,
+                    lng: -46.6580706
 
                 });
                 map.addMarker({
-                    lat: 26.981942,
-                    lng: 75.684486,
-                    title: 'Marker with InfoWindow',
+                    lat: -23.561224,
+                    lng: -46.6580116,
+                    title: 'Benjamin Paulista',
+                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
                     infoWindow: {
-                        content: '<h4>Assan Restaurant</h4><p>Classic foods & drinks</p>'
+                        content: '<h4>Benjamin</h4><p>Unidade Paulista <br> Aberta agora</p>'
+                    }
+                });
+
+                map.addMarker({
+                    lat: -23.5702433,
+                    lng: -46.6634681,
+                    title: 'Benjamin Pamplona',
+                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                    infoWindow: {
+                        content: '<h4>Benjamin</h4><p>Unidade Pamplona <br> Aberta agora</p>'
+                    }
+                });
+
+                map.addMarker({
+                    lat: -23.5620054,
+                    lng: -46.6721896,
+                    title: 'Benjamin Oscar Freire I',
+                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                    infoWindow: {
+                        content: '<h4>Benjamin</h4><p>Unidade Oscar Freire I <br> Rua Oscar Freire, 1052 – Cerqueira César<br> <span style="color:green"> Aberta agora &#10004;</span><br><span class="btn btn-primary ">Solicitar aqui</span></p>'
+                    }
+                });
+
+                map.addMarker({
+                    lat: -23.5650046,
+                    lng: -46.6686824,
+                    title: 'Benjamin Oscar Freire II',
+                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                    infoWindow: {
+                        content: '<h4>Benjamin</h4><p>Unidade Oscar Freire II <br> Rua Oscar Freire, 562 – Cerqueira César<br> <span style="color:green"> Aberta agora &#10004;</span><br><span class="btn btn-primary ">Solicitar aqui</span></p>'
                     }
                 });
             });

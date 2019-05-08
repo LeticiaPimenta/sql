@@ -1,0 +1,216 @@
+[ null, {
+  "endereco" : "Alameda Casa Branca, 720 – Jardins",
+  "funcionamento" : "6:30 às 21:30",
+  "loja" : "1",
+  "nome" : "JARDINS I"
+}, {
+  "endereco" : "Alameda Joaquim Eugênio de Lima, 1220 – Jardins",
+  "funcionamento" : "6:30 às 21:31",
+  "loja" : "2",
+  "nome" : "JARDINS II"
+}, {
+  "endereco" : "Rua Maranhão, 220 – Higienópolis",
+  "funcionamento" : "6:30 às 21:32",
+  "loja" : "3",
+  "nome" : "HIGIENÓPOLIS"
+}, {
+  "endereco" : "Rua da Consolação, 2096 – Consolação -",
+  "funcionamento" : "6:30 às 21:33",
+  "loja" : "4",
+  "nome" : "CONSOLAÇÃO"
+}, {
+  "endereco" : "Avenida Paulista, 2239 – Cerqueira César",
+  "funcionamento" : "6:30 às 21:34",
+  "loja" : "5",
+  "nome" : "HADDOCK LOBO"
+}, {
+  "endereco" : "Rua Pamplona, 1704 – Jardins",
+  "funcionamento" : "6:30 às 21:35",
+  "loja" : "6",
+  "nome" : "PAMPLONA I"
+}, {
+  "endereco" : "Rua Pamplona, 676 – Jardins",
+  "funcionamento" : "6:30 às 21:36",
+  "loja" : "7",
+  "nome" : "PAMPLONA II"
+}, {
+  "endereco" : "Rua dos Pinheiros, 573 – Pinheiros",
+  "funcionamento" : "6:30 às 21:37",
+  "loja" : "8",
+  "nome" : "PINHEIROS"
+}, {
+  "endereco" : "Avenida Rebouças, 3970 - Piso Térreo - Pinheiros",
+  "funcionamento" : "6:30 às 21:38",
+  "loja" : "9",
+  "nome" : "SHOPPING ELDORADO"
+}, {
+  "endereco" : "Avenida São Gabriel, 491 - Itaim Bibi",
+  "funcionamento" : "6:30 às 21:39",
+  "loja" : "10",
+  "nome" : "ITAIM BIBI"
+}, {
+  "endereco" : "Rua Bandeira Paulista, 485 - Itaim Bibi",
+  "funcionamento" : "6:30 às 21:40",
+  "loja" : "11",
+  "nome" : "BANDEIRA PAULISTA"
+}, {
+  "endereco" : "Rua Cel. Xavier de Toledo, 23 - Piso Térreo - Centro",
+  "funcionamento" : "6:30 às 21:41",
+  "loja" : "12",
+  "nome" : "SHOPPING LIGHT"
+}, {
+  "endereco" : "Rua da Consolação, 930 - Consolação",
+  "funcionamento" : "6:30 às 21:42",
+  "loja" : "13",
+  "nome" : "MACKENZIE"
+}, {
+  "endereco" : "Rua Monte Alegre, 984 - Perdizes",
+  "funcionamento" : "6:30 às 21:43",
+  "loja" : "14",
+  "nome" : "PUC"
+}, {
+  "endereco" : "Rua Pedro de Toledo, 590 – Vila Clementino",
+  "funcionamento" : "6:30 às 21:44",
+  "loja" : "15",
+  "nome" : "PEDRO DE TOLEDO"
+}, {
+  "endereco" : "Rua Oscar Freire, 1052 – Cerqueira César",
+  "funcionamento" : "6:30 às 21:45",
+  "loja" : "16",
+  "nome" : "OSCAR FREIRE I"
+}, {
+  "endereco" : "Rua Oscar Freire, 562",
+  "funcionamento" : "6:30 às 21:46",
+  "loja" : "17",
+  "nome" : "OSCAR FREIRE II"
+}, {
+  "endereco" : "Rua Desembargador Eliseu Guilherme, 86 – Paraíso - (em frente do HCor)",
+  "funcionamento" : "6:30 às 21:47",
+  "loja" : "18",
+  "nome" : "PARAÍSO"
+}, {
+  "endereco" : "Rua Augusta, 2046 - Jardins",
+  "funcionamento" : "6:30 às 21:48",
+  "loja" : "19",
+  "nome" : "AUGUSTA"
+}, {
+  "endereco" : "Avenida Paulista, 1471 - Cerqueira César - (próximo ao Metrô Trianon/MASP)",
+  "funcionamento" : "6:30 às 21:49",
+  "loja" : "20",
+  "nome" : "TRIANON"
+}, {
+  "endereco" : "Rua Funchal, 449 – Vila Olímpia",
+  "funcionamento" : "6:30 às 21:50",
+  "loja" : "21",
+  "nome" : "FUNCHAL"
+}, {
+  "endereco" : "Rua Frei Caneca, 703 – Consolação",
+  "funcionamento" : "6:30 às 21:51",
+  "loja" : "22",
+  "nome" : "FREI CANECA"
+}, {
+  "endereco" : "Rua Domingos Agostim, 91 - Piso Metrô",
+  "funcionamento" : "6:30 às 21:52",
+  "loja" : "23",
+  "nome" : "SHOPPING METRÔ TATUAPÉ"
+}, {
+  "endereco" : "Rua João Cachoeira, 805 - Itaim Bibi",
+  "funcionamento" : "6:30 às 21:53",
+  "loja" : "24",
+  "nome" : "JOÃO CACHOEIRA"
+}, {
+  "endereco" : "Rua Professor Manoelito de Ornellas, 56 - Chácara Santo Antônio",
+  "funcionamento" : "6:30 às 21:54",
+  "loja" : "25",
+  "nome" : "MANOELITO"
+}, {
+  "endereco" : "Av. Dr. Antônio Maria Laet, 566 - Tucuruvi",
+  "funcionamento" : "6:30 às 21:55",
+  "loja" : "26",
+  "nome" : "TUCURUVI"
+}, {
+  "endereco" : "Av. Brigadeiro Faria Lima, 1974",
+  "funcionamento" : "6:30 às 21:56",
+  "loja" : "27",
+  "nome" : "FARIA LIMA"
+}, {
+  "endereco" : "Metrô São Bento - Pátio Metrô São Bento",
+  "funcionamento" : "6:30 às 21:57",
+  "loja" : "28",
+  "nome" : "SÃO BENTO"
+}, {
+  "endereco" : "Rua Afonso Braz, 355 - Vila Nova Conceição",
+  "funcionamento" : "6:30 às 21:58",
+  "loja" : "29",
+  "nome" : "AFONSO BRAZ"
+}, {
+  "endereco" : "Shopping Metrô Santa Cruz - Piso Metrô",
+  "funcionamento" : "6:30 às 21:59",
+  "loja" : "30",
+  "nome" : "SANTA CRUZ"
+}, {
+  "endereco" : "Rua Alvares Penteado, 20 - Centro",
+  "funcionamento" : "6:30 às 21:60",
+  "loja" : "31",
+  "nome" : "ALVARES PENTEADO"
+}, {
+  "endereco" : "Rua Tuiuti, 1907 - Tatuapé",
+  "funcionamento" : "6:30 às 21:61",
+  "loja" : "32",
+  "nome" : "TUIUTI"
+}, {
+  "endereco" : "Avenida Paulista, 2073 - Consolação",
+  "funcionamento" : "6:30 às 21:62",
+  "loja" : "33",
+  "nome" : "CONJUNTO NACIONAL"
+}, {
+  "endereco" : "Avenida Fagundes Filho, 191 - Vila Monte Alegre",
+  "funcionamento" : "6:30 às 21:63",
+  "loja" : "34",
+  "nome" : "FAGUNDES FILHO"
+}, {
+  "endereco" : "Rua do Arouche, 206 - República",
+  "funcionamento" : "6:30 às 21:64",
+  "loja" : "35",
+  "nome" : "AROUCHE"
+}, {
+  "endereco" : "R. Amador Bueno, 229 - Santo Amaro",
+  "funcionamento" : "6:30 às 21:65",
+  "loja" : "36",
+  "nome" : "MAIS SHOPPING"
+}, {
+  "endereco" : "Rua Voluntários da Pátria, 2093 - Santana",
+  "funcionamento" : "6:30 às 21:66",
+  "loja" : "37",
+  "nome" : "VOLUNTÁRIOS DA PÁTRIA"
+}, {
+  "endereco" : "Avenida Paulista, 1015 - Cerqueira César",
+  "funcionamento" : "6:30 às 21:67",
+  "loja" : "38",
+  "nome" : "PAULISTA"
+}, {
+  "endereco" : "Rodovia Presidente Dutra, Saída 225, s/n - Itapejica, Guarulhos",
+  "funcionamento" : "6:30 às 21:68",
+  "loja" : "39",
+  "nome" : "SHOPPING GUARULHOS"
+}, {
+  "endereco" : "R. Treze de Maio, 1947 - Bela Vista",
+  "funcionamento" : "6:30 às 21:69",
+  "loja" : "40",
+  "nome" : "PÁTIO PAULISTA"
+}, {
+  "endereco" : "R. Conselheiro Moreira de Barros, 2780 - Santana",
+  "funcionamento" : "6:30 às 21:70",
+  "loja" : "41",
+  "nome" : "SANTANA PARQUE SHOPPING"
+}, {
+  "endereco" : "R. Treze de Maio, 1842 - Bela Vista",
+  "funcionamento" : "6:30 às 21:71",
+  "loja" : "42",
+  "nome" : "13 DE MAIO"
+}, {
+  "endereco" : "Avenida José Maria Whitaker, 1366 - Planalto Paulista",
+  "funcionamento" : "6:30 às 21:72",
+  "loja" : "43",
+  "nome" : "WHITAKER"
+} ]

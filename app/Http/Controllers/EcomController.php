@@ -59,5 +59,76 @@ class EcomController extends Controller
         echo 'Compra foi cancenlada -  Ben-Facil';
     }
 
+    public function retirar(){
+        $dados = $_POST;
+       // print_r($dados);
+
+
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
+        $NODE_GET = "products.json";
+        $NODE_PUT = "products.json";
+       // echo $FIREBASE . $NODE_GET ;
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+        $produtos = json_decode($response);
+        $x=0;
+        $atendimentos = array();
+        foreach ($dados['itens'] as  $item) {
+            # code...
+        
+            foreach ($produtos as $key => $produto) {
+                if(isset($produto->CODE) && $produto->CODE == $item){
+                   // print_r($key);
+                    $produtos_atendimento[]=$produto;
+                    $NODE_DELETE = $key.".json";
+
+                    $curl = curl_init();
+
+                     curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
+                     curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+                    curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+
+                    $response = curl_exec( $curl );
+                    curl_close( $curl );
+                    break;
+                }
+
+            }
+        }
+
+        $atendimento = array('user_email' => $dados['user_email'],
+                            'user_hash' => md5($dados['user_email']),
+                            'shop'=> $dados['loja'],
+                            'products'=>$produtos_atendimento,
+                            'tid'=>$dados['vault_key'],
+                            'hora'=> (new \DateTime())->getTimestamp());
+
+        $json = json_encode( $atendimento );
+
+
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/atendimentos/".$dados['loja']."/".md5($dados['user_email'])."/".$dados['vault_key']."/";
+        $NODE_GET = "products.json";
+       // echo $FIREBASE . $NODE_GET ;
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_PUT );
+        curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+        curl_setopt( $curl, CURLOPT_POSTFIELDS, $json );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
+        $NODE_GET = "products.json";
+       // echo $FIREBASE . $NODE_GET ;
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+        print_r($response);
+    }
 
 }
