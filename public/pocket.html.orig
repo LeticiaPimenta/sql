@@ -13,7 +13,10 @@
         <link rel="stylesheet" type="text/css" href="revolution/css/settings.css"> 
         <link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
         <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
+<<<<<<< HEAD
         <link href="css/style.css" rel="stylesheet">
+=======
+>>>>>>> e326a9b179391318d4569b663b5eb45b6c7ffcfd
         <link href="css/style-restaurant.css" rel="stylesheet">
         <link href="css/benjamin-restaurant.css" rel="stylesheet">
         <script src="js/angular.min.js"></script>
@@ -352,7 +355,7 @@
                       
              <div class="search-inline">
                 <form>
-                    <input type="text" class="form-control" placeholder="Digite sua busca" ng-model="filtro">
+                    <input type="text" class="form-control" placeholder="Digite e aperte enter...">
                     <button type="submit"><i class="ti-search"></i></button>
                     <a href="javascript:void(0)" class="search-close"><i class="ti-close"></i></a>
                 </form>
@@ -364,7 +367,6 @@
                     <a class="navbar-brand" href="index.html">
                         <img class='logo logo-light hidden-md-down' src="images/resto/benjamin.png" alt="">
                     </a>
-
                     <div  id="navbarRestaurant" class="navbar-collapse collapse">
                         <ul class="navbar-nav  ml-auto">
                             <li class="nav-item"><a data-scroll class="nav-link active" href="#home"> Home</a></li>
@@ -373,15 +375,14 @@
                             <li class="nav-item"><a data-scroll class="nav-link" \href="javascript:void(0)"> Carrinho</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#contact"> Contato</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link btn si-orange btn-primary" href="" ng-click="cart.pega_email()"> Logar</a></li>
-                        </ul>      
-                    </div> 
-                   
-                    <div class="navbar-right-elements">
-                        <ul class="list-inline">
-                            <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
-                        </ul>
+                        </ul>   
                     </div>
+                    <div class=" navbar-right-elements">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart si-orange"></i> <span class="badge badge-default si-orange btn-primary">{{cart.carrinho.length}}</span></a></li>
+                    </ul>
+                </div>
                 </div>
             </nav>
         </header><!--/header-->
@@ -405,7 +406,7 @@
                              data-transform_idle="o:1;" 
                              data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
                              data-transform_out="auto:auto;s:300;" 
-                             data-start="500">Croissant de chocolate <br> R$7,90</div>
+                             data-start="500">Croissant de chocolate <p> R$7,90</p></div>
                         <div class="tp-caption tp-resizeme slider-caption" 
                              data-x="['left','left','left','left']" data-hoffset="['50','50','50','15']" 
                              data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','70']" 
@@ -595,7 +596,7 @@
 
                                         <div class="align-self-center">
                                             <strong class="text-white font700">
-                                                <button class="btn-icon-sm float-right si-red si-dark-round si-round" ng-click="cart.removeItem($index)"><a class="text-white" href=""><i class="ti-close"></i></a></button> {{produto.VALUE|currency:"R$"}}</strong>
+                                                <button class="btn-icon-sm float-right si-red si-dark-round si-round" ng-click="cart.removeItem($index)"><a class="text-white" href="#"><i class="ti-close"></i></a></button> {{produto.VALUE|currency:"R$"}}</strong>
                                         </div>
                                     </div>
                                     <hr>
@@ -742,28 +743,6 @@
                
             </div>
         </footer>
-        <div class="modal fade" id="modal-search" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <form id="form_retirar">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modal-solicitarTitle">Solicitar os produtos</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Aqui
-                               </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary" ng-click="cart.solicitar_itens()">Solicitar</button>
-                                </div>
-                            </div>
-                            </form>
-                        </div>
-                    </div><!--modal-->
         <!--back to top  -->
         <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
@@ -862,6 +841,5 @@
         <script type="text/javascript" src="smart-form/contact-recaptcha/js/additional-methods.min.js"></script>
         <script type="text/javascript" src="smart-form/contact-recaptcha/js/smart-form.js"></script> 
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <script src="/js/assan.custom.js"></script> 
     </body>
 </html>
