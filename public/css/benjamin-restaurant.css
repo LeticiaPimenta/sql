@@ -110,9 +110,7 @@ Responsive style (always bottom in main style file)
     left: 0;
     width: 100%;
     z-index: 999;
-    background-color: #fff !important;
-    padding: 2.75em 0rem;
-    padding-block-start: 10px;}
+    background-color: #fff !important;}
 
     .navbar.navbar-light.bg-faded .navbar-toggler {
       position: absolute;

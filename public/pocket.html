@@ -13,6 +13,7 @@
         <link rel="stylesheet" type="text/css" href="revolution/css/settings.css"> 
         <link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
         <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.css">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/style-restaurant.css" rel="stylesheet">
         <link href="css/benjamin-restaurant.css" rel="stylesheet">
@@ -173,7 +174,7 @@
              
              
              
-             angular.module('app', [])
+             angular.module('app', ["toastr"])
              .service('ngCopy', ['$window', function ($window) {
              var body = angular.element($window.document.body);
              var textarea = angular.element('<textarea/>');
@@ -212,7 +213,7 @@
                  return $sce.trustAsHtml(text);
              };
              }])
-             .controller('CartController', function($sce) {
+             .controller('CartController', function($sce,toastr) {
              var cart = this;
              cart.produtos = produtos;
              cart.catalogo = catalogo;
@@ -244,6 +245,8 @@
              
                    setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
                    setLocalData("BENJAMIN_USERCART_CI",cartCI);
+                toastr.success('Seu Produto Esta no Seu Carrinho!', 'Produto Adicionado!');
+
              }
              
              function carrinho_local() {
@@ -405,7 +408,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <a class="navbar-brand" href="index.html">
-                        <img class='logo logo-light hidden-md-down' src="images/resto/benjamin.png" alt="">
+                        <img class='logo logo-light' src="images/resto/benjamin.png" alt="">
                     </a>
 
                     <div  id="navbarRestaurant" class="navbar-collapse collapse">
@@ -835,6 +838,7 @@
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
         <script src="js/plugins/plugins.js"></script> 
         <script src="js/restaurant.custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.tpls.js"></script>
 
         <!--revolution slider-->
         <script type="text/javascript" src="revolution/js/jquery.themepunch.tools.min.js"></script>
