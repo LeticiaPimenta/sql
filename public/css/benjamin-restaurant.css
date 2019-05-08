@@ -159,3 +159,9 @@ Responsive style (always bottom in main style file)
   border-bottom-color: #ff9800;
 }
 
+.navbar-toggler-right {
+    position: absolute !important;
+    right: 5rem !important;
+    top: 0 !important;
+}
+
