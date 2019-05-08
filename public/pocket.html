@@ -352,7 +352,7 @@
                       
              <div class="search-inline">
                 <form>
-                    <input type="text" class="form-control" placeholder="Digite e aperte enter...">
+                    <input type="text" class="form-control" placeholder="Digite sua busca" ng-model="filtro">
                     <button type="submit"><i class="ti-search"></i></button>
                     <a href="javascript:void(0)" class="search-close"><i class="ti-close"></i></a>
                 </form>
@@ -364,6 +364,7 @@
                     <a class="navbar-brand" href="index.html">
                         <img class='logo logo-light hidden-md-down' src="images/resto/benjamin.png" alt="">
                     </a>
+
                     <div  id="navbarRestaurant" class="navbar-collapse collapse">
                         <ul class="navbar-nav  ml-auto">
                             <li class="nav-item"><a data-scroll class="nav-link active" href="#home"> Home</a></li>
@@ -374,6 +375,7 @@
                             <li class="nav-item"><a data-scroll class="nav-link btn si-orange btn-primary" href="" ng-click="cart.pega_email()"> Logar</a></li>
                         </ul>      
                     </div> 
+                   
                     <div class="navbar-right-elements">
                         <ul class="list-inline">
                             <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
