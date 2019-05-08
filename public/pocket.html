@@ -286,6 +286,16 @@
              cart.email_cliente = email;
              cart.hash_email_cliente = hash;
              }
+
+             cart.modal_search = function(){
+              console.log(cart.filtro);
+              if(cart.filtro){
+                $('#modal-search').modal('show');
+              }else{
+                $('#modal-search').modal('hide');
+              }
+
+             }
              
              cart.total = carrinho_local();
              cart_initCart (); 
@@ -385,7 +395,7 @@
                       
              <div class="search-inline">
                 <form>
-                    <input type="text" class="form-control" placeholder="Digite sua busca" ng-model="filtro">
+                    <input type="text" class="form-control" placeholder="Digite sua busca" ng-model="cart.filtro" ng-blur="cart.modal_search()">
                     <button type="submit"><i class="ti-search"></i></button>
                     <a href="javascript:void(0)" class="search-close"><i class="ti-close"></i></a>
                 </form>
@@ -780,18 +790,41 @@
                             <form id="form_retirar">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modal-solicitarTitle">Solicitar os produtos</h5>
+                                    <h5 class="modal-title" id="modal-solicitarTitle">Busca de produtos</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Aqui
+                                    <div class="tab-content">
+                            <div ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" role="tabpanel" class="tab-pane active show fade" id="campanha_{{cart.campanhas[campanha_lojas].CODE}}">
+                                <div class='row'>
+                                    <div class='col-md-6 mb20'>
+                                        <article class="media" ng-repeat="produto_code in cart.campanhas[campanha_lojas].PRODUCTS">
+                                            
+                                            <!--Content -->
+                                            <div class="media-body align-self-center g-pl-10">
+                                                <div class="d-flex justify-content-between mb10">
+                                                    <h3 class="align-self-center text-capitalize mb0 h6  font400">{{cart.produtos[produto_code].PRESENTATION_NAME}}</h3>
+
+                                                    <div class="align-self-center">
+                                                        <strong class=" font700">
+                                                            <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/Content -->
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                              
+                        </div>
                                </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary" ng-click="cart.solicitar_itens()">Solicitar</button>
+                                
                                 </div>
                             </div>
                             </form>
