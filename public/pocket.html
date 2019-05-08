@@ -336,12 +336,45 @@
                             <img src="img/foto.jpg" class="img-fluid" alt="" width="60">
                         </a>
                         <div class="oHidden">
-                            <span class="close" ng-click=cart.removeItem($index><i class="ti-close"></i></span>
+                            <span class="close" ng-click="cart.removeItem($index)"><i class="ti-close"></i></span>
                             <h4><a href="#">{{produto.PRESENTATION_NAME}}</a></h4>
                             <p class="text-white-gray"><strong>{{produto.VALUE}}</strong></p>
                         </div>
                     </li><!--/cart item-->
-                    
+                    <hr>
+                    <li>
+                        <div class="center-text">
+                  <p class="text-white-gray"> Total : {{cart.total |currency:"R$" }}</p>
+                </div>
+
+                  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                     <!--Tipo do botão-->
+                     <input type="hidden" name="cmd" value="_xclick" />
+                     <!--Vendedor e URL de retorno, cancelamento e notificação-->
+                     <input type="hidden" name="business" value="contasapagar-facilitator@benjaminapadaria.com.br" />
+                     <input type="hidden" name="return" value="https://benjamin-a-padaria.herokuapp.com/compra/retorno/{{cart.hash_email_cliente}}" />
+                     <input type="hidden" name="cancel" value="https://benjamin-a-padaria.herokuapp.com/compra/cancelamento/{{cart.hash_email_cliente}}" />
+                     <input type="hidden" name="notify_url" value="https://benjamin-a-padaria.herokuapp.com/compra/notificacao" />
+                     <!--Internacionalização e localização da página de pagamento-->
+                     <input type="hidden" name="charset" value="utf-8" />
+                     <input type="hidden" name="lc" value="BR" />
+                     <input type="hidden" name="country_code" value="BR" />
+                     <input type="hidden" name="currency_code" value="BRL" />
+                     <input type="hidden" name="tx" value="{{cart.hash_email_cliente}}">
+                     <input type="hidden" name="payer_id" value="{{cart.hash_email_cliente}}">
+                     <input type="hidden" name="invoice" value="{{cart.hash_email_cliente}}@{{cart.cart_ci}}">
+                     <input type="hidden" name="custom" value="{{cart.hash_email_cliente}}">
+                     <input type="hidden" name="at" value="{{cart.hash_email_cliente}}">
+                     <!--Informações sobre o produto e seu valor-->
+                     <input type="hidden" name="amount" value="{{cart.total}}" />
+                     <input type="hidden" name="item_name" value="Servico" />
+                     <input type="hidden" name="quantity" value="1" />
+                     <input type="hidden" name="item_number_1" value="bolinho" />
+                     <input type="hidden" name="item_number_2" value="Sonho" />
+
+                     <!--Botão para submissão do formulário-->
+                     <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0"/>
+                  </form></li>
 
                 </ul>
             </div>
@@ -742,6 +775,28 @@
                
             </div>
         </footer>
+        <div class="modal fade" id="modal-search" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form id="form_retirar">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-solicitarTitle">Solicitar os produtos</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Aqui
+                               </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" ng-click="cart.solicitar_itens()">Solicitar</button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div><!--modal-->
         <!--back to top  -->
         <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
