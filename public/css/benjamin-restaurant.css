@@ -165,3 +165,9 @@ Responsive style (always bottom in main style file)
     top: 0 !important;
 }
 
+.footer p {
+  color: #aaa !important; }
+
+.footer h4 {
+  color: #aaa !important;
+}
