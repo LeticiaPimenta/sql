@@ -474,7 +474,7 @@
                 <tbody>
                     <tr ng-repeat="produto in cart.user_vault" ng-show="produto.PRESENTATION_NAME">
                         <td class="product-image">
-                            <img src="images/shop/p1.jpg" alt="{{produto.PRESENTATION_NAME}}" width="50">
+                            <img src="/img/foto.jpg" alt="{{produto.PRESENTATION_NAME}}" width="50">
                         </td>
                         <td class="product-name">{{produto.PRESENTATION_NAME}}</td>
                        
@@ -610,11 +610,11 @@
                     <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
                                   <!-- Card 1 -->
                                   <div class="card" ng-repeat="produto in cart.user_vault" ng-show="produto.done">
-                                    <div class="card-header accordion-header" role="tab" id="heading{{produto.CODE}}2"> 
-                                        <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{produto.CODE}}List" aria-expanded="true" aria-controls="collapse{{produto.CODE}}"> {{produto.PRESENTATION_NAME}} </a> </div>
-                                    <div id="collapse{{produto.CODE}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{produto.CODE}}1">
+                                    <div class="card-header accordion-header" role="tab" id="heading{{$index}}2"> 
+                                        <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$index}}List" aria-expanded="true" aria-controls="collapse{{$index}}"> {{produto.PRESENTATION_NAME}} </a> </div>
+                                    <div id="collapse{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
                                       <div class="card-body">
-                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs_{{produto.CODE}}-{{$index}}" ng-model="produto.obs"></textarea></div>
+                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs"></textarea></div>
                                     </div>
                                   </div>
                                   
