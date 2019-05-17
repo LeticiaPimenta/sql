@@ -203,7 +203,5 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
       width: 100%;
       background-color: #343a40; }
 
-#response .col-sm-6{
-  display: inline-flex;
-}
+
 
