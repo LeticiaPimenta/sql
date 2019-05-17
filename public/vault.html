@@ -420,13 +420,13 @@
                     <div class=" row">
                         <div class="col-md-10 ml-auto mr-auto text-center">
                             <div class="hero-text-style1">
-                                <div class="h1  text-uppercase mb20"  ng-show="cart.user_vault.length">
+                                <div class="h1  text-uppercase mb20 solicitar"  ng-show="cart.user_vault.length">
                                     Voce tem {{cart.user_vault.length}} produtos a retirar agora !
                                 </div><!--/.tlt-->
                                 <p class="lead">
                                     Aqui você seleciona os produtos que deseja retirar.
                                 </p>
-                                <a href="#more" data-scroll class="btn btn-rounded btn-primary">Selecionar todos</a>
+                                <a href="" data-scroll class="btn btn-rounded btn-primary" ng-click="cart.solicitar_tudo()">Selecionar todos</a>
                             </div>
                         </div>
                     </div>
@@ -457,11 +457,12 @@
 
         <div class="bg-white solicitar" id="about" ng-show="cart.user_vault.length">
             <div class="container pb60">
-            <h4 class="font300 mb30">
+        <!--    <h4 class="font300 mb30">
                
                 Voce tem {{cart.user_vault.length}} a retirar agora !
                 <a  class="btn btn-primary" ng-click="cart.solicitar_tudo()">Solicitar Tudo</a>
-            </h4>
+            </h4> -->
+            <br>
             <table class="table table-condensed table-responsive cart-table mb40">
                 <thead>
                     <tr>
@@ -484,14 +485,23 @@
                 </tbody>
             </table><hr class="mb40">
         <div class="row solicitar">
-            <div class="col-sm-6">
-                <a href="/pocket.html" class="btn btn-outline-secondary">Pedir Outra hora</a>
+            <div class="col-sm-6 text-right  d-none d-xl-block">
+                <a href="/pocket.html" class="btn btn-rounded btn-outline-secondary">Pedir Outra hora</a>
             </div>
-             <div class="col-sm-6 text-right">
+             <div class="col-sm-6  d-none d-xl-block">
                  
-                <a  class="btn btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#modal-solicitar">Solicitar selecionados</a>
+                <a  class="btn btn-rounded btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#modal-solicitar">Pedir</a>
             </div>
         </div>
+
+        <div class="row solicitar d-xl-none" id="response">
+            <div class="col-sm-12 text-center">
+                <a href="/pocket.html" class="btn btn-rounded btn-outline-secondary">Pedir Outra hora</a>
+                <a  class="btn btn-rounded btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#modal-solicitar">Pedir</a>
+            </div>
+
+        </div>
+
         </div>
         </div><!--intro-->
 
