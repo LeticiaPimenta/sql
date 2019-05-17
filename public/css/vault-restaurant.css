@@ -175,3 +175,33 @@ Responsive style (always bottom in main style file)
 .hero-text-style1 {
   margin-block-start: 105px;
 }
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: #ff9800;
+    border-color: #ffd658;
+}
+
+a:not([href]):not([tabindex]) {
+  color: #ff9800;
+}
+
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-outline-secondary {
+  border: 2px solid #212529;
+  background-color: transparent;
+  color: #343a40; }
+  .btn-outline-secondary:hover, .btn-outline-secondary:focus, .btn-outline-secondary:active {
+    color: #fff;
+    border-color: #212529;
+    background-color: #343a40; }
+    .btn-outline-secondary:hover:before, .btn-outline-secondary:focus:before, .btn-outline-secondary:active:before {
+      width: 100%;
+      background-color: #343a40; }
+
+
+

@@ -56,7 +56,7 @@ p a {
       background-color: transparent; }
     .header-main.header-transparent .navbar.navbar-light.bg-faded {
       background-color: transparent !important;
-      padding-top: 0px; }
+      padding-top: 10px; }
       .header-main.header-transparent .navbar.navbar-light.bg-faded .container {
         position: relative; }
         .header-main.header-transparent .navbar.navbar-light.bg-faded .container .navbar-nav .nav-link {
