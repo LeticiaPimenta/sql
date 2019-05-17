@@ -572,7 +572,7 @@
         <div class="bg-parallax parallax-overlay pt100 pb100" id='menu' data-jarallax='{"speed": 0.2}' style="background:url(images/resto/Imagem9.png) no-repeat;">
             <div class="container">
                 <div class="center-title">
-                    <h2 class='text-white'>Nossos Cardápios{{online}}</h2>
+                    <h2 class='text-white'>Nossos Cardápios</h2>
                 </div>
                 <div class='food-menu-card'>
                     <div>
@@ -660,7 +660,7 @@
                 <div class="center-text">
                     <h3>Total : {{cart.total |currency:"R$" }}</h3>
                 </div>
-
+                <div ng-show="online">
                   <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                      <!--Tipo do botão-->
                      <input type="hidden" name="cmd" value="_xclick" />
@@ -689,6 +689,12 @@
                      <!--Botão para submissão do formulário-->
                      <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente" />
                   </form>
+                  </div>
+                  <div  ng-hide="online">
+                      
+                  <div id="qrcode" ></div>
+                  Chamar o garçom pra fechar o carrinho !
+                  </div>
             </div>
         </div>
 
@@ -865,6 +871,9 @@
                     gridwidth: 1140,
                     gridheight: 600
                 });
+                //alert(Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL")));
+
+                jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
             });
         </script>
         <!--google map-->
@@ -927,6 +936,7 @@
         <script type="text/javascript" src="smart-form/contact-recaptcha/js/additional-methods.min.js"></script>
         <script type="text/javascript" src="smart-form/contact-recaptcha/js/smart-form.js"></script> 
         <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script type="text/javascript" src="/js/jquery.qrcode.min.js"></script>
         <script src="/js/assan.custom.js"></script> 
     </body>
 </html>
