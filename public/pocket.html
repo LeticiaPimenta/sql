@@ -213,95 +213,108 @@
                  return $sce.trustAsHtml(text);
              };
              }])
+             .run(function($window, $rootScope) {
+                      $rootScope.online = navigator.onLine;
+                      $window.addEventListener("offline", function () {
+                        $rootScope.$apply(function() {
+                          $rootScope.online = false;
+                        });
+                      }, false);
+                      $window.addEventListener("online", function () {
+                        $rootScope.$apply(function() {
+                          $rootScope.online = true;
+                        });
+                      }, false);
+                })
              .controller('CartController', function($sce,toastr) {
-             var cart = this;
-             cart.produtos = produtos;
-             cart.catalogo = catalogo;
-             cart.campanhas = campanhas;
-             cart.campanhas_lojas = campanhas_lojas;
-             cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-             cart.cart_ci = JSON.parse(getLocalData("BENJAMIN_USERCART_CI"));
-             cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
-             cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
-             
-             if(cart.email_cliente)
-             cart.hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
-             
-             function addItemInCart(code){
-               var newRow = new Object();
-                   newRow["CODE"] = code;
-                   newRow["PRESENTATION_NAME"] = produtos[code].PRESENTATION_NAME;
-                   newRow["VALUE"] = produtos[code].VALUE;
-                   
-                   console.log(newRow);
-             
-                   if (cartObj==null){
-                       cartObj = [];
+                 var cart = this;
+                 cart.produtos = produtos;
+                 cart.catalogo = catalogo;
+                 cart.campanhas = campanhas;
+                 cart.campanhas_lojas = campanhas_lojas;
+                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+                 cart.cart_ci = JSON.parse(getLocalData("BENJAMIN_USERCART_CI"));
+                 cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
+                 cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
+                 
+                 if(cart.email_cliente)
+                 cart.hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
+                 
+                 function addItemInCart(code){
+                   var newRow = new Object();
+                       newRow["CODE"] = code;
+                       newRow["PRESENTATION_NAME"] = produtos[code].PRESENTATION_NAME;
+                       newRow["VALUE"] = produtos[code].VALUE;
+                       
+                       console.log(newRow);
+                 
+                       if (cartObj==null){
+                           cartObj = [];
+                       }
+                 
+                       console.log(cartObj);
+                       cartObj[cartCI++] = newRow;
+                       console.log(cartObj);
+                 
+                       setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
+                       setLocalData("BENJAMIN_USERCART_CI",cartCI);
+                    toastr.success('Seu Produto Esta no Seu Carrinho!', 'Produto Adicionado!');
+
+                 }
+                 
+                 function carrinho_local() {
+                   cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+                   console.log(cartObj);
+                 
+                   var carrinho = new Array();
+                   var grand_total = 0;
+                   for (var xr in cartObj){
+                       if (cartObj[xr]==null) continue;
+                 
+                       grand_total+=parseFloat(cartObj[xr].VALUE);
                    }
-             
-                   console.log(cartObj);
-                   cartObj[cartCI++] = newRow;
-                   console.log(cartObj);
-             
-                   setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
-                   setLocalData("BENJAMIN_USERCART_CI",cartCI);
-                toastr.success('Seu Produto Esta no Seu Carrinho!', 'Produto Adicionado!');
+                 
+                   return grand_total;
+                 }
+                 
+                 
+                 cart.adicionar = function(id) {
+                   addItemInCart(id);
+                   cart.total = carrinho_local();
+                   cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
+                 };
+                 
+                 cart.removeItem = function(id){
+                   cart_removeCartRow_v2(id);
+                   cart.total = carrinho_local();
+                   cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+                 }
+                 
+                 cart.pega_email = function(){
+                 var email = prompt("Qual é o seu email?");
+                 
+                 //if (email.toLowerCase() == "escorpião") {
+                   var hash = Crypto.MD5(email);
+                   //alert(email);
+                   //alert(hash);
+                 //  }
+                 setLocalData("BENJAMIN_USERCART_EMAIL",email);
+                 cart.email_cliente = email;
+                 cart.hash_email_cliente = hash;
+                 }
 
-             }
-             
-             function carrinho_local() {
-               cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-               console.log(cartObj);
-             
-               var carrinho = new Array();
-               var grand_total = 0;
-               for (var xr in cartObj){
-                   if (cartObj[xr]==null) continue;
-             
-                   grand_total+=parseFloat(cartObj[xr].VALUE);
-               }
-             
-               return grand_total;
-             }
-             
-             
-             cart.adicionar = function(id) {
-               addItemInCart(id);
-               cart.total = carrinho_local();
-               cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
-             };
-             
-             cart.removeItem = function(id){
-               cart_removeCartRow_v2(id);
-               cart.total = carrinho_local();
-               cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-             }
-             
-             cart.pega_email = function(){
-             var email = prompt("Qual é o seu email?");
-             
-             //if (email.toLowerCase() == "escorpião") {
-               var hash = Crypto.MD5(email);
-               //alert(email);
-               //alert(hash);
-             //  }
-             setLocalData("BENJAMIN_USERCART_EMAIL",email);
-             cart.email_cliente = email;
-             cart.hash_email_cliente = hash;
-             }
+                 cart.modal_search = function(){
+                  console.log(cart.filtro);
+                  if(cart.filtro){
+                    $('#modal-search').modal('show');
+                  }else{
+                    $('#modal-search').modal('hide');
+                  }
 
-             cart.modal_search = function(){
-              console.log(cart.filtro);
-              if(cart.filtro){
-                $('#modal-search').modal('show');
-              }else{
-                $('#modal-search').modal('hide');
-              }
-
-             }
-             
-             cart.total = carrinho_local();
-             cart_initCart (); 
+                 }
+                 
+                 cart.total = carrinho_local();
+                 cart_initCart (); 
              
              });
              
@@ -559,7 +572,7 @@
         <div class="bg-parallax parallax-overlay pt100 pb100" id='menu' data-jarallax='{"speed": 0.2}' style="background:url(images/resto/Imagem9.png) no-repeat;">
             <div class="container">
                 <div class="center-title">
-                    <h2 class='text-white'>Nossos Cardápios</h2>
+                    <h2 class='text-white'>Nossos Cardápios{{online}}</h2>
                 </div>
                 <div class='food-menu-card'>
                     <div>
