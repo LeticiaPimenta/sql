@@ -228,5 +228,5 @@ select {
     color: #ff9800;
     border-radius: 90px;
     border-style: solid;
-    border-width: unset;
+    border-width: 2px;
 }
