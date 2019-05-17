@@ -539,10 +539,10 @@
                                   <!-- Card 1 -->
                                   <div class="card" ng-repeat="produto in cart.user_vault" ng-show="produto.done">
                                     <div class="card-header accordion-header" role="tab" id="heading{{$index}}2"> 
-                                        <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$index}}List" aria-expanded="true" aria-controls="collapse{{$index}}"> {{produto.PRESENTATION_NAME}} </a> </div>
+                                        <a class="text-orange" data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$index}}List" aria-expanded="true" aria-controls="collapse{{$index}}"> {{produto.PRESENTATION_NAME}} </a> </div>
                                     <div id="collapse{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
                                       <div class="card-body">
-                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs"></textarea></div>
+                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs" cols="40"></textarea></div>
                                     </div>
                                   </div>
                                   
@@ -550,8 +550,8 @@
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary" ng-click="cart.solicitar_itens()">Solicitar</button>
+                                    <button type="button" class="btn btn-rounded btn-secondary" id="cancel" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-rounded btn-primary" ng-click="cart.solicitar_itens()">Solicitar</button>
                                 </div>
                             </div>
                             </form>

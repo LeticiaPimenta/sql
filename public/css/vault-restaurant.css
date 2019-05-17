@@ -203,5 +203,19 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
       width: 100%;
       background-color: #343a40; }
 
+.text-orange {
+  color: #fd7e14;
+}
 
 
+#cancel {
+  border: 2px solid #db2e2e;
+  background-color: transparent;
+  color: #db2e2e; }
+  #cancel:hover, #cancel:focus, #cancel:active {
+    color: #fff;
+    border-color: #db2e2e;
+    background-color: #db2e2e; }
+    #cancel:hover:before, #cancel:focus:before, #cancel:active:before {
+      width: 100%;
+      background-color: #db2e2e; }
