@@ -1016,12 +1016,12 @@ My Clients
   margin-bottom: 20px; }
 
 .owl-carousel.owl-theme .owl-dots .owl-dot span {
-  width: 6px;
-  height: 6px; }
+  width: 10px;
+  height: 10px; }
 
 .owl-carousel.owl-theme .owl-dots .owl-dot.active span, .owl-carousel.owl-theme .owl-dots .owl-dot:hover span {
-  background-color: #ddd;
-  opacity: 0.3; }
+  background-color: #ff9800;
+  opacity: 0.7; }
 
 /*
 Image styles

@@ -409,10 +409,10 @@
                     <div  id="navbarRestaurant" class="navbar-collapse collapse">
                         <ul class="navbar-nav  ml-auto">
                             <li class="nav-item"><a data-scroll class="nav-link active" href="#home"> Home</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="/qrunidade.html"> QR Code</a></li>
+                            <li class="nav-item"><a data-scroll class="nav-link" href="#about"> QR Code</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href=""> Bencréditos</a></li>
+                            <li class="nav-item"><a data-scroll class="nav-link" href="#contact"> Contato</a></li>
                             <li class="nav-item"><a data-scroll class="nav-link btn si-orange btn-primary" href="" ng-click="cart.pega_email()"> Logar</a></li>
                         </ul>      
                     </div> 
@@ -615,74 +615,159 @@
 
         <div class="pt90 pb60" id="chefs">
             <div class="container">
-                <div class="center-title">
-                    <h2 class="text">BENCRÉDITOS</h2>
-                    <p class="text-gray">Aqui você compra créditos que podem ser usados nas suas futuras compras.</p>
+                <div class="center-title" ng-show="!cart.email_cliente">
+                    <h2>Carrinho</h2>
+                    <p>Você precisa logar para pagar seu carrinho. <a href="" ng-click="cart.pega_email()">Logar.</a></p>
                 </div>
-
+                <div class="center-title" ng-show="cart.email_cliente">
+                    <h2>Carrinho</h2>
+                    <p>Deseja alterar o email  {{cart.email_cliente}} <a ng-click="cart.pega_email()">alterar o email.</a></p>
+                </div>
                 <div class="row">
-                    <div class="owl-carousel owl-theme carousel-cards">
-                        <div class="item">
-                            <a class="card-image" href="#">
-                                <img src="images/resto/Paes.jpg" alt="" class="img-fluid">
-                                <h4 class="text-warning">Crédito de $10 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
-                            </a>
-                        </div><!--item-->
-                        <div class="item">
-                            <a class="card-image" href="#">
-                                <img src="images/resto/Paes.jpg" alt="" class="img-fluid">
-                                <h4 class="text-warning">Crédito de $20 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
-                            </a>
-                        </div><!--item-->
-                        <div class="item">
-                            <a class="card-image" href="#">
-                                <img src="images/resto/food2.jpg" alt="" class="img-fluid">
-                                <span class="float-right lead">$14</span>
-                                <h4>Red wine</h4>
-                            </a>
-                        </div><!--item-->
-                        <div class="item">
-                            <a class="card-image" href="#">
-                                <img src="images/resto/food3.jpg" alt="" class="img-fluid">
-                                <span class="float-right lead">$5</span>
-                                <h4>Pizza Lorem</h4>
-                            </a>
-                        </div><!--item-->
-                        <div class="item">
-                            <a class="card-image" href="#">
-                                <img src="images/resto/food4.jpg" alt="" class="img-fluid">
-                                <span class="float-right lead">$9</span>
-                                <h4>Pizza roll</h4>
-                            </a>
-                        </div><!--item-->
-                        <div class="item">
-                            <a class="card-image" href="#">
-                                <img src="images/resto/food5.jpg" alt="" class="img-fluid">
-                                <span class="float-right lead">$13</span>
-                                <h4>Pure veg</h4>
-                            </a>
-                        </div><!--item-->
-                        <div class="item">
-                            <a class="card-image" href="#">
-                                <img src="images/resto/food6.jpg" alt="" class="img-fluid">
-                                <span class="float-right lead">$11</span>
-                                <h4>Chikan Salad</h4>
-                            </a>
-                        </div><!--item-->
+                    <div class="col-lg-4 mb30">
+                        <div class="food-menu-card">
+                            <article class="media">
+                                <!--Content -->
+                                <div class="media-body align-self-center g-pl-10">
+                                    <div class="d-flex justify-content-between mb10" ng-repeat="produto in cart.carrinho track by $index" ng-show="produto.PRESENTATION_NAME">
+                                        <h3 class="align-self-center text-capitalize mb0 h6 text-white font400">
+                                            {{produto.PRESENTATION_NAME}}
+                                        </h3>
+
+                                        <div class="align-self-center">
+                                            <strong class="text-white font700">
+                                                <button class="btn-icon-sm float-right si-red si-dark-round si-round" ng-click="cart.removeItem($index)"><a class="text-white" href=""><i class="ti-close"></i></a></button> {{produto.VALUE|currency:"R$"}}</strong>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between mb10">
+                                        <h3 class="align-self-center text-capitalize mb0 h6 text-white font400">
+                                            TOTAL
+                                        </h3>
+
+                                        <div class="align-self-center">
+                                            <strong class="text-white font700">
+                                                {{cart.total |currency:"R$" }}</strong>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--/Content -->
+                            </article><!--/Article --> 
+                        </div> 
                     </div>
                 </div>
+                <div class="center-text">
+                    <h3>Total : {{cart.total |currency:"R$" }}</h3>
+                </div>
+                <div ng-show="online">
+                  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                     <!--Tipo do botão-->
+                     <input type="hidden" name="cmd" value="_xclick" />
+                     <!--Vendedor e URL de retorno, cancelamento e notificação-->
+                     <input type="hidden" name="business" value="contasapagar-facilitator@benjaminapadaria.com.br" />
+                     <input type="hidden" name="return" value="https://benjamin-a-padaria.herokuapp.com/compra/retorno/{{cart.hash_email_cliente}}" />
+                     <input type="hidden" name="cancel" value="https://benjamin-a-padaria.herokuapp.com/compra/cancelamento/{{cart.hash_email_cliente}}" />
+                     <input type="hidden" name="notify_url" value="https://benjamin-a-padaria.herokuapp.com/compra/notificacao" />
+                     <!--Internacionalização e localização da página de pagamento-->
+                     <input type="hidden" name="charset" value="utf-8" />
+                     <input type="hidden" name="lc" value="BR" />
+                     <input type="hidden" name="country_code" value="BR" />
+                     <input type="hidden" name="currency_code" value="BRL" />
+                     <input type="hidden" name="tx" value="{{cart.hash_email_cliente}}">
+                     <input type="hidden" name="payer_id" value="{{cart.hash_email_cliente}}">
+                     <input type="hidden" name="invoice" value="{{cart.hash_email_cliente}}@{{cart.cart_ci}}">
+                     <input type="hidden" name="custom" value="{{cart.hash_email_cliente}}">
+                     <input type="hidden" name="at" value="{{cart.hash_email_cliente}}">
+                     <!--Informações sobre o produto e seu valor-->
+                     <input type="hidden" name="amount" value="{{cart.total}}" />
+                     <input type="hidden" name="item_name" value="Servico" />
+                     <input type="hidden" name="quantity" value="1" />
+                     <input type="hidden" name="item_number_1" value="bolinho" />
+                     <input type="hidden" name="item_number_2" value="Sonho" />
+
+                     <!--Botão para submissão do formulário-->
+                     <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente" />
+                  </form>
+                  </div>
+                  <div  ng-hide="online">
+                      
+                  <div id="qrcode" ></div>
+                  Chamar o garçom pra fechar o carrinho !
+                  </div>
             </div>
         </div>
 
         <div id='contact'>
             <div id="markermap" style="width: 100%;height: 350px;"></div>
         </div>
-        
         <footer class='footer pt50 pb20'>
             <div class='container'>
                 <div class='row'>
                     <div class='col-lg-4 mb30'>
-                       
+                        <a href='#home' data-scroll class='h6'>
+                            <img src='images/resto/benjamin.png' alt='' class="mb30">
+                        </a>
+                        <p>
+                           Amamos o que fazemos e dedicamos a você.
+                           Nossos produtos são feitos para tornar seu dia BEN mais gostoso. 
+                        </p>
+                    </div>
+                     <div class='col-lg-4 mb30'>
+                         <h4 class="mb30">Horário de funcionamento</h4>
+                        <ul class='list-unstyled opening-time'>
+                            <li class='clearfix'>
+                                <span class='day'>
+                                    Segunda-feira
+                                </span>
+                                <span class='float-right time'>
+                                    9:AM - 10PM
+                                </span> 
+                            </li>
+                             <li class='clearfix'>
+                                <span class='day'>
+                                    Terça-feira
+                                </span>
+                                <span class='float-right time'>
+                                    9:AM - 10PM
+                                </span> 
+                            </li>
+                             <li class='clearfix'>
+                                <span class='day'>
+                                    Quarta-feira
+                                </span>
+                                <span class='float-right time'>
+                                    9:AM - 10PM
+                                </span> 
+                            </li>
+                             <li class='clearfix'>
+                                <span class='day'>
+                                    Quinta-feira
+                                </span>
+                                <span class='float-right time'>
+                                    9:AM - 10PM
+                                </span> 
+                            </li>
+                             <li class='clearfix'>
+                                <span class='day'>
+                                    Sexta-feira
+                                </span>
+                                <span class='float-right time'>
+                                    9:AM - 10PM
+                                </span> 
+                            </li>
+                            <li class='clearfix'>
+                                <span class='day'>
+                                    Sabado - Domingo
+                                </span>
+                                <span class='float-right time'>
+                                    11:AM - 12PM
+                                </span> 
+                            </li>
+                     </ul>
+                    </div>
+                    <div class='col-lg-4 mb30'>
+                        <h4 class="mb30">Redes Socias</h4>
                         <span class='clearfix'>
                             <a href="https://www.facebook.com/BenjaminAPadaria/" class="social-icon-sm si-dark si-dark-round si-facebook">
                                 <i class="fa fa-facebook"></i>
@@ -693,7 +778,13 @@
                                 <i class="fa fa-instagram"></i>
                             </a> 
                         </span>
-                    </div>                
+                         <div class='pt30'>
+                             <span>Sac</span>
+                             <p class="lead">sac@benjaminapadaria.com.br</p>
+                    &copy; Copyright 2017. All Right Reserved. 
+                </div>
+                    </div>
+                
                 </div>
                
             </div>

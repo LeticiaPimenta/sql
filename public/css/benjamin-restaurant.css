@@ -132,6 +132,7 @@ Responsive style (always bottom in main style file)
 .navbar .nav-item .nav-link.btn-primary {
     color: #ff9800;
     margin-left: 15px;
+    border-radius: 100px;
 }
 
 .si-orange {
@@ -171,3 +172,8 @@ Responsive style (always bottom in main style file)
 .footer h4 {
   color: #aaa !important;
 }
+
+/*
+Bencréditos
+*/
+
