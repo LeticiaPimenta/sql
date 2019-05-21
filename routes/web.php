@@ -106,9 +106,19 @@ $router->get('/payments', function () use ($router) {
 
 });
 
+$router->post('/carregar_dados', function () use ($router) {
+	header('Content-Type: application/json'); 
+    $pagamento =  \App\User::where('email',$_POST['email'])->get();
+    $pagamento[0]->password = '*********';
+    echo $pagamento[0]->toJson();
+
+});
+
 $router->get('/compra/retorno/{idcompra}', 'EcomController@renderizar');
 $router->post('/compra/registrar', 'EcomController@registrar');
 $router->post('/compra/retirar', 'EcomController@retirar');
+
+
 
 
 $router->get('/admin/', function () use ($router) {

@@ -233,6 +233,7 @@
                  cart.campanhas = campanhas;
                  cart.campanhas_lojas = campanhas_lojas;
                  cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+                 cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
                  cart.cart_ci = JSON.parse(getLocalData("BENJAMIN_USERCART_CI"));
                  cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
                  cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
@@ -296,6 +297,16 @@
                  
                  //if (email.toLowerCase() == "escorpião") {
                    var hash = Crypto.MD5(email);
+
+                   jQuery.post('/carregar_dados', {'email':email}).
+                   done(function(data){
+                    var dados = JSON.parse(data);
+                    console.log(dados);
+                    cart.logged_user = dados;
+                    console.log(dados.name);
+                    setLocalData("BENJAMIN_USERCART_LOGGED_USER",data);
+
+                   })
                    //alert(email);
                    //alert(hash);
                  //  }
@@ -772,7 +783,8 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    {{cart.email_cliente}}
+                                    {{cart.logged_user}}
+
                                     <hr>
                                     <a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login" data-dismiss="modal"> Alterar Email</a>
                                 </div>
