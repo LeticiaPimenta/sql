@@ -301,20 +301,32 @@
                    jQuery.post('/carregar_dados', {'email':email}).
                    done(function(data){
                     var dados = JSON.parse(data);
-                    console.log(dados);
-                    cart.logged_user = dados;
-                    console.log(dados.name);
-                    setLocalData("BENJAMIN_USERCART_LOGGED_USER",data);
+                    var usuario = JSON.parse(dados.usuario);
+                    console.log(usuario);
+                    cart.logged_user = usuario;
+                     if(usuario.name){
+                        //console.log(dados.name);
+                        setLocalData("BENJAMIN_USERCART_LOGGED_USER",dados.usuario);
+                        toastr.success('Seus dados foram alterados!', 'Dados foram salvos!');
+                         setLocalData("BENJAMIN_USERCART_EMAIL",email);
+                        cart.email_cliente = email;
+                        cart.hash_email_cliente = hash;
+                        jQuery('#popup-login').modal('hide');
+                      
+
+                       // jQuery('#popup-login').hide();
+                    }else{
+                        toastr.error('Seus dados nao foram alterados!', 'Dados nao foram salvos!');
+                        
+                    }
 
                    })
                    //alert(email);
                    //alert(hash);
                  //  }
 
-                 alert("vai validar "+email+hash);
-                 setLocalData("BENJAMIN_USERCART_EMAIL",email);
-                 cart.email_cliente = email;
-                 cart.hash_email_cliente = hash;
+                 //alert("vai validar "+email+hash);
+                
                  }
 
                  cart.modal_search = function(){
@@ -777,13 +789,13 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Meus Dados</h5>
+                                    <h4 class="modal-title" id="exampleModalLabel">{{cart.logged_user.name}}</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    {{cart.logged_user}}
+                                    {{cart.logged_user.email}}
 
                                     <hr>
                                     <a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login" data-dismiss="modal"> Alterar Email</a>

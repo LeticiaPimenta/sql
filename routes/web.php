@@ -108,9 +108,15 @@ $router->get('/payments', function () use ($router) {
 
 $router->post('/carregar_dados', function () use ($router) {
 	header('Content-Type: application/json'); 
-    $pagamento =  \App\User::where('email',$_POST['email'])->get();
-    $pagamento[0]->password = '*********';
-    echo $pagamento[0]->toJson();
+    $usuario =  \App\User::where('email',$_POST['email'])->get()->first();
+    if (isset($usuario)) {
+	    $usuario->password = '*********';
+	    $response = array('response' => true , 'usuario' => $usuario->toJson());
+	    echo json_encode($response);
+    }else{
+	    $response = array('response' => false , 'usuario' => null);
+	    echo json_encode($response);
+    }
 
 });
 
