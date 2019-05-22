@@ -38,6 +38,56 @@ class EcomController extends Controller
         //return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);
     }
 
+    public function registrar_usuario(){
+        header('Content-Type: application/json'); 
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+        //$pagamento = new \App\Classes\Payment;
+        $_POST = $data['usuario'];
+
+          if(!isset($_POST['name'])){
+            $resposta  = array('mensagem' => "Nome de usuario não pode ser vazio" , 'status' => 0 , 'usuario'=>'');
+            return response()->json($resposta);
+        }
+
+  
+        try{
+            if(! \App\User::where('email',$_POST['email'])->first()){
+                $usuario = new \App\User;
+                $usuario->name = $_POST['name'];
+                $usuario->email = $_POST['email'];
+                if(isset($_POST['parent']))
+                    $usuario->parent_user = $_POST['parent'];
+                $usuario->user_token = md5($_POST['email']);
+                $usuario->logado = 0;
+                $usuario->wallet = 0;
+                $usuario->group_id = 4;
+                $usuario->password = $_POST['password'];
+                
+                $usuario->save();
+                $usuario->password = "********";
+               // print_r($usuario->toJson(JSON_PRETTY_PRINT));
+                $resposta  = array('mensagem' => 'O Usuario registrado com sucesso', 'status' => 1 , 'usuario'=>$usuario );
+                //return true;
+            }else{
+                $usuario = \App\User::where('email',$_POST['email'])->first();
+               
+                //$usuario->save();
+                $resposta  = array('mensagem' => 'O Usuario ja existe em nossa base', 'status' => 2 , 'usuario'=>$usuario);
+            }
+        }catch(Exception $e){
+            $resposta  = array('mensagem' => $e->getMessage() , 'status' => 0 , 'usuario'=>'');
+        }
+       // echo 'registrar';
+        return response()->json($resposta);
+
+        //echo '{"name":"-LdcBFf0rhGBqu23Kvbj"}';
+        //$pagamento->register($json);
+        die();
+        //return $pagamento->register($json);
+        //return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+    }
+
     public function notification($idcompra){
       @print_r($_SERVER['HTTP_REFERER']);
         @$server = implode('-', $_SERVER);

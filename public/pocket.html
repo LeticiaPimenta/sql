@@ -226,7 +226,7 @@
                         });
                       }, false);
                 })
-             .controller('CartController', function($sce,toastr) {
+             .controller('CartController', function($sce,toastr, $http) {
                  var cart = this;
                  cart.produtos = produtos;
                  cart.catalogo = catalogo;
@@ -337,6 +337,39 @@
                     $('#modal-search').modal('hide');
                   }
 
+                 }
+
+                 cart.mostra_registrar = function () {
+                     // body...
+                     jQuery("#form-login").slideUp();
+                     jQuery("#form-register").slideDown();
+                 }
+
+                cart.getFormData = function ($form){
+                    var unindexed_array = $form.serializeArray();
+                    var indexed_array = {};
+
+                    $.map(unindexed_array, function(n, i){
+                        indexed_array[n['name']] = n['value'];
+                    });
+
+                    return indexed_array;
+                }
+
+
+
+
+                 cart.registrar_usuario = function(){
+                    //var usuario = jQuery("#formulario-registro").serializeArray();
+                    var $form = $("#form_data");
+                    var usuario ={"name":$("#name").val(), "email":$("#email_registro").val(), "password":$("#password").val()};
+                    $http.post("/registrar_usuario",{"usuario":usuario}).then(function (response) {
+                        // body...
+                        console.log(response);
+                    }, function (response) {
+                        console.log(response);
+                        // body...
+                    });
                  }
                  
                  cart.total = carrinho_local();
@@ -739,6 +772,8 @@
             </div>
         </footer>
         <div  id="popup-login" class="mfp-hide popup-content-area white-popup">
+                        <div id="form-login">
+                            
                         <h4>Que Bom que voltou!</h4><hr>
                         <form>
                             <div class="form-group">
@@ -755,7 +790,7 @@
                                 <label class="custom-control float-left custom-checkbox mb-2 mr-sm-2 mb-sm-0">
                                     <input type="checkbox" class="custom-control-input">
                                     <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Registrar</span>
+                                    <span class="custom-control-description" ng-click="cart.mostra_registrar()">Registrar</span>
                                 </label>
                                 <button type="button" class="btn btn-primary float-right" ng-click="cart.pega_email()">Logar</button>
                             </div><hr>
@@ -783,6 +818,91 @@
                                 </ul>
                             </div>
                         </form>
+                        </div>
+                        <div id="form-register" style="display: none">
+                             <div class="card-body">
+                <div class="row">
+                  
+                  <div class="col-md-12 mr-auto">
+                    <form class="form"  id="formulario-registro">
+                      <div class="form-group bmd-form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">face</i>
+                            </span>
+                          </div>
+                          <input type="text" id="name" name="name" class="form-control" placeholder="Nome completo...">
+                        </div>
+                      </div>
+                      <div class="form-group bmd-form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">notifications</i>
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" name="telefone" placeholder="Telefone...">
+                        </div>
+                      </div>
+                      <div class="form-group bmd-form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">edit</i>
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="CPF...">
+                        </div>
+                      </div>
+                      <div class="form-group bmd-form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">mail</i>
+                            </span>
+                          </div>
+                          <input type="text"  class="form-control" name="email" id="email_registro" placeholder="Email...">
+                        </div>
+                      </div>
+                      <div class="form-group bmd-form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">lock_outline</i>
+                            </span>
+                          </div>
+                          <input type="password" id="password" placeholder="Senha..." class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group bmd-form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">lock</i>
+                            </span>
+                          </div>
+                          <input type="password" id="confirma" placeholder="Confirmar senha..." class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" id="aceito" type="checkbox" value="aceito" checked="false">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                          Eu aceito os
+                          <a href="/termos">termos, condições e politica de privacidade</a>.
+                        </label>
+                      </div>
+                      <div class="text-center">
+                        <div id="registrar" class="btn btn-warning btn-round" ng-click="cart.registrar_usuario()">Registrar</div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+                        </div>
                     </div>
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
