@@ -1,845 +1,1098 @@
-
-
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>.::Benjamin a Padaria :: Sp @brasil ::.</title>    
-        <!-- Plugins CSS -->
-        <link href="css/plugins/plugins.css" rel="stylesheet">
-        <!--slider revolution-->
-        <link rel="stylesheet" type="text/css" href="revolution/css/settings.css"> 
-        <link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
-        <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
-<<<<<<< HEAD
-        <link href="css/style.css" rel="stylesheet">
-=======
->>>>>>> e326a9b179391318d4569b663b5eb45b6c7ffcfd
-        <link href="css/style-restaurant.css" rel="stylesheet">
-        <link href="css/benjamin-restaurant.css" rel="stylesheet">
-        <script src="js/angular.min.js"></script>
-        <script src="js/crypto.js"></script>
-        <script type="text/javascript">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>.::Benjamin a Padaria :: Sp @brasil ::.</title>
+      <!-- Plugins CSS -->
+      <link href="css/plugins/plugins.css" rel="stylesheet">
+      <!--slider revolution-->
+      <link rel="stylesheet" type="text/css" href="revolution/css/settings.css">
+      <link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
+      <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.css">
+      <link href="css/style.css" rel="stylesheet">
+      <link href="css/style-restaurant.css" rel="stylesheet">
+      <link href="css/benjamin-restaurant.css" rel="stylesheet">
+      <script src="js/angular.min.js"></script>
+      <script src="js/crypto.js"></script>
+      <script type="text/javascript">
          var nome_importado = "Benjamin";
-        </script>
-              <script type="text/javascript">
-            var produtos = new Array();
-            produtos[0] = {
-             "CODE":0,
-             "VALUE":10.00,
-             "NAME" : "CROISS",
-             "PRESENTATION_NAME" : "Croissant"   
-             };
-             produtos[1] = {
-             "CODE":1,
-             "VALUE":10.00,
-             "NAME" : "ACAI COM BANAN",
-             "PRESENTATION_NAME" : "Açai com bananas"   
-             };
-             produtos[2] = {
-             "CODE":2,
-             "VALUE":14.00,
-             "NAME" : "SANDUI COM QUEI",
-             "PRESENTATION_NAME" : "Sanduiche natural com queijo"   
-             };
-             produtos[3] = {
-             "CODE":3,
-             "VALUE":17.00,
-             "NAME" : "BEN ALMOÇO",
-             "PRESENTATION_NAME" : "Ben Almoço do dia"   
-             };
-             produtos[4] = {
-             "CODE":4,
-             "VALUE":6.49,
-             "NAME" : "PASTEL DE NADA",
-             "PRESENTATION_NAME" : "Pastelzinho de Belem"   
-             };
-             
-             produtos[5] = {
-             "CODE":5,
-             "VALUE":14.90,
-             "NAME" : "BIG BEN",
-             "PRESENTATION_NAME" : "Big Ben"   
-             };
-             produtos[6] = {
-             "CODE":6,
-             "VALUE":2.99,
-             "NAME" : "MINI CROISS CHOC",
-             "PRESENTATION_NAME" : "Mini Croissant Chocolate"   
-             };
-             
-             produtos[7] = {
-             "CODE":7,
-             "VALUE":11.00,
-             "NAME" : "ACAI COM MEL",
-             "PRESENTATION_NAME" : "Açai com mel"   
-             };
-             
-             produtos[8] = {
-             "CODE":8,
-             "VALUE":14.00,
-             "NAME" : "SANDUI COM QUEI e PRES",
-             "PRESENTATION_NAME" : "Sanduiche natural com queijo e presunto"   
-             };
-
-             produtos[9] = {
-             "CODE":9,
-             "VALUE":14.90,
-             "NAME" : "SANDUI COM QUEI e PRES e TOM",
-             "PRESENTATION_NAME" : "Sanduiche natural com queijo , presunto e tomate"   
-             };
-             
-             produtos[10] = {
-             "CODE":10,
-             "VALUE":14.90,
-             "NAME" : "SANDUI COM QUEI e PRES e TOM e ALF",
-             "PRESENTATION_NAME" : "Sanduiche natural com queijo , presunto , tomate e tomate"   
-             };
-             
-
-             var catalogo = new Array();
-             catalogo[0] = [1,2,3,4,6];
-             catalogo[1] = [1,2];
-             
-             var campanhas = []
-             campanhas[0] = {
-             "CODE":0,
-             "NAME" : "CROISSANT",
-             "DESCRIPTION" : "nossos Croissants" ,
-             "PRODUCTS" : [1,7]
-             
-             };
-             campanhas[1] = {
-             "CODE":1,
-             "NAME" : "AÇAIS",
-             "DESCRIPTION" : "nossos açais" ,
-             "PRODUCTS" : [1,7]
-             
-             };
-             
-             campanhas[2] = {
-             "CODE":2,
-             "NAME" : "SanDUICHE",
-             "DESCRIPTION" : "nossos sanduiches" ,
-             "PRODUCTS" : [2,8 , 9, 10]
-             
-             };
-             
-             
-             var campanhas_lojas = [];
-             campanhas_lojas[0] = [1,2];
-             campanhas_lojas[2] = [1];
-             campanhas_lojas[3] = [2];
-             
-             function getLocalData(name){
-             return localStorage.getItem(name)
-             }
-             
-             function setLocalData(name,value){
-             if (value!=null)
-             localStorage.setItem(name,value);
-             else
-             localStorage.removeItem(name);
-             }
-             
-             
-             var cartObj = null; // global pointer to cart
-             var cartCI = -1;
-             var str_botoes = '';
-             
-             
-             function cart_initCart() {
-             cartObj = new Array();
-             cartCI = 0;
-             // Check in browser memory if there are a saved cart
-             if (getLocalData("BENJAMIN_USERCART")!=null){
-             // if previoys cart is present load it
-             cartCI = getLocalData("BENJAMIN_USERCART_CI");
-             cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-             user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
-             console.log(cartObj);
-             }else{
-             console.log("\t[CART-BENJAMIN] Carrinho esta vazio!");
-             }
-             }
-             
-             
-             
-             function cart_removeCartRow_v2(rowid){
-             cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-             cartObj[rowid]=null; // sign row as invalid
-             cartObj = cartObj.filter(function(x) { return x !== null }); 
-             setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
-             }
-             
-             
-             
-             angular.module('app', [])
-             .service('ngCopy', ['$window', function ($window) {
-             var body = angular.element($window.document.body);
-             var textarea = angular.element('<textarea/>');
-             textarea.css({
-             position: 'fixed',
-             opacity: '0'
-             });
-             
-             return function (toCopy) {
-             textarea.val(toCopy);
-             body.append(textarea);
-             textarea[0].select();
-             
-             try {
-             var successful = document.execCommand('copy');
-             if (!successful) throw successful;
-             } catch (err) {
-             window.prompt("Copy to clipboard: Ctrl+C, Enter", toCopy);
-             }
-             
-             textarea.remove();
-             }
-             }])
-             .directive('ngClickCopy', ['ngCopy', function (ngCopy) {
-             return {
-             restrict: 'A',
-             link: function (scope, element, attrs) {
-             element.bind('click', function (e) {
-             ngCopy(attrs.ngClickCopy);
-             });
-             }
-             }
-             }])
-             .filter('trustAsHTML', ['$sce', function($sce){
-             return function(text) {
-                 return $sce.trustAsHtml(text);
-             };
-             }])
-             .controller('CartController', function($sce) {
-             var cart = this;
-             cart.produtos = produtos;
-             cart.catalogo = catalogo;
-             cart.campanhas = campanhas;
-             cart.campanhas_lojas = campanhas_lojas;
-             cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-             cart.cart_ci = JSON.parse(getLocalData("BENJAMIN_USERCART_CI"));
-             cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
-             cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
-             
-             if(cart.email_cliente)
-             cart.hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
-             
-             function addItemInCart(code){
-               var newRow = new Object();
-                   newRow["CODE"] = code;
-                   newRow["PRESENTATION_NAME"] = produtos[code].PRESENTATION_NAME;
-                   newRow["VALUE"] = produtos[code].VALUE;
-                   
-                   console.log(newRow);
-             
-                   if (cartObj==null){
-                       cartObj = [];
-                   }
-             
-                   console.log(cartObj);
-                   cartObj[cartCI++] = newRow;
-                   console.log(cartObj);
-             
-                   setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
-                   setLocalData("BENJAMIN_USERCART_CI",cartCI);
-             }
-             
-             function carrinho_local() {
-               cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-               console.log(cartObj);
-             
-               var carrinho = new Array();
-               var grand_total = 0;
-               for (var xr in cartObj){
-                   if (cartObj[xr]==null) continue;
-             
-                   grand_total+=parseFloat(cartObj[xr].VALUE);
-               }
-             
-               return grand_total;
-             }
-             
-             
-             cart.adicionar = function(id) {
-               addItemInCart(id);
-               cart.total = carrinho_local();
-               cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
-             };
-             
-             cart.removeItem = function(id){
-               cart_removeCartRow_v2(id);
-               cart.total = carrinho_local();
-               cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-             }
-             
-             cart.pega_email = function(){
-             var email = prompt("Qual é o seu email?");
-             
-             //if (email.toLowerCase() == "escorpião") {
-               var hash = Crypto.MD5(email);
-               //alert(email);
-               //alert(hash);
-             //  }
-             setLocalData("BENJAMIN_USERCART_EMAIL",email);
-             cart.email_cliente = email;
-             cart.hash_email_cliente = hash;
-             }
-             
-             cart.total = carrinho_local();
-             cart_initCart (); 
-             
-             });
-             
-             
-             
-             /*if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('offline-service-worker.js');
-             }*/
-          </script>
-    </head>
-
-    <body data-spy="scroll" data-offset="71" data-target="#navbarRestaurant" ng-controller="CartController as cart">
-        <div id="preloader">
-            <div id="preloader-inner"></div>
-        </div><!--/preloader-->
-        <header class="header-main header-transparent">
-            <div class="top-bar">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 ml-auto">
-                            <div class="float-right clearfix top-socials">
-                                <a href="https://www.facebook.com/BenjaminAPadaria" class="social-icon-sm si-dark si-dark-round si-facebook">
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="https://www.instagram.com/benjaminapadaria/" class="social-icon-sm si-dark si-dark-round si-instagram">
-                                    <i class="fa fa-instagram"></i>
-                                    <i class="fa fa-instagram"></i>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <!-- Pushy Menu -->
-        <aside class="pushy pushy-right">
-            <div class="cart-content">
-                <div class="clearfix">
-                    <a href="javascript:void(0)" class="pushy-link text-white-gray">X</a>
-                </div>
-                <ul class="list-unstyled">
-                    <li class="clearfix" ng-repeat="produto in cart.carrinho track by $index" ng-show="produto.PRESENTATION_NAME">
-                        <a href="#" class="float-left">
-                            <img src="images/shop/p1.jpg" class="img-fluid" alt="" width="60">
-                        </a>
-                        <div class="oHidden">
-                            <span class="close" ng-click=cart.removeItem($index><i class="ti-close"></i></span>
-                            <h4><a href="#">{{produto.PRESENTATION_NAME}}</a></h4>
-                            <p class="text-white-gray"><strong>{{produto.VALUE}}</strong></p>
-                        </div>
-                    </li><!--/cart item-->
+      </script>
+      <script type="text/javascript">
+         var produtos = new Array();
+         produtos[0] = {
+          "CODE":0,
+          "VALUE":10.00,
+          "NAME" : "CROISS",
+          "PRESENTATION_NAME" : "Croissant"   
+          };
+          produtos[1] = {
+          "CODE":1,
+          "VALUE":10.00,
+          "NAME" : "ACAI COM BANAN",
+          "PRESENTATION_NAME" : "Açai com bananas"   
+          };
+          produtos[2] = {
+          "CODE":2,
+          "VALUE":14.00,
+          "NAME" : "SANDUI COM QUEI",
+          "PRESENTATION_NAME" : "Sanduiche natural com queijo"   
+          };
+          produtos[3] = {
+          "CODE":3,
+          "VALUE":17.00,
+          "NAME" : "BEN ALMOÇO",
+          "PRESENTATION_NAME" : "Ben Almoço do dia"   
+          };
+          produtos[4] = {
+          "CODE":4,
+          "VALUE":6.49,
+          "NAME" : "PASTEL DE NADA",
+          "PRESENTATION_NAME" : "Pastelzinho de Belem"   
+          };
+          
+          produtos[5] = {
+          "CODE":5,
+          "VALUE":14.90,
+          "NAME" : "BIG BEN",
+          "PRESENTATION_NAME" : "Big Ben"   
+          };
+          produtos[6] = {
+          "CODE":6,
+          "VALUE":2.99,
+          "NAME" : "MINI CROISS CHOC",
+          "PRESENTATION_NAME" : "Mini Croissant Chocolate"   
+          };
+          
+          produtos[7] = {
+          "CODE":7,
+          "VALUE":11.00,
+          "NAME" : "ACAI COM MEL",
+          "PRESENTATION_NAME" : "Açai com mel"   
+          };
+          
+          produtos[8] = {
+          "CODE":8,
+          "VALUE":14.00,
+          "NAME" : "SANDUI COM QUEI e PRES",
+          "PRESENTATION_NAME" : "Sanduiche natural com queijo e presunto"   
+          };
+         
+          produtos[9] = {
+          "CODE":9,
+          "VALUE":14.90,
+          "NAME" : "SANDUI COM QUEI e PRES e TOM",
+          "PRESENTATION_NAME" : "Sanduiche natural com queijo , presunto e tomate"   
+          };
+          
+          produtos[10] = {
+          "CODE":10,
+          "VALUE":14.90,
+          "NAME" : "SANDUI COM QUEI e PRES e TOM e ALF",
+          "PRESENTATION_NAME" : "Sanduiche natural com queijo , presunto , tomate e tomate"   
+          };
+          
+         
+          var catalogo = new Array();
+          catalogo[0] = [1,2,3,4,6];
+          catalogo[1] = [1,2];
+          
+          var campanhas = []
+          campanhas[0] = {
+          "CODE":0,
+          "NAME" : "CROISSANT",
+          "DESCRIPTION" : "nossos Croissants" ,
+          "PRODUCTS" : [1,7]
+          
+          };
+          campanhas[1] = {
+          "CODE":1,
+          "NAME" : "AÇAIS",
+          "DESCRIPTION" : "nossos açais" ,
+          "PRODUCTS" : [1,7]
+          
+          };
+          
+          campanhas[2] = {
+          "CODE":2,
+          "NAME" : "SANDUICHE",
+          "DESCRIPTION" : "nossos sanduiches" ,
+          "PRODUCTS" : [2,8 , 9, 10]
+          
+          };
+          
+          
+          var campanhas_lojas = [];
+          campanhas_lojas[0] = [1,2];
+          campanhas_lojas[2] = [1];
+          campanhas_lojas[3] = [2];
+          
+          function getLocalData(name){
+          return localStorage.getItem(name)
+          }
+          
+          function setLocalData(name,value){
+          if (value!=null)
+          localStorage.setItem(name,value);
+          else
+          localStorage.removeItem(name);
+          }
+          
+          
+          var cartObj = null; // global pointer to cart
+          var cartCI = -1;
+          var str_botoes = '';
+          
+          
+          function cart_initCart() {
+          cartObj = new Array();
+          cartCI = 0;
+          // Check in browser memory if there are a saved cart
+          if (getLocalData("BENJAMIN_USERCART")!=null){
+          // if previoys cart is present load it
+          cartCI = getLocalData("BENJAMIN_USERCART_CI");
+          cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+          user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
+          console.log(cartObj);
+          }else{
+          console.log("\t[CART-BENJAMIN] Carrinho esta vazio!");
+          }
+          }
+          
+          
+          
+          function cart_removeCartRow_v2(rowid){
+          cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+          cartObj[rowid]=null; // sign row as invalid
+          cartObj = cartObj.filter(function(x) { return x !== null }); 
+          setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
+          }
+          
+          
+          
+          angular.module('app', ["toastr"])
+          .service('ngCopy', ['$window', function ($window) {
+          var body = angular.element($window.document.body);
+          var textarea = angular.element('<textarea/>');
+          textarea.css({
+          position: 'fixed',
+          opacity: '0'
+          });
+          
+          return function (toCopy) {
+          textarea.val(toCopy);
+          body.append(textarea);
+          textarea[0].select();
+          
+          try {
+          var successful = document.execCommand('copy');
+          if (!successful) throw successful;
+          } catch (err) {
+          window.prompt("Copy to clipboard: Ctrl+C, Enter", toCopy);
+          }
+          
+          textarea.remove();
+          }
+          }])
+          .directive('ngClickCopy', ['ngCopy', function (ngCopy) {
+          return {
+          restrict: 'A',
+          link: function (scope, element, attrs) {
+          element.bind('click', function (e) {
+          ngCopy(attrs.ngClickCopy);
+          });
+          }
+          }
+          }])
+          .filter('trustAsHTML', ['$sce', function($sce){
+          return function(text) {
+              return $sce.trustAsHtml(text);
+          };
+          }])
+          .run(function($window, $rootScope) {
+                   $rootScope.online = navigator.onLine;
+                   $window.addEventListener("offline", function () {
+                     $rootScope.$apply(function() {
+                       $rootScope.online = false;
+                     });
+                   }, false);
+                   $window.addEventListener("online", function () {
+                     $rootScope.$apply(function() {
+                       $rootScope.online = true;
+                     });
+                   }, false);
+             })
+          .controller('CartController', function($sce,toastr, $http) {
+              var cart = this;
+              cart.produtos = produtos;
+              cart.catalogo = catalogo;
+              cart.campanhas = campanhas;
+              cart.campanhas_lojas = campanhas_lojas;
+              cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+              cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
+              cart.cart_ci = JSON.parse(getLocalData("BENJAMIN_USERCART_CI"));
+              cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
+              cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
+              
+              if(cart.email_cliente)
+              cart.hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
+              
+              function addItemInCart(code){
+                var newRow = new Object();
+                    newRow["CODE"] = code;
+                    newRow["PRESENTATION_NAME"] = produtos[code].PRESENTATION_NAME;
+                    newRow["VALUE"] = produtos[code].VALUE;
                     
-
-                </ul>
+                    console.log(newRow);
+              
+                    if (cartObj==null){
+                        cartObj = [];
+                    }
+              
+                    console.log(cartObj);
+                    cartObj[cartCI++] = newRow;
+                    console.log(cartObj);
+              
+                    setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
+                    setLocalData("BENJAMIN_USERCART_CI",cartCI);
+                 toastr.success('Seu Produto Esta no Seu Carrinho!', 'Produto Adicionado!');
+         
+              }
+              
+              function carrinho_local() {
+                cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+                console.log(cartObj);
+              
+                var carrinho = new Array();
+                var grand_total = 0;
+                for (var xr in cartObj){
+                    if (cartObj[xr]==null) continue;
+              
+                    grand_total+=parseFloat(cartObj[xr].VALUE);
+                }
+              
+                return grand_total;
+              }
+              
+              
+              cart.adicionar = function(id) {
+                addItemInCart(id);
+                cart.total = carrinho_local();
+                cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
+              };
+              
+              cart.removeItem = function(id){
+                cart_removeCartRow_v2(id);
+                cart.total = carrinho_local();
+                cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+              }
+              
+              cart.pega_email = function(){
+              //var email = prompt("Qual é o seu email?");
+              var email = jQuery("#email").val();
+              
+              //if (email.toLowerCase() == "escorpião") {
+                var hash = Crypto.MD5(email);
+         
+                jQuery.post('/carregar_dados', {'email':email}).
+                done(function(data){
+                 var dados = JSON.parse(data);
+                 var usuario = JSON.parse(dados.usuario);
+                 console.log(usuario);
+                 cart.logged_user = usuario;
+                  if(usuario.name){
+                     //console.log(dados.name);
+                     setLocalData("BENJAMIN_USERCART_LOGGED_USER",dados.usuario);
+                     toastr.success('Seus dados foram alterados!', 'Dados foram salvos!');
+                      setLocalData("BENJAMIN_USERCART_EMAIL",email);
+                     cart.email_cliente = email;
+                     cart.hash_email_cliente = hash;
+                     jQuery('#popup-login').modal('hide');
+                   
+         
+                    // jQuery('#popup-login').hide();
+                 }else{
+                     toastr.error('Seus dados nao foram alterados!', 'Dados nao foram salvos!');
+                     
+                 }
+         
+                })
+                //alert(email);
+                //alert(hash);
+              //  }
+         
+              //alert("vai validar "+email+hash);
+             
+              }
+         
+              cart.modal_search = function(){
+               console.log(cart.filtro);
+               if(cart.filtro){
+                 $('#modal-search').modal('show');
+               }else{
+                 $('#modal-search').modal('hide');
+               }
+         
+              }
+         
+              cart.mostra_registrar = function () {
+                  // body...
+                  jQuery("#form-login").slideUp();
+                  jQuery("#form-register").slideDown();
+              }
+         
+             cart.getFormData = function ($form){
+                 var unindexed_array = $form.serializeArray();
+                 var indexed_array = {};
+         
+                 $.map(unindexed_array, function(n, i){
+                     indexed_array[n['name']] = n['value'];
+                 });
+         
+                 return indexed_array;
+             }
+         
+         
+         
+         
+              cart.registrar_usuario = function(){
+                 //var usuario = jQuery("#formulario-registro").serializeArray();
+                 var $form = $("#form_data");
+                 var usuario ={"name":$("#name").val(), "email":$("#email_registro").val(), "password":$("#password").val()};
+                 $http.post("/registrar_usuario",{"usuario":usuario}).then(function (response) {
+                     // body...
+                     console.log(response);
+                 }, function (response) {
+                     console.log(response);
+                     // body...
+                 });
+              }
+              
+              cart.total = carrinho_local();
+              cart_initCart (); 
+          
+          });
+          
+          
+          
+          /*if ('serviceWorker' in navigator) {
+             navigator.serviceWorker.register('offline-service-worker.js');
+          }*/
+      </script>
+   </head>
+   <body data-spy="scroll" data-offset="71" data-target="#navbarRestaurant" ng-controller="CartController as cart">
+      <div id="preloader">
+         <div id="preloader-inner"></div>
+      </div>
+      <!--/preloader-->
+      <header class="header-main header-transparent">
+         <!-- Pushy Menu -->
+         <aside class="pushy pushy-right">
+            <div class="cart-content">
+               <div class="clearfix">
+                  <a href="javascript:void(0)" class="pushy-link text-white-gray">X</a>
+               </div>
+               <hr>
+               <div class="center-title" ng-show="!cart.email_cliente">
+                  <p>Você precisa logar para pagar seu carrinho. <a ng-click="cart.pega_email()">Logar.</a></p>
+               </div>
+               <div class="center-title" ng-show="cart.email_cliente">
+                  <p>Deseja alterar o email  {{cart.email_cliente}} <a ng-click="cart.pega_email()">alterar o email.</a></p>
+               </div>
+               <hr>
+               <ul class="list-unstyled">
+                  <li class="clearfix" ng-repeat="produto in cart.carrinho track by $index" ng-show="produto.PRESENTATION_NAME">
+                     <a href="" class="float-left">
+                     <img src="img/foto.jpg" class="img-fluid" alt="" width="60">
+                     </a>
+                     <div class="oHidden">
+                        <span class="close" ng-click="cart.removeItem($index)"><i class="ti-close"></i></span>
+                        <h4><a href="#">{{produto.PRESENTATION_NAME}}</a></h4>
+                        <p class="text-white-gray"><strong>{{produto.VALUE}}</strong></p>
+                     </div>
+                  </li>
+                  <!--/cart item-->
+                  <hr>
+                  <li>
+                     <div class="center-text">
+                        <p class="text-white-gray"> Total : {{cart.total |currency:"R$" }}</p>
+                     </div>
+                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                        <!--Tipo do botão-->
+                        <input type="hidden" name="cmd" value="_xclick" />
+                        <!--Vendedor e URL de retorno, cancelamento e notificação-->
+                        <input type="hidden" name="business" value="contasapagar-facilitator@benjaminapadaria.com.br" />
+                        <input type="hidden" name="return" value="https://benjamin-a-padaria.herokuapp.com/compra/retorno/{{cart.hash_email_cliente}}" />
+                        <input type="hidden" name="cancel" value="https://benjamin-a-padaria.herokuapp.com/compra/cancelamento/{{cart.hash_email_cliente}}" />
+                        <input type="hidden" name="notify_url" value="https://benjamin-a-padaria.herokuapp.com/compra/notificacao" />
+                        <!--Internacionalização e localização da página de pagamento-->
+                        <input type="hidden" name="charset" value="utf-8" />
+                        <input type="hidden" name="lc" value="BR" />
+                        <input type="hidden" name="country_code" value="BR" />
+                        <input type="hidden" name="currency_code" value="BRL" />
+                        <input type="hidden" name="tx" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="payer_id" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="invoice" value="{{cart.hash_email_cliente}}@{{cart.cart_ci}}">
+                        <input type="hidden" name="custom" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="at" value="{{cart.hash_email_cliente}}">
+                        <!--Informações sobre o produto e seu valor-->
+                        <input type="hidden" name="amount" value="{{cart.total}}" />
+                        <input type="hidden" name="item_name" value="Servico" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <input type="hidden" name="item_number_1" value="bolinho" />
+                        <input type="hidden" name="item_number_2" value="Sonho" />
+                        <!--Botão para submissão do formulário-->
+                        <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0"/>
+                     </form>
+                  </li>
+               </ul>
             </div>
-        </aside>
-        <!-- Site Overlay -->
-        <div class="site-overlay"></div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-faded"> 
-                      
-             <div class="search-inline">
-                <form>
-                    <input type="text" class="form-control" placeholder="Digite e aperte enter...">
-                    <button type="submit"><i class="ti-search"></i></button>
-                    <a href="javascript:void(0)" class="search-close"><i class="ti-close"></i></a>
-                </form>
-            </div><!--/search form-->          
-                <div class="container">
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarRestaurant" aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">
-                        <img class='logo logo-light hidden-md-down' src="images/resto/benjamin.png" alt="">
-                    </a>
-                    <div  id="navbarRestaurant" class="navbar-collapse collapse">
-                        <ul class="navbar-nav  ml-auto">
-                            <li class="nav-item"><a data-scroll class="nav-link active" href="#home"> Home</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="#about"> QR Code</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" \href="javascript:void(0)"> Carrinho</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="#contact"> Contato</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link btn si-orange btn-primary" href="" ng-click="cart.pega_email()"> Logar</a></li>
-                        </ul>   
-                    </div>
-                    <div class=" navbar-right-elements">
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart si-orange"></i> <span class="badge badge-default si-orange btn-primary">{{cart.carrinho.length}}</span></a></li>
-                    </ul>
-                </div>
-                </div>
-            </nav>
-        </header><!--/header-->
-        <!--slider revolution start-->
-        <div class="rev_slider_wrapper oHidden" id="home">
-            <div id="slider1" class="rev_slider fullwidthabanner"  data-version="5.0">
-                <ul> 
-                    <li data-transition="random"> 
-                        <!-- MAIN IMAGE -->
-
-                        <img src="images/resto/croissant-chocolate-aberto.jpg"  alt=""  width="1920" height="1000" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg">
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption tp-resizeme slider-title" 
-                             data-x="['left','left','left','left']" data-hoffset="['50','50','50','15']" 
-                             data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
-                             data-fontsize="['80','80','80','45']"
-                             data-lineheight="['80','80','80','50']"
-                             data-width="none"
-                             data-height="none"
-
-                             data-transform_idle="o:1;" 
-                             data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                             data-transform_out="auto:auto;s:300;" 
-                             data-start="500">Croissant de chocolate <p> R$7,90</p></div>
-                        <div class="tp-caption tp-resizeme slider-caption" 
-                             data-x="['left','left','left','left']" data-hoffset="['50','50','50','15']" 
-                             data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','70']" 
-                             data-fontsize="['20','20','20','15']"
-                             data-lineheight="['25','25','25','20']"
-                             data-width="none"
-                             data-height="none" 
-                             data-whitespace="nowrap"
-                             data-transform_idle="o:1;" 
-                             data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                             data-transform_out="auto:auto;s:300;" 
-                             data-start="1000"></div>
-                        <div class="tp-caption tp-resizeme slider-button" 
-                             data-x="['left','left','left','left']" data-hoffset="['50','50','50','15']" 
-                             data-y="['middle','middle','middle','middle']" data-voffset="['160','160','140','140']" 
-                             data-whitespace="nowrap"
-                             data-transform_idle="o:1;" 
-                             data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                             data-transform_out="auto:auto;s:300;" 
-                             data-start="1500"><a href="#" class="btn float-right btn-outline-white">Adicionar <i class="ti-plus"></i></a></div>
-                    </li>
-                    <li data-transition="random"> 
-                        <!-- MAIN IMAGE -->
-
-                        <img src="images/resto/bg2.jpg"  alt=""  width="1920" height="1000" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg">
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption tp-resizeme slider-title" 
-                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-                             data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
-                             data-fontsize="['80','80','80','45']"
-                             data-lineheight="['80','80','80','50']"
-                             data-width="none"
-                             data-height="none"
-
-                             data-transform_idle="o:1;" 
-                             data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                             data-transform_out="auto:auto;s:300;" 
-                             data-start="500">Benjamin</div>
-                        <div class="tp-caption tp-resizeme slider-caption" 
-                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-                             data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','70']" 
-                             data-fontsize="['20','20','20','15']"
-                             data-lineheight="['25','25','25','20']"
-                             data-width="none"
-                             data-height="none" 
-                             data-whitespace="nowrap"
-                             data-transform_idle="o:1;" 
-                             data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                             data-transform_out="auto:auto;s:300;" 
-                             data-start="1000">Amamos o que fazemos e dedicamos a você.
-                        </div>
-                        <div class="tp-caption tp-resizeme slider-button" 
-                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-                             data-y="['middle','middle','middle','middle']" data-voffset="['160','160','160','120']" 
-                             data-whitespace="nowrap"
-                             data-transform_idle="o:1;" 
-                             data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                             data-transform_out="auto:auto;s:300;" 
-                             data-start="1500"><a href="" class="btn float-right btn-outline-white" ng-click="cart.pega_email()">Logar</a></div>
-                    </li>
-                    <li data-transition="random"> 
-                        <!-- MAIN IMAGE -->
-
-                        <img src="images/resto/Cafe_filtrado-2.jpg"  alt=""  width="1920" height="1000" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg">
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption tp-resizeme slider-title" 
-                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-                             data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
-                             data-fontsize="['80','80','80','45']"
-                             data-lineheight="['80','80','80','50']"
-                             data-width="none"
-                             data-height="none"
-
-                             data-transform_idle="o:1;" 
-                             data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                             data-transform_out="auto:auto;s:300;" 
-                             data-start="500">#Café Orfeu, R$ 4,90</div>
-                        <div class="tp-caption tp-resizeme slider-caption" 
-                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-                             data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','70']" 
-                             data-fontsize="['20','20','20','15']"
-                             data-lineheight="['25','25','25','20']"
-                             data-width="none"
-                             data-height="none" 
-                             data-whitespace="nowrap"
-                             data-transform_idle="o:1;" 
-                             data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                             data-transform_out="auto:auto;s:300;" 
-                             data-start="1000"></div>
-                        <div class="tp-caption tp-resizeme slider-button" 
-                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-                             data-y="['middle','middle','middle','middle']" data-voffset="['160','160','160','120']" 
-                             data-whitespace="nowrap"
-                             data-transform_idle="o:1;" 
-                             data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                             data-transform_out="auto:auto;s:300;" 
-                             data-start="1500"><a href="#" class="btn float-right btn-outline-white">Adicionar <i class="ti-plus"></i></a></div>
-                    </li>
-                </ul> 
-            </div><!-- END REVOLUTION SLIDER -->
-        </div><!-- END OF SLIDER WRAPPER -->
-        <!--end slider revolution-->
-
-        <div class="bg-white" id="about">
-            <div class="container pt90 pb60">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb30">
-                        <h3 class=" h1 font300 mb30">Escanei o QR Code da mesa</h3>
-                        <p>
-                            Para identificar qual é sua comanda e sua mesa é necessário escanear o QR Code que esta na mesa em que esta sentado.
-                        </p>
-                        <a href="#" class="btn btn-outline-primary">Escanear</a>
-                    </div>
-                    <div class="col-lg-6 mb30">
-                        <img src="images/qr.png" alt="" class="img-fluid">
-                    </div>              
-                </div>
+         </aside>
+         <!-- Site Overlay -->
+         <div class="site-overlay"></div>
+         <nav class="navbar navbar-expand-lg navbar-light bg-faded">
+            <div class="search-inline">
+               <form>
+                  <input type="text" class="form-control" placeholder="Digite sua busca" ng-model="cart.filtro" ng-blur="cart.modal_search()">
+                  <button type="submit"><i class="ti-search"></i></button>
+                  <a href="javascript:void(0)" class="search-close"><i class="ti-close"></i></a>
+               </form>
             </div>
-        </div><!--intro-->
-
-
-
-        <div class="bg-parallax parallax-overlay pt100 pb100" id='menu' data-jarallax='{"speed": 0.2}' style="background:url(images/resto/Imagem9.png) no-repeat;">
+            <!--/search form-->          
             <div class="container">
-                <div class="center-title">
-                    <h2 class='text-white'>Nossos Cardápios</h2>
-                </div>
-                <div class='food-menu-card'>
-                    <div>
-
+               <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarRestaurant" aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <a class="navbar-brand" href="#">
+               <img class='logo logo-light' src="images/resto/benjamin.png" alt="">
+               </a>
+               <div  id="navbarRestaurant" class="navbar-collapse collapse">
+                  <ul class="navbar-nav  ml-auto">
+                     <li class="nav-item"><a data-scroll class="nav-link active" href="#home"> Home</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="/qrunidade.html"> QR Code</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href=""> Bencréditos</a></li>
+                     <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
+                     <li class="nav-item"  ng-show="cart.email_cliente"><a href="" data-toggle="modal" data-target="#myModal">
+                        <img class="img-profile" src="images/resto/profile.jpg">
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="navbar-right-elements">
+                  <ul class="list-inline">
+                     <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
+                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <!--/header-->
+      <!--slider revolution start-->
+      <div class="rev_slider_wrapper oHidden" id="home">
+         <div id="slider1" class="rev_slider fullwidthabanner"  data-version="5.0">
+            <ul>
+               <li data-transition="random">
+                  <!-- MAIN IMAGE -->
+                  <img src="images/resto/croissant-chocolate-aberto.jpg"  alt=""  width="1920" height="1000" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg">
+                  <!-- LAYER NR. 1 -->
+                  <div class="tp-caption tp-resizeme slider-title" 
+                     data-x="['left','left','left','left']" data-hoffset="['50','50','50','15']" 
+                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                     data-fontsize="['80','80','80','45']"
+                     data-lineheight="['80','80','80','50']"
+                     data-width="none"
+                     data-height="none"
+                     data-transform_idle="o:1;" 
+                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
+                     data-transform_out="auto:auto;s:300;" 
+                     data-start="500">Croissant de chocolate <br> R$7,90</div>
+                  <div class="tp-caption tp-resizeme slider-caption" 
+                     data-x="['left','left','left','left']" data-hoffset="['50','50','50','15']" 
+                     data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','70']" 
+                     data-fontsize="['20','20','20','15']"
+                     data-lineheight="['25','25','25','20']"
+                     data-width="none"
+                     data-height="none" 
+                     data-whitespace="nowrap"
+                     data-transform_idle="o:1;" 
+                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
+                     data-transform_out="auto:auto;s:300;" 
+                     data-start="1000"></div>
+                  <div class="tp-caption tp-resizeme slider-button" 
+                     data-x="['left','left','left','left']" data-hoffset="['50','50','50','15']" 
+                     data-y="['middle','middle','middle','middle']" data-voffset="['160','160','140','140']" 
+                     data-whitespace="nowrap"
+                     data-transform_idle="o:1;" 
+                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
+                     data-transform_out="auto:auto;s:300;" 
+                     data-start="1500"><a href="#" class="btn float-right btn-outline-white">Adicionar <i class="ti-plus"></i></a></div>
+               </li>
+               <li data-transition="random">
+                  <!-- MAIN IMAGE -->
+                  <img src="images/resto/bg2.jpg"  alt=""  width="1920" height="1000" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg">
+                  <!-- LAYER NR. 1 -->
+                  <div class="tp-caption tp-resizeme slider-title" 
+                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                     data-fontsize="['80','80','80','45']"
+                     data-lineheight="['80','80','80','50']"
+                     data-width="none"
+                     data-height="none"
+                     data-transform_idle="o:1;" 
+                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
+                     data-transform_out="auto:auto;s:300;" 
+                     data-start="500">Benjamin</div>
+                  <div class="tp-caption tp-resizeme slider-caption" 
+                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                     data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','70']" 
+                     data-fontsize="['20','20','20','15']"
+                     data-lineheight="['25','25','25','20']"
+                     data-width="none"
+                     data-height="none" 
+                     data-whitespace="nowrap"
+                     data-transform_idle="o:1;" 
+                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
+                     data-transform_out="auto:auto;s:300;" 
+                     data-start="1000">Amamos o que fazemos e dedicamos a você.
+                  </div>
+                  <div class="tp-caption tp-resizeme slider-button" 
+                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                     data-y="['middle','middle','middle','middle']" data-voffset="['160','160','160','120']" 
+                     data-whitespace="nowrap"
+                     data-transform_idle="o:1;" 
+                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
+                     data-transform_out="auto:auto;s:300;" 
+                     data-start="1500"><a href="" class="btn float-right btn-outline-white" ng-click="cart.pega_email()">Logar</a></div>
+               </li>
+               <li data-transition="random">
+                  <!-- MAIN IMAGE -->
+                  <img src="images/resto/Cafe_filtrado-2.jpg"  alt=""  width="1920" height="1000" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg">
+                  <!-- LAYER NR. 1 -->
+                  <div class="tp-caption tp-resizeme slider-title" 
+                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                     data-fontsize="['80','80','80','45']"
+                     data-lineheight="['80','80','80','50']"
+                     data-width="none"
+                     data-height="none"
+                     data-transform_idle="o:1;" 
+                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
+                     data-transform_out="auto:auto;s:300;" 
+                     data-start="500">#Café Orfeu, R$ 4,90</div>
+                  <div class="tp-caption tp-resizeme slider-caption" 
+                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                     data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','70']" 
+                     data-fontsize="['20','20','20','15']"
+                     data-lineheight="['25','25','25','20']"
+                     data-width="none"
+                     data-height="none" 
+                     data-whitespace="nowrap"
+                     data-transform_idle="o:1;" 
+                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
+                     data-transform_out="auto:auto;s:300;" 
+                     data-start="1000"></div>
+                  <div class="tp-caption tp-resizeme slider-button" 
+                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                     data-y="['middle','middle','middle','middle']" data-voffset="['160','160','160','120']" 
+                     data-whitespace="nowrap"
+                     data-transform_idle="o:1;" 
+                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
+                     data-transform_out="auto:auto;s:300;" 
+                     data-start="1500"><a href="#" class="btn float-right btn-outline-white">Adicionar <i class="ti-plus"></i></a></div>
+               </li>
+            </ul>
+         </div>
+         <!-- END REVOLUTION SLIDER -->
+      </div>
+      <!-- END OF SLIDER WRAPPER -->
+      <!--end slider revolution-->
+      <div class="bg-white" id="about">
+         <div class="container pt90 pb60">
+            <div class="row align-items-center">
+               <div class="col-lg-6 mb30">
+                  <h3 class=" h1 font300 mb30">Escanei o QR Code da mesa</h3>
+                  <p>
+                     Para identificar qual é sua comanda e sua mesa é necessário escanear o QR Code que esta na mesa em que esta sentado.
+                  </p>
+                  <a href="#" class="btn btn-outline-primary">Escanear</a>
+               </div>
+               <div class="col-lg-6 mb30">
+                  <img src="images/qr.png" alt="" class="img-fluid">
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--intro-->
+      <div class="bg-parallax parallax-overlay pt100 pb100" id='menu' data-jarallax='{"speed": 0.2}' style="background:url(images/resto/Imagem9.png) no-repeat;">
+         <div class="container">
+            <div class="center-title">
+               <h2 class='text-white'>Nossos Cardápios</h2>
+            </div>
+            <div class='food-menu-card'>
+               <div>
+                  <!-- Nav tabs -->
+                  <ul class="nav  tabs-menu-nav justify-content-center mb30" role="tablist">
+                     <li class="nav-item" role="presentation" ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" ><a class="active nav-link" href="#campanha_{{cart.campanhas[campanha_lojas].CODE}}" aria-controls="campanha_{{cart.campanhas[campanha_lojas].CODE}}" role="tab" data-toggle="tab" ng-if="$first">{{cart.campanhas[campanha_lojas].NAME}}</a></li>
+                     <li class="nav-item" role="presentation" ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" ><a class="nav-link" href="#campanha_{{cart.campanhas[campanha_lojas].CODE}}" aria-controls="campanha_{{cart.campanhas[campanha_lojas].CODE}}" role="tab" data-toggle="tab" ng-if="!$first">{{cart.campanhas[campanha_lojas].NAME}}</a></li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                     <div ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" role="tabpanel" class="tab-pane active show fade" id="campanha_{{cart.campanhas[campanha_lojas].CODE}}">
+                        <div class='row'>
+                           <div class='col-md-6 mb20'>
+                              <article class="media" ng-repeat="produto_code in cart.campanhas[campanha_lojas].PRODUCTS">
+                                 <!--Content -->
+                                 <div class="media-body align-self-center g-pl-10">
+                                    <div class="d-flex justify-content-between mb10">
+                                       <h3 class="align-self-center text-capitalize mb0 h6 text-white font400">{{cart.produtos[produto_code].PRESENTATION_NAME}}</h3>
+                                       <div class="align-self-center">
+                                          <strong class="text-white font700">
+                                          <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="text-white" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!--/Content -->
+                              </article>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="pt90 pb60" id="chefs">
+         <div class="container">
+            <div class="center-title">
+               <h2 class="text">BENCRÉDITOS</h2>
+               <p class="text-gray">Aqui você compra créditos que podem ser usados nas suas futuras compras.</p>
+            </div>
+            <div class="row">
+               <div class="owl-carousel owl-theme carousel-cards">
+                  <div class="item">
+                     <a class="card-image" href="#">
+                        <img src="images/resto/cred.jpg" alt="" class="img-fluid">
+                        <h4 class="text-warning">Crédito de $10 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
+                     </a>
+                  </div>
+                  <!--item-->
+                  <div class="item">
+                     <a class="card-image" href="#">
+                        <img src="images/resto/Paes.jpg" alt="" class="img-fluid">
+                        <h4 class="text-warning">Crédito de $20 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
+                     </a>
+                  </div>
+                  <!--item-->
+                  <div class="item">
+                     <a class="card-image" href="#">
+                        <img src="images/resto/food2.jpg" alt="" class="img-fluid">
+                        <span class="float-right lead">$14</span>
+                        <h4>Red wine</h4>
+                     </a>
+                  </div>
+                  <!--item-->
+                  <div class="item">
+                     <a class="card-image" href="#">
+                        <img src="images/resto/food3.jpg" alt="" class="img-fluid">
+                        <span class="float-right lead">$5</span>
+                        <h4>Pizza Lorem</h4>
+                     </a>
+                  </div>
+                  <!--item-->
+                  <div class="item">
+                     <a class="card-image" href="#">
+                        <img src="images/resto/food4.jpg" alt="" class="img-fluid">
+                        <span class="float-right lead">$9</span>
+                        <h4>Pizza roll</h4>
+                     </a>
+                  </div>
+                  <!--item-->
+                  <div class="item">
+                     <a class="card-image" href="#">
+                        <img src="images/resto/food5.jpg" alt="" class="img-fluid">
+                        <span class="float-right lead">$13</span>
+                        <h4>Pure veg</h4>
+                     </a>
+                  </div>
+                  <!--item-->
+                  <div class="item">
+                     <a class="card-image" href="#">
+                        <img src="images/resto/food6.jpg" alt="" class="img-fluid">
+                        <span class="float-right lead">$11</span>
+                        <h4>Chikan Salad</h4>
+                     </a>
+                  </div>
+                  <!--item-->
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id='contact'>
+         <div id="markermap" style="width: 100%;height: 350px;"></div>
+      </div>
+      <footer class='footer pt50 pb20'>
+         <div class='container'>
+            <div class='row'>
+               <div class='col-lg-4 mb30'>
+                  <span class='clearfix'>
+                  <a href="https://www.facebook.com/BenjaminAPadaria/" class="social-icon-sm si-dark si-dark-round si-facebook">
+                  <i class="fa fa-facebook"></i>
+                  <i class="fa fa-facebook"></i>
+                  </a>
+                  <a href="https://www.instagram.com/benjaminapadaria/" class="social-icon-sm si-dark si-dark-round si-instagram">
+                  <i class="fa fa-instagram"></i>
+                  <i class="fa fa-instagram"></i>
+                  </a> 
+                  </span>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <div  id="popup-login" class="mfp-hide popup-content-area white-popup">
+         <div id="form-login">
+            <h4>Que Bom que voltou!</h4>
+            <hr>
+            <form>
+               <div class="form-group">
+                  <a href="#" class="float-right text-info">Esquecer</a>
+                  <label for="email">Username</label>
+                  <input type="text" class="form-control" id="email" placeholder="Username">
+               </div>
+               <div class="form-group">
+                  <a href="#" class="float-right text-info">limpar</a>
+                  <label for="pass">Password</label>
+                  <input type="password" class="form-control" id="pass" placeholder="......">
+               </div>
+               <div class="clearfix">
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" ng-click="cart.mostra_registrar()">Registrar</button>
+                     <button type="button" class="btn btn-primary" ng-click="cart.pega_email()">Logar</button>
+                  </div>
+               </div>
+               <hr>
+               <div class="clearfix">
+                  <div class="text-center">
+                     <p class="lead">Ou logar com</p>
+                  </div>
+                  <ul class="list-inline text-center">
+                     <li class="list-inline-item">
+                        <a href="#" class="social-icon-lg si-dark si-colored-facebook">
+                        <i class="fa fa-facebook"></i>
+                        <i class="fa fa-facebook"></i>
+                        </a>
+                     </li>
+                     <li class="list-inline-item">
+                        <a href="#" class="social-icon-lg  si-dark si-colored-twitter">
+                        <i class="fa fa-twitter"></i>
+                        <i class="fa fa-twitter"></i>
+                        </a>
+                     </li>
+                     <li class="list-inline-item">
+                        <a href="#" class="social-icon-lg si-dark si-colored-instagram">
+                        <i class="fa fa-instagram"></i>
+                        <i class="fa fa-instagram"></i>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </form>
+         </div>
+         <div id="form-register" style="display: none">
+            <div class="card-body">
+               <div class="row">
+                  <div class="col-md-12 mr-auto">
+                     <form class="form"  id="formulario-registro">
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">face</i>
+                                 </span>
+                              </div>
+                              <input type="text" id="name" name="name" class="form-control" placeholder="Nome completo...">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">notifications</i>
+                                 </span>
+                              </div>
+                              <input type="text" class="form-control" name="telefone" placeholder="Telefone...">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">edit</i>
+                                 </span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="CPF...">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">mail</i>
+                                 </span>
+                              </div>
+                              <input type="text"  class="form-control" name="email" id="email_registro" placeholder="Email...">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">lock_outline</i>
+                                 </span>
+                              </div>
+                              <input type="password" id="password" placeholder="Senha..." class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">lock</i>
+                                 </span>
+                              </div>
+                              <input type="password" id="confirma" placeholder="Confirmar senha..." class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-check">
+                           <label class="form-check-label">
+                           <input class="form-check-input" id="aceito" type="checkbox" value="aceito" checked="false">
+                           <span class="form-check-sign">
+                           <span class="check"></span>
+                           </span>
+                           Eu aceito os
+                           <a href="/termos">termos, condições e politica de privacidade</a>.
+                           </label>
+                        </div>
+                        <div class="text-center">
+                           <div id="registrar" class="btn btn-primary btn-round" ng-click="cart.registrar_usuario()">Registrar</div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title" id="exampleModalLabel">{{cart.logged_user.name}}</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <div class="col-lg-12 mb40">
+                     <div>
                         <!-- Nav tabs -->
-                        <ul class="nav  tabs-menu-nav justify-content-center mb30" role="tablist">
-                            <li class="nav-item" role="presentation" ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" ><a class="active nav-link" href="#campanha_{{cart.campanhas[campanha_lojas].CODE}}" aria-controls="campanha_{{cart.campanhas[campanha_lojas].CODE}}" role="tab" data-toggle="tab" ng-if="$first">{{cart.campanhas[campanha_lojas].NAME}}</a></li>
-                            <li class="nav-item" role="presentation" ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" ><a class="nav-link" href="#campanha_{{cart.campanhas[campanha_lojas].CODE}}" aria-controls="campanha_{{cart.campanhas[campanha_lojas].CODE}}" role="tab" data-toggle="tab" ng-if="!$first">{{cart.campanhas[campanha_lojas].NAME}}</a></li>
+                        <ul class="nav nav-tabs tabs-default justify-content-end mb10" role="tablist">
+                           <li class="nav-item" role="presentation"><a class="active nav-link" href="#t5" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-home"></i> Perfil</a></li>
+                           <li class="nav-item" role="presentation"><a class="nav-link" href="#t6" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user"></i>BenAmigos</a></li>
+                           <li class="nav-item" role="presentation"><a class="nav-link" href="#t7" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user"></i>BenCréditos</a></li>
                         </ul>
-
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" role="tabpanel" class="tab-pane active show fade" id="campanha_{{cart.campanhas[campanha_lojas].CODE}}">
-                                <div class='row'>
-                                    <div class='col-md-6 mb20'>
-                                        <article class="media" ng-repeat="produto_code in cart.campanhas[campanha_lojas].PRODUCTS">
-                                            
-                                            <!--Content -->
-                                            <div class="media-body align-self-center g-pl-10">
-                                                <div class="d-flex justify-content-between mb10">
-                                                    <h3 class="align-self-center text-capitalize mb0 h6 text-white font400">{{cart.produtos[produto_code].PRESENTATION_NAME}}</h3>
-
-                                                    <div class="align-self-center">
-                                                        <strong class="text-white font700">
-                                                            <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="text-white" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--/Content -->
-                                        </article>
+                           <div role="tabpanel" class="tab-pane active show fade" id="t5">
+<<<<<<< HEAD
+                             Nome : NOME
+                             <br>
+                             Email : EMAIL
+                             <br>
+                             <div id="qrcode-profile"></div>
+=======
+                            {{cart.logged_user.name}}
+                            {{cart.logged_user.email}}
+>>>>>>> b66ae5a7435587d078dfa9e21870333758f1c581
+                           </div>
+                           <div role="tabpanel" class="tab-pane fade" id="t6">
+                              <p class="name-cred">Conecte-se com amigos e transfira bencréditos aqui.</p>
+                              <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
+                                 <!-- Card 1 -->
+                                 <div class="card">
+                                    <div class="card-header accordion-header" role="tab" id="headingOne2"> <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapseOneList" aria-expanded="true" aria-controls="collapseOne"> Meus BenAmigos </a> </div>
+                                    <div id="collapseOneList" class="collapse" role="tabpanel" aria-labelledby="headingOne1">
+                                        <div class="card-body">
+                                            <p class="name-cred" ng-repeat="n in [].constructor(6) track by $index">Amigo  {{ $index }} <a href="" class="share-cred"> <i class="ti-share"></i></a></p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                              
+                                 </div>
+                              </div>
+                           </div>
+                           <div role="tabpanel" class="tab-pane fade" id="t7">
+                              Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+                           </div>
                         </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+                  <hr>
+                  <a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login" data-dismiss="modal"> Alterar Email</a>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary">Salvar</button>
+               </div>
             </div>
-        </div>
-
-        <div class="pt90 pb60" id="chefs">
-            <div class="container">
-                <div class="center-title" ng-show="!cart.email_cliente">
-                    <h2>Carrinho</h2>
-                    <p>Você precisa logar para pagar seu carrinho. <a href="" ng-click="cart.pega_email()">Logar.</a></p>
-                </div>
-                <div class="center-title" ng-show="cart.email_cliente">
-                    <h2>Carrinho</h2>
-                    <p>Deseja alterar o email  {{cart.email_cliente}} <a ng-click="cart.pega_email()">alterar o email.</a></p>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 mb30">
-                        <div class="food-menu-card">
-                            <article class="media">
-                                <!--Content -->
-                                <div class="media-body align-self-center g-pl-10">
-                                    <div class="d-flex justify-content-between mb10" ng-repeat="produto in cart.carrinho track by $index" ng-show="produto.PRESENTATION_NAME">
-                                        <h3 class="align-self-center text-capitalize mb0 h6 text-white font400">
-                                            {{produto.PRESENTATION_NAME}}
-                                        </h3>
-
-                                        <div class="align-self-center">
-                                            <strong class="text-white font700">
-                                                <button class="btn-icon-sm float-right si-red si-dark-round si-round" ng-click="cart.removeItem($index)"><a class="text-white" href="#"><i class="ti-close"></i></a></button> {{produto.VALUE|currency:"R$"}}</strong>
-                                        </div>
+         </div>
+      </div>
+      <!--/modal-->           
+      <div class="modal fade" id="modal-search" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <form id="form_retirar">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="modal-solicitarTitle">Busca de produtos</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="tab-content">
+                        <div ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" role="tabpanel" class="tab-pane active show fade" id="campanha_{{cart.campanhas[campanha_lojas].CODE}}">
+                           <div class='row'>
+                              <div class='col-md-6 mb20'>
+                                 <article class="media" ng-repeat="produto_code in cart.campanhas[campanha_lojas].PRODUCTS">
+                                    <!--Content -->
+                                    <div class="media-body align-self-center g-pl-10">
+                                       <div class="d-flex justify-content-between mb10">
+                                          <h3 class="align-self-center text-capitalize mb0 h6  font400">{{cart.produtos[produto_code].PRESENTATION_NAME}}</h3>
+                                          <div class="align-self-center">
+                                             <strong class=" font700">
+                                             <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
+                                          </div>
+                                       </div>
                                     </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between mb10">
-                                        <h3 class="align-self-center text-capitalize mb0 h6 text-white font400">
-                                            TOTAL
-                                        </h3>
-
-                                        <div class="align-self-center">
-                                            <strong class="text-white font700">
-                                                {{cart.total |currency:"R$" }}</strong>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!--/Content -->
-                            </article><!--/Article --> 
-                        </div> 
-                    </div>
-                </div>
-                <div class="center-text">
-                    <h3>Total : {{cart.total |currency:"R$" }}</h3>
-                </div>
-
-                  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                     <!--Tipo do botão-->
-                     <input type="hidden" name="cmd" value="_xclick" />
-                     <!--Vendedor e URL de retorno, cancelamento e notificação-->
-                     <input type="hidden" name="business" value="contasapagar-facilitator@benjaminapadaria.com.br" />
-                     <input type="hidden" name="return" value="https://benjamin-a-padaria.herokuapp.com/compra/retorno/{{cart.hash_email_cliente}}" />
-                     <input type="hidden" name="cancel" value="https://benjamin-a-padaria.herokuapp.com/compra/cancelamento/{{cart.hash_email_cliente}}" />
-                     <input type="hidden" name="notify_url" value="https://benjamin-a-padaria.herokuapp.com/compra/notificacao" />
-                     <!--Internacionalização e localização da página de pagamento-->
-                     <input type="hidden" name="charset" value="utf-8" />
-                     <input type="hidden" name="lc" value="BR" />
-                     <input type="hidden" name="country_code" value="BR" />
-                     <input type="hidden" name="currency_code" value="BRL" />
-                     <input type="hidden" name="tx" value="{{cart.hash_email_cliente}}">
-                     <input type="hidden" name="payer_id" value="{{cart.hash_email_cliente}}">
-                     <input type="hidden" name="invoice" value="{{cart.hash_email_cliente}}@{{cart.cart_ci}}">
-                     <input type="hidden" name="custom" value="{{cart.hash_email_cliente}}">
-                     <input type="hidden" name="at" value="{{cart.hash_email_cliente}}">
-                     <!--Informações sobre o produto e seu valor-->
-                     <input type="hidden" name="amount" value="{{cart.total}}" />
-                     <input type="hidden" name="item_name" value="Servico" />
-                     <input type="hidden" name="quantity" value="1" />
-                     <input type="hidden" name="item_number_1" value="bolinho" />
-                     <input type="hidden" name="item_number_2" value="Sonho" />
-
-                     <!--Botão para submissão do formulário-->
-                     <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente" />
-                  </form>
-            </div>
-        </div>
-
-        <div id='contact'>
-            <div id="markermap" style="width: 100%;height: 350px;"></div>
-        </div>
-        <footer class='footer pt50 pb20'>
-            <div class='container'>
-                <div class='row'>
-                    <div class='col-lg-4 mb30'>
-                        <a href='#home' data-scroll class='h6'>
-                            <img src='images/resto/benjamin.png' alt='' class="mb30">
-                        </a>
-                        <p>
-                           Amamos o que fazemos e dedicamos a você.
-                           Nossos produtos são feitos para tornar seu dia BEN mais gostoso. 
-                        </p>
-                    </div>
-                     <div class='col-lg-4 mb30'>
-                         <h4 class="mb30">Horário de funcionamento</h4>
-                        <ul class='list-unstyled opening-time'>
-                            <li class='clearfix'>
-                                <span class='day'>
-                                    Segunda-feira
-                                </span>
-                                <span class='float-right time'>
-                                    9:AM - 10PM
-                                </span> 
-                            </li>
-                             <li class='clearfix'>
-                                <span class='day'>
-                                    Terça-feira
-                                </span>
-                                <span class='float-right time'>
-                                    9:AM - 10PM
-                                </span> 
-                            </li>
-                             <li class='clearfix'>
-                                <span class='day'>
-                                    Quarta-feira
-                                </span>
-                                <span class='float-right time'>
-                                    9:AM - 10PM
-                                </span> 
-                            </li>
-                             <li class='clearfix'>
-                                <span class='day'>
-                                    Quinta-feira
-                                </span>
-                                <span class='float-right time'>
-                                    9:AM - 10PM
-                                </span> 
-                            </li>
-                             <li class='clearfix'>
-                                <span class='day'>
-                                    Sexta-feira
-                                </span>
-                                <span class='float-right time'>
-                                    9:AM - 10PM
-                                </span> 
-                            </li>
-                            <li class='clearfix'>
-                                <span class='day'>
-                                    Sabado - Domingo
-                                </span>
-                                <span class='float-right time'>
-                                    11:AM - 12PM
-                                </span> 
-                            </li>
-                     </ul>
-                    </div>
-                    <div class='col-lg-4 mb30'>
-                        <h4 class="mb30">Redes Socias</h4>
-                        <span class='clearfix'>
-                            <a href="https://www.facebook.com/BenjaminAPadaria/" class="social-icon-sm si-dark si-dark-round si-facebook">
-                                <i class="fa fa-facebook"></i>
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                            <a href="https://www.instagram.com/benjaminapadaria/" class="social-icon-sm si-dark si-dark-round si-instagram">
-                                <i class="fa fa-instagram"></i>
-                                <i class="fa fa-instagram"></i>
-                            </a> 
-                        </span>
-                         <div class='pt30'>
-                             <span>Sac</span>
-                             <p class="lead">sac@benjaminapadaria.com.br</p>
-                    &copy; Copyright 2017. All Right Reserved. 
-                </div>
-                    </div>
-                
-                </div>
-               
-            </div>
-        </footer>
-        <!--back to top  -->
-        <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
-        <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="js/plugins/plugins.js"></script> 
-        <script src="js/restaurant.custom.js"></script>
-
-        <!--revolution slider-->
-        <script type="text/javascript" src="revolution/js/jquery.themepunch.tools.min.js"></script>
-        <script type="text/javascript" src="revolution/js/jquery.themepunch.revolution.min.js"></script>
-        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.video.min.js"></script>
-        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-        <script>
-            jQuery(document).ready(function () {
-                jQuery("#slider1").revolution({
-                    sliderType: "standard",
-                    jsFileLocation: "../revolution/js/",
-                    sliderLayout: "fullscreen",
-                    dottedOverlay: "none",
-                    delay: 9000,
-                    navigation: {
-                        arrows: {enable: true}
-                    },
-                    parallax: {
-                        type: "on",
-                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85],
-                        origo: "enterpoint",
-                        speed: 400,
-                        bgparallax: "on",
-                        disable_onmobile: "off"
-                    },
-                    gridwidth: 1140,
-                    gridheight: 600
-                });
-            });
-        </script>
-        <!--google map-->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMwVpUj3-oHHW8N21819BhKttOga2Rj2s"></script>
-        <script src="js/jquery.gmap.min.js"></script> 
-        <script>
-            // Marker Map
-            $(document).ready(function () {
-                map = new GMaps({
-                    scrollwheel: false,
-                    el: '#markermap',
-                    lat: -23.561414,
-                    lng: -46.6580706
-
-                });
-                map.addMarker({
-                    lat: -23.561224,
-                    lng: -46.6580116,
-                    title: 'Benjamin Paulista',
-                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
-                    infoWindow: {
-                        content: '<h4>Benjamin</h4><p>Unidade Paulista <br> Aberta agora</p>'
-                    }
-                });
-
-                map.addMarker({
-                    lat: -23.5702433,
-                    lng: -46.6634681,
-                    title: 'Benjamin Pamplona',
-                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
-                    infoWindow: {
-                        content: '<h4>Benjamin</h4><p>Unidade Pamplona <br> Aberta agora</p>'
-                    }
-                });
-
-                map.addMarker({
-                    lat: -23.5620054,
-                    lng: -46.6721896,
-                    title: 'Benjamin Oscar Freire I',
-                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
-                    infoWindow: {
-                        content: '<h4>Benjamin</h4><p>Unidade Oscar Freire I <br> Rua Oscar Freire, 1052 – Cerqueira César<br> <span style="color:green"> Aberta agora &#10004;</span><br><span class="btn btn-primary ">Solicitar aqui</span></p>'
-                    }
-                });
-
-                map.addMarker({
-                    lat: -23.5650046,
-                    lng: -46.6686824,
-                    title: 'Benjamin Oscar Freire II',
-                    icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
-                    infoWindow: {
-                        content: '<h4>Benjamin</h4><p>Unidade Oscar Freire II <br> Rua Oscar Freire, 562 – Cerqueira César<br> <span style="color:green"> Aberta agora &#10004;</span><br><span class="btn btn-primary ">Solicitar aqui</span></p>'
-                    }
-                });
-            });
-        </script> 
-        <!--sky form plugin js-->
-        <script type="text/javascript" src="smart-form/contact-recaptcha/js/jquery.form.min.js"></script>
-        <script type="text/javascript" src="smart-form/contact-recaptcha/js/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="smart-form/contact-recaptcha/js/additional-methods.min.js"></script>
-        <script type="text/javascript" src="smart-form/contact-recaptcha/js/smart-form.js"></script> 
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-    </body>
+                                    <!--/Content -->
+                                 </article>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+      <!--modal-->
+      <!--back to top  -->
+      <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
+      <!-- jQuery first, then Tether, then Bootstrap JS. -->
+      <script src="js/plugins/plugins.js"></script> 
+      <script src="js/restaurant.custom.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.tpls.js"></script>
+      <!--revolution slider-->
+      <script type="text/javascript" src="revolution/js/jquery.themepunch.tools.min.js"></script>
+      <script type="text/javascript" src="revolution/js/jquery.themepunch.revolution.min.js"></script>
+      <script type="text/javascript" src="revolution/js/extensions/revolution.extension.video.min.js"></script>
+      <script type="text/javascript" src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+      <script type="text/javascript" src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+      <script type="text/javascript" src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+      <script type="text/javascript" src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+      <script>
+         jQuery(document).ready(function () {
+             jQuery("#slider1").revolution({
+                 sliderType: "standard",
+                 jsFileLocation: "../revolution/js/",
+                 sliderLayout: "fullscreen",
+                 dottedOverlay: "none",
+                 delay: 9000,
+                 navigation: {
+                     arrows: {enable: true}
+                 },
+                 parallax: {
+                     type: "on",
+                     levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85],
+                     origo: "enterpoint",
+                     speed: 400,
+                     bgparallax: "on",
+                     disable_onmobile: "off"
+                 },
+                 gridwidth: 1140,
+                 gridheight: 600
+             });
+             //alert(Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL")));
+         
+             jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
+             jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
+         });
+      </script>
+      <!--google map-->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMwVpUj3-oHHW8N21819BhKttOga2Rj2s"></script>
+      <script src="js/jquery.gmap.min.js"></script> 
+      <script>
+         // Marker Map
+         $(document).ready(function () {
+             map = new GMaps({
+                 scrollwheel: false,
+                 el: '#markermap',
+                 lat: -23.561414,
+                 lng: -46.6580706
+         
+             });
+             map.addMarker({
+                 lat: -23.561224,
+                 lng: -46.6580116,
+                 title: 'Benjamin Paulista',
+                 icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                 infoWindow: {
+                     content: '<h4>Benjamin</h4><p>Unidade Paulista <br> Aberta agora</p>'
+                 }
+             });
+         
+             map.addMarker({
+                 lat: -23.5702433,
+                 lng: -46.6634681,
+                 title: 'Benjamin Pamplona',
+                 icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                 infoWindow: {
+                     content: '<h4>Benjamin</h4><p>Unidade Pamplona <br> Aberta agora</p>'
+                 }
+             });
+         
+             map.addMarker({
+                 lat: -23.5620054,
+                 lng: -46.6721896,
+                 title: 'Benjamin Oscar Freire I',
+                 icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                 infoWindow: {
+                     content: '<h4>Benjamin</h4><p>Unidade Oscar Freire I <br> Rua Oscar Freire, 1052 – Cerqueira César<br> <span style="color:green"> Aberta agora &#10004;</span><br><span class="btn btn-primary ">Solicitar aqui</span></p>'
+                 }
+             });
+         
+             map.addMarker({
+                 lat: -23.5650046,
+                 lng: -46.6686824,
+                 title: 'Benjamin Oscar Freire II',
+                 icon : 'http://maps.google.com/mapfiles/kml/shapes/coffee.png',
+                 infoWindow: {
+                     content: '<h4>Benjamin</h4><p>Unidade Oscar Freire II <br> Rua Oscar Freire, 562 – Cerqueira César<br> <span style="color:green"> Aberta agora &#10004;</span><br><span class="btn btn-primary ">Solicitar aqui</span></p>'
+                 }
+             });
+         });
+      </script> 
+      <!--sky form plugin js-->
+      <script type="text/javascript" src="smart-form/contact-recaptcha/js/jquery.form.min.js"></script>
+      <script type="text/javascript" src="smart-form/contact-recaptcha/js/jquery.validate.min.js"></script>
+      <script type="text/javascript" src="smart-form/contact-recaptcha/js/additional-methods.min.js"></script>
+      <script type="text/javascript" src="smart-form/contact-recaptcha/js/smart-form.js"></script> 
+      <script src='https://www.google.com/recaptcha/api.js'></script>
+      <script type="text/javascript" src="/js/jquery.qrcode.min.js"></script>
+      <script src="/js/assan.custom.js"></script> 
+   </body>
 </html>
