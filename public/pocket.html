@@ -907,7 +907,11 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                            <div role="tabpanel" class="tab-pane active show fade" id="t5">
-                              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                             Nome : NOME
+                             <br>
+                             Email : EMAIL
+                             <br>
+                             <div id="qrcode-profile"></div>
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t6">
                               <p class="name-cred">Conecte-se com amigos e transfira bencréditos aqui.</p>
@@ -1023,6 +1027,7 @@
              //alert(Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL")));
          
              jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
+             jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
          });
       </script>
       <!--google map-->
