@@ -186,3 +186,15 @@ Bencréditos
 .btn-secundary {
   border: 2px solid #999999;
 }
+
+.share-cred {
+  content: "\e64b";
+  position: absolute;
+  right: 17px;
+  font-family: 'themify';
+}
+
+.name-cred {
+  font-size: larger;
+  text-align: center;
+}
