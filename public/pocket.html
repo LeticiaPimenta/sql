@@ -21,27 +21,6 @@
          var nome_importado = "Benjamin";
       </script>
       <script type="text/javascript">
-
-        function getQueryParams(qs) {
-          alert(qs);
-          alert(qs.replace("?",""));
-            qs = qs.split('+').join(' ');
-
-            var params = {},
-                tokens,
-                re = /[?&]?([^=]+)=([^&]*)/g;
-
-            while (tokens = re.exec(qs)) {
-                params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-            }
-            console.log(params);
-            return params;
-        }
-
-var query = getQueryParams(document.location.search);
-alert(query);
-
-
          var produtos = new Array();
          produtos[0] = {
           "CODE":0,
@@ -928,19 +907,18 @@ alert(query);
                         <!-- Tab panes -->
                         <div class="tab-content">
                            <div role="tabpanel" class="tab-pane active show fade" id="t5">
-                            {{cart.logged_user.name}}
-                            {{cart.logged_user.email}}
+                            <h5>{{cart.logged_user.name}}</h5>
+                            <p><h5>Email: {{cart.logged_user.email}}</h5></p>
                             <br>
-                            <div class="col-md-12">
-                                <div class="row col-md-6">
-                             <div id="qrcode-profile"></div>
 
-                                </div>
-                                                                    <div class="card-body">
-                                        <h5>aoisd</h5>
-                                    </div>
-                            </div>
-                             <div id="qrcode-profile"></div>
+                             <div class="row align-items-center">
+                                 <div class="col-lg-6 mb30">
+                                     <h4 class="text-center">Escaneie o QRCode para adicionar amigos.</h4>
+                                 </div>
+                                 <div class="col-lg-6 mb30">
+                                     <div id="qrcode-profile"></div>
+                                 </div>
+                             </div>
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t6">
                               <p class="name-cred">Conecte-se com amigos e transfira bencréditos aqui.</p>
