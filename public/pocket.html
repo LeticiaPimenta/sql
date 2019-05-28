@@ -21,6 +21,36 @@
          var nome_importado = "Benjamin";
       </script>
       <script type="text/javascript">
+<<<<<<< HEAD
+=======
+
+        function getQueryParams(qs) {
+          //alert(qs);
+          if (qs != "") {
+            qs = qs.replace("?","");
+            qs = qs.split('=');
+
+            
+            console.log(qs);
+            if(qs[0]=="indicacao"){
+              alert("vai indicar");
+            }
+
+            if(qs[0]=="conectar"){
+              alert("vai conectar");
+            }
+            return qs;
+          }else
+            return "";
+          
+        }
+
+        // query = getQueryParams(document.location.search);
+        //alert(query);
+
+         getQueryParams(document.location.search);
+
+>>>>>>> 8805063c166230715d39c188f0df51b3648d689e
          var produtos = new Array();
          produtos[0] = {
           "CODE":0,
