@@ -484,12 +484,10 @@
                             <li class="nav-item"><a data-scroll class="nav-link" href=""> Bencréditos</a></li>
                             
                             <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
-                            <li class="nav-item"  ng-show="cart.email_cliente"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                        {{cart.logged_user.name}}
-                    </button></li>
-                    <li class="nav-item"  ng-show="cart.email_cliente"><a href="" data-toggle="modal" data-target="#myModal">
-                    <img class="img-profile" src="images/resto/benjamin.png">
-                    </a></li>
+                            <li class="nav-item"  ng-show="cart.email_cliente"><a href="" data-toggle="modal" data-target="#myModal">
+                                <img class="img-profile" src="images/resto/profile.jpg">
+                                </a>
+                            </li>
                         </ul>      
                     </div> 
                    
@@ -790,12 +788,9 @@
                                 <input type="password" class="form-control" id="pass" placeholder="......">
                             </div>
                             <div class="clearfix">
-                                <label class="custom-control float-left custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description" ng-click="cart.mostra_registrar()">Registrar</span>
-                                </label>
-                                <button type="button" class="btn btn-primary float-right" ng-click="cart.pega_email()">Logar</button>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" ng-click="cart.mostra_registrar()">Registrar</button>
+                                <button type="button" class="btn btn-primary" ng-click="cart.pega_email()">Logar</button></div>
                             </div><hr>
                             <div class="clearfix">
                                 <div class="text-center"><p class="lead">Ou logar com</p></div>
