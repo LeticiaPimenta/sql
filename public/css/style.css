@@ -1515,7 +1515,7 @@ Accordoins card style
   .accordion-header a {
     position: relative;
     display: block;
-    color: #4782d3;
+    color: #ff9800;
     font-weight: 600;
     font-size: 1rem; }
     .accordion-header a:before {
@@ -1525,7 +1525,7 @@ Accordoins card style
       top: 0;
       font-family: 'themify'; }
     .accordion-header a.collapsed {
-      color: #141414; }
+      color: #ff9800; }
       .accordion-header a.collapsed:before {
         content: "\e649";
         position: absolute;
@@ -2827,13 +2827,13 @@ Tabs style
 
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
   border-color: #eceeef #eceeef #ddd;
-  border-top-color: #4782d3 !important; }
+  border-top-color: #ff9800 !important; }
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
   color: #464a4c;
   background-color: #fff;
-  border-color: #4782d3 #ddd #fff;
-  border-top-color: #4782d3 !important; }
+  border-color: #ff9800 #ddd #fff;
+  border-top-color: #ff9800 !important; }
 
 .tabs-circle-icon a.nav-link {
   display: block;

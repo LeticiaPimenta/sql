@@ -917,10 +917,13 @@
                                     <div class="card-header accordion-header" role="tab" id="headingOne2"> <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapseOneList" aria-expanded="true" aria-controls="collapseOne"> Meus BenAmigos </a> </div>
                                     <div id="collapseOneList" class="collapse" role="tabpanel" aria-labelledby="headingOne1">
                                         <div class="card-body">
-                                            <p class="name-cred">Amigo #1 <a href="" class="share-cred"> <i class="ti-share"></i></a></p>
+                                            <p class="name-cred" ng-repeat="n in [].constructor(6) track by $index">Amigo  {{ $index }} <a href="" class="share-cred"> <i class="ti-share"></i></a></p>
                                         </div>
                                     </div>
                                  </div>
+                              </div>
+                              <div class="card">
+                                  
                               </div>
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t7">
