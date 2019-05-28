@@ -23,24 +23,30 @@
       <script type="text/javascript">
 
         function getQueryParams(qs) {
-          alert(qs);
-          alert(qs.replace("?",""));
-            qs = qs.split('+').join(' ');
+          //alert(qs);
+          if (qs != "") {
+            qs = qs.replace("?","");
+            qs = qs.split('=');
 
-            var params = {},
-                tokens,
-                re = /[?&]?([^=]+)=([^&]*)/g;
-
-            while (tokens = re.exec(qs)) {
-                params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+            
+            console.log(qs);
+            if(qs[0]=="indicacao"){
+              alert("vai indicar");
             }
-            console.log(params);
-            return params;
+
+            if(qs[0]=="conectar"){
+              alert("vai conectar");
+            }
+            return qs;
+          }else
+            return "";
+          
         }
 
-var query = getQueryParams(document.location.search);
-alert(query);
+        // query = getQueryParams(document.location.search);
+        //alert(query);
 
+         getQueryParams(document.location.search);
 
          var produtos = new Array();
          produtos[0] = {
