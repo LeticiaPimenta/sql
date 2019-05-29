@@ -22,31 +22,7 @@
       </script>
       <script type="text/javascript">
 
-        function getQueryParams(qs) {
-          //alert(qs);
-          if (qs != "") {
-            qs = qs.replace("?","");
-            qs = qs.split('=');
-
-            
-            console.log(qs);
-            if(qs[0]=="indicacao"){
-              alert("vai indicar");
-            }
-
-            if(qs[0]=="conectar"){
-              alert("vai conectar");
-            }
-            return qs;
-          }else
-            return "";
-          
-        }
-
-        // query = getQueryParams(document.location.search);
-        //alert(query);
-
-         getQueryParams(document.location.search);
+        
 
          var produtos = new Array();
          produtos[0] = {
@@ -258,11 +234,42 @@
               cart.campanhas = campanhas;
               cart.campanhas_lojas = campanhas_lojas;
               cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-              cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
               cart.cart_ci = JSON.parse(getLocalData("BENJAMIN_USERCART_CI"));
               cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
+
+              cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
               
+              
+              function getQueryParams(qs) {
+                //alert(qs);
+                if (qs != "") {
+                  qs = qs.replace("?","");
+                  qs = qs.split('=');
+                  console.log(qs);
+                  if(qs[0]=="usuario"){
+                    if(cart.logged_user){
+                     // alert("vai conectar");
+                      jQuery('#modal-conectar').modal('show');
+                    }else{
+                     // alert("vai indicar");
+                      
+                       jQuery('#modal-registrar-indicado').modal('show');
+                    }
+                  }
+                  return qs;
+                }else
+                  return "";
+                
+              }
+
+        // query = getQueryParams(document.location.search);
+        //alert(query);
+
+         getQueryParams(document.location.search);
+
+              
+
               if(cart.email_cliente)
               cart.hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
               
@@ -780,6 +787,159 @@
             </div>
          </div>
       </footer>
+                <div class="modal fade bd-example-modal-sm" id="modal-conectar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Seu amigo vai estar na sua rede !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--modal-->
+      <div class="modal fade" id="modal-search" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <form >
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="modal-solicitarTitle">Busca de produtos</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="tab-content">
+                        <div ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" role="tabpanel" class="tab-pane active show fade" id="campanha_{{cart.campanhas[campanha_lojas].CODE}}">
+                           <div class='row'>
+                              <div class='col-md-6 mb20'>
+                                 <article class="media" ng-repeat="produto_code in cart.campanhas[campanha_lojas].PRODUCTS">
+                                    <!--Content -->
+                                    <div class="media-body align-self-center g-pl-10">
+                                       <div class="d-flex justify-content-between mb10">
+                                          <h3 class="align-self-center text-capitalize mb0 h6  font400">{{cart.produtos[produto_code].PRESENTATION_NAME}}</h3>
+                                          <div class="align-self-center">
+                                             <strong class=" font700">
+                                             <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!--/Content -->
+                                 </article>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+      <div class="modal fade" id="modal-registrar-indicado" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <form >
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" >registrar</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="card-body">
+               <div class="row">
+                  <div class="col-md-12 mr-auto">
+                     <form class="form"  >
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">face</i>
+                                 </span>
+                              </div>
+                              <input type="text"  name="name" class="form-control" placeholder="Nome completo...">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">notifications</i>
+                                 </span>
+                              </div>
+                              <input type="text" class="form-control" name="telefone" placeholder="Telefone...">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">edit</i>
+                                 </span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="CPF...">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">mail</i>
+                                 </span>
+                              </div>
+                              <input type="text"  class="form-control" name="email"  placeholder="Email...">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">lock_outline</i>
+                                 </span>
+                              </div>
+                              <input type="password"  placeholder="Senha..." class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">lock</i>
+                                 </span>
+                              </div>
+                              <input type="password" placeholder="Confirmar senha..." class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-check">
+                           <label class="form-check-label">
+                           <input class="form-check-input" type="checkbox" value="aceito" checked="false">
+                           <span class="form-check-sign">
+                           <span class="check"></span>
+                           </span>
+                           Eu aceito os
+                           <a href="/termos">termos, condições e politica de privacidade</a>.
+                           </label>
+                        </div>
+                        <div class="text-center">
+                           <div  class="btn btn-primary btn-round" ng-click="cart.registrar_usuario()">Registrar</div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
       <div  id="popup-login" class="mfp-hide popup-content-area white-popup">
          <div id="form-login">
             <h4>Que Bom que voltou!</h4>
@@ -973,7 +1133,7 @@
       <!--/modal-->           
       <div class="modal fade" id="modal-search" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
          <div class="modal-dialog" role="document">
-            <form id="form_retirar">
+            <form >
                <div class="modal-content">
                   <div class="modal-header">
                      <h5 class="modal-title" id="modal-solicitarTitle">Busca de produtos</h5>
@@ -1011,6 +1171,7 @@
             </form>
          </div>
       </div>
+
       <!--modal-->
       <!--back to top  -->
       <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
@@ -1049,9 +1210,17 @@
                  gridheight: 600
              });
              //alert(Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL")));
+
+             try {
+              if(getLocalData("BENJAMIN_USERCART_EMAIL")){
+                jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
+                jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
+              }
+            }catch(err) {
+              console.log(err.message);
+            }
          
-             jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
-             jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
+             
          });
       </script>
       <!--google map-->
