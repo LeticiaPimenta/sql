@@ -261,6 +261,7 @@
                     }else{
                      // alert("vai indicar");
                       
+                        cart.hash_indicado = qs[1];
                        jQuery('#modal-registrar-indicado').modal('show');
                     }
                   }
@@ -401,7 +402,7 @@
               cart.registrar_usuario = function(){
                  //var usuario = jQuery("#formulario-registro").serializeArray();
                  var $form = $("#form_data");
-                 var usuario ={"name":$("#name").val(), "email":$("#email_registro").val(), "password":$("#password").val()};
+                 var usuario ={"name":$("#name").val(),"parent":$("#hash_indicado").val(), "email":$("#email_registro").val(), "password":$("#password").val()};
                  $http.post("/registrar_usuario",{"usuario":usuario}).then(function (response) {
                      // body...
                      console.log(response);
@@ -869,6 +870,7 @@
                                  <i class="material-icons">face</i>
                                  </span>
                               </div>
+                              <input type="text" name="hash_indicado" id="hash_indicado" value="{{cart.hash_indicado}}">..
                               <input type="text"  name="name" class="form-control" placeholder="Nome completo...">
                            </div>
                         </div>
@@ -1008,6 +1010,7 @@
                                  <i class="material-icons">face</i>
                                  </span>
                               </div>
+                              
                               <input type="text" id="name" name="name" class="form-control" placeholder="Nome completo...">
                            </div>
                         </div>
