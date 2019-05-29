@@ -250,13 +250,11 @@
                   if(qs[0]=="usuario"){
                     if(cart.logged_user){
                      // alert("vai conectar");
-                     jQuery.get('/conectar/123/'+qs[1]).
-                      done(function(data){
-                       var dados = JSON.parse(data);
-                       console.log(dados);
-                       cart.nome_indicado = data;
+                     
 
-                      })
+                      $http.get('/conectar/123/'+qs[1]).then(function(data){
+                        cart.nome_indicado = data.data.name;
+                      });
                       jQuery('#modal-conectar').modal('show');
 
                     }else{
