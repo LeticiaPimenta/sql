@@ -21,6 +21,20 @@ class EcomController extends Controller
         echo 'Compra realizada com sucesso Ben-Facil';
     }
 
+    public function conectar($id_amigo , $id_user){
+        //print_r($id_amigo);
+        $benamigo = new \App\Classes\BenAmigo;
+
+        $benamigo->conectar_benamigos($id_amigo , $id_user);
+
+        $eu_ben_amigo = \App\User::where('user_token',$id_amigo)->first()->toArray();
+        $resposta = array('nome' => $eu_ben_amigo['name'], 'email' => $eu_ben_amigo['email']);
+        //echo "Agora vc é amigo do usuario";
+        //echo json_encode($resposta);
+        $usuario = \App\User::where('user_token',$id_user)->first();
+        echo '{"name":"'.$usuario->name.'", "response":"OK"}';
+    }
+
     public function renderizar($idcompra){
         return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);
     }

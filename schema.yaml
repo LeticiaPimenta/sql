@@ -97,4 +97,21 @@ Payment:
     tid:
       schema: string nullable
       tags: fillable    
-  add: timestamps  
+  add: timestamps
+BenAmigo:
+  fields:
+    eu:
+      schema: text
+      rules: required
+      tags: fillable
+    amigo:
+      schema: text
+      rules: required
+      tags: fillable
+    relationship:
+      schema: integer nullable
+      tags: fillable
+    status:
+      schema: integer nullable
+      tags: fillable  
+  add: timestamps     

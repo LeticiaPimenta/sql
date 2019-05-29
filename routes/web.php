@@ -121,6 +121,7 @@ $router->post('/carregar_dados', function () use ($router) {
 });
 
 $router->get('/compra/retorno/{idcompra}', 'EcomController@renderizar');
+$router->get('/conectar/{id_amigo}/{id_user}', 'EcomController@conectar');
 $router->post('/compra/registrar', 'EcomController@registrar');
 $router->post('/registrar_usuario', 'EcomController@registrar_usuario');
 $router->post('/compra/retirar', 'EcomController@retirar');
