@@ -250,7 +250,15 @@
                   if(qs[0]=="usuario"){
                     if(cart.logged_user){
                      // alert("vai conectar");
+                     jQuery.get('/conectar/123/'+qs[1]).
+                      done(function(data){
+                       var dados = JSON.parse(data);
+                       console.log(dados);
+                       cart.nome_indicado = data;
+
+                      })
                       jQuery('#modal-conectar').modal('show');
+
                     }else{
                      // alert("vai indicar");
                       
@@ -792,7 +800,7 @@
 
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Seu amigo vai estar na sua rede !</h5>
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Seu amigo {{cart.nome_indicado}} vai estar na sua rede !</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
