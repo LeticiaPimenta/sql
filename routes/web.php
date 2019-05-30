@@ -111,12 +111,17 @@ $router->post('/carregar_dados', function () use ($router) {
     $usuario =  \App\User::where('email',$_POST['email'])->get()->first();
     if (isset($usuario)) {
 	    $usuario->password = '*********';
-	    $response = array('response' => true , 'usuario' => $usuario->toJson());
+	    $amigos =  new \App\Classes\BenAmigo;
+	    $meus_amigos = $amigos->listar_amigos($usuario->user_token );
+
+	    $response = array('response' => true , 'usuario' => $usuario->toJson(), 'amigos' => $meus_amigos);
 	    echo json_encode($response);
     }else{
 	    $response = array('response' => false , 'usuario' => null);
 	    echo json_encode($response);
     }
+
+
 
 });
 
