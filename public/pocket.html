@@ -350,6 +350,7 @@
                      setLocalData("BENJAMIN_USERCART_LOGGED_USER",dados.usuario);
                      if(dados.amigos)
                       setLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS",JSON.stringify(dados.amigos));
+                    
                      toastr.success('Seus dados foram alterados!', 'Dados foram salvos!');
                       setLocalData("BENJAMIN_USERCART_EMAIL",email);
                 var hash_email_cliente = Crypto.MD5(email);
@@ -358,6 +359,7 @@
                      cart.email_cliente = email;
                      if(dados.amigos)
                       cart.logged_user_friends = dados.amigos;
+
                      cart.hash_email_cliente = hash;
                      jQuery('#popup-login').modal('hide');
                    
