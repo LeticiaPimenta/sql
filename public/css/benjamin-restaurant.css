@@ -198,3 +198,9 @@ Bencréditos
   font-size: larger;
   text-align: center;
 }
+
+.text-warning-cred {
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #ff9800;
+}
