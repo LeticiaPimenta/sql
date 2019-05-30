@@ -3,6 +3,19 @@
     <head>
         <title>Registre um Qr da sua comanda !</title>
 
+          <!-- Plugins CSS -->
+      <link href="css/plugins/plugins.css" rel="stylesheet">
+      <!--slider revolution-->
+      <link rel="stylesheet" type="text/css" href="revolution/css/settings.css">
+      <link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
+      <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.css">
+      <link href="css/style.css" rel="stylesheet">
+      <link href="css/style-restaurant.css" rel="stylesheet">
+      <link href="css/benjamin-restaurant.css" rel="stylesheet">
+      <script src="js/angular.min.js"></script>
+      <script src="js/crypto.js"></script>
+
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery.qrcode.min.js"></script>
 
@@ -61,8 +74,26 @@
 
     </head>
     <body>
+
+        <div class="bg-white">
+         <div class="container pt90 pb60">
+            <div class="row align-items-center">
+               <div class="col-lg-6 mb30">
+                  <h3 class=" h1 font300 mb30">Escanei o QR Code da mesa</h3>
+                  <p>
+                     Para identificar qual é sua comanda e sua mesa é necessário escanear o QR Code que esta na mesa em que esta sentado.
+                  </p>
+                  <a href="/pocket.html" class="btn btn-outline-primary">Voltar</a>
+               </div>
+               <div class="col-lg-6 mb30 d-none d-xl-block">
+                  <img src="images/qr.png" alt="" class="img-fluid">
+               </div>
+            </div>
+         </div>
+      </div>
+
         <center>
-            <video muted autoplay playsinline id="qr-video" width="200px"></video>
+            <video muted autoplay playsinline id="qr-video" width="400px"></video>
         </center>
         <canvas id="debug-canvas">
             
