@@ -353,3 +353,48 @@ $factory->define(App\BenAmigo::class, function ($faker) {
         // Fields here
     ];
 });
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'group_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\Group.
+ */
+$factory->define(App\Group::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Shop.
+ */
+$factory->define(App\Shop::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\Payment.
+ */
+$factory->define(App\Payment::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\BenAmigo.
+ */
+$factory->define(App\BenAmigo::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
