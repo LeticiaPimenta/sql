@@ -204,3 +204,15 @@ Bencréditos
     text-transform: uppercase;
     color: #ff9800;
 }
+
+.btn-cred {
+    background-color: #ff9800;
+    margin-top: -28px;
+    color: #ffff;
+}
+
+.img-cred {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5%;
+}
