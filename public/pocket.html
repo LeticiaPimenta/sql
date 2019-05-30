@@ -341,20 +341,23 @@
                 done(function(data){
                  var dados = JSON.parse(data);
                  var usuario = JSON.parse(dados.usuario);
-                 usuario['amigos'] = dados.amigos;
+                 if(dados.amigos)
+                  usuario['amigos'] = dados.amigos;
                  console.log(usuario);
                  cart.logged_user = usuario;
                   if(usuario.name){
                      //console.log(dados.name);
                      setLocalData("BENJAMIN_USERCART_LOGGED_USER",dados.usuario);
-                     setLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS",JSON.stringify(dados.amigos));
+                     if(dados.amigos)
+                      setLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS",JSON.stringify(dados.amigos));
                      toastr.success('Seus dados foram alterados!', 'Dados foram salvos!');
                       setLocalData("BENJAMIN_USERCART_EMAIL",email);
                 var hash_email_cliente = Crypto.MD5(email);
                 jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
 
                      cart.email_cliente = email;
-                     cart.logged_user_friends = dados.amigos;
+                     if(dados.amigos)
+                      cart.logged_user_friends = dados.amigos;
                      cart.hash_email_cliente = hash;
                      jQuery('#popup-login').modal('hide');
                    
