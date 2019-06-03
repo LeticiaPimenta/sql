@@ -246,6 +246,10 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
               cart.itens_vault = [<?php echo $retirar;?>] ;
               console.log(cart.itens_vault);
+
+              $http.get("benjamin-a-padaria-unidades.json").then(function(response){
+                cart.unidades = response.data;
+             })
               
               function getQueryParams(qs) {
                 //alert(qs);
@@ -429,6 +433,23 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                  });
          
                  return indexed_array;
+             }
+
+              cart.solicitar_itens = function(id){
+                console.log(cart);
+              //  $(".solicitar").slideUp();
+                var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
+                $('#modal-solicitar').modal('hide');
+                $.post("/compra/retirar", {"itens":cart.itens,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
+                    console.log(response);
+                    cart.user_vault = response;
+
+                    
+                  //  $(".solicitado").slideDown();
+                    setLocalData("BENJAMIN_USER_VAULT", null);
+                    setLocalData("BENJAMIN_USER_VAULT_KEY", null);
+                    setLocalData("BENJAMIN_USERCART", null);
+                })
              }
          
             cart.tranferir_indicado = function($user_token){
