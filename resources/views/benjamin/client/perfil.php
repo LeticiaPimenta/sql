@@ -1050,6 +1050,52 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
          </div>
       </div>
       <!--end modal-->
+
+        <!-- Modal -->
+                    <div class="modal fade" id="modal-solicitar" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form id="form_retirar">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-solicitarTitle">Solicitar os produtos</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4 ng-show="loja">Voce está na Loja  {{loja}} </h4>
+                                      <div ng-hide="loja"><strong>VOCE NAO SELECIONOU SUA LOJA, </strong><br><a href="/client/qrunidade">Leia o QR de UMA MESA </a><br>OU selecione uma na listagem !</div>
+                                      <span ng-show="loja">
+                                      Se estiver em loja errada ! <a href="/client/qrunidade">vai pra seleção de unidades</a></span>
+                                      <br>
+                                      <input type="hidden" name="cart_loja" value="{{cart.loja}}">
+                                      <select id="loja_selecionado" name="loja" ng-change="cart.mudar_loja()" ng-model="cart.loja">
+                                        <option  ng-repeat="loja in cart.unidades" value="{{loja.loja}}">Loja {{loja.loja}} - {{loja.nome}}</option>
+                                      </select>
+                                    <p>
+                                     
+                    <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
+                                  <!-- Card 1 -->
+                                  <div class="card" ng-repeat="produto in cart.itens_vault" ng-show='produto.PRESENTATION_NAME !=""'>
+                                    <div class="card-header accordion-header" role="tab" id="heading{{$index}}2"> 
+                                        <a class="text-orange" data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$index}}List" aria-expanded="true" aria-controls="collapse{{$index}}"> {{produto.PRESENTATION_NAME}} <i class="ti-angle-down"></i></a> </div>
+                                    <div id="collapse{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
+                                      <div class="card-body">
+                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs" cols="40"></textarea></div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-rounded btn-secondary" id="cancel" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-rounded btn-primary" ng-click="cart.solicitar_itens()">Solicitar</button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div><!--modal-->
       <!--back to top  -->
       <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
       <!-- jQuery first, then Tether, then Bootstrap JS. -->
