@@ -528,14 +528,14 @@
                      <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href=""> Bencréditos</a></li>
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
-                     <li class="nav-item"  ng-show="cart.email_cliente && !online"><a href="" data-toggle="modal" data-target="#myModal">{{online}}
+                     <li class="nav-item"  ng-show="cart.email_cliente"><a href="" data-toggle="modal" data-target="#myModal">{{online}}
                         <img class="img-profile" src="images/resto/profile.jpg">
                         </a>
                      </li>
                      <li class="nav-item"  ng-show="cart.email_cliente && online"><a href="/perfil">{{online}}
                         <img class="img-profile" src="images/resto/profile.jpg">
                         </a>
-                     </li>
+                     </li> 
                   </ul>
                </div>
                <div class="navbar-right-elements">
@@ -1104,78 +1104,8 @@
                   <span aria-hidden="true">&times;</span>
                   </button>
                </div>
-               <div class="modal-body">
-                  <div class="col-lg-12 mb40">
-                     <div>
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs tabs-default justify-content-center mb10" role="tablist">
-                           <li class="nav-item" role="presentation"><a class="active nav-link" href="#t5" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-home"></i> Perfil</a></li>
-                           <li class="nav-item" role="presentation"><a class="nav-link" href="#t6" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user"></i>BenAmigos</a></li>
-                           <li class="nav-item" role="presentation"><a class="nav-link" href="#t7" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user"></i>BenCréditos</a></li>
-                        </ul>
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                           <div role="tabpanel" class="tab-pane active show fade" id="t5">
-                            <h5>{{cart.logged_user.name}}</h5>
-                            <p><h6>Email: {{cart.logged_user.email}}
-                                <span class="text-right">Meu Saldo: R$ 0,00</span></h6>
-                            </p>
-                            <br>
-
-                             <div class="row align-items-center">
-                                 <div class="col-lg-6 mb30">
-                                     <h4 class="text-center">Escaneie o QR Code para adicionar amigos.</h4>
-                                 </div>
-                                 <div class="col-lg-6 mb30">
-                                     <div id="qrcode-profile" class="text-center"></div>
-                                 </div>
-                             </div>
-                           </div>
-                           <div role="tabpanel" class="tab-pane fade" id="t6">
-                              <p class="name-cred">Conecte-se com amigos e transfira bencréditos aqui.</p>
-                              <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
-                                 <!-- Card 1 -->
-                                 <div class="card">
-                                    <div class="card-header accordion-header" role="tab" id="headingOne2"> <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapseOneList" aria-expanded="true" aria-controls="collapseOne"> Meus BenAmigos </a> </div>
-                                    <div id="collapseOneList" class="collapse" role="tabpanel" aria-labelledby="headingOne1">
-                                        <div class="card-body">
-                                            <p class="name-cred" ng-repeat="n in cart.logged_user_friends track by $index">Amigo -- {{n.nome}}{{ $index }} <a href="" class="share-cred"> <i class="ti-share"></i></a></p>
-                                        </div>
-                                    </div>
-                                 </div>
-                      
-                              </div>
-                           </div>
-                           <div role="tabpanel" class="tab-pane fade" id="t7">
-                              <p class="name-cred">Você tem <span class="text-warning-cred">R$ 0,00</span> para transferir para seus amigos.</p> 
-                              <h4 class="text-warning-cred"> Comprar: </h4>
-                              <br>
-                              <div class="row align-items-center">
-                                 <div class="col-md-6 mb30 text-center">
-                                    <img src="images/resto/cred/cred1.png" alt="" class="img-cred">
-                                    <button class="btn btn-cred" type="button">R$ 10,00 </button>
-                                 </div>
-                                 <div class="col-md-6 mb30 text-center">
-                                    <img src="images/resto/cred/cred2.png" alt="" class="img-cred">
-                                    <button class="btn btn-cred" type="button">R$ 20,00 </button>
-                                 </div>
-                                 <div class="col-md-6 mb30 text-center">
-                                    <img src="images/resto/cred/cred3.png" alt="" class="img-cred">
-                                    <button class="btn btn-cred" type="button">R$ 30,00 </button>
-                                 </div>
-                                 <div class="col-md-6 mb30 text-center d-none d-xl-block">
-                                    <img src="images/resto/cred/cred5.png" alt="" class="img-cred">
-                                    <button class="btn btn-cred" type="button">R$ 50,00 </button>
-                                 </div>
-                                
-                             </div>
-
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <hr>
-                  <a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login" data-dismiss="modal"> Alterar Email</a>
+               <div class="modal-body" ng-include="'/perfil.html'">
+                 
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
