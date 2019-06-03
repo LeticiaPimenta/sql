@@ -1076,7 +1076,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                      
                     <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
                                   <!-- Card 1 -->
-                                  <div class="card" ng-repeat="produto in cart.itens_vault" ng-show='produto.PRESENTATION_NAME !=""'>
+                                  <div class="card" ng-repeat="produto in cart.itens_vault">
                                     <div class="card-header accordion-header" role="tab" id="heading{{$index}}2"> 
                                         <a class="text-orange" data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$index}}List" aria-expanded="true" aria-controls="collapse{{$index}}"> {{produto.PRESENTATION_NAME}} <i class="ti-angle-down"></i></a> </div>
                                     <div id="collapse{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">

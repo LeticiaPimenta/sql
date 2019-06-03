@@ -97,9 +97,9 @@
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t8">
                            	<ul>
-                           		<li ng-repeat="compra in cart.itens_vault track by $index">
+                           		<li ng-repeat="compra in cart.itens_vault track by $index" >
                            			{{compra.hora| date:'dd/MM/yyyy @ h:mma'}}
-                           		<div ng-repeat="(code , produto) in compra.products track by $index">{{produto.PRESENTATION_NAME}}<input type="checkbox" ng-model="produto.done"></div><br>
+                           		<div ng-repeat="(code , produto) in compra.products track by $index" ng-show="produto.PRESENTATION_NAME">{{produto.PRESENTATION_NAME}}<input type="checkbox" ng-model="produto.done"></div><br>
                            		</li>
                            	</ul>
                            	<a  class="btn btn-rounded btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#modal-solicitar">Pedir</a>
