@@ -39,17 +39,16 @@ class EcomController extends Controller
         return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);
     }
 
-<<<<<<< HEAD
     public function renderizar_voucher($idcompra){
         return view('benjamin/client/retorno_voucher', ['app_name' => 'app de teste' , 'public' => '/adm/']);
     }
 
     public function voucher_retorno($idcompra){
         echo $idcompra;
-=======
+    }
+
     public function perfil(){
         return view('benjamin/client/perfil', ['app_name' => 'app de teste' , 'public' => '/adm/']);
->>>>>>> 1504398364a33676da7b3bc84353846e73693e98
     }
 
     public function registrar(){

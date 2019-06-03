@@ -301,6 +301,8 @@
                  toastr.success('Seu Produto Esta no Seu Carrinho!', 'Produto Adicionado!');
          
               }
+
+
               
               function carrinho_local() {
                 cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
@@ -317,6 +319,10 @@
                 return grand_total;
               }
               
+              cart.change_vouchers = function() {
+              console.log(cart.total_vouchers);
+              setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
+              };
               
               cart.adicionar = function(id) {
                 addItemInCart(id);
@@ -393,6 +399,12 @@
                   // body...
                   jQuery("#form-login").slideUp();
                   jQuery("#form-register").slideDown();
+              }
+
+              cart.modal_transferir = function(amigo){
+                console.log(amigo);
+                cart.amigo_selecionado = amigo;
+                $('#modal_transferir').modal('show');
               }
          
              cart.getFormData = function ($form){
@@ -528,14 +540,14 @@
                      <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href=""> Bencréditos</a></li>
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
-                     <li class="nav-item"  ng-show="cart.email_cliente && !online"><a href="" data-toggle="modal" data-target="#myModal">{{online}}
+                     <li class="nav-item"  ng-show="cart.email_cliente"><a href="" data-toggle="modal" data-target="#myModal">{{online}}
                         <img class="img-profile" src="images/resto/profile.jpg">
                         </a>
                      </li>
                      <li class="nav-item"  ng-show="cart.email_cliente && online"><a href="/perfil">{{online}}
                         <img class="img-profile" src="images/resto/profile.jpg">
                         </a>
-                     </li>
+                     </li> 
                   </ul>
                </div>
                <div class="navbar-right-elements">
@@ -552,6 +564,7 @@
       <!--end slider revolution-->
       <div class="bg-white" id="about">
          <div class="container pt90 pb60" ng-include="'/perfil.html'">
+            
          </div>
       </div>
 
@@ -573,6 +586,25 @@
             </div>
          </div>
       </footer>
+
+<div class="modal fade bd-example-modal-sm" id="modal-transferir" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Transferir !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--modal-->
+
+
+
+
+
                 <div class="modal fade bd-example-modal-sm" id="modal-conectar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
 
@@ -870,7 +902,9 @@
                   <span aria-hidden="true">&times;</span>
                   </button>
                </div>
-               
+               <div class="modal-body" ng-include="'/perfil.html'">
+                 
+               </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                   <button type="button" class="btn btn-primary">Salvar</button>
@@ -921,6 +955,30 @@
       </div>
 
       <!--modal-->
+            <div class="modal fade" id="modal_transferir" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <form >
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" >Transferir</h5>
+                    
+                  </div>
+                  <div class="modal-body">
+                     <div class="card-body">
+               <div class="row">
+                  <div class="col-md-12 mr-auto">
+                     {{cart.amigo_selecionado}}
+                  </div>
+               </div>
+            </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
       <!--back to top  -->
       <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
       <!-- jQuery first, then Tether, then Bootstrap JS. -->
