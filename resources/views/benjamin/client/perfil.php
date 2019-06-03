@@ -244,7 +244,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
               cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
-              cart.itens_vault = <?php echo $retirar;?> ;
+              cart.itens_vault = [<?php echo $retirar;?>] ;
               console.log(cart.itens_vault);
               
               function getQueryParams(qs) {
@@ -457,6 +457,22 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
           });
         }
          
+
+        /* cart.solicitar = function () {
+              console.log(cart.itens_vault[0]);
+              console.log(cart.itens_vault[0].length);
+             //var pool_itens = [];
+              for (var i = 0; i < cart.itens_vault.length; i++) {
+               /// if(cart.itens_vault[i].done){
+               //   pool_itens.push(cart.itens_vault[i]);
+              // }
+                console.log(cart.itens_vault[i].products);
+                console.log(cart.itens_vault[i]);
+                
+              }
+              //cart.itens_vault = pool_itens;
+          }*/
+
          
               cart.registrar_usuario = function(){
                  //var usuario = jQuery("#formulario-registro").serializeArray();
@@ -1073,10 +1089,13 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                         <option  ng-repeat="loja in cart.unidades" value="{{loja.loja}}">Loja {{loja.loja}} - {{loja.nome}}</option>
                                       </select>
                                     <p>
+
                                      
                     <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
                                   <!-- Card 1 -->
-                                  <div class="card" ng-repeat="produto in cart.itens_vault">
+                                  <span ng-repeat="compras in cart.itens_vault">
+                                    <span ng-repeat="compra in compras">
+                                  <div class="card" ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME && produto.done">
                                     <div class="card-header accordion-header" role="tab" id="heading{{$index}}2"> 
                                         <a class="text-orange" data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$index}}List" aria-expanded="true" aria-controls="collapse{{$index}}"> {{produto.PRESENTATION_NAME}} <i class="ti-angle-down"></i></a> </div>
                                     <div id="collapse{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
@@ -1084,7 +1103,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                         <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs" cols="40"></textarea></div>
                                     </div>
                                   </div>
-                                  
+                                  </span>
+                                  </span>
                                 </div>
                                     </p>
                                 </div>
