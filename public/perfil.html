@@ -96,7 +96,12 @@
 
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t8">
-                           	{{cart.itens_vault}}
+                           	<ul>
+                           		<li ng-repeat="compra in cart.itens_vault track by $index">
+                           		<span ng-repeat="(code , produto) in compra.products">{{produto.PRESENTATION_NAME}}</span>
+                           		</li>
+                           	</ul>
+                           	
                            </div>
 
                         </div>
