@@ -539,7 +539,11 @@ setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
                      <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href=""> Bencréditos</a></li>
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
-                     <li class="nav-item"  ng-show="cart.email_cliente"><a href="" data-toggle="modal" data-target="#myModal">
+                     <li class="nav-item"  ng-show="cart.email_cliente && !online"><a href="" data-toggle="modal" data-target="#myModal">{{online}}
+                        <img class="img-profile" src="images/resto/profile.jpg">
+                        </a>
+                     </li>
+                     <li class="nav-item"  ng-show="cart.email_cliente && online"><a href="/perfil">{{online}}
                         <img class="img-profile" src="images/resto/profile.jpg">
                         </a>
                      </li>
