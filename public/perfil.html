@@ -11,7 +11,7 @@
                            <div role="tabpanel" class="tab-pane active show fade" id="t5">
                             <h5>{{cart.logged_user.name}}</h5>
                             <p><h6>Email: {{cart.logged_user.email}}
-                                <span class="text-right">Meu Saldo: R$ 0,00</span></h6>
+                                <span class="text-right">Meu Saldo: R$ {{cart.logged_user.wallet}}</span></h6>
                             </p>
                             <br>
 
@@ -32,7 +32,7 @@
                                     <div class="card-header accordion-header" role="tab" id="headingOne2"> <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapseOneList" aria-expanded="true" aria-controls="collapseOne"> Meus BenAmigos </a> </div>
                                     <div id="collapseOneList" class="collapse" role="tabpanel" aria-labelledby="headingOne1">
                                         <div class="card-body">
-                                            <p class="name-cred" ng-repeat="n in cart.logged_user_friends track by $index">Amigo -- {{n.nome}}{{ $index }} <a href="" class="share-cred"> <i class="ti-share"></i></a></p>
+                                            <p class="name-cred" ng-repeat="n in cart.logged_user_friends track by $index">Amigo -- {{n.nome}}{{ $index }} <a ng-click="cart.modal_transferir(n)" class="share-cred"> <i class="ti-share"></i></a></p>
                                         </div>
                                     </div>
                                  </div>
@@ -41,7 +41,34 @@
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t7">
                               <p class="name-cred">Você tem <span class="text-warning-cred">R$ 0,00</span> para transferir para seus amigos.</p> 
-                              <h4 class="text-warning-cred"> Comprar: </h4>
+                              <h4 class="text-warning-cred"> Comprar: <input type="total_vouchers" ng-model="cart.total_vouchers" name="" ng-change="cart.change_vouchers()"></h4>
+                               <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                        <!--Tipo do botão-->
+                        <input type="hidden" name="cmd" value="_xclick" />
+                        <!--Vendedor e URL de retorno, cancelamento e notificação-->
+                        <input type="hidden" name="business" value="contasapagar-facilitator@benjaminapadaria.com.br" />
+                        <input type="hidden" name="return" value="https://benjamin-a-padaria.herokuapp.com/voucher/retorno/{{cart.hash_email_cliente}}" />
+                        <input type="hidden" name="cancel" value="https://benjamin-a-padaria.herokuapp.com/voucher/cancelamento/{{cart.hash_email_cliente}}" />
+                        <input type="hidden" name="notify_url" value="https://benjamin-a-padaria.herokuapp.com/compra/notificacao" />
+                        <!--Internacionalização e localização da página de pagamento-->
+                        <input type="hidden" name="charset" value="utf-8" />
+                        <input type="hidden" name="lc" value="BR" />
+                        <input type="hidden" name="country_code" value="BR" />
+                        <input type="hidden" name="currency_code" value="BRL" />
+                        <input type="hidden" name="tx" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="payer_id" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="invoice" value="{{cart.hash_email_cliente}}@{{cart.cart_ci}}">
+                        <input type="hidden" name="custom" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="at" value="{{cart.hash_email_cliente}}">
+                        <!--Informações sobre o produto e seu valor-->
+                        <input type="hidden" name="amount" value="{{cart.total_vouchers}}" />
+                        <input type="hidden" name="item_name" value="Servico" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <input type="hidden" name="item_number_1" value="bolinho" />
+                        <input type="hidden" name="item_number_2" value="Sonho" />
+                        <!--Botão para submissão do formulário-->
+                        <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0"/>
+                     </form>
                               <br>
                               <div class="row align-items-center">
                                  <div class="col-md-6 mb30 text-center">
@@ -69,4 +96,3 @@
                   </div>
                   <hr>
                   <a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login" data-dismiss="modal"> Alterar Email</a>
-               

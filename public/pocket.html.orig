@@ -19,8 +19,10 @@
       <script src="js/crypto.js"></script>
       <script type="text/javascript">
          var nome_importado = "Benjamin";
+         var endereco_site = "https://benjamin-a-padaria.herokuapp.com/";
       </script>
       <script type="text/javascript">
+
          var produtos = new Array();
          produtos[0] = {
           "CODE":0,
@@ -231,11 +233,50 @@
               cart.campanhas = campanhas;
               cart.campanhas_lojas = campanhas_lojas;
               cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
-              cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
               cart.cart_ci = JSON.parse(getLocalData("BENJAMIN_USERCART_CI"));
               cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
+              cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
+              cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
               
+              
+              function getQueryParams(qs) {
+                //alert(qs);
+                if (qs != "") {
+                  qs = qs.replace("?","");
+                  qs = qs.split('=');
+                  console.log(qs);
+                  if(qs[0]=="usuario"){
+                    if(cart.logged_user){
+                   //  if(cart.email_cliente)
+              var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
+                     
+
+                      $http.get('/conectar/'+qs[1]+'/'+hash_email_cliente).then(function(data){
+                        cart.nome_indicado = data.data.name;
+                      });
+                      jQuery('#modal-conectar').modal('show');
+
+                    }else{
+                     // alert("vai indicar");
+                      
+                        cart.hash_indicado = qs[1];
+                       jQuery('#modal-registrar-indicado').modal('show');
+                    }
+                  }
+                  return qs;
+                }else
+                  return "";
+                
+              }
+
+        // query = getQueryParams(document.location.search);
+        //alert(query);
+
+         getQueryParams(document.location.search);
+
+              
+
               if(cart.email_cliente)
               cart.hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
               
@@ -260,6 +301,8 @@
                  toastr.success('Seu Produto Esta no Seu Carrinho!', 'Produto Adicionado!');
          
               }
+
+
               
               function carrinho_local() {
                 cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
@@ -276,6 +319,10 @@
                 return grand_total;
               }
               
+              cart.change_vouchers = function() {
+console.log(cart.total_vouchers);
+setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
+              };
               
               cart.adicionar = function(id) {
                 addItemInCart(id);
@@ -300,14 +347,25 @@
                 done(function(data){
                  var dados = JSON.parse(data);
                  var usuario = JSON.parse(dados.usuario);
+                 if(dados.amigos)
+                  usuario['amigos'] = dados.amigos;
                  console.log(usuario);
                  cart.logged_user = usuario;
                   if(usuario.name){
                      //console.log(dados.name);
                      setLocalData("BENJAMIN_USERCART_LOGGED_USER",dados.usuario);
+                     if(dados.amigos)
+                      setLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS",JSON.stringify(dados.amigos));
+                    
                      toastr.success('Seus dados foram alterados!', 'Dados foram salvos!');
                       setLocalData("BENJAMIN_USERCART_EMAIL",email);
+                var hash_email_cliente = Crypto.MD5(email);
+                jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
+
                      cart.email_cliente = email;
+                     if(dados.amigos)
+                      cart.logged_user_friends = dados.amigos;
+
                      cart.hash_email_cliente = hash;
                      jQuery('#popup-login').modal('hide');
                    
@@ -342,6 +400,11 @@
                   jQuery("#form-login").slideUp();
                   jQuery("#form-register").slideDown();
               }
+
+              cart.modal_transferir = function(amigo){
+                console.log(amigo);
+                $('#modal_transferir').modal('show');
+              }
          
              cart.getFormData = function ($form){
                  var unindexed_array = $form.serializeArray();
@@ -360,7 +423,7 @@
               cart.registrar_usuario = function(){
                  //var usuario = jQuery("#formulario-registro").serializeArray();
                  var $form = $("#form_data");
-                 var usuario ={"name":$("#name").val(), "email":$("#email_registro").val(), "password":$("#password").val()};
+                 var usuario ={"name":$("#name").val(),"parent":$("#hash_indicado").val(), "email":$("#email_registro").val(), "password":$("#password").val()};
                  $http.post("/registrar_usuario",{"usuario":usuario}).then(function (response) {
                      // body...
                      console.log(response);
@@ -476,10 +539,14 @@
                      <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href=""> Bencréditos</a></li>
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
-                     <li class="nav-item"  ng-show="cart.email_cliente"><a href="" data-toggle="modal" data-target="#myModal">
+                     <li class="nav-item"  ng-show="cart.email_cliente"><a href="" data-toggle="modal" data-target="#myModal">{{online}}
                         <img class="img-profile" src="images/resto/profile.jpg">
                         </a>
                      </li>
+                     <li class="nav-item"  ng-show="cart.email_cliente && online"><a href="/perfil">{{online}}
+                        <img class="img-profile" src="images/resto/profile.jpg">
+                        </a>
+                     </li> 
                   </ul>
                </div>
                <div class="navbar-right-elements">
@@ -619,7 +686,7 @@
                   <p>
                      Para identificar qual é sua comanda e sua mesa é necessário escanear o QR Code que esta na mesa em que esta sentado.
                   </p>
-                  <a href="#" class="btn btn-outline-primary">Escanear</a>
+                  <a href="/qrunidade.html" class="btn btn-outline-primary">Escanear</a>
                </div>
                <div class="col-lg-6 mb30">
                   <img src="images/qr.png" alt="" class="img-fluid">
@@ -676,31 +743,29 @@
                <div class="owl-carousel owl-theme carousel-cards">
                   <div class="item">
                      <a class="card-image" href="#">
-                        <img src="images/resto/cred.jpg" alt="" class="img-fluid">
+                        <img src="images/resto/cred/cred1.png" alt="" class="img-fluid">
                         <h4 class="text-warning">Crédito de $10 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
                      </a>
                   </div>
                   <!--item-->
                   <div class="item">
                      <a class="card-image" href="#">
-                        <img src="images/resto/Paes.jpg" alt="" class="img-fluid">
+                        <img src="images/resto/cred/cred2.png" alt="" class="img-fluid">
                         <h4 class="text-warning">Crédito de $20 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
                      </a>
                   </div>
                   <!--item-->
                   <div class="item">
                      <a class="card-image" href="#">
-                        <img src="images/resto/food2.jpg" alt="" class="img-fluid">
-                        <span class="float-right lead">$14</span>
-                        <h4>Red wine</h4>
+                        <img src="images/resto/cred/cred3.png" alt="" class="img-fluid">
+                        <h4 class="text-warning">Crédito de $30 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
                      </a>
                   </div>
                   <!--item-->
                   <div class="item">
                      <a class="card-image" href="#">
-                        <img src="images/resto/food3.jpg" alt="" class="img-fluid">
-                        <span class="float-right lead">$5</span>
-                        <h4>Pizza Lorem</h4>
+                        <img src="images/resto/cred/cred5.png" alt="" class="img-fluid">
+                        <h4 class="text-warning">Crédito de $50 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
                      </a>
                   </div>
                   <!--item-->
@@ -753,6 +818,179 @@
             </div>
          </div>
       </footer>
+
+<div class="modal fade bd-example-modal-sm" id="modal-transferir" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Transferir !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--modal-->
+
+
+
+
+
+                <div class="modal fade bd-example-modal-sm" id="modal-conectar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Seu amigo {{cart.nome_indicado}} vai estar na sua rede !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--modal-->
+      <div class="modal fade" id="modal-search" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <form >
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="modal-solicitarTitle">Busca de produtos</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="tab-content">
+                        <div ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" role="tabpanel" class="tab-pane active show fade" id="campanha_{{cart.campanhas[campanha_lojas].CODE}}">
+                           <div class='row'>
+                              <div class='col-md-6 mb20'>
+                                 <article class="media" ng-repeat="produto_code in cart.campanhas[campanha_lojas].PRODUCTS">
+                                    <!--Content -->
+                                    <div class="media-body align-self-center g-pl-10">
+                                       <div class="d-flex justify-content-between mb10">
+                                          <h3 class="align-self-center text-capitalize mb0 h6  font400">{{cart.produtos[produto_code].PRESENTATION_NAME}}</h3>
+                                          <div class="align-self-center">
+                                             <strong class=" font700">
+                                             <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!--/Content -->
+                                 </article>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+      <div class="modal fade" id="modal-registrar-indicado" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <form >
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" >registrar</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="card-body">
+               <div class="row">
+                  <div class="col-md-12 mr-auto">
+                     <form class="form"  >
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">face</i>
+                                 </span>
+                              </div>
+                              <input type="text" name="hash_indicado" id="hash_indicado" value="{{cart.hash_indicado}}">..
+                              <input type="text"  name="name" class="form-control" placeholder="Nome completo..." ng-model="registrar.name">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">notifications</i>
+                                 </span>
+                              </div>
+                              <input type="text" class="form-control" name="telefone" placeholder="Telefone..." >
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">edit</i>
+                                 </span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="CPF...">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">mail</i>
+                                 </span>
+                              </div>
+                              <input type="text"  class="form-control" name="email"  placeholder="Email..." ng-model="registrar.email">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">lock_outline</i>
+                                 </span>
+                              </div>
+                              <input type="password"  placeholder="Senha..." class="form-control" ng-model="registrar.password">
+                           </div>
+                        </div>
+                        <div class="form-group bmd-form-group">
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">
+                                 <i class="material-icons">lock</i>
+                                 </span>
+                              </div>
+                              <input type="password" placeholder="Confirmar senha..." class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-check">
+                           <label class="form-check-label">
+                           <input class="form-check-input" type="checkbox" value="aceito" checked="false">
+                           <span class="form-check-sign">
+                           <span class="check"></span>
+                           </span>
+                           Eu aceito os
+                           <a href="/termos">termos, condições e politica de privacidade</a>.
+                           </label>
+                        </div>
+                        <div class="text-center">
+                           <div  class="btn btn-primary btn-round" ng-click="cart.registrar_usuario()">Registrar</div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
       <div  id="popup-login" class="mfp-hide popup-content-area white-popup">
          <div id="form-login">
             <h4>Que Bom que voltou!</h4>
@@ -814,7 +1052,8 @@
                                  <i class="material-icons">face</i>
                                  </span>
                               </div>
-                              <input type="text" id="name" name="name" class="form-control" placeholder="Nome completo...">
+                              
+                              <input type="text" id="name" name="name" class="form-control" placeholder="Nome completo..." ng-model="registrar.name">
                            </div>
                         </div>
                         <div class="form-group bmd-form-group">
@@ -844,7 +1083,7 @@
                                  <i class="material-icons">mail</i>
                                  </span>
                               </div>
-                              <input type="text"  class="form-control" name="email" id="email_registro" placeholder="Email...">
+                              <input type="text"  class="form-control" name="email" id="email_registro" ng-model="registrar.email" placeholder="Email...">
                            </div>
                         </div>
                         <div class="form-group bmd-form-group">
@@ -854,7 +1093,7 @@
                                  <i class="material-icons">lock_outline</i>
                                  </span>
                               </div>
-                              <input type="password" id="password" placeholder="Senha..." class="form-control">
+                              <input type="password" id="password" placeholder="Senha..." class="form-control" ng-model="registrar.password">
                            </div>
                         </div>
                         <div class="form-group bmd-form-group">
@@ -886,7 +1125,7 @@
             </div>
          </div>
       </div>
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+      <div class="modal fade" id="myModal" tabindex="-3" role="dialog" aria-labelledby="myModal" aria-hidden="true">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
                <div class="modal-header">
@@ -895,11 +1134,15 @@
                   <span aria-hidden="true">&times;</span>
                   </button>
                </div>
+<<<<<<< HEAD
+               <div class="modal-body" ng-include="'/perfil.html'">
+                 
+=======
                <div class="modal-body">
                   <div class="col-lg-12 mb40">
                      <div>
                         <!-- Nav tabs -->
-                        <ul class="nav nav-tabs tabs-default justify-content-end mb10" role="tablist">
+                        <ul class="nav nav-tabs tabs-default justify-content-center mb10" role="tablist">
                            <li class="nav-item" role="presentation"><a class="active nav-link" href="#t5" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-home"></i> Perfil</a></li>
                            <li class="nav-item" role="presentation"><a class="nav-link" href="#t6" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user"></i>BenAmigos</a></li>
                            <li class="nav-item" role="presentation"><a class="nav-link" href="#t7" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user"></i>BenCréditos</a></li>
@@ -907,16 +1150,20 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                            <div role="tabpanel" class="tab-pane active show fade" id="t5">
-<<<<<<< HEAD
-                             Nome : NOME
-                             <br>
-                             Email : EMAIL
-                             <br>
-                             <div id="qrcode-profile"></div>
-=======
-                            {{cart.logged_user.name}}
-                            {{cart.logged_user.email}}
->>>>>>> b66ae5a7435587d078dfa9e21870333758f1c581
+                            <h5>{{cart.logged_user.name}}</h5>
+                            <p><h6>Email: {{cart.logged_user.email}}
+                                <span class="text-right">Meu Saldo: R$ {{cart.logged_user.wallet}}</span></h6>
+                            </p>
+                            <br>
+
+                             <div class="row align-items-center">
+                                 <div class="col-lg-6 mb30">
+                                     <h4 class="text-center">Escaneie o QR Code para adicionar amigos.</h4>
+                                 </div>
+                                 <div class="col-lg-6 mb30">
+                                     <div id="qrcode-profile" class="text-center"></div>
+                                 </div>
+                             </div>
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t6">
                               <p class="name-cred">Conecte-se com amigos e transfira bencréditos aqui.</p>
@@ -926,20 +1173,71 @@
                                     <div class="card-header accordion-header" role="tab" id="headingOne2"> <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapseOneList" aria-expanded="true" aria-controls="collapseOne"> Meus BenAmigos </a> </div>
                                     <div id="collapseOneList" class="collapse" role="tabpanel" aria-labelledby="headingOne1">
                                         <div class="card-body">
-                                            <p class="name-cred" ng-repeat="n in [].constructor(6) track by $index">Amigo  {{ $index }} <a href="" class="share-cred"> <i class="ti-share"></i></a></p>
+                                            <p class="name-cred" ng-repeat="n in cart.logged_user_friends track by $index">Amigo -- {{n.nome}}{{ $index }} <a ng-click="cart.modal_transferir(n)" class="share-cred"> <i class="ti-share"></i></a></p>
                                         </div>
                                     </div>
                                  </div>
+                      
                               </div>
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t7">
-                              Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+                              <p class="name-cred">Você tem <span class="text-warning-cred">R$ 0,00</span> para transferir para seus amigos.</p> 
+                              <h4 class="text-warning-cred"> Comprar: <input type="total_vouchers" ng-model="cart.total_vouchers" name="" ng-change="cart.change_vouchers()"></h4>
+                               <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                        <!--Tipo do botão-->
+                        <input type="hidden" name="cmd" value="_xclick" />
+                        <!--Vendedor e URL de retorno, cancelamento e notificação-->
+                        <input type="hidden" name="business" value="contasapagar-facilitator@benjaminapadaria.com.br" />
+                        <input type="hidden" name="return" value="https://benjamin-a-padaria.herokuapp.com/voucher/retorno/{{cart.hash_email_cliente}}" />
+                        <input type="hidden" name="cancel" value="https://benjamin-a-padaria.herokuapp.com/voucher/cancelamento/{{cart.hash_email_cliente}}" />
+                        <input type="hidden" name="notify_url" value="https://benjamin-a-padaria.herokuapp.com/compra/notificacao" />
+                        <!--Internacionalização e localização da página de pagamento-->
+                        <input type="hidden" name="charset" value="utf-8" />
+                        <input type="hidden" name="lc" value="BR" />
+                        <input type="hidden" name="country_code" value="BR" />
+                        <input type="hidden" name="currency_code" value="BRL" />
+                        <input type="hidden" name="tx" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="payer_id" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="invoice" value="{{cart.hash_email_cliente}}@{{cart.cart_ci}}">
+                        <input type="hidden" name="custom" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="at" value="{{cart.hash_email_cliente}}">
+                        <!--Informações sobre o produto e seu valor-->
+                        <input type="hidden" name="amount" value="{{cart.total_vouchers}}" />
+                        <input type="hidden" name="item_name" value="Servico" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <input type="hidden" name="item_number_1" value="bolinho" />
+                        <input type="hidden" name="item_number_2" value="Sonho" />
+                        <!--Botão para submissão do formulário-->
+                        <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0"/>
+                     </form>
+                              <br>
+                              <div class="row align-items-center">
+                                 <div class="col-md-6 mb30 text-center">
+                                    <img src="images/resto/cred/cred1.png" alt="" class="img-cred">
+                                    <button class="btn btn-cred" type="button">R$ 10,00 </button>
+                                 </div>
+                                 <div class="col-md-6 mb30 text-center">
+                                    <img src="images/resto/cred/cred2.png" alt="" class="img-cred">
+                                    <button class="btn btn-cred" type="button">R$ 20,00 </button>
+                                 </div>
+                                 <div class="col-md-6 mb30 text-center">
+                                    <img src="images/resto/cred/cred3.png" alt="" class="img-cred">
+                                    <button class="btn btn-cred" type="button">R$ 30,00 </button>
+                                 </div>
+                                 <div class="col-md-6 mb30 text-center d-none d-xl-block">
+                                    <img src="images/resto/cred/cred5.png" alt="" class="img-cred">
+                                    <button class="btn btn-cred" type="button">R$ 50,00 </button>
+                                 </div>
+                                
+                             </div>
+
                            </div>
                         </div>
                      </div>
                   </div>
                   <hr>
                   <a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login" data-dismiss="modal"> Alterar Email</a>
+>>>>>>> 83522273f59165927b4ff205d477b19e80ed1e9c
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -951,7 +1249,7 @@
       <!--/modal-->           
       <div class="modal fade" id="modal-search" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
          <div class="modal-dialog" role="document">
-            <form id="form_retirar">
+            <form >
                <div class="modal-content">
                   <div class="modal-header">
                      <h5 class="modal-title" id="modal-solicitarTitle">Busca de produtos</h5>
@@ -989,6 +1287,7 @@
             </form>
          </div>
       </div>
+
       <!--modal-->
       <!--back to top  -->
       <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
@@ -1027,9 +1326,18 @@
                  gridheight: 600
              });
              //alert(Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL")));
+
+             try {
+              if(getLocalData("BENJAMIN_USERCART_EMAIL")){
+                jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
+                var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
+                jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
+              }
+            }catch(err) {
+              console.log(err.message);
+            }
          
-             jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
-             jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
+             
          });
       </script>
       <!--google map-->

@@ -301,6 +301,8 @@
                  toastr.success('Seu Produto Esta no Seu Carrinho!', 'Produto Adicionado!');
          
               }
+
+
               
               function carrinho_local() {
                 cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
@@ -317,6 +319,10 @@
                 return grand_total;
               }
               
+              cart.change_vouchers = function() {
+console.log(cart.total_vouchers);
+setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
+              };
               
               cart.adicionar = function(id) {
                 addItemInCart(id);
@@ -393,6 +399,11 @@
                   // body...
                   jQuery("#form-login").slideUp();
                   jQuery("#form-register").slideDown();
+              }
+
+              cart.modal_transferir = function(amigo){
+                console.log(amigo);
+                $('#modal_transferir').modal('show');
               }
          
              cart.getFormData = function ($form){
@@ -807,6 +818,25 @@
             </div>
          </div>
       </footer>
+
+<div class="modal fade bd-example-modal-sm" id="modal-transferir" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Transferir !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--modal-->
+
+
+
+
+
                 <div class="modal fade bd-example-modal-sm" id="modal-conectar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
 

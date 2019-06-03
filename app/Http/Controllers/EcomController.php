@@ -39,8 +39,17 @@ class EcomController extends Controller
         return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);
     }
 
+<<<<<<< HEAD
+    public function renderizar_voucher($idcompra){
+        return view('benjamin/client/retorno_voucher', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+    }
+
+    public function voucher_retorno($idcompra){
+        echo $idcompra;
+=======
     public function perfil(){
         return view('benjamin/client/perfil', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+>>>>>>> 1504398364a33676da7b3bc84353846e73693e98
     }
 
     public function registrar(){
@@ -51,6 +60,20 @@ class EcomController extends Controller
 
         //echo '{"name":"-LdcBFf0rhGBqu23Kvbj"}';
         $pagamento->register($json);
+        die();
+        //return $pagamento->register($json);
+        //return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+    }
+
+    public function voucher_registrar(){
+        header('Content-Type: application/json'); 
+        $json = file_get_contents('php://input');
+        $data = json_decode($json);
+      // print_r($data);
+       $receiver =  \App\User::where('user_token',$data->user)->first();
+        $receiver->wallet = $receiver->wallet+$data->cart;
+        $receiver->save();
+        echo '{"response":"OK"}';
         die();
         //return $pagamento->register($json);
         //return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);
