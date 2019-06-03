@@ -39,6 +39,10 @@ class EcomController extends Controller
         return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);
     }
 
+    public function perfil(){
+        return view('benjamin/client/perfil', ['app_name' => 'app de teste' , 'public' => '/adm/']);
+    }
+
     public function registrar(){
         header('Content-Type: application/json'); 
         $json = file_get_contents('php://input');
