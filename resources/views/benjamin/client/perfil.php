@@ -418,7 +418,28 @@
                  return indexed_array;
              }
          
-         
+            cart.tranferir_indicado = function($user_token){
+            var valor_transferencia = cart.total_transferencia;
+            var client_token = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
+            //alert(valor_transferencia);
+            var req = {
+              method: 'POST',
+              url: '/fazertransferencia',
+              headers: {
+               'Content-Type': 'text/'
+              },
+              data: {"loja":1, "client_token": client_token , "user_token": $user_token , "valor_transferencia" : valor_transferencia}
+            }
+
+          $http(req).then(function(response){
+            console.log(response);
+            cart.responsa_transferencia = response.data ;
+            cart.me.wallet = response.data.wallet;
+
+          }, function(response){
+            console.log(response);
+          });
+        }
          
          
               cart.registrar_usuario = function(){
@@ -960,14 +981,20 @@
             <form >
                <div class="modal-content">
                   <div class="modal-header">
-                     <h5 class="modal-title" >Transferir</h5>
+                     <h5 class="modal-title" >Transferir BenCréditos</h5>
                     
                   </div>
                   <div class="modal-body">
                      <div class="card-body">
                <div class="row">
                   <div class="col-md-12 mr-auto">
-                     {{cart.amigo_selecionado}}
+                    Limite de transferencia: R$ {{cart.logged_user.wallet}}
+                    <br>
+                     {{cart.amigo_selecionado.nome}}
+                     <br>
+                     <h4 class="text-warning-cred"> Tranferir: <input type="text" ng-model="cart.total_transferencia" name=""></h4>
+                     <button type="button" class="btn btn-primary" ng-click="cart.tranferir_indicado(cart.amigo_selecionado.user_token)">Transferir</button>
+                    
                   </div>
                </div>
             </div>
@@ -979,6 +1006,34 @@
             </form>
          </div>
       </div>
+      <!--end modal-->
+
+      <!--modal-->
+            <div class="modal fade" id="modal_presentear" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <form >
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" >Presentear</h5>
+                    
+                  </div>
+                  <div class="modal-body">
+                     <div class="card-body">
+               <div class="row">
+                  <div class="col-md-12 mr-auto">
+                     {{cart.amigo_selecionado.nome}}
+                  </div>
+               </div>
+            </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+      <!--end modal-->
       <!--back to top  -->
       <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
       <!-- jQuery first, then Tether, then Bootstrap JS. -->

@@ -115,3 +115,26 @@ BenAmigo:
       schema: integer nullable
       tags: fillable  
   add: timestamps     
+Transfer:
+  belongsTo: user
+  fields:
+    name:
+      schema: string
+      rules: required
+      tags: fillable
+    amount:
+      schema: text nullable
+      tags: fillable
+    key:
+      schema: text nullable
+      tags: fillable
+    status:
+      schema: integer nullable
+      tags: fillable
+    receiver:
+      schema: integer nullable
+      tags: fillable
+    operation:
+      schema: integer nullable
+      tags: fillable       
+  add: timestamps

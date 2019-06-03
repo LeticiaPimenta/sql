@@ -47,6 +47,28 @@ class EcomController extends Controller
         echo $idcompra;
     }
 
+    public function fazertransferencia()
+    {
+        header('Content-Type: application/json'); 
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata , true);
+        $user_token = $request['client_token'];
+
+        //print_r($request);
+        //echo $request['valor_transferencia'];
+        $me =  \App\User::where('user_token',$user_token)->first();
+        //print_r($me);
+
+        $amigo =  \App\User::where('user_token',$request['user_token'])->first();
+        //print_r($amigo);
+
+        $transfer = new \App\Classes\Transfer;
+        $retorno = $transfer->transfere($me->id , $amigo->id , $request['valor_transferencia']);
+
+        echo json_encode($retorno);
+
+    }
+
     public function perfil(){
         return view('benjamin/client/perfil', ['app_name' => 'app de teste' , 'public' => '/adm/']);
     }
