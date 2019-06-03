@@ -434,7 +434,10 @@
           $http(req).then(function(response){
             console.log(response);
             cart.responsa_transferencia = response.data ;
-            cart.me.wallet = response.data.wallet;
+            cart.total_vouchers = response.data.wallet;
+            cart.logged_user.wallet = response.data.wallet;
+            setLocalData("BENJAMIN_USERCART_LOGGED_USER",JSON.stringify(cart.logged_user));
+
 
           }, function(response){
             console.log(response);
