@@ -1,3 +1,9 @@
+<?php 
+$user_token="647b14a36764fb6e38a2d424b08d209a";
+$url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.json';
+        $retirar = file_get_contents($url);
+
+?>
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
    <head>
@@ -238,7 +244,8 @@
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
               cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
-              
+              cart.itens_vault = <?php echo $retirar;?> ;
+              console.log(cart.itens_vault);
               
               function getQueryParams(qs) {
                 //alert(qs);
@@ -405,6 +412,12 @@
                 console.log(amigo);
                 cart.amigo_selecionado = amigo;
                 $('#modal_transferir').modal('show');
+              }
+
+              cart.modal_presentear = function(amigo){
+                console.log(amigo);
+                cart.amigo_selecionado = amigo;
+                $('#modal_presentear').modal('show');
               }
          
              cart.getFormData = function ($form){
@@ -1012,7 +1025,7 @@
       <!--end modal-->
 
       <!--modal-->
-            <div class="modal fade" id="modal_presentear" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
+        <div class="modal fade" id="modal_presentear" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
          <div class="modal-dialog" role="document">
             <form >
                <div class="modal-content">
