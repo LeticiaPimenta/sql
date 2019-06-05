@@ -440,7 +440,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
               //  $(".solicitar").slideUp();
                 var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
                 $('#modal-solicitar').modal('hide');
-                $.post("/compra/retirar", {"itens":cart.itens,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
+                $.post("/compra/retirar_perfil", {"itens":cart.itens_vault,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
                     console.log(response);
                     cart.user_vault = response;
 
