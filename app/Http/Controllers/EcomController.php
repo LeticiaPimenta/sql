@@ -303,6 +303,9 @@ class EcomController extends Controller
                     if(isset($item['done']) && $item['done'] == true){
                         $item['key'] = $key;
                         $produtos_atendimento[]= $item;
+                        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
+                        $NODE_DELETE = "products.json";
+                        echo $FIREBASE . $NODE_GET ;
                     }
 
                 }
