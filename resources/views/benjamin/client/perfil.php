@@ -437,9 +437,17 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
 
               cart.solicitar_itens = function(id){
                 console.log(cart);
-              //  $(".solicitar").slideUp();
-                var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
+                $("#listagem_retirar").slideUp();
+
+                $("#preloader_retirar").slideDown();
+
+
+                $("#preloader_retirar").slideUp();
+
+                $("#listagem_retirar").slideDown();
                 $('#modal-solicitar').modal('hide');
+              //  $(".solicitar").slideUp();
+        /*        var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
                 $.post("/compra/retirar_perfil", {"itens":cart.itens_vault,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
                     console.log(response);
                     cart.user_vault = response;
@@ -449,7 +457,9 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                     setLocalData("BENJAMIN_USER_VAULT", null);
                     setLocalData("BENJAMIN_USER_VAULT_KEY", null);
                     setLocalData("BENJAMIN_USERCART", null);
-                })
+                }) */
+
+
              }
          
             cart.tranferir_indicado = function($user_token){

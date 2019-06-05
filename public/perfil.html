@@ -96,6 +96,7 @@
 
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t8">
+                            <span id="listagem_retirar">
                            	<ul>
                            		<li ng-repeat="compra in cart.itens_vault[0]" >
                            			{{compra.hora| date:'dd/MM/yyyy @ h:mma'}}
@@ -103,8 +104,14 @@
                            		</li>
                            	</ul>
                            	<a  class="btn btn-rounded btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#modal-solicitar">Pedir</a>
+                            </span>
+                            <span id="preloader_retirar" style="display: none;">
+                              <div id="preloader">
+                                 <div id="preloader-inner"></div>
+                              </div>
+                            </span>
                            </div>
-
+                           
                         </div>
                      </div>
                   </div>
