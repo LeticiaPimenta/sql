@@ -44,8 +44,8 @@
                               </div>
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t7">
-                              <p class="name-cred">Você tem <span class="text-warning-cred">R$ 0,00</span> para transferir para seus amigos.</p> 
-                              <h4 class="text-warning-cred"> Comprar: <input type="total_vouchers" ng-model="cart.total_vouchers" name="" ng-change="cart.change_vouchers()"></h4>
+                              <p class="name-cred">Você tem <span class="text-warning-cred">R$ {{cart.logged_user.wallet}}</span> para transferir para seus amigos.</p> 
+                              <h4 class="text-warning-cred"> Comprar: <small>R$</small><input type="total_vouchers" ng-model="cart.total_vouchers" name="" ng-change="cart.change_vouchers()"></h4>
                                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                         <!--Tipo do botão-->
                         <input type="hidden" name="cmd" value="_xclick" />

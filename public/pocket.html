@@ -625,7 +625,7 @@
                      data-transform_idle="o:1;" 
                      data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
                      data-transform_out="auto:auto;s:300;" 
-                     data-start="1000">Amamos o que fazemos e dedicamos a você.
+                     data-start="1000"><a href="" class="btn float-right btn-outline-white" ng-click="cart.pega_email()">Logar</a>
                   </div>
                   <div class="tp-caption tp-resizeme slider-button" 
                      data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
@@ -634,7 +634,7 @@
                      data-transform_idle="o:1;" 
                      data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
                      data-transform_out="auto:auto;s:300;" 
-                     data-start="1500"><a href="" class="btn float-right btn-outline-white" ng-click="cart.pega_email()">Logar</a></div>
+                     data-start="1500"></div>
                </li>
                <li data-transition="random">
                   <!-- MAIN IMAGE -->
@@ -993,18 +993,15 @@
       </div>
       <div  id="popup-login" class="mfp-hide popup-content-area white-popup">
          <div id="form-login">
-            <h4>Que Bom que voltou!</h4>
+            <h4>Login</h4>
             <hr>
             <form>
                <div class="form-group">
-                  <a href="#" class="float-right text-info">Esquecer</a>
-                  <label for="email">Username</label>
-                  <input type="text" class="form-control" id="email" placeholder="Username">
+                  <input type="text" class="form-control" id="email" placeholder="Coloque aqui seu email.">
                </div>
                <div class="form-group">
+                  <input type="password" class="form-control" id="pass" placeholder="Senha">
                   <a href="#" class="float-right text-info">limpar</a>
-                  <label for="pass">Password</label>
-                  <input type="password" class="form-control" id="pass" placeholder="......">
                </div>
                <div class="clearfix">
                   <div class="modal-footer">
@@ -1037,7 +1034,7 @@
                         </a>
                      </li>
                   </ul>
-               </div>
+               </div> 
             </form>
          </div>
          <div id="form-register" style="display: none">
