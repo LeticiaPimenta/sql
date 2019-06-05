@@ -318,7 +318,7 @@ class EcomController extends Controller
                 curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
                 $response = curl_exec( $curl );
                 curl_close( $curl );
-                $produtos = json_decode($response);
+                $produtos = json_decode($response,true);
 
         //print_r($produtos_atendimento);
         print_r($produtos);
