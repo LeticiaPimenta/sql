@@ -296,7 +296,7 @@ class EcomController extends Controller
     public function retirar_perfil(){
         $dados = $_POST;
 
-        $produtos_atendimento = array();
+        /*$produtos_atendimento = array();
         foreach ($dados['itens'][0] as  $key => $compra) {
             if(isset($compra['products']) && is_array($compra['products'])){
                 foreach ($compra['products'] as $item) {
@@ -305,20 +305,27 @@ class EcomController extends Controller
                         $produtos_atendimento[]= $item;
                         $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
                         $NODE_DELETE = "products.json";
-                        echo $FIREBASE . $NODE_GET ;
+                        //echo $FIREBASE . $NODE_DELETE ;
                     }
 
                 }
             }
         }
+        $NODE_GET = "products.json"; */
 
+                $curl = curl_init();
+                curl_setopt( $curl, CURLOPT_URL, "https://benjamin-a-padaria.firebaseio.com/users/647b14a36764fb6e38a2d424b08d209a/retirar.json" );
+                curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+                $response = curl_exec( $curl );
+                curl_close( $curl );
+                $produtos = json_decode($response);
 
-        print_r($produtos_atendimento);
+        //print_r($produtos_atendimento);
+        print_r($produtos);
 
-        die();
+        die("morreu");
 
         $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
-        $NODE_GET = "products.json";
         $NODE_PUT = "products.json";
        // echo $FIREBASE . $NODE_GET ;
 
