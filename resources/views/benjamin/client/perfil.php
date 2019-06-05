@@ -446,11 +446,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                 var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
                 $.post("/compra/retirar_perfil", {"itens":cart.itens_vault,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
                     console.log(response);
-                    cart.user_vault = response;
-
-                    
-                    cart.itens_vault 
-
+                    resposta = JSON.parse(response);
+          
 
                     
                   //  $(".solicitado").slideDown();
@@ -461,6 +458,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                 $("#preloader_retirar").slideUp();
                 $("#listagem_retirar").slideDown();
                 $('#modal-solicitar').modal('hide');
+
+               // window.location.replace("/pocket.html");
                 }) 
 
 
