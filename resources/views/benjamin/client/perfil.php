@@ -1093,7 +1093,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                      {{cart.amigo_selecionado.nome}}
                   </div>
                   <select>
-                    <option ng-repeat="produtos in cart.itens_vault">{{produtos}}</option>
+                    <optgroup ng-repeat="produtos in cart.itens_vault" ng-show="produtos.products">
+                      <option ng-repeat="produto in produtos.products" ng-show="produto.PRESENTATION_NAME && produtos.products" >{{produto.PRESENTATION_NAME}}</option></optgroup>
                   </select>
                </div>
             </div>
