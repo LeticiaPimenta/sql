@@ -135,6 +135,7 @@ $router->post('/compra/retirar', 'EcomController@retirar');
 $router->post('/compra/retirar_perfil', 'EcomController@retirar_perfil');
 $router->get('/perfil', 'EcomController@perfil');
 $router->post('/fazertransferencia','EcomController@fazertransferencia');
+$router->post('/presentear_amigo','EcomController@presentear_amigo');
 
 
 

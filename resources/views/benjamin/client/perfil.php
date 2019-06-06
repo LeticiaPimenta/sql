@@ -510,6 +510,17 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
               //cart.itens_vault = pool_itens;
           }*/
 
+          cart.troca_presente = function(){
+            var user_email = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))
+            $http.post("/presentear_amigo",{"user_email": user_email ,"amigo_selecionado":cart.amigo_selecionado.user_token,"presente_selecionado":cart.selecionado }).then(function (response) {
+                 // body...
+                 console.log(response);
+             }, function (response) {
+                 console.log(response);
+                 // body...
+             });
+          }
+
          
               cart.registrar_usuario = function(){
                  //var usuario = jQuery("#formulario-registro").serializeArray();
@@ -1092,9 +1103,9 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                   <div class="col-md-12 mr-auto">
                      {{cart.amigo_selecionado.nome}}
                   </div>
-                  <select>
-                    <optgroup ng-repeat="produtos in cart.itens_vault" ng-show="produtos.products">
-                      <option ng-repeat="produto in produtos.products" ng-show="produto.PRESENTATION_NAME && produtos.products" >{{produto.PRESENTATION_NAME}}</option></optgroup>
+                  <select ng-change="cart.troca_presente()" ng-model="cart.selecionado">
+                    <optgroup ng-repeat="(chave, produtos) in cart.itens_vault" ng-show="produtos.products">
+                      <option ng-repeat="(seq,produto) in produtos.products" ng-show="produto.PRESENTATION_NAME && produtos.products" value="{{chave}}@{{seq}}">{{produto.PRESENTATION_NAME}}</option></optgroup>
                   </select>
                </div>
             </div>

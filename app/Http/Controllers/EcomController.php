@@ -47,6 +47,53 @@ class EcomController extends Controller
         echo $idcompra;
     }
 
+    public function presentear_amigo(){
+        header('Content-Type: application/json'); 
+        $postdata = file_get_contents("php://input");
+        $dados = json_decode($postdata , true);
+        //print_r($postdata);
+
+        $produto = explode('@', $dados['presente_selecionado']);
+
+        $url_presente = "https://benjamin-a-padaria.firebaseio.com/users/".$dados['user_email']."/retirar/".$produto[0]."/products/".$produto[1].".json" ;
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $url_presente);
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+
+        $timestamp = (new \DateTime())->getTimestamp();
+        $url_presente_amigo = "https://benjamin-a-padaria.firebaseio.com/users/".$dados['amigo_selecionado']."/retirar/".$timestamp.".json";
+
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $url_presente_amigo);
+        curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+        curl_setopt( $curl, CURLOPT_POSTFIELDS, $response );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+
+
+
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $url_presente );
+        curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        curl_exec( $curl );
+        curl_close( $curl );
+        
+        $url_presente_retirar = "https://benjamin-a-padaria.firebaseio.com/users/".$dados['user_email']."/retirar.json" ;
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $url_presente_retirar);
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+
+        print_r($response);
+
+    }
+
+
     public function fazertransferencia()
     {
         header('Content-Type: application/json'); 
