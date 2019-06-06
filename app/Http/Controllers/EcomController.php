@@ -328,12 +328,12 @@ class EcomController extends Controller
                         $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$key."/products/";
                         
                         if (is_array($array_produtos_servidor[$key]['products'])) {
-                            foreach ($array_produtos_servidor[$key]['products'] as $codigo => $itens) {
-                                //print_r($codigo);
+                            foreach ($array_produtos_servidor[$key]['products'] as $seq => $itens) {
+                                //print_r($seq);
                                 if(isset($produto['CODE']) && $produto['CODE'] == $itens['CODE']){
-                                    //print_r($codigo);
+                                    //print_r($seq);
 
-                                    $NODE_DELETE = $codigo.".json";
+                                    $NODE_DELETE = $seq.".json";
 
 
                                     //echo $FIREBASE.$NODE_DELETE;
@@ -343,11 +343,11 @@ class EcomController extends Controller
                                         'PRESENTATION_NAME'=>  $itens['PRESENTATION_NAME'],
                                         'VALUE'=>$itens['VALUE'],
                                         'OBS'=>$obs);
-                            $NODE_DELETE = $key.".json";
+                            $NODE_DELETE = $seq.".json";
 
                             $curl = curl_init();
 
-                             curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
+                             curl_setopt( $curl, CURLOPT_URL, $FIREBASE.$NODE_DELETE );
                              curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
                             curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
 
