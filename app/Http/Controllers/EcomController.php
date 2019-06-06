@@ -296,8 +296,23 @@ class EcomController extends Controller
     public function retirar_perfil(){
         $dados = $_POST;
 
+        //print_r($dados['itens'][0]);
+       // echo json_encode($dados['itens'][0]);
+
+        $curl = curl_init();
+                        curl_setopt( $curl, CURLOPT_URL, "https://benjamin-a-padaria.firebaseio.com/users/6f7276a7c8ce4f5ca0950eb0a97cc470/retirar.json" );
+                        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+                        $response = curl_exec( $curl );
+                        curl_close( $curl );
+                        print_r($response);
+                        //$produtos = json_decode($response,true); 
+                        echo "nada";
+        die();
+
         $produtos_atendimento = array();
         foreach ($dados['itens'][0] as  $key => $compra) {
+            print_r($compra['products']);
+            die();
             if(isset($compra['products']) && is_array($compra['products'])){
                 foreach ($compra['products'] as $item) {
                     if(isset($item['done']) && $item['done'] == true){

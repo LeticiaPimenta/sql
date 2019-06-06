@@ -1,5 +1,5 @@
 <?php 
-$user_token="647b14a36764fb6e38a2d424b08d209a";
+$user_token="6f7276a7c8ce4f5ca0950eb0a97cc470";
 $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.json';
         $retirar = file_get_contents($url);
 
@@ -439,7 +439,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                 console.log(cart);
                 $("#listagem_retirar").slideUp();
 
-                $("#preloader_retirar").slideDown();
+                //$("#preloader_retirar").slideDown();
 
 
               //  $(".solicitar").slideUp();
