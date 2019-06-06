@@ -1,8 +1,8 @@
 <?php 
-$user_token="6f7276a7c8ce4f5ca0950eb0a97cc470";
+/*$user_token="6f7276a7c8ce4f5ca0950eb0a97cc470";
 $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.json';
         $retirar = file_get_contents($url);
-
+*/
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
@@ -244,8 +244,11 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
               cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
-              cart.itens_vault = [<?php echo $retirar;?>] ;
+              $http.get("https://benjamin-a-padaria.firebaseio.com/users/"+Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))+"/retirar.json").then(function(response){
+                cart.itens_vault = response.data ;
               console.log(cart.itens_vault);
+             })
+              
 
               $http.get("benjamin-a-padaria-unidades.json").then(function(response){
                 cart.unidades = response.data;
