@@ -422,7 +422,9 @@ public function testRetiraProduto()
 
 	unset($tratado['$$hashKey']);
 	$dados['user_email'] = 'daniel@email';
+	$dados['loja'] = 1;
 	$array_produtos_servidor = json_decode($produtos_servidor,true);
+	$produtos_atendimento = array();
 
 	foreach ($tratado as $key => $compras) {
 		foreach ($compras as $compra => $products) {
@@ -445,27 +447,58 @@ public function testRetiraProduto()
 									$NODE_DELETE = $codigo.".json";
 
 
-									echo $FIREBASE.$NODE_DELETE;
-									# code...
+									//echo $FIREBASE.$NODE_DELETE;
+
+									$obs = isset($itens['obs'])?$itens['obs']:'';
+                            $produtos_atendimento[] = array('CODE' => $itens['CODE'],
+                                        'PRESENTATION_NAME'=>  $itens['PRESENTATION_NAME'],
+                                        'VALUE'=>$itens['VALUE'],
+                                        'OBS'=>$obs);
+                            $NODE_DELETE = $key.".json";
+
+                     /*       $curl = curl_init();
+
+                             curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
+                             curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+                            curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+
+                            $response = curl_exec( $curl );
+                            curl_close( $curl );*/
+                            break;
+
 								}
 							}
-							# code...
 						}
 					}
 
-					# code...
 				}
 			}
-			
-			# code...
+
 		}
 	}
+	//print_r($produtos_atendimento);
+	$atendimento = array('user_email' => $dados['user_email'],
+                            'user_hash' => md5($dados['user_email']),
+                            'shop'=> $dados['loja'],
+                            'products'=>$produtos_atendimento,
+                            'tid'=>(new \DateTime())->getTimestamp(),
+                            'hora'=> (new \DateTime())->getTimestamp());
 
+        $json = json_encode( $atendimento );
+        print_r($json);
+
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/atendimentos/".$dados['loja']."/".md5($dados['user_email'])."/".(new \DateTime())->getTimestamp();
+        $NODE_PUT = ".json";
+        echo $FIREBASE . $NODE_PUT ;
+      /*  $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_PUT );
+        curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+        curl_setopt( $curl, CURLOPT_POSTFIELDS, $json );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );*/
 	die();
-	$c = array_intersect($array_produtos_servidor,$tratado);
-	$resultado = array_diff($array_produtos_servidor, $c);
 
-	print_r($resultado);
 	//die();
 
 		$this->assertEquals($array_produtos_servidor,$tratado);

@@ -300,92 +300,48 @@ class EcomController extends Controller
        // echo json_encode($dados['itens'][0]);
 
         $curl = curl_init();
-                        curl_setopt( $curl, CURLOPT_URL, "https://benjamin-a-padaria.firebaseio.com/users/6f7276a7c8ce4f5ca0950eb0a97cc470/retirar.json" );
+                        curl_setopt( $curl, CURLOPT_URL, "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar.json" );
                         curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
                         $response = curl_exec( $curl );
                         curl_close( $curl );
-                        print_r($response);
+                      //  print_r($response);
                         //$produtos = json_decode($response,true); 
-                        echo "nada";
-        die();
+                        
+                        $tratado = $dados['itens'][0];
 
-        $produtos_atendimento = array();
-        foreach ($dados['itens'][0] as  $key => $compra) {
-            print_r($compra['products']);
-            die();
-            if(isset($compra['products']) && is_array($compra['products'])){
-                foreach ($compra['products'] as $item) {
-                    if(isset($item['done']) && $item['done'] == true){
-                        $item['key'] = $key;
+    unset($tratado['$$hashKey']);
+   // $dados['user_email'] = 'daniel@email';
+   // $dados['loja'] = 1;
+    $array_produtos_servidor = json_decode($response,true);
+    $produtos_atendimento = array();
 
-                        $curl = curl_init();
-                        curl_setopt( $curl, CURLOPT_URL, "https://benjamin-a-padaria.firebaseio.com/".md5($dados['user_email'])."/retirar.json" );
-                        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-                        $response = curl_exec( $curl );
-                        curl_close( $curl );
-                        $produtos = json_decode($response,true);  
-                        print_r($produtos);
-                        print_r($response);
+    foreach ($tratado as $key => $compras) {
+        foreach ($compras as $compra => $products) {
+            //
+            //if(isset($products['done']))
+            if (isset($products) && is_array($products)) {
+                # code...
+                foreach ($products as $produto) {
+                    if(isset($produto['done'])){
+                        //print_r($key);
+                        //print_r($produto);
+                        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$key."/products/";
+                        
+                        if (is_array($array_produtos_servidor[$key]['products'])) {
+                            foreach ($array_produtos_servidor[$key]['products'] as $codigo => $itens) {
+                                //print_r($codigo);
+                                if(isset($produto['CODE']) && $produto['CODE'] == $itens['CODE']){
+                                    //print_r($codigo);
 
-                        if(is_array($produtos)){
-                            foreach ($produtos as $key => $produto) {
-                               // if(isset($produto->CODE) && $produto->CODE == $item['CODE']){  
-                                    print_r($produto);
-                               // }
-                            }
-                        }else{
-                            print_r($produtos);
-                        }
+                                    $NODE_DELETE = $codigo.".json";
 
 
-                       /* $produtos_atendimento[]= $item;
-                        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
-                        $NODE_DELETE = "products.json";
-                        //echo $FIREBASE . $NODE_DELETE ;*/
+                                    //echo $FIREBASE.$NODE_DELETE;
 
-
-                    }
-
-                }
-            }
-        }
-        $NODE_GET = "products.json"; 
-
-                
-die();
-        //print_r($produtos_atendimento);
-       // print_r($produtos);
-
-        $user_token="647b14a36764fb6e38a2d424b08d209a";
-        $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.json';
-        $retirar = file_get_contents($url);
-
-        $resposta = array("retirar"=>$retirar , "retirados"=> $produtos_atendimento);
-        echo json_encode($resposta);
-
-        die();
-
-        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
-        $NODE_PUT = "products.json";
-       // echo $FIREBASE . $NODE_GET ;
-
-      
-        $produtos_atendimento = array();
-        foreach ($dados['vault'] as  $item) {
-            if(isset($item['done']) && $item['done'] == true){
-                $curl = curl_init();
-                curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
-                curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-                $response = curl_exec( $curl );
-                curl_close( $curl );
-                $produtos = json_decode($response);
-                if(is_array($produtos)){
-                    foreach ($produtos as $key => $produto) {
-                        if(isset($produto->CODE) && $produto->CODE == $item['CODE']){
-                            $obs = isset($item['obs'])?$item['obs']:'';
-                            $produtos_atendimento[] = array('CODE' => $item['CODE'],
-                                        'PRESENTATION_NAME'=>  $item['CODE'],
-                                        'VALUE'=>$item['VALUE'],
+                                    $obs = isset($itens['obs'])?$itens['obs']:'';
+                            $produtos_atendimento[] = array('CODE' => $itens['CODE'],
+                                        'PRESENTATION_NAME'=>  $itens['PRESENTATION_NAME'],
+                                        'VALUE'=>$itens['VALUE'],
                                         'OBS'=>$obs);
                             $NODE_DELETE = $key.".json";
 
@@ -398,70 +354,31 @@ die();
                             $response = curl_exec( $curl );
                             curl_close( $curl );
                             break;
+
+                                }
+                            }
                         }
                     }
-                }else{
-                    $obs = isset($item['obs'])?$item['obs']:'';
-                        $produtos_atendimento[] = array('CODE' => $item['CODE'],
-                                    'PRESENTATION_NAME'=>  $item['CODE'],
-                                    'VALUE'=>$item['VALUE'],
-                                    'OBS'=>$obs);
-                    $curl = curl_init();
-                    curl_setopt( $curl, CURLOPT_URL, $FIREBASE.".json" );
-                    curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
-                    curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-                    curl_exec( $curl );
-                    curl_close( $curl );
-                    
+
                 }
-                
-           }
+            }
 
         }
-       /* die();
-
-        foreach ($dados['itens'] as  $item) {
-            # code...
-        
-            foreach ($produtos as $key => $produto) {
-                $x=0;
-                if(isset($produto->CODE) && $produto->CODE == $item){
-                    if(isset($dados['vault'][$x]['obs'])){
-                        $produto->OBS=$dados['vault'][$x]['obs'];
-                    }
-                   // print_r($key);
-                    $produtos_atendimento[]=$produto;
-                    $NODE_DELETE = $key.".json";
-
-                    $curl = curl_init();
-
-                     curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
-                     curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
-                    curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-
-                    $response = curl_exec( $curl );
-                    curl_close( $curl );
-                    break;
-                }
-
-                $x++;
-            }
-        }*/
-
-        $atendimento = array('user_email' => $dados['user_email'],
+    }
+    //print_r($produtos_atendimento);
+    $atendimento = array('user_email' => $dados['user_email'],
                             'user_hash' => md5($dados['user_email']),
                             'shop'=> $dados['loja'],
                             'products'=>$produtos_atendimento,
-                            'tid'=>$dados['vault_key'],
+                            'tid'=>(new \DateTime())->getTimestamp(),
                             'hora'=> (new \DateTime())->getTimestamp());
 
         $json = json_encode( $atendimento );
-
         //print_r($json);
 
-        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/atendimentos/".$dados['loja']."/".md5($dados['user_email'])."/".$dados['vault_key'];
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/atendimentos/".$dados['loja']."/".md5($dados['user_email'])."/".(new \DateTime())->getTimestamp();
         $NODE_PUT = ".json";
-        //echo $FIREBASE . $NODE_PUT ;
+       // echo $FIREBASE . $NODE_PUT ;
         $curl = curl_init();
         curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_PUT );
         curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
@@ -469,10 +386,10 @@ die();
         curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
         $response = curl_exec( $curl );
         curl_close( $curl );
-        //print_r($response);
 
-        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$dados['vault_key']."/";
-        $NODE_GET = "products.json";
+
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/";
+        $NODE_GET = "retirar.json";
        // echo $FIREBASE . $NODE_GET ;
         $curl = curl_init();
         curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
