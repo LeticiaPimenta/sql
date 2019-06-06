@@ -1089,6 +1089,9 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                   <div class="col-md-12 mr-auto">
                      {{cart.amigo_selecionado.nome}}
                   </div>
+                  <select>
+                    <option ng-repeat="produtos in cart.itens_vault">{{produtos}}</option>
+                  </select>
                </div>
             </div>
                   </div>
