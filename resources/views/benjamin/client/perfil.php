@@ -515,6 +515,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
             $http.post("/presentear_amigo",{"user_email": user_email ,"amigo_selecionado":cart.amigo_selecionado.user_token,"presente_selecionado":cart.selecionado }).then(function (response) {
                  // body...
                  console.log(response);
+                 window.location.replace("/perfil");
              }, function (response) {
                  console.log(response);
                  // body...
@@ -1105,7 +1106,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                   </div>
                   <select ng-change="cart.troca_presente()" ng-model="cart.selecionado">
                     <optgroup ng-repeat="(chave, produtos) in cart.itens_vault" ng-show="produtos.products">
-                      <option ng-repeat="(seq,produto) in produtos.products" ng-show="produto.PRESENTATION_NAME && produtos.products" value="{{chave}}@{{seq}}">{{produto.PRESENTATION_NAME}}</option></optgroup>
+                      <option ng-repeat="(seq,produto) in produtos.products track by $index" ng-show="produto.PRESENTATION_NAME && produtos.products" value="{{chave}}@{{seq}}">{{produto.PRESENTATION_NAME}}</option></optgroup>
                   </select>
                </div>
             </div>
