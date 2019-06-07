@@ -430,6 +430,7 @@
                       toastr.success('Usuario registrado', resposta.mensagem);
                       jQuery('#popup-login').modal('hide');
                       jQuery("#form-register").html(resposta.mensagem);
+                      jQuery("#form-login").slideUp();
                     }else{
                       toastr.error('Usuario não foi registrado', resposta.mensagem);
                     }
