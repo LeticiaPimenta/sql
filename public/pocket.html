@@ -425,6 +425,14 @@
                  var $form = $("#form_data");
                  var usuario ={"name":$("#name").val(),"parent":$("#hash_indicado").val(), "email":$("#email_registro").val(), "password":$("#password").val()};
                  $http.post("/registrar_usuario",{"usuario":usuario}).then(function (response) {
+                    var resposta = response.data;
+                    if(resposta.status == 1){
+                      toastr.success('Usuario registrado', resposta.mensagem);
+                      jQuery('#popup-login').modal('hide');
+                      jQuery("#form-register").html(resposta.mensagem);
+                    }else{
+                      toastr.error('Usuario não foi registrado', resposta.mensagem);
+                    }
                      // body...
                      console.log(response);
                  }, function (response) {
