@@ -55,8 +55,8 @@ p a {
     .header-main.header-transparent .top-bar {
       background-color: transparent; }
     .header-main.header-transparent .navbar.navbar-light.bg-faded {
-      background-color: transparent !important;
-      padding-top: 10px; }
+      background-color: #ffff !important;
+      padding-top: 2px; }
       .header-main.header-transparent .navbar.navbar-light.bg-faded .container {
         position: relative; }
         .header-main.header-transparent .navbar.navbar-light.bg-faded .container .navbar-nav .nav-link {

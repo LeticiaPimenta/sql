@@ -249,20 +249,17 @@
                   if(qs[0]=="usuario"){
                     if(cart.logged_user){
                    //  if(cart.email_cliente)
-              var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
-                     
-
-                      $http.get('/conectar/'+qs[1]+'/'+hash_email_cliente).then(function(data){
-                        cart.nome_indicado = data.data.name;
+                  var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
+                    $http.get('/conectar/'+qs[1]+'/'+hash_email_cliente).then(function(data){
+                      cart.nome_indicado = data.data.name;
                       });
                       jQuery('#modal-conectar').modal('show');
-
                     }else{
-                     // alert("vai indicar");
-                      
-                        cart.hash_indicado = qs[1];
-                       jQuery('#modal-registrar-indicado').modal('show');
+                      cart.hash_indicado = qs[1];
+                      jQuery('#modal-registrar-indicado').modal('show');
                     }
+                  }else if(qs[0]=="registrado"){
+                    jQuery('#modal-logar-registrado').modal('show');
                   }
                   return qs;
                 }else
@@ -426,10 +423,13 @@
                  var usuario ={"name":$("#name").val(),"parent":$("#hash_indicado").val(), "email":$("#email_registro").val(), "password":$("#password").val()};
                  $http.post("/registrar_usuario",{"usuario":usuario}).then(function (response) {
                     var resposta = response.data;
+
                     if(resposta.status == 1){
+                      var date = new Date();  
+                      var btn_logar ='<a href="/pocket.html?registrado='+ date.getTimezoneOffset()+'" class="btn btn-primary">Logar<a>';
                       toastr.success('Usuario registrado', resposta.mensagem);
                       jQuery('#popup-login').modal('hide');
-                      jQuery("#form-register").html(resposta.mensagem);
+                      jQuery("#form-register").html(resposta.mensagem+"<br>"+btn_logar);
                       jQuery("#form-login").slideUp();
                     }else{
                       toastr.error('Usuario não foi registrado', resposta.mensagem);
@@ -542,11 +542,10 @@
                </a>
                <div  id="navbarRestaurant" class="navbar-collapse collapse">
                   <ul class="navbar-nav  ml-auto">
-                     <li class="nav-item"><a data-scroll class="nav-link active" href="#home"> Home</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link active" href="/pocket.html"> Home</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href="/qrunidade.html"> QR Code</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href=""> Bencréditos</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Bencréditos</a></li>
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
                      <li class="nav-item"  ng-show="cart.email_cliente && !online">
                       <a href="" data-toggle="modal" data-target="#myModal" ng-show="cart.email_cliente && !online">
@@ -600,14 +599,6 @@
                      data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
                      data-transform_out="auto:auto;s:300;" 
                      data-start="1000"></div>
-                  <div class="tp-caption tp-resizeme slider-button" 
-                     data-x="['left','left','left','left']" data-hoffset="['50','50','50','15']" 
-                     data-y="['middle','middle','middle','middle']" data-voffset="['160','160','140','140']" 
-                     data-whitespace="nowrap"
-                     data-transform_idle="o:1;" 
-                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                     data-transform_out="auto:auto;s:300;" 
-                     data-start="1500"><a href="#" class="btn float-right btn-outline-white">Adicionar <i class="ti-plus"></i></a></div>
                </li>
                <li data-transition="random">
                   <!-- MAIN IMAGE -->
@@ -624,19 +615,6 @@
                      data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
                      data-transform_out="auto:auto;s:300;" 
                      data-start="500">Benjamin</div>
-                  <div class="tp-caption tp-resizeme slider-caption" 
-                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-                     data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','70']" 
-                     data-fontsize="['20','20','20','15']"
-                     data-lineheight="['25','25','25','20']"
-                     data-width="none"
-                     data-height="none" 
-                     data-whitespace="nowrap"
-                     data-transform_idle="o:1;" 
-                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                     data-transform_out="auto:auto;s:300;" 
-                     data-start="1000"><a href="" class="btn float-right btn-outline-white" ng-click="cart.pega_email()">Logar</a>
-                  </div>
                   <div class="tp-caption tp-resizeme slider-button" 
                      data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
                      data-y="['middle','middle','middle','middle']" data-voffset="['160','160','160','120']" 
@@ -673,14 +651,6 @@
                      data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
                      data-transform_out="auto:auto;s:300;" 
                      data-start="1000"></div>
-                  <div class="tp-caption tp-resizeme slider-button" 
-                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-                     data-y="['middle','middle','middle','middle']" data-voffset="['160','160','160','120']" 
-                     data-whitespace="nowrap"
-                     data-transform_idle="o:1;" 
-                     data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" 
-                     data-transform_out="auto:auto;s:300;" 
-                     data-start="1500"><a href="#" class="btn float-right btn-outline-white">Adicionar <i class="ti-plus"></i></a></div>
                </li>
             </ul>
          </div>
@@ -776,30 +746,6 @@
                      <a class="card-image" href="#">
                         <img src="images/resto/cred/cred5.png" alt="" class="img-fluid">
                         <h4 class="text-warning">Crédito de $50 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
-                     </a>
-                  </div>
-                  <!--item-->
-                  <div class="item">
-                     <a class="card-image" href="#">
-                        <img src="images/resto/food4.jpg" alt="" class="img-fluid">
-                        <span class="float-right lead">$9</span>
-                        <h4>Pizza roll</h4>
-                     </a>
-                  </div>
-                  <!--item-->
-                  <div class="item">
-                     <a class="card-image" href="#">
-                        <img src="images/resto/food5.jpg" alt="" class="img-fluid">
-                        <span class="float-right lead">$13</span>
-                        <h4>Pure veg</h4>
-                     </a>
-                  </div>
-                  <!--item-->
-                  <div class="item">
-                     <a class="card-image" href="#">
-                        <img src="images/resto/food6.jpg" alt="" class="img-fluid">
-                        <span class="float-right lead">$11</span>
-                        <h4>Chikan Salad</h4>
                      </a>
                   </div>
                   <!--item-->
@@ -999,6 +945,39 @@
                   </div>
                </div>
             </form>
+         </div>
+      </div>
+
+       <div class="modal fade" id="modal-logar-registrado" tabindex="-1" role="dialog"  aria-hidden="true">
+         <div class="modal-dialog" role="document">
+          <div class="modal-content">
+                  <div class="modal-header">
+                     <h4>Login</h4>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+            
+           
+            <form>
+               <div class="form-group">
+                  <input type="text" class="form-control" id="email" placeholder="Coloque aqui seu email.">
+               </div>
+               <div class="form-group">
+                  <input type="password" class="form-control" id="pass" placeholder="Senha">
+                 
+               </div>
+               <div class="clearfix">
+                  <div class="modal-footer">
+                     
+                     <button type="button" class="btn btn-primary" ng-click="cart.pega_email()">Logar</button>
+                  </div>
+               </div>
+           
+            </form>
+          </div>
+          </div>
          </div>
       </div>
       <div  id="popup-login" class="mfp-hide popup-content-area white-popup">
