@@ -327,6 +327,7 @@
                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
               };
               
+
               cart.removeItem = function(id){
                 cart_removeCartRow_v2(id);
                 cart.total = carrinho_local();
@@ -472,20 +473,27 @@
             <div class="cart-content">
                <div class="clearfix">
                   <a href="javascript:void(0)" class="pushy-link text-white-gray">X</a>
-               </div>
-               <hr>
+               </div>               
+                      <a href="" data-toggle="modal" data-target="#myModal" ng-show="cart.email_cliente && !online">
+                        <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && !online">
+                        </a>
+                     
+                     <a href="/perfil" ng-show="cart.email_cliente && online">
+                        <span class="popup-content"><i class="ti-user"></i> {{cart.email_cliente}} </span>
+                     </a>
+                     
                <div class="center-title" ng-show="!cart.email_cliente">
                   <p>Você precisa logar para pagar seu carrinho. <a ng-click="cart.pega_email()">Logar.</a></p>
                </div>
                <div class="center-title" ng-show="cart.email_cliente">
-                  <p>Email:  {{cart.email_cliente}} <a data-scroll class="popup-content" href="#popup-login"><i class="ti-settings"></i> Alterar o email.</a></p>
+                  <p><a data-scroll class="popup-content" href="#popup-login"><i class="ti-settings"></i> Alterar o email.</a></p>
                </div>
                <hr>
                <ul class="list-unstyled">
                   <li class="clearfix" ng-repeat="produto in cart.carrinho track by $index" ng-show="produto.PRESENTATION_NAME">
-                     <a href="" class="float-left">
+                    <!-- <a href="" class="float-left">
                      <img src="img/foto.jpg" class="img-fluid" alt="" width="60">
-                     </a>
+                     </a> -->
                      <div class="oHidden">
                         <span class="close" ng-click="cart.removeItem($index)"><i class="ti-close"></i></span>
                         <h4><a href="#">{{produto.PRESENTATION_NAME}}</a></h4>
@@ -554,21 +562,13 @@
                      <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Bencréditos</a></li>
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
-                     <li class="nav-item"  ng-show="cart.email_cliente && !online">
-                      <a href="" data-toggle="modal" data-target="#myModal" ng-show="cart.email_cliente && !online">
-                        <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && !online">
-                        </a>
-                     </li>
-                     <li class="nav-item"  ng-show="cart.email_cliente && online"><a href="/perfil" ng-show="cart.email_cliente && online">
-                        <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && online">
-                        </a>
-                     </li> 
+                      
                   </ul>
                </div>
                <div class="navbar-right-elements">
                   <ul class="list-inline">
                      <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
-                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
+                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-user"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
                   </ul>
                </div>
             </div>
@@ -729,30 +729,20 @@
             <div class="row">
                <div class="owl-carousel owl-theme carousel-cards">
                   <div class="item">
-                     <a class="card-image" href="#">
+                     <a class="card-image" href="/perfil#!#t7">
                         <img src="images/resto/cred/cred1.png" alt="" class="img-fluid">
-                        <h4 class="text-warning">Crédito de $10 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
                      </a>
                   </div>
                   <!--item-->
                   <div class="item">
-                     <a class="card-image" href="#">
+                     <a class="card-image" href="/perfil">
                         <img src="images/resto/cred/cred2.png" alt="" class="img-fluid">
-                        <h4 class="text-warning">Crédito de $20 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
                      </a>
                   </div>
                   <!--item-->
                   <div class="item">
-                     <a class="card-image" href="#">
-                        <img src="images/resto/cred/cred3.png" alt="" class="img-fluid">
-                        <h4 class="text-warning">Crédito de $30 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
-                     </a>
-                  </div>
-                  <!--item-->
-                  <div class="item">
-                     <a class="card-image" href="#">
+                     <a class="card-image" href="/perfil">
                         <img src="images/resto/cred/cred5.png" alt="" class="img-fluid">
-                        <h4 class="text-warning">Crédito de $50 <button class="btn float-right btn-outline-warning">Adicionar <i class="ti-plus"></i></button></h4>
                      </a>
                   </div>
                   <!--item-->

@@ -337,6 +337,18 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
               console.log(cart.total_vouchers);
               setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
               };
+
+              cart.add_voucher = function(valor) {
+                var total_voucher = getLocalData("BENJAMIN_TOTAL_VOUCHERS");
+                if (total_voucher == undefined) {
+                  total_voucher = 0;
+                }
+
+                valor_total = parseInt(total_voucher) + parseInt(valor);
+                setLocalData("BENJAMIN_TOTAL_VOUCHERS",valor_total);
+                cart.total_vouchers = valor_total;
+                console.log(valor_total);
+              };
               
               cart.adicionar = function(id) {
                 addItemInCart(id);
