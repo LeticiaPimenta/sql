@@ -21,6 +21,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
       <link href="css/style.css" rel="stylesheet">
       <link href="css/style-restaurant.css" rel="stylesheet">
       <link href="css/benjamin-restaurant.css" rel="stylesheet">
+      <link href="css/vault-restaurant.css" rel="stylesheet">
       <script src="js/angular.min.js"></script>
       <script src="js/crypto.js"></script>
       <script type="text/javascript">

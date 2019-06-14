@@ -11,8 +11,7 @@
                         <div class="tab-content">
                            <div role="tabpanel" class="tab-pane active show fade" id="t5">
                             <h5>{{cart.logged_user.name}}</h5>
-                            <p><h6>Email: {{cart.logged_user.email}}
-                                <span class="text-right">Meu Saldo: R$ {{cart.logged_user.wallet}}</span></h6>
+                            <p><h6>Email: {{cart.logged_user.email}}</h6>
                             </p>
                             <br>
 
@@ -24,6 +23,8 @@
                                      <div id="qrcode-profile" class="text-center"></div>
                                  </div>
                              </div>
+                              <br>
+                                <span class="text-warning-cred">Meu Saldo: R$ {{cart.logged_user.wallet}}</span>
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t6">
                               <p class="name-cred">Conecte-se com amigos e transfira bencréditos aqui.<a href="" class="text-warning-cred"> Recarregar</a></p>
@@ -97,10 +98,10 @@
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t8">
                             <span id="listagem_retirar">
-                           	<ul>
+                           	<ul class="text-warning-cred">
                            		<li ng-repeat="compra in cart.itens_vault track by $index" ng-show="compra.products">
                            			{{compra.hora| date:'dd/MM/yyyy @ h:mma'}}
-                           		<div ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME">{{produto.PRESENTATION_NAME}}<input type="checkbox" ng-model="produto.done"></div><br>
+                           		<div ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME"><input type="checkbox" ng-model="produto.done">&nbsp;{{produto.PRESENTATION_NAME}}</div><br>
                            		</li>
                            	</ul>
                            	<a  class="btn btn-rounded btn-primary" ng-click="cart.solicitar()" data-toggle="modal" data-target="#modal-solicitar">Pedir</a>

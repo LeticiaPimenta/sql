@@ -476,18 +476,19 @@
                </div>               
                       <a href="" data-toggle="modal" data-target="#myModal" ng-show="cart.email_cliente && !online">
                         <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && !online">
-                        </a>
+                      </a>
                      
-                     <a href="/perfil" ng-show="cart.email_cliente && online">
-                        <span class="popup-content"><i class="ti-user"></i> {{cart.email_cliente}} </span>
+                     <a href="/perfil" ng-show="cart.email_cliente && online" class="center-title">
+                        <i class="fa fa-user"></i><span class="popup-content">&nbsp;Meu Perfil</span>
                      </a>
                      
                <div class="center-title" ng-show="!cart.email_cliente">
                   <p>Você precisa logar para pagar seu carrinho. <a ng-click="cart.pega_email()">Logar.</a></p>
                </div>
-               <div class="center-title" ng-show="cart.email_cliente">
+            <!--   <div class="center-title" ng-show="cart.email_cliente">
                   <p><a data-scroll class="popup-content" href="#popup-login"><i class="ti-settings"></i> Alterar o email.</a></p>
-               </div>
+               </div>-->
+               
                <hr>
                <ul class="list-unstyled">
                   <li class="clearfix" ng-repeat="produto in cart.carrinho track by $index" ng-show="produto.PRESENTATION_NAME">
@@ -535,6 +536,11 @@
                      </form>
                   </li>
                </ul>
+               <div class="float-right">
+                 <a href="" class="text-white">
+                   Sair  <i class="ti-share-alt"></i>
+                 </a>
+               </div>
             </div>
          </aside>
          <!-- Site Overlay -->
@@ -568,7 +574,7 @@
                <div class="navbar-right-elements">
                   <ul class="list-inline">
                      <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
-                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-user"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
+                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="fa fa-user"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
                   </ul>
                </div>
             </div>
