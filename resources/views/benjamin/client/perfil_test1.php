@@ -238,7 +238,6 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
           .controller('CartController', function($sce,toastr, $http) {
               var cart = this;
               cart.produtos = produtos;
-              cart.loop = 0;
               cart.catalogo = catalogo;
               cart.campanhas = campanhas;
               cart.campanhas_lojas = campanhas_lojas;
@@ -1171,21 +1170,40 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                      
                     <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
 
-                      
+                      <ul class="text-warning-cred" style="list-style: none;">
+                              <li ng-repeat="compra in cart.itens_vault track by $index" ng-show="compra.products">
+                              <div ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME && produto.done">&nbsp;{{produto.PRESENTATION_NAME}}</div><br>
+                              </li>
+                            </ul>
+                            <h5>Presenteados</h5>
+                            <ul class="text-warning-cred" style="list-style: none;">
+                              <li ng-repeat="compra in cart.itens_vault track by $index" ng-show="!compra.products && compra.done">
+                              &nbsp;{{compra.PRESENTATION_NAME}}<br>
+                              </li>
+                            </ul>
                                   <!-- Card 1 -->
                                   <div class="card" ng-repeat="compra in cart.itens_vault track by $index" ng-show="compra.products">
-                                    <span ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME && produto.done">
-                                    <div class="card-header accordion-header" role="tab" id="heading{{$index}}2" >
-                                      <a class="text-orange" data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$parent.$index}}{{$index}}List" aria-expanded="true" aria-controls="collapse{{$parent.$index}}{{$index}}"> {{produto.PRESENTATION_NAME}}</a>
+                                    <div class="card-header accordion-header" role="tab" id="heading{{$index}}2" ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME && produto.done">
+                                      <a class="text-orange" data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$index}}List" aria-expanded="true" aria-controls="collapse{{$index}}"> {{produto.PRESENTATION_NAME}}</a>
                                     </div>
-                                    <div id="collapse{{$parent.$index}}{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
+                                    <div id="collapse{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
                                       <div class="card-body">
                                         <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs" cols="40"></textarea></div>
                                     </div>
-                                    </span>
                                   </div>
 
-                                 
+                                  <span ng-repeat="compras in cart.itens_vault">
+                                    <span ng-repeat="compra in compras">
+                                  <div class="card" ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME && produto.done">
+                                    <div class="card-header accordion-header" role="tab" id="heading{{$index}}2"> 
+                                        <a class="text-orange" data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$index}}List" aria-expanded="true" aria-controls="collapse{{$index}}"> {{produto.PRESENTATION_NAME}} <i class="ti-angle-down"></i></a> </div>
+                                    <div id="collapse{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
+                                      <div class="card-body">
+                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs" cols="40"></textarea></div>
+                                    </div>
+                                  </div>
+                                  </span>
+                                  </span>
                                 </div>
                                     </p>
                                 </div>
