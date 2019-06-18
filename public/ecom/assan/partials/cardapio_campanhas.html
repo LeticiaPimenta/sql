@@ -1,0 +1,58 @@
+      <div class="bg-parallax parallax-overlay pt100 pb100" id='menu' data-jarallax='{"speed": 0.2}' style="background:url(images/resto/Imagem9.png) no-repeat;">
+         <div class="container">
+            <div class="center-title">
+               <h2 class='text-white'>Nossos Cardápios</h2>
+            </div>
+            <div class='food-menu-card'>
+               <div>
+                  <!-- Nav tabs -->
+                  <ul class="nav  tabs-menu-nav justify-content-center mb30" role="tablist">
+                     <li class="nav-item" role="presentation" ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" ><a class="active nav-link" href="#campanha_{{cart.campanhas[campanha_lojas].CODE}}" aria-controls="campanha_{{cart.campanhas[campanha_lojas].CODE}}" role="tab" data-toggle="tab" ng-if="$first">{{cart.campanhas[campanha_lojas].NAME}}</a></li>
+                     <li class="nav-item" role="presentation" ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" ><a class="nav-link" href="#campanha_{{cart.campanhas[campanha_lojas].CODE}}" aria-controls="campanha_{{cart.campanhas[campanha_lojas].CODE}}" role="tab" data-toggle="tab" ng-if="!$first">{{cart.campanhas[campanha_lojas].NAME}}</a></li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                     <div ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" role="tabpanel" class="tab-pane active show fade" id="campanha_{{cart.campanhas[campanha_lojas].CODE}}" ng-if="$first">
+                        <div class='row'>
+                           <div class='col-md-6 mb20'>
+                              <article class="media" ng-repeat="produto_code in cart.campanhas[campanha_lojas].PRODUCTS">
+                                 <!--Content -->
+                                 <div class="media-body align-self-center g-pl-10">
+                                    <div class="d-flex justify-content-between mb10">
+                                       <h3 class="align-self-center text-capitalize mb0 h6 text-white font400">{{cart.produtos[produto_code].PRESENTATION_NAME}}</h3>
+                                       <div class="align-self-center">
+                                          <strong class="text-white font700">
+                                          <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="text-white" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!--/Content -->
+                              </article>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div ng-repeat="campanha_lojas in cart.campanhas_lojas[0]" role="tabpanel" class="tab-pane show fade" id="campanha_{{cart.campanhas[campanha_lojas].CODE}}" ng-if="!$first">
+                        <div class='row'>
+                           <div class='col-md-6 mb20'>
+                              <article class="media" ng-repeat="produto_code in cart.campanhas[campanha_lojas].PRODUCTS">
+                                 <!--Content -->
+                                 <div class="media-body align-self-center g-pl-10">
+                                    <div class="d-flex justify-content-between mb10">
+                                       <h3 class="align-self-center text-capitalize mb0 h6 text-white font400">{{cart.produtos[produto_code].PRESENTATION_NAME}}</h3>
+                                       <div class="align-self-center">
+                                          <strong class="text-white font700">
+                                          <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="text-white" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!--/Content -->
+                              </article>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
