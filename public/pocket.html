@@ -406,6 +406,12 @@
                   jQuery("#form-register").slideDown();
               }
 
+              cart.fechar_lateral_carrinho = function () {
+                  // body...
+                  alert("vai fechar lateral");
+                  void(0);
+              }
+
               cart.modal_transferir = function(amigo){
                 console.log(amigo);
                 $('#modal_transferir').modal('show');
@@ -484,7 +490,7 @@
                      </a>
                      
                <div class="center-title" ng-show="!cart.email_cliente">
-                  <p>Você precisa logar para pagar seu carrinho. <a ng-click="cart.pega_email()">Logar.</a></p>
+                  <p>Você precisa logar para pagar seu carrinho. <a class="popup-content menu-btn" href="#popup-login" >Logar.</a></p>
                </div>
             <!--   <div class="center-title" ng-show="cart.email_cliente">
                   <p><a data-scroll class="popup-content" href="#popup-login"><i class="ti-settings"></i> Alterar o email.</a></p>
