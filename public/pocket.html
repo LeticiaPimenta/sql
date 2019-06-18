@@ -406,10 +406,12 @@
                   jQuery("#form-register").slideDown();
               }
 
-              cart.fechar_lateral_carrinho = function () {
+              cart.logoff = function () {
                   // body...
-                  alert("vai fechar lateral");
-                  void(0);
+                  setLocalData("BENJAMIN_USERCART_LOGGED_USER",null);
+                  setLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS",null);
+                  setLocalData("BENJAMIN_USERCART_EMAIL",null);
+                window.location.reload();
               }
 
               cart.modal_transferir = function(amigo){
@@ -544,7 +546,7 @@
                   </li>
                </ul>
                <div class="float-right">
-                 <a href="" class="text-white">
+                 <a href="#popup-logoff" class="text-white popup-content menu-btn">
                    Sair  <i class="ti-share-alt"></i>
                  </a>
                </div>
@@ -1088,6 +1090,17 @@
                </div>
             </div>
          </div>
+      </div>
+      <div  id="popup-logoff" class="mfp-hide popup-content-area white-popup">
+         <div class="card-body">
+               <div class="row">
+                  <div class="col-md-12 mr-auto">
+                    <h4>Você deseja sair?</h4>
+                    <hr>
+                    <button type="button" class="btn btn-success" ng-click="cart.logoff()">Sim</button>
+                  </div>
+               </div>
+            </div>
       </div>
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
          <div class="modal-dialog" role="document">
