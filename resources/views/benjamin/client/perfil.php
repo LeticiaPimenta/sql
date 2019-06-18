@@ -264,20 +264,22 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                   if(qs[0]=="usuario"){
                     if(cart.logged_user){
                    //  if(cart.email_cliente)
-              var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
-                     
+                      var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));                  
 
                       $http.get('/conectar/'+qs[1]+'/'+hash_email_cliente).then(function(data){
                         cart.nome_indicado = data.data.name;
                       });
                       jQuery('#modal-conectar').modal('show');
-
                     }else{
-                     // alert("vai indicar");
-                      
-                        cart.hash_indicado = qs[1];
-                       jQuery('#modal-registrar-indicado').modal('show');
+                      cart.hash_indicado = qs[1];
+                      jQuery('#modal-registrar-indicado').modal('show');
                     }
+                  }else if (qs == "creditos") {
+                   // jQuery('#t7').tab('show');
+                   // jQuery('#t7').addClass('active');
+                    jQuery('.nav-tabs a[href="#t7"]').tab('show');
+                    document.querySelector('a[href="#t7"]').click();
+                    alert("aqui");
                   }
                   return qs;
                 }else
