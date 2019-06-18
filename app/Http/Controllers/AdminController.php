@@ -202,6 +202,16 @@ class AdminController extends Controller {
         $user2->wallet = 500;
         $user2->save();
 
+        $user3 =  new \App\User;
+        $user3->name = "client";
+        $user3->email = "client@email.com";
+        $user3->group_id = $gerente->id;
+        $user3->user_token = md5($user3->email);
+        $user3->password = "teste";
+        $user3->logado = 0;
+        $user3->wallet = 500;
+        $user3->save();
+
         $users =  \App\User::all();
         print_r($users);
     }

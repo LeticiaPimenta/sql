@@ -473,6 +473,9 @@ Buttons
   .btn.btn-sm {
     padding: 9px 15px 9px !important;
     font-size: .65rem; }
+  .btn.btn-smc {
+    padding: 5px 5px 5px !important;
+    font-size: .65rem; }
   .btn.btn-lg {
     padding: 16px 30px 16px !important;
     font-size: .95rem; }

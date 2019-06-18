@@ -34,10 +34,21 @@
                                     <div class="card-header accordion-header" role="tab" id="headingOne2"> <a data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapseOneList" aria-expanded="true" aria-controls="collapseOne"> Meus BenAmigos </a> </div>
                                     <div id="collapseOneList" class="collapse" role="tabpanel" aria-labelledby="headingOne1">
                                         <div class="card-body">
+
+                                          <div class="col-md-12 mb30">
+                                            <div class="icon-box icon-box-center text-center" ng-repeat="n in cart.logged_user_friends track by $index">
+                                                <h4>Amigo: {{n.nome}}</h4>
+                                                <p>
+                                                  <a ng-click="cart.modal_transferir(n)" class="btn btn-primary btn-smc mb5"> <i class="ti-share"></i>transferir</a>
+                                                  <a ng-click="cart.modal_presentear(n)" class="btn btn-primary btn-smc mb5"> <i class="fa fa-user"></i>presentear</a></p>
+                                                </p>
+                                            </div><!--/icon box-->
+                                          </div>
+                                          <!--
                                             <p class="name-cred" ng-repeat="n in cart.logged_user_friends track by $index">Amigo <a href="#" ng-click="cart.modal_presentear(n)">#</a>-- {{n.nome}}{{ $index }} 
-                                            	<a ng-click="cart.modal_transferir(n)" class="share-cred"> <i class="ti-share"></i></a>
+                                            	<a ng-click="cart.modal_transferir(n)" class="btn btn-rounded btn-primary"> <i class="ti-share"></i>transferir</a>
                                             	<br>
-                                            	<a ng-click="cart.modal_presentear(n)" class="share-cred"> <i class="fa fa-user"></i></a></p>
+                                            	<a ng-click="cart.modal_presentear(n)" class="btn btn-rounded btn-primary"> <i class="fa fa-user"></i>presentear</a></p> -->
                                         </div>
                                     </div>
                                  </div>
