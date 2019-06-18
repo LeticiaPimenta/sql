@@ -1185,6 +1185,17 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                     </span>
                                   </div>
 
+                                  <h4>Presenteados</h4>
+                                  <div class="card" ng-repeat="compra in cart.itens_vault track by $index" ng-show="!compra.products && compra.done">
+                                    
+                                    <div class="card-header accordion-header" role="tab" id="heading{{$index}}2" >
+                                      <a class="text-orange" data-toggle="collapse" data-parent="#card-accordion-simple" href="#collapse{{$parent.$index}}{{$index}}List" aria-expanded="true" aria-controls="collapse{{$parent.$index}}{{$index}}"> {{compra.PRESENTATION_NAME}}</a>
+                                    </div>
+                                    <div id="collapse{{$parent.$index}}{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
+                                      <div class="card-body">
+                                        <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs" cols="40"></textarea></div>
+                                    </div>
+                                  </div>
                                  
                                 </div>
                                     </p>
