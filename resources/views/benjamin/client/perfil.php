@@ -24,6 +24,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
       <link href="css/vault-restaurant.css" rel="stylesheet">
       <script src="js/angular.min.js"></script>
       <script src="js/crypto.js"></script>
+      <script type="text/javascript" src="/js/jquery.min.js"></script>
+      <script type="text/javascript" src="/js/jquery.qrcode.min.js"></script>
       <script type="text/javascript">
          var nome_importado = "Benjamin";
          var endereco_site = "https://benjamin-a-padaria.herokuapp.com/";
@@ -255,6 +257,13 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                 cart.unidades = response.data;
              })
               
+
+              var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
+            //  jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
+              jQuery('#qrcode-profile').html(endereco_site+"pocket.html?usuario="+hash_email_cliente);
+
+
+
               function getQueryParams(qs) {
                 //alert(qs);
                 if (qs != "") {
@@ -1224,7 +1233,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
 
              try {
               if(getLocalData("BENJAMIN_USERCART_EMAIL")){
-                jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
+                //jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
                 var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
                 jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
               }
@@ -1295,7 +1304,6 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
       <script type="text/javascript" src="smart-form/contact-recaptcha/js/additional-methods.min.js"></script>
       <script type="text/javascript" src="smart-form/contact-recaptcha/js/smart-form.js"></script> 
       <script src='https://www.google.com/recaptcha/api.js'></script>
-      <script type="text/javascript" src="/js/jquery.qrcode.min.js"></script>
       <script src="/js/assan.custom.js"></script> 
    </body>
 </html>
