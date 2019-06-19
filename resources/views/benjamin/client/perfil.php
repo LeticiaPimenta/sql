@@ -248,6 +248,15 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
               cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
+              var comanda = getLocalData("comanda");
+                if (comanda != undefined) {
+                  cart.comanda = comanda;
+                }
+
+              var loja = getLocalData("loja");
+                if (loja != undefined) {
+                  cart.loja = loja;
+                }
               $http.get("https://benjamin-a-padaria.firebaseio.com/users/"+Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))+"/retirar.json").then(function(response){
                 cart.itens_vault = response.data ;
               console.log(cart.itens_vault);
@@ -346,6 +355,31 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                 return grand_total;
               }
               
+              cart.atualizar_dados = function() {
+                var email = getLocalData("BENJAMIN_USERCART_EMAIL");
+                jQuery.post('/carregar_dados', {'email':email}).
+                done(function(data){
+                 var dados = JSON.parse(data);
+                 if (!dados.response) {
+                    toastr.error('Seus Dados Não Foram Atualizados!', 'Falha na atualização!');
+                  return false;
+                 }
+                 var usuario = JSON.parse(dados.usuario);
+                 if(dados.amigos)
+                  usuario['amigos'] = dados.amigos;
+                 console.log(usuario);
+                 cart.logged_user = usuario;
+                  if(usuario.name){
+                     //console.log(dados.name);
+                     setLocalData("BENJAMIN_USERCART_LOGGED_USER",dados.usuario);
+                     if(dados.amigos){
+                      setLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS",JSON.stringify(dados.amigos));
+                      cart.logged_user_friends = dados.amigos;
+                    }
+                    window.location.reload();
+                  }});
+              };
+
               cart.change_vouchers = function() {
               console.log(cart.total_vouchers);
               setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
@@ -520,6 +554,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
             cart.responsa_transferencia = response.data ;
             cart.total_vouchers = response.data.wallet;
             cart.logged_user.wallet = response.data.wallet;
+            toastr.success('Você transferiu BenCréditos a seu amigo!', 'Transferido!');
             setLocalData("BENJAMIN_USERCART_LOGGED_USER",JSON.stringify(cart.logged_user));
 
 
@@ -1097,7 +1132,9 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                <div class="modal-content">
                   <div class="modal-header">
                      <h5 class="modal-title" >Transferir BenCréditos</h5>
-                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
                   </div>
                   <div class="modal-body">
                      <div class="card-body">
@@ -1108,15 +1145,14 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                      {{cart.amigo_selecionado.nome}}
                      <br>
                      <h4 class="text-warning-cred"> Tranferir: <input type="text" ng-model="cart.total_transferencia" name=""></h4>
+                     <div class="modal-footer" ng-show="cart.logged_user.wallet > 0">
                      <button type="button" class="btn btn-primary" ng-click="cart.tranferir_indicado(cart.amigo_selecionado.user_token)">Transferir</button>
-                    
+                    </div>
                   </div>
                </div>
             </div>
                   </div>
-                  <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  </div>
+                  
                </div>
             </form>
          </div>
@@ -1166,8 +1202,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h4 ng-show="loja">Voce está na Loja  {{loja}} </h4>
-                                      <div ng-hide="loja"><strong>VOCE NAO SELECIONOU SUA LOJA, </strong><br><a href="/qrunidade.html">Leia o QR de UMA MESA </a><br>OU selecione uma na listagem !</div>
+                                    <h4 ng-show="cart.loja"><strong> Voce está na Loja  {{cart.loja}} </strong></h4>
+                                      <div ng-hide="cart.loja"><strong>VOCE NAO SELECIONOU SUA LOJA, </strong><br><a href="/qrunidade.html">Leia o QR de UMA MESA </a><br>OU selecione uma na listagem !</div>
                                       <span ng-show="loja">
                                       Se estiver em loja errada ! <a href="/qrunidade.html">vai pra seleção de unidades</a></span>
                                       <br>
