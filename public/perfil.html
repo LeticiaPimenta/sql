@@ -117,7 +117,7 @@
                            	</ul>
                             <h5>Presenteados</h5>
                             <ul class="lead" style="list-style: none;">
-                              <li ng-repeat="compra in cart.itens_vault track by $index" ng-show="!compra.products">
+                              <li ng-repeat="compra in cart.itens_vault track by $index" ng-show="!compra.products && compra.PRESENTATION_NAME">
                               Compra:  {{compra.hora| date:'dd/MM/yyyy - h:mma'}}
                               <input type="checkbox" ng-model="compra.done">&nbsp;{{compra.PRESENTATION_NAME}}<br>
                               </li>
