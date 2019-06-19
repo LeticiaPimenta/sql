@@ -355,6 +355,31 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                 return grand_total;
               }
               
+              cart.atualizar_dados = function() {
+                var email = getLocalData("BENJAMIN_USERCART_EMAIL");
+                jQuery.post('/carregar_dados', {'email':email}).
+                done(function(data){
+                 var dados = JSON.parse(data);
+                 if (!dados.response) {
+                    toastr.error('Seus Dados Não Foram Atualizados!', 'Falha na atualização!');
+                  return false;
+                 }
+                 var usuario = JSON.parse(dados.usuario);
+                 if(dados.amigos)
+                  usuario['amigos'] = dados.amigos;
+                 console.log(usuario);
+                 cart.logged_user = usuario;
+                  if(usuario.name){
+                     //console.log(dados.name);
+                     setLocalData("BENJAMIN_USERCART_LOGGED_USER",dados.usuario);
+                     if(dados.amigos){
+                      setLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS",JSON.stringify(dados.amigos));
+                      cart.logged_user_friends = dados.amigos;
+                    }
+                    window.location.reload();
+                  }});
+              };
+
               cart.change_vouchers = function() {
               console.log(cart.total_vouchers);
               setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);

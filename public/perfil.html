@@ -28,7 +28,7 @@
                                 <span class="text-warning-cred" style="font-size: 24px;">Meu Saldo: R$ {{cart.logged_user.wallet}}</span>
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t6">
-                              <p class="name-cred">Conecte-se com amigos pelo seu qrcode  e transfira bencréditos e produtos aqui.</p>
+                              <p class="name-cred">Conecte-se com amigos pelo seu qrcode  e transfira bencréditos e produtos aqui. <a class="name-cred" ng-click="cart.atualizar_dados()"> Atualizar</a></p>
                               <div class="card-accordion card-accordion-simple card-accordion-icons-left mb80" id="card-accordion-simple" role="tablist" aria-multiselectable="true">
                                  <!-- Card 1 -->
                                  <div class="card">
@@ -57,7 +57,7 @@
                               </div>
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t7">
-                              <p class="name-cred">Você tem <span class="text-warning-cred">R$ {{cart.logged_user.wallet}}</span> para transferir para seus amigos.</p> 
+                              <p class="name-cred">Você tem <span class="text-warning-cred">R$ {{cart.logged_user.wallet}}</span> para transferir para seus amigos. <a class="name-cred" ng-click="cart.atualizar_dados()"> Atualizar</a></p> 
                               <br>
                               <div class="row align-items-center">
                                  <div class="col-md-6 mb30 text-center">
