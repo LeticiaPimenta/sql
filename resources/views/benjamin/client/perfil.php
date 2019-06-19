@@ -463,6 +463,15 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                  return indexed_array;
              }
 
+             cart.logoff = function () {
+                  // body...
+                  setLocalData("BENJAMIN_USERCART_LOGGED_USER",null);
+                  setLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS",null);
+                  setLocalData("BENJAMIN_USERCART_EMAIL",null);
+                window.location.replace("/pocket.html");
+              }
+
+
               cart.solicitar_itens = function(id){
                 console.log(cart);
                 $("#listagem_retirar").slideUp();
@@ -584,20 +593,29 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
             <div class="cart-content">
                <div class="clearfix">
                   <a href="javascript:void(0)" class="pushy-link text-white-gray">X</a>
-               </div>
-               <hr>
+               </div>               
+                    <!--  <a href="" data-toggle="modal" data-target="#myModal" ng-show="cart.email_cliente && !online">
+                        <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && !online">
+                      </a> -->
+
+                     <img class="img-profile float-left" src="images/resto/placeholder.jpg" ng-show="cart.email_cliente && online">
+                     <a href="/perfil" ng-show="cart.email_cliente && online" class="center-title-img">
+                      Meu Perfil
+                     </a>
+                     
                <div class="center-title" ng-show="!cart.email_cliente">
-                  <p>Você precisa logar para pagar seu carrinho. <a ng-click="cart.pega_email()">Logar.</a></p>
+                  <p>Você precisa logar para pagar seu carrinho. <a class="popup-content menu-btn" href="#popup-login" >Logar.</a></p>
                </div>
-               <div class="center-title" ng-show="cart.email_cliente">
-                  <p>Deseja alterar o email  {{cart.email_cliente}} <a ng-click="cart.pega_email()">alterar o email.</a></p>
-               </div>
+            <!--   <div class="center-title" ng-show="cart.email_cliente">
+                  <p><a data-scroll class="popup-content" href="#popup-login"><i class="ti-settings"></i> Alterar o email.</a></p>
+               </div>-->
+               
                <hr>
                <ul class="list-unstyled">
                   <li class="clearfix" ng-repeat="produto in cart.carrinho track by $index" ng-show="produto.PRESENTATION_NAME">
-                     <a href="" class="float-left">
+                    <!-- <a href="" class="float-left">
                      <img src="img/foto.jpg" class="img-fluid" alt="" width="60">
-                     </a>
+                     </a> -->
                      <div class="oHidden">
                         <span class="close" ng-click="cart.removeItem($index)"><i class="ti-close"></i></span>
                         <h4><a href="#">{{produto.PRESENTATION_NAME}}</a></h4>
@@ -639,6 +657,11 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                      </form>
                   </li>
                </ul>
+               <div class="float-right">
+                 <a href="#popup-logoff" class="text-white popup-content menu-btn">
+                   Sair  <i class="ti-share-alt"></i>
+                 </a>
+               </div>
             </div>
          </aside>
          <!-- Site Overlay -->
@@ -663,24 +686,16 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                   <ul class="navbar-nav  ml-auto">
                      <li class="nav-item"><a data-scroll class="nav-link active" href="/pocket.html"> Home</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href="/qrunidade.html"> QR Code</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href=""> Bencréditos</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="/pocket.html#menu"> Nossos Cardápios</a></li>
+                     
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
-                     <li class="nav-item"  ng-show="cart.email_cliente"><a href="" data-toggle="modal" data-target="#myModal">{{online}}
-                        <img class="img-profile" src="images/resto/profile.jpg">
-                        </a>
-                     </li>
-                     <li class="nav-item"  ng-show="cart.email_cliente && online"><a href="/perfil">{{online}}
-                        <img class="img-profile" src="images/resto/profile.jpg">
-                        </a>
-                     </li> 
+                      
                   </ul>
                </div>
                <div class="navbar-right-elements">
                   <ul class="list-inline">
                      <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
-                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
+                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="fa fa-user"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
                   </ul>
                </div>
             </div>
@@ -784,6 +799,18 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                </div>
             </form>
          </div>
+      </div>
+       <div  id="popup-logoff" class="mfp-hide popup-content-area white-popup">
+         <div class="card-body">
+               <div class="row">
+                  <div class="col-md-12 mr-auto">
+                    <h4>Você deseja sair?</h4>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="cart.logoff()">Sim</button>
+                    </div>
+                  </div>
+               </div>
+            </div>
       </div>
       <div class="modal fade" id="modal-registrar-indicado" tabindex="-1" role="dialog" aria-labelledby="modal-solicitarTitle" aria-hidden="true">
          <div class="modal-dialog" role="document">

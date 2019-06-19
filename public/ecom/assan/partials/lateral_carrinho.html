@@ -1,0 +1,75 @@
+         <aside class="pushy pushy-right">
+            <div class="cart-content">
+               <div class="clearfix">
+                  <a href="javascript:void(0)" class="pushy-link text-white-gray">X</a>
+               </div>               
+                    <!--  <a href="" data-toggle="modal" data-target="#myModal" ng-show="cart.email_cliente && !online">
+                        <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && !online">
+                      </a> -->
+
+                     <img class="img-profile float-left" src="images/resto/placeholder.jpg" ng-show="cart.email_cliente && online">
+                     <a href="/perfil" ng-show="cart.email_cliente && online" class="center-title-img">
+                      Meu Perfil
+                     </a>
+                     
+               <div class="center-title" ng-show="!cart.email_cliente">
+                  <p>Você precisa logar para pagar seu carrinho. <a class="popup-content menu-btn" href="#popup-login" >Logar.</a></p>
+               </div>
+            <!--   <div class="center-title" ng-show="cart.email_cliente">
+                  <p><a data-scroll class="popup-content" href="#popup-login"><i class="ti-settings"></i> Alterar o email.</a></p>
+               </div>-->
+               
+               <hr>
+               <ul class="list-unstyled">
+                  <li class="clearfix" ng-repeat="produto in cart.carrinho track by $index" ng-show="produto.PRESENTATION_NAME">
+                    <!-- <a href="" class="float-left">
+                     <img src="img/foto.jpg" class="img-fluid" alt="" width="60">
+                     </a> -->
+                     <div class="oHidden">
+                        <span class="close" ng-click="cart.removeItem($index)"><i class="ti-close"></i></span>
+                        <h4><a href="#">{{produto.PRESENTATION_NAME}}</a></h4>
+                        <p class="text-white-gray"><strong>{{produto.VALUE}}</strong></p>
+                     </div>
+                  </li>
+                  <!--/cart item-->
+                  <hr>
+                  <li>
+                     <div class="center-text">
+                        <p class="text-white-gray"> Total : {{cart.total |currency:"R$" }}</p>
+                     </div>
+                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                        <!--Tipo do botão-->
+                        <input type="hidden" name="cmd" value="_xclick" />
+                        <!--Vendedor e URL de retorno, cancelamento e notificação-->
+                        <input type="hidden" name="business" value="contasapagar-facilitator@benjaminapadaria.com.br" />
+                        <input type="hidden" name="return" value="https://benjamin-a-padaria.herokuapp.com/compra/retorno/{{cart.hash_email_cliente}}" />
+                        <input type="hidden" name="cancel" value="https://benjamin-a-padaria.herokuapp.com/compra/cancelamento/{{cart.hash_email_cliente}}" />
+                        <input type="hidden" name="notify_url" value="https://benjamin-a-padaria.herokuapp.com/compra/notificacao" />
+                        <!--Internacionalização e localização da página de pagamento-->
+                        <input type="hidden" name="charset" value="utf-8" />
+                        <input type="hidden" name="lc" value="BR" />
+                        <input type="hidden" name="country_code" value="BR" />
+                        <input type="hidden" name="currency_code" value="BRL" />
+                        <input type="hidden" name="tx" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="payer_id" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="invoice" value="{{cart.hash_email_cliente}}@{{cart.cart_ci}}">
+                        <input type="hidden" name="custom" value="{{cart.hash_email_cliente}}">
+                        <input type="hidden" name="at" value="{{cart.hash_email_cliente}}">
+                        <!--Informações sobre o produto e seu valor-->
+                        <input type="hidden" name="amount" value="{{cart.total}}" />
+                        <input type="hidden" name="item_name" value="Servico" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <input type="hidden" name="item_number_1" value="bolinho" />
+                        <input type="hidden" name="item_number_2" value="Sonho" />
+                        <!--Botão para submissão do formulário-->
+                        <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0"/>
+                     </form>
+                  </li>
+               </ul>
+               <div class="float-right">
+                 <a href="#popup-logoff" class="text-white popup-content menu-btn">
+                   Sair  <i class="ti-share-alt"></i>
+                 </a>
+               </div>
+            </div>
+         </aside>
