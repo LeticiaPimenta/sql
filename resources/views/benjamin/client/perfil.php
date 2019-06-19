@@ -530,7 +530,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                 $("#listagem_retirar").slideDown();
                 $('#modal-solicitar').modal('hide');
 
-               // window.location.replace("/pocket.html");
+                window.location.replace("/pocket.html");
                 }) 
 
 
