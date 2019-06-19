@@ -511,9 +511,9 @@
                                 </div>
                                 <div class="modal-body">
                                     <h4 ng-show="loja">Voce está na Loja  {{loja}} </h4>
-                                      <div ng-hide="loja"><strong>VOCE NAO SELECIONOU SUA LOJA, </strong><br><a href="/client/qrunidade">Leia o QR de UMA MESA </a><br>OU selecione uma na listagem !</div>
+                                      <div ng-hide="loja"><strong>VOCE NAO SELECIONOU SUA LOJA, </strong><br><a href="/qrunidade.html">Leia o QR de UMA MESA </a><br>OU selecione uma na listagem !</div>
                                       <span ng-show="loja">
-                                      Se estiver em loja errada ! <a href="/client/qrunidade">vai pra seleção de unidades</a></span>
+                                      Se estiver em loja errada ! <a href="/qrunidade.html">vai pra seleção de unidades</a></span>
                                       <br>
                                       <input type="hidden" name="cart_loja" value="{{cart.loja}}">
                                       <select id="loja_selecionado" name="loja" ng-change="cart.mudar_loja()" ng-model="cart.loja">

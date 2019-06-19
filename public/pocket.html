@@ -351,6 +351,10 @@
                 jQuery.post('/carregar_dados', {'email':email}).
                 done(function(data){
                  var dados = JSON.parse(data);
+                 if (!dados.response) {
+                    toastr.error('Você não logou!', 'Falha no login!');
+                  return false;
+                 }
                  var usuario = JSON.parse(dados.usuario);
                  if(dados.amigos)
                   usuario['amigos'] = dados.amigos;
