@@ -547,6 +547,7 @@
                         <!--Botão para submissão do formulário-->
                         <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente"/>
                         <!-- <input type="submit" value="Pagar Paypal" class="btn btn-primary"  border="0"/> -->
+                        <button class="btn btn-primary popup-content menu-btn" href="#popup-bencreditos">Bencréditos</button>
                      </form>
                   </li>
                </ul>
@@ -769,7 +770,7 @@
          </div>
       </footer>
 
-<div class="modal fade bd-example-modal-sm" id="modal-transferir" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal fade bd-example-modal-sm" id="modal-transferir" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
 
                             <div class="modal-content">
@@ -781,10 +782,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!--modal-->
-
-
-
+                    </div>
 
 
                 <div class="modal fade bd-example-modal-sm" id="modal-conectar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -1113,6 +1111,27 @@
                     <div class="modal-footer">
                     <button type="button" class="btn btn-success" ng-click="cart.logoff()">Sim</button>
                     </div>
+                  </div>
+               </div>
+            </div>
+      </div>
+      <div  id="popup-bencreditos" class="mfp-hide popup-content-area white-popup">
+         <div class="card-body">
+               <div class="row">
+                  <div class="col-md-12 mr-auto">
+                    <h4>Quanto você deseja descontar?</h4>
+                    <div class="row">
+                      <div class="col-md-12 mr-auto">
+                        Saldo: R$ {{cart.logged_user.wallet}}
+                        <br>
+                        Valor da Compra : R$ {{cart.total}}
+                        <br>
+                         <h4 class="text-warning-cred"> Descontar: <input type="text" ng-model="cart.total_transferencia" name=""></h4>
+                         <div class="modal-footer" ng-show="cart.logged_user.wallet > 0">
+                         <button type="button" class="btn btn-primary" ng-click="">Descontar</button>
+                        </div>
+                      </div>
+                   </div>
                   </div>
                </div>
             </div>
