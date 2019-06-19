@@ -449,7 +449,7 @@
                       var btn_logar ='<a href="/pocket.html?registrado='+ date.getTimezoneOffset()+'" class="btn btn-primary">Logar<a>';
                       toastr.success('Usuario registrado', resposta.mensagem);
                       jQuery('#popup-login').modal('hide');
-                      jQuery("#form-register").html('<span id="resposta_registro">'+resposta.mensagem+"</span><br>"+btn_logar);
+                      jQuery(".popup-login-form").html('<span id="resposta_registro">'+resposta.mensagem+"</span><br>"+btn_logar);
                       jQuery("#form-login").slideUp();
                     }else{
                       toastr.error('Usuario não foi registrado', resposta.mensagem);
@@ -852,8 +852,8 @@
                   <div class="modal-body">
                      <div class="card-body">
                <div class="row">
-                  <div class="col-md-12 mr-auto">
-                     <form class="form"  >
+                  <div class="col-md-12 mr-auto popup-login-form">
+                     <form class="form">
                         <div class="form-group bmd-form-group">
                            <div class="input-group">
                               <div class="input-group-prepend">
@@ -1019,7 +1019,7 @@
                </div> -->
             </form>
          </div>
-         <div id="form-register" style="display: none">
+         <div id="form-register" style="display: none" class="popup-login-form">
             <div class="card-body">
                <div class="row">
                   <div class="col-md-12 mr-auto">
