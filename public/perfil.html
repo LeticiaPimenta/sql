@@ -10,8 +10,8 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                            <div role="tabpanel" class="tab-pane active show fade" id="t5">
-                            <h5>{{cart.logged_user.name}}</h5>
-                            <p><h6>Email: {{cart.logged_user.email}}</h6>
+                            <h5 id="nome_usuario_logado">{{cart.logged_user.name}}</h5>
+                            <p><h6 id="email_usuario_logado">Email: {{cart.logged_user.email}}</h6>
                             </p>
                             <br>
 
@@ -20,7 +20,7 @@
                                      <h4 class="text-center">Escaneie o QR Code para adicionar amigos.</h4>
                                  </div>
                                  <div class="col-lg-6 mb30">
-                                     <div id="qrcode-profile" class="text-center"><img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={{cart.qrcode_profile}}%2F&choe=UTF-8" title="Meu Qr" /></div>
+                                     <div id="qrcode-profile" class="text-center"><img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={{cart.qrcode_profile}}&choe=UTF-8" title="Meu Qr" /></div>
                                      <p>url : {{cart.qrcode_profile}}</p>
                                  </div>
                              </div>
