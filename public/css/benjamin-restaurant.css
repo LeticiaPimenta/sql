@@ -141,6 +141,7 @@ Responsive style (always bottom in main style file)
     color: #fff !important;
     margin-left: 10px;
     height: auto;
+    width: auto;
 }
 
 .si-blue {
