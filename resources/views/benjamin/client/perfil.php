@@ -710,24 +710,6 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
          </div>
       </div>
 
-      <footer class='footer pt50 pb20'>
-         <div class='container'>
-            <div class='row'>
-               <div class='col-lg-4 mb30'>
-                  <span class='clearfix'>
-                  <a href="https://www.facebook.com/BenjaminAPadaria/" class="social-icon-sm si-dark si-dark-round si-facebook">
-                  <i class="fa fa-facebook"></i>
-                  <i class="fa fa-facebook"></i>
-                  </a>
-                  <a href="https://www.instagram.com/benjaminapadaria/" class="social-icon-sm si-dark si-dark-round si-instagram">
-                  <i class="fa fa-instagram"></i>
-                  <i class="fa fa-instagram"></i>
-                  </a> 
-                  </span>
-               </div>
-            </div>
-         </div>
-      </footer>
 
 <div class="modal fade bd-example-modal-sm" id="modal-transferir" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
@@ -1228,8 +1210,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-rounded btn-secondary" id="cancel" data-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-rounded btn-primary" ng-click="cart.solicitar_itens()">Solicitar</button>
+                                    <button type="button" class="btn btn-secondary" id="cancel" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" ng-click="cart.solicitar_itens()">Solicitar</button>
                                 </div>
                             </div>
                             </form>

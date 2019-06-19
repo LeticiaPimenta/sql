@@ -1,25 +1,35 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="app">
     <head>
-        <title>Registre um Qr da sua comanda !</title>
-
-          <!-- Plugins CSS -->
-      <link href="css/plugins/plugins.css" rel="stylesheet">
-      <!--slider revolution-->
-      <link rel="stylesheet" type="text/css" href="revolution/css/settings.css">
-      <link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
-      <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.css">
-      <link href="css/style.css" rel="stylesheet">
-      <link href="css/style-restaurant.css" rel="stylesheet">
-      <link href="css/benjamin-restaurant.css" rel="stylesheet">
-      <script src="js/angular.min.js"></script>
-      <script src="js/crypto.js"></script>
-
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.qrcode.min.js"></script>
-
-    <script type="module">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>.::Benjamin a Padaria :: Sp @brasil ::.</title>    
+        <!-- Plugins CSS -->
+        <link href="css/plugins/plugins.css" rel="stylesheet">
+        <!--slider revolution-->
+        <link rel="stylesheet" type="text/css" href="revolution/css/settings.css"> 
+        <link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
+        <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
+        <link href="css/style-restaurant.css" rel="stylesheet">
+        <link href="css/vault-restaurant.css" rel="stylesheet">
+        <link href="css/benjamin-restaurant.css" rel="stylesheet">
+        <style type="text/css">
+            
+            tr.selected td {
+    background-color: #333;
+    color: #fff;    
+}
+        </style>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/crypto.js"></script>
+        <script type="text/javascript">
+         var nome_importado = "Benjamin";
+        </script>
+            <script type="module">
         import QrScanner from "/qr/qr-scanner.min.js";
         const video = document.getElementById('qr-video');
         const debugCheckbox = document.getElementById('debug-checkbox');
@@ -70,23 +80,363 @@
             }
         }
     </script>
+              <script type="text/javascript">
+            var produtos = new Array();
+            produtos[0] = {
+             "CODE":0,
+             "VALUE":10.00,
+             "NAME" : "CROISS",
+             "PRESENTATION_NAME" : "Croissant"   
+             };
+             produtos[1] = {
+             "CODE":1,
+             "VALUE":10.00,
+             "NAME" : "ACAI COM BANAN",
+             "PRESENTATION_NAME" : "Açai com bananas"   
+             };
+             produtos[2] = {
+             "CODE":2,
+             "VALUE":14.00,
+             "NAME" : "SANDUI COM QUEI",
+             "PRESENTATION_NAME" : "Sanduiche natural com queijo"   
+             };
+             produtos[3] = {
+             "CODE":3,
+             "VALUE":17.00,
+             "NAME" : "BEN ALMOÇO",
+             "PRESENTATION_NAME" : "Ben Almoço do dia"   
+             };
+             produtos[4] = {
+             "CODE":4,
+             "VALUE":6.49,
+             "NAME" : "PASTEL DE NADA",
+             "PRESENTATION_NAME" : "Pastelzinho de Belem"   
+             };
+             
+             produtos[5] = {
+             "CODE":5,
+             "VALUE":14.90,
+             "NAME" : "BIG BEN",
+             "PRESENTATION_NAME" : "Big Ben"   
+             };
+             produtos[6] = {
+             "CODE":6,
+             "VALUE":2.99,
+             "NAME" : "MINI CROISS CHOC",
+             "PRESENTATION_NAME" : "Mini Croissant Chocolate"   
+             };
+             
+             produtos[7] = {
+             "CODE":7,
+             "VALUE":11.00,
+             "NAME" : "ACAI COM MEL",
+             "PRESENTATION_NAME" : "Açai com mel"   
+             };
+             
+             produtos[8] = {
+             "CODE":8,
+             "VALUE":14.00,
+             "NAME" : "SANDUI COM QUEI e PRES",
+             "PRESENTATION_NAME" : "Sanduiche natural com queijo e presunto"   
+             };
+
+             produtos[9] = {
+             "CODE":9,
+             "VALUE":14.90,
+             "NAME" : "SANDUI COM QUEI e PRES e TOM",
+             "PRESENTATION_NAME" : "Sanduiche natural com queijo , presunto e tomate"   
+             };
+             
+             produtos[10] = {
+             "CODE":10,
+             "VALUE":14.90,
+             "NAME" : "SANDUI COM QUEI e PRES e TOM e ALF",
+             "PRESENTATION_NAME" : "Sanduiche natural com queijo , presunto , tomate e tomate"   
+             };
+             
+
+             var catalogo = new Array();
+             catalogo[0] = [1,2,3,4,6];
+             catalogo[1] = [1,2];
+             
+             var campanhas = []
+             campanhas[0] = {
+             "CODE":0,
+             "NAME" : "CROISSANT",
+             "DESCRIPTION" : "nossos Croissants" ,
+             "PRODUCTS" : [1,7]
+             
+             };
+             campanhas[1] = {
+             "CODE":1,
+             "NAME" : "AÇAIS",
+             "DESCRIPTION" : "nossos açais" ,
+             "PRODUCTS" : [1,7]
+             
+             };
+             
+             campanhas[2] = {
+             "CODE":2,
+             "NAME" : "SanDUICHE",
+             "DESCRIPTION" : "nossos sanduiches" ,
+             "PRODUCTS" : [2,8 , 9, 10]
+             
+             };
+             
+             
+             var campanhas_lojas = [];
+             campanhas_lojas[0] = [1,2];
+             campanhas_lojas[2] = [1];
+             campanhas_lojas[3] = [2];
+             
+             function getLocalData(name){
+             return localStorage.getItem(name)
+             }
+             
+             function setLocalData(name,value){
+             if (value!=null)
+             localStorage.setItem(name,value);
+             else
+             localStorage.removeItem(name);
+             }
+             
+             
+             var cartObj = null; // global pointer to cart
+             var cartCI = -1;
+             var str_botoes = '';
+             
+             
+             function cart_initCart() {
+             cartObj = new Array();
+             cartCI = 0;
+             // Check in browser memory if there are a saved cart
+             if (getLocalData("BENJAMIN_USERCART")!=null){
+             // if previoys cart is present load it
+             cartCI = getLocalData("BENJAMIN_USERCART_CI");
+             cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+             user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
+             console.log(cartObj);
+             }else{
+             console.log("\t[CART-BENJAMIN] Carrinho esta vazio!");
+             }
+             }
+             
+             
+             
+             function cart_removeCartRow_v2(rowid){
+             cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+             cartObj[rowid]=null; // sign row as invalid
+             cartObj = cartObj.filter(function(x) { return x !== null }); 
+             setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
+             }
+             
+             
+             
+             angular.module('app', [])
+             .service('ngCopy', ['$window', function ($window) {
+             var body = angular.element($window.document.body);
+             var textarea = angular.element('<textarea/>');
+             textarea.css({
+             position: 'fixed',
+             opacity: '0'
+             });
+             
+             return function (toCopy) {
+             textarea.val(toCopy);
+             body.append(textarea);
+             textarea[0].select();
+             
+             try {
+             var successful = document.execCommand('copy');
+             if (!successful) throw successful;
+             } catch (err) {
+             window.prompt("Copy to clipboard: Ctrl+C, Enter", toCopy);
+             }
+             
+             textarea.remove();
+             }
+             }])
+             .directive('ngClickCopy', ['ngCopy', function (ngCopy) {
+             return {
+             restrict: 'A',
+             link: function (scope, element, attrs) {
+             element.bind('click', function (e) {
+             ngCopy(attrs.ngClickCopy);
+             });
+             }
+             }
+             }])
+             .filter('trustAsHTML', ['$sce', function($sce){
+             return function(text) {
+                 return $sce.trustAsHtml(text);
+             };
+             }])
+             .controller('CartController', function($sce, $http) {
+             var cart = this;
+             cart.produtos = produtos;
+             cart.catalogo = catalogo;
+             cart.campanhas = campanhas;
+             cart.campanhas_lojas = campanhas_lojas;
+             cart.loja = getLocalData("BENJAMIN_SHOP");
+             cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+             cart.user_vault = JSON.parse(getLocalData("BENJAMIN_USER_VAULT"));
+             cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
+             $http.get("benjamin-a-padaria-unidades.json").then(function(response){
+                cart.unidades = response.data;
+             })
+             
+             if(cart.email_cliente)
+             cart.hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
+             
+             function addItemInCart(code){
+               var newRow = new Object();
+                   newRow["CODE"] = code;
+                   newRow["PRESENTATION_NAME"] = produtos[code].PRESENTATION_NAME;
+                   newRow["VALUE"] = produtos[code].VALUE;
+                   
+                   console.log(newRow);
+             
+                   if (cartObj==null){
+                       cartObj = [];
+                   }
+             
+                   console.log(cartObj);
+                   cartObj[cartCI++] = newRow;
+                   console.log(cartObj);
+             
+                   setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
+                   setLocalData("BENJAMIN_USERCART_CI",cartCI);
+             }
+             
+             function carrinho_local() {
+               cartObj = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+               console.log(cartObj);
+             
+               var carrinho = new Array();
+               var grand_total = 0;
+               for (var xr in cartObj){
+                   if (cartObj[xr]==null) continue;
+             
+                   grand_total+=parseFloat(cartObj[xr].VALUE);
+               }
+             
+               return grand_total;
+             }
+             
+             
+             cart.adicionar = function(id) {
+               addItemInCart(id);
+               cart.total = carrinho_local();
+               cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
+             };
+             
+             cart.removeItem = function(id){
+               cart_removeCartRow_v2(id);
+               cart.total = carrinho_local();
+               cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+             }
+             
+             cart.solicitar_itens = function(id){
+                console.log(cart);
+                $(".solicitar").slideUp();
+                var user_vault_key = getLocalData("BENJAMIN_USER_VAULT_KEY");
+                $('#modal-solicitar').modal('hide');
+                $.post("/compra/retirar", {"itens":cart.itens,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
+                    console.log(response);
+                    cart.user_vault = response;
+                    $("#btn_selecionar").remove();
+                    $(".solicitado").slideDown();
+                    setLocalData("BENJAMIN_USER_VAULT", null);
+                    setLocalData("BENJAMIN_USER_VAULT_KEY", null);
+                    setLocalData("BENJAMIN_USERCART", null);
+                })
+             }
 
 
+             cart.pega_email = function(){
+                 var email = prompt("Qual é o seu email?");
+                 
+                 //if (email.toLowerCase() == "escorpião") {
+                   var hash = Crypto.MD5(email);
+                   //alert(email);
+                   //alert(hash);
+                 //  }
+                 setLocalData("BENJAMIN_USERCART_EMAIL",email);
+                 cart.email_cliente = email;
+                 cart.hash_email_cliente = hash;
+             }
+
+            cart.solicitar = function() {
+                var oldVault = cart.user_vault;
+                cart.vault = [];
+                cart.itens = [];
+                angular.forEach(oldVault, function(item_vault) {
+                    if (item_vault.done){
+                       // cart.vault.push(item_vault);
+                        cart.itens.push(item_vault.CODE);
+                    }
+                });
+
+              //  alert("vai solicitar"+JSON.stringify(cart.itens))
+                console.log(cart.itens);
+                
+                //console.log(oldVault);
+                //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
+            };
+
+
+            cart.solicitar_tudo = function() {
+               cart.itens = [];
+                angular.forEach(cart.user_vault, function(item_vault) {
+                    item_vault.done = true;
+                    cart.itens.push(item_vault.CODE);
+                });
+
+                //cart.itens = cart.user_vault;
+              //  alert("vai solicitar"+JSON.stringify(cart.user_vault))
+                console.log(cart.user_vault);
+                $('#modal-solicitar').modal('show');
+                //console.log(oldVault);
+                //setLocalData("BENJAMIN_USER_VAULT",JSON.stringify(oldVault));
+            };
+
+            cart.mudar_loja = function(){
+                setLocalData("BENJAMIN_SHOP",cart.loja);
+            }
+
+     
+             
+             cart.total = carrinho_local();
+             cart_initCart (); 
+             
+             });
+             
+             
+             
+             /*if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('offline-service-worker.js');
+             }*/
+          </script>
     </head>
- 
-        <body data-spy="scroll" data-offset="71" data-target="#navbarRestaurant" ng-controller="CartController as cart">
+
+    <body data-spy="scroll" data-offset="71" data-target="#navbarRestaurant" ng-controller="CartController as cart">
         <div id="preloader">
             <div id="preloader-inner"></div>
         </div><!--/preloader-->
         <header class="header-main header-transparent">
             <nav class="navbar navbar-expand-lg navbar-light bg-faded">           
                 <div class="container">
-                    <a class="navbar-brand" href="pocket.html">
+                        <a class="navbar-brand" href="pocket.html">
                         <img class='logo logo-light hidden-md-down' src="images/resto/benjamin.png" alt="">
                     </a>
                 </div>
             </nav>
         </header><!--/header-->
+            <div class="d-flex align-items-center">
+                <div class="container">
+                    <div class=" row">
+                        <div class="col-md-10 ml-auto mr-auto text-center">
+                            
         <div class="bg-white">
          <div class="container pt90 pb60">
             <div class="row align-items-center">
@@ -101,7 +451,10 @@
                   <img src="images/qr.png" alt="" class="img-fluid">
                </div>
             </div>
-                    <center>
+         </div>
+      </div>
+
+        <center>
             <video muted autoplay playsinline id="qr-video" width="400px"></video>
         </center>
         <canvas id="debug-canvas">
@@ -110,14 +463,15 @@
 
         <center><div id="qrcode" ></div></center>
 
-         </div>
-      </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
+        </div><!--intro-->
 
-<!--intro-->
-
-    
         <!--back to top  -->
         <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
@@ -199,5 +553,3 @@
         <script src='https://www.google.com/recaptcha/api.js'></script>
     </body>
 </html>
-    	
- 
