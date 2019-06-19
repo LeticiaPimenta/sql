@@ -1107,7 +1107,9 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                <div class="modal-content">
                   <div class="modal-header">
                      <h5 class="modal-title" >Transferir BenCréditos</h5>
-                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
                   </div>
                   <div class="modal-body">
                      <div class="card-body">
@@ -1118,15 +1120,14 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                      {{cart.amigo_selecionado.nome}}
                      <br>
                      <h4 class="text-warning-cred"> Tranferir: <input type="text" ng-model="cart.total_transferencia" name=""></h4>
+                     <div class="modal-footer" ng-show="cart.logged_user.wallet > 0">
                      <button type="button" class="btn btn-primary" ng-click="cart.tranferir_indicado(cart.amigo_selecionado.user_token)">Transferir</button>
-                    
+                    </div>
                   </div>
                </div>
             </div>
                   </div>
-                  <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  </div>
+                  
                </div>
             </form>
          </div>
