@@ -520,6 +520,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
             cart.responsa_transferencia = response.data ;
             cart.total_vouchers = response.data.wallet;
             cart.logged_user.wallet = response.data.wallet;
+            toastr.success('Você transferiu BenCréditos a seu amigo!', 'Transferido!');
             setLocalData("BENJAMIN_USERCART_LOGGED_USER",JSON.stringify(cart.logged_user));
 
 
