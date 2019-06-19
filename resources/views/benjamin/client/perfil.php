@@ -799,7 +799,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
             <form >
                <div class="modal-content">
                   <div class="modal-header">
-                     <h5 class="modal-title" >registrar</h5>
+                     <h5 class="modal-title" >Registrar</h5>
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true">&times;</span>
                      </button>
