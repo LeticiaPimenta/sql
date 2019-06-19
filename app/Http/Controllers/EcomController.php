@@ -519,6 +519,33 @@ class EcomController extends Controller
 
         }
     }
+
+
+       foreach ($tratado as $key => $compras) {
+        if(isset($compras['done'])){
+            $obs = isset($compras['obs'])?$compras['obs']:'';
+            $produtos_atendimento[] = array('CODE' => $compras['CODE'],
+                        'PRESENTATION_NAME'=>  $compras['PRESENTATION_NAME'],
+                        'VALUE'=>$compras['VALUE'],
+                        'OBS'=>$obs);
+            $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$key;
+             $NODE_DELETE = $FIREBASE.".json";
+
+            $curl = curl_init();
+
+            curl_setopt( $curl, CURLOPT_URL, $NODE_DELETE );
+            curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+            curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+
+            $response = curl_exec( $curl );
+            curl_close( $curl );
+
+        }
+     
+    }
+
+ 
+
     //print_r($produtos_atendimento);
     $atendimento = array('user_email' => $dados['user_email'],
                             'user_hash' => md5($dados['user_email']),
