@@ -248,6 +248,15 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
               cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
+              var comanda = getLocalData("comanda");
+                if (comanda != undefined) {
+                  cart.comanda = comanda;
+                }
+
+              var loja = getLocalData("loja");
+                if (loja != undefined) {
+                  cart.loja = loja;
+                }
               $http.get("https://benjamin-a-padaria.firebaseio.com/users/"+Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))+"/retirar.json").then(function(response){
                 cart.itens_vault = response.data ;
               console.log(cart.itens_vault);
@@ -1167,8 +1176,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h4 ng-show="loja">Voce está na Loja  {{loja}} </h4>
-                                      <div ng-hide="loja"><strong>VOCE NAO SELECIONOU SUA LOJA, </strong><br><a href="/qrunidade.html">Leia o QR de UMA MESA </a><br>OU selecione uma na listagem !</div>
+                                    <h4 ng-show="cart.loja"><strong> Voce está na Loja  {{cart.loja}} </strong></h4>
+                                      <div ng-hide="cart.loja"><strong>VOCE NAO SELECIONOU SUA LOJA, </strong><br><a href="/qrunidade.html">Leia o QR de UMA MESA </a><br>OU selecione uma na listagem !</div>
                                       <span ng-show="loja">
                                       Se estiver em loja errada ! <a href="/qrunidade.html">vai pra seleção de unidades</a></span>
                                       <br>
