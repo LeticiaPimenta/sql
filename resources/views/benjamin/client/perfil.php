@@ -1185,7 +1185,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                     </span>
                                   </div>
 
-                                  <h4>Presenteados</h4>
+                                  <h5><i class="fa fa-gift"></i> Presenteados</h5>
                                   <div class="card" ng-repeat="compra in cart.itens_vault track by $index" ng-show="!compra.products && compra.done">
                                     
                                     <div class="card-header accordion-header" role="tab" id="heading{{$index}}2" >
@@ -1250,7 +1250,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
               if(getLocalData("BENJAMIN_USERCART_EMAIL")){
                 //jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
                 var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
-                jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
+                //jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
+                jQuery('#qrcode-profile').html(endereco_site+"pocket.html?usuario="+hash_email_cliente);
               }
             }catch(err) {
               console.log(err.message);
