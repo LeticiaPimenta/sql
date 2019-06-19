@@ -261,9 +261,9 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
 
               var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
             //  jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
-              jQuery('#qrcode-profile').html(endereco_site+"pocket.html?usuario="+hash_email_cliente);
+             // jQuery('#qrcode-profile').html(endereco_site+"pocket.html?usuario="+hash_email_cliente);
 
-
+             cart.qrcode_profile = endereco_site+"pocket.html?usuario="+hash_email_cliente;
 
               function getQueryParams(qs) {
                 //alert(qs);
@@ -399,7 +399,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                      toastr.success('Seus dados foram alterados!', 'Dados foram salvos!');
                       setLocalData("BENJAMIN_USERCART_EMAIL",email);
                 var hash_email_cliente = Crypto.MD5(email);
-                jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
+               // jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
 
                      cart.email_cliente = email;
                      if(dados.amigos)
@@ -1251,7 +1251,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                 //jQuery('#qrcode').qrcode({width: 100,height: 100,text: Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"))});
                 var hash_email_cliente = Crypto.MD5(getLocalData("BENJAMIN_USERCART_EMAIL"));
                 //jQuery('#qrcode-profile').qrcode({width: 100,height: 100,text:endereco_site+"pocket.html?usuario="+hash_email_cliente });
-                jQuery('#qrcode-profile').html(endereco_site+"pocket.html?usuario="+hash_email_cliente);
+                //alert(endereco_site+"pocket.html?usuario="+hash_email_cliente);
               }
             }catch(err) {
               console.log(err.message);
