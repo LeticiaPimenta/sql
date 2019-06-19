@@ -293,8 +293,7 @@
                 $.post("/compra/retirar", {"itens":cart.itens,"vault":cart.user_vault,"loja":cart.loja, "vault_key":user_vault_key, "user_email":cart.email_cliente}).done(function(response){
                     console.log(response);
                     cart.user_vault = response;
-
-                    
+                    $("#btn_selecionar").remove();
                     $(".solicitado").slideDown();
                     setLocalData("BENJAMIN_USER_VAULT", null);
                     setLocalData("BENJAMIN_USER_VAULT_KEY", null);
@@ -379,18 +378,15 @@
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarRestaurant" aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="pocket.html">
                         <img class='logo logo-light hidden-md-down' src="images/resto/benjamin.png" alt="">
                     </a>
                     <div  id="navbarRestaurant" class="navbar-collapse collapse">
                         <ul class="navbar-nav  ml-auto">
-                            <li class="nav-item"><a data-scroll class="nav-link active" href="#home"> Home</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="#about"> QR Code</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="#foods"> BenAmados</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Carrinho</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link" href="#contact"> Contato</a></li>
-                            <li class="nav-item"><a data-scroll class="nav-link btn btn-primary" href="#"> Logar</a></li>
+                            <li class="nav-item"><a data-scroll class="nav-link active" href="/pocket.html"> Home</a></li>
+                            <li class="nav-item"><a data-scroll class="nav-link" href="/pocket.html"> QR Code</a></li>
+                            <li class="nav-item"><a data-scroll class="nav-link" href="/pocket.html#menu"> Nossos Cardápios</a></li>
+                            <li class="nav-item"><a data-scroll class="nav-link" href="/pocket.html"> Carrinho</a></li>
                         </ul>   
                     </div>
                 </div>
@@ -407,7 +403,7 @@
                                 <p class="lead">
                                     Aqui você seleciona os produtos que deseja retirar.
                                 </p>
-                                <a href="" data-scroll class="btn btn-rounded btn-primary" ng-click="cart.solicitar_tudo()">Selecionar todos</a>
+                                <a href="" data-scroll class="btn btn-rounded btn-primary" ng-click="cart.solicitar_tudo()" id="btn_selecionar">Selecionar todos</a>
                             </div>
                         </div>
                     </div>
@@ -415,24 +411,18 @@
             </div>
         <div class="bg-white solicitado" style="display: none">
             <div class="container pb60">
-            <h4 class="font300 mb30">
-               
+            
+               <h5 class="lead text-center" style="color: #999;">
                 Seu pedido foi aceito na nossa cozinha !
                 Se você tiver algum item a retirar entre em sua conta e veja o que tem disponivel !
-            
-                <a  class="btn btn-primary" href="/pocket.html">Minha Conta </a>
+            </h5>
             </div>
-        </div>
+            </div>
 
         <div class="bg-white solicitado"  ng-hide="cart.user_vault.length">
-            <div class="container pb60">
-            <h4 class="font300 mb30">
-               
-               
-        Se você tiver algum item a retirar entre em sua conta e veja o que tem disponivel !
-            </h4>
-                <a  class="btn btn-primary" href="/pocket.html">Minha Conta </a>
-            </div>
+            <div class="container pb60"><br>
+            <h5 class="lead text-center" style="color: #999;"> Sua compra foi aceita em nossa cozinha!</h5>
+             </div>
         </div>
        
 
@@ -447,19 +437,15 @@
             <table class="table table-condensed table-responsive cart-table mb40">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Produto</th>
-                       
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="produto in cart.user_vault" ng-show="produto.PRESENTATION_NAME">
-                        <td class="product-image">
-                            <img src="/img/foto.jpg" alt="{{produto.PRESENTATION_NAME}}" width="50">
-                        </td>
                         <td class="product-name">{{produto.PRESENTATION_NAME}}</td>
-                       
+                        <td></td>
                         <td class="product-delete"> Selecionar <input type="checkbox" ng-model="produto.done"></td>
                     </tr>   
                 </tbody>
