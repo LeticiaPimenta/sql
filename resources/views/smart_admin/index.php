@@ -37,7 +37,7 @@
 
 
 	</head>
-
+	
 	<!--
 
 	TABLE OF CONTENTS.
@@ -82,7 +82,20 @@
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
 	<body class=""  ng-controller="TodoListController as todoList">
+			<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			if (!window.jQuery) {
+				document.write('<script src="/smart_admin/js/libs/jquery-3.2.1.min.js"><\/script>');
+			}
+		</script>
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script>
+			if (!window.jQuery.ui) {
+				document.write('<script src="/smart_admin/js/libs/jquery-ui.min.js"><\/script>');
+			}
+		</script>
 		<!-- #HEADER -->
 		<header id="header">
 			<div id="logo-group">
@@ -406,20 +419,7 @@
 		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="/smart_admin/js/plugin/pace/pace.min.js"></script>
 
-		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script>
-			if (!window.jQuery) {
-				document.write('<script src="/smart_admin/js/libs/jquery-3.2.1.min.js"><\/script>');
-			}
-		</script>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-		<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="/smart_admin/js/libs/jquery-ui.min.js"><\/script>');
-			}
-		</script>
 
 		<!-- IMPORTANT: APP CONFIG -->
 		<script src="/smart_admin/js/app.config.js"></script>
@@ -554,30 +554,15 @@
 	          selectedListLabel: 'Selected',
 	          preserveSelectionOnMove: 'moved',
 	          moveOnSelect: false,
-	          //nonSelectedFilter: 'ion ([7-9]|[1][0-2])'
+	          nonSelectedFilter: 'ion ([7-9]|[1][0-2])'
 	        });
 			
-				
+				initializeDuallistbox;
 			})
 		
 		</script>
 
-		<!-- Your GOOGLE ANALYTICS CODE Below -->
-		<script>
-			var _gaq = _gaq || [];
-				_gaq.push(['_setAccount', 'UA-43548732-6']);
-				_gaq.push(['_trackPageview']);
-			
-			(function() {
-				var ga = document.createElement('script');
-				ga.type = 'text/javascript';
-				ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(ga, s);
-			})();
 
-		</script>
 		<script type="text/javascript">
 			
 			angular.module('todoApp', [])
