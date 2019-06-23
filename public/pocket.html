@@ -573,15 +573,21 @@
                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarRestaurant" aria-controls="navbarRestaurant" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
-               <a class="navbar-brand" href="#">
-               <img class='logo logo-light' src="images/resto/benjamin.png" alt="">
+               <a class="navbar-brand" href="/pocket.html">
+               <img class='logo logo-light' src="images/resto/logo.png" alt="">
                </a>
                <div  id="navbarRestaurant" class="navbar-collapse collapse">
                   <ul class="navbar-nav  ml-auto">
-                     <li class="nav-item"><a data-scroll class="nav-link active" href="/pocket.html"> Home</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href="/qrunidade.html"> QR Code</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href="#menu"> Nossos Cardápios</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> Bencréditos</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link active" href="/pocket.html"> <i class="fa fa-home"></i>  Home</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="/qrunidade.html">  <i class="fa fa-qrcode"></i> QR Code</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="#menu">  <i class="fa fa-coffee"></i> Nossos Cardápios</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> <i class="fa fa-dollar"></i> Bencréditos</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> <i class="fa fa-user" ></i> Meu perfil</a></li>
+                     <li class="nav-item"  ng-show="cart.email_cliente && online"><a href="/perfil" ng-show="cart.email_cliente && online" class="nav-link">
+                        <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && online"> Meu perfil
+                        </a>
+                     </li>
+
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
                       
                   </ul>
@@ -589,7 +595,7 @@
                <div class="navbar-right-elements">
                   <ul class="list-inline">
                      <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
-                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="fa fa-user"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
+                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
                   </ul>
                </div>
             </div>
@@ -690,7 +696,7 @@
          <div class="container pt90 pb60">
             <div class="row align-items-center">
                <div class="col-lg-6 mb30">
-                  <h3 class=" h1 font300 mb30">Escanei o QR Code da mesa</h3>
+                  <h3 class=" h1 font300 mb30">Escaneie o QR Code da mesa</h3>
                   <p>
                      Para identificar qual é sua comanda e sua mesa é necessário escanear o QR Code que esta na mesa em que esta sentado.
                   </p>
@@ -752,22 +758,7 @@
          <div id="markermap" style="width: 100%;height: 350px;"></div>
       </div>
       <footer class='footer pt50 pb20'>
-         <div class='container'>
-            <div class='row'>
-               <div class='col-lg-4 mb30'>
-                  <span class='clearfix'>
-                  <a href="https://www.facebook.com/BenjaminAPadaria/" class="social-icon-sm si-dark si-dark-round si-facebook">
-                  <i class="fa fa-facebook"></i>
-                  <i class="fa fa-facebook"></i>
-                  </a>
-                  <a href="https://www.instagram.com/benjaminapadaria/" class="social-icon-sm si-dark si-dark-round si-instagram">
-                  <i class="fa fa-instagram"></i>
-                  <i class="fa fa-instagram"></i>
-                  </a> 
-                  </span>
-               </div>
-            </div>
-         </div>
+         
       </footer>
 
             <div class="modal fade bd-example-modal-sm" id="modal-transferir" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
