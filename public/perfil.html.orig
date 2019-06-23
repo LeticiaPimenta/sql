@@ -21,7 +21,7 @@
                                  </div>
                                  <div class="col-lg-6 mb30">
                                      <div id="qrcode-profile" class="text-center"><img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={{cart.qrcode_profile}}&choe=UTF-8" title="Meu Qr" /></div>
-                                     <p><a href="#">Copiar url de indicação</a> : {{cart.qrcode_profile}}</p>
+                                     <p>url : {{cart.qrcode_profile}}</p>
                                  </div>
                              </div>
                               <br>
@@ -58,7 +58,25 @@
                            </div>
                            <div role="tabpanel" class="tab-pane fade" id="t7">
                               <p class="name-cred">Você tem <span class="text-warning-cred">R$ {{cart.logged_user.wallet}}</span> para transferir para seus amigos. <a class="name-cred" ng-click="cart.atualizar_dados()"> Atualizar</a></p> 
-                              <h4 class="text-warning-cred"> Comprar: <small>R$</small><input type="total_vouchers" ng-model="cart.total_vouchers" name="" ng-change="cart.change_vouchers()"></h4>
+                              <br>
+                              <div class="row align-items-center">
+                                 <div class="col-md-6 mb30 text-center">
+                                    <img src="images/resto/cred/cred1.png" alt="" class="img-cred">
+                                    <button class="btn btn-cred" type="button" ng-click="cart.add_voucher(10)">R$ 10,00 </button>
+                                 </div>
+                                 <div class="col-md-6 mb30 text-center">
+                                    <img src="images/resto/cred/cred2.png" alt="" class="img-cred">
+                                    <button class="btn btn-cred" type="button" ng-click="cart.add_voucher(20)">R$ 20,00 </button>
+                                 </div>
+                                 <div class="col-md-6 mb30 text-center">
+                                    <img src="images/resto/cred/cred3.png" alt="" class="img-cred">
+                                    <button class="btn btn-cred" type="button" ng-click="cart.add_voucher(30)">R$ 30,00 </button>
+                                 </div>
+                                 <div class="col-md-6 mb30 text-center d-none d-xl-block">
+                                    <img src="images/resto/cred/cred5.png" alt="" class="img-cred">
+                                    <button class="btn btn-cred" type="button" ng-click="cart.add_voucher(50)">R$ 50,00 </button>
+                                 </div>
+                                   <h4 class="text-warning-cred"> Comprar: <small>R$</small><input type="total_vouchers" ng-model="cart.total_vouchers" name="" ng-change="cart.change_vouchers()"></h4>
                                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                         <!--Tipo do botão-->
                         <input type="hidden" name="cmd" value="_xclick" />
@@ -86,24 +104,6 @@
                         <!--Botão para submissão do formulário-->
                         <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0"/>
                      </form>
-                              <br>
-                              <div class="row align-items-center">
-                                 <div class="col-md-6 mb30 text-center">
-                                    <img src="images/resto/cred/cred1.png" alt="" class="img-cred">
-                                    <button class="btn btn-cred" type="button" ng-click="cart.add_voucher(10)"><i class="fa fa-plus"></i> Adicionar</button>
-                                 </div>
-                                 <div class="col-md-6 mb30 text-center">
-                                    <img src="images/resto/cred/cred2.png" alt="" class="img-cred">
-                                    <button class="btn btn-cred" type="button" ng-click="cart.add_voucher(20)"><i class="fa fa-plus"></i> Adicionar</button>
-                                 </div>
-                                 <div class="col-md-6 mb30 text-center">
-                                    <img src="images/resto/cred/cred3.png" alt="" class="img-cred">
-                                    <button class="btn btn-cred" type="button" ng-click="cart.add_voucher(30)"><i class="fa fa-plus"></i> Adicionar</button>
-                                 </div>
-                                 <div class="col-md-6 mb30 text-center d-none d-xl-block">
-                                    <img src="images/resto/cred/cred5.png" alt="" class="img-cred">
-                                    <button class="btn btn-cred" type="button" ng-click="cart.add_voucher(50)"><i class="fa fa-plus"></i> Adicionar</button>
-                                 </div>
                              </div>
 
                            </div>
@@ -112,9 +112,11 @@
                               <h5>Compras :</h5>
                            	<ul class="lead" style="list-style: none;">
                            		<li ng-repeat="compra in cart.itens_vault track by $index" ng-show="compra.products">
-
+<<<<<<< HEAD
+                           			{{compra.hora| date:'dd/MM/yyyy - h:mma'}}
+=======
                            		Compra	{{compra.hora|date:'dd/MM/yyyy - h:mm'}}
-
+>>>>>>> 21570d9d0f0ae776a792e149a60fc2a361e9cd38
                            		<div ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME"><input type="checkbox" ng-model="produto.done">&nbsp;{{produto.PRESENTATION_NAME}}</div><br>
                            		</li>
                            	</ul>

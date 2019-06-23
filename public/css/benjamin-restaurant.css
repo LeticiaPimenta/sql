@@ -121,7 +121,8 @@ Responsive style (always bottom in main style file)
       -webkit-border-radius: 0px;
       border: 0px; }
   .navbar-brand img {
-    margin-top: -5px; }
+    margin-top: -5px; 
+  }
   .navbar-light .navbar-nav .nav-link {
     color: #ff9800; }
     .navbar-light .navbar-nav .nav-link.btn-primary {
