@@ -571,16 +571,16 @@
                   <h5 class="text-white-gray">Descontar Bencréditos:</h5>
                    Seus bencréditos : {{cart.logged_user.wallet}}
                     <div class="row">
-                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(13) style="margin: 10px;"><i class="fa fa-btc"></i>1</a>
-                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(14) style="margin: 10px;"><i class="fa fa-btc"></i>10</a>
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(13) style="margin: auto;"><i class="fa fa-btc"></i>1</a>
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(14) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(14) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(14) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
                     </div>
-                  <hr>
-                  <div class="center-text">
-                    <h4 class="text-white-gray">Fechar compra:</h4>
-                  </div>
                   <li>
                      <div class="center-text">
-                        <p class="text-white-gray" id="valor_total_carrinho"> Total : {{cart.total |currency:"R$" }}</p>
+                    <h5 class="text-white-gray">Fechar compra:</h5>
+
+                        <h3 class="text-white-gray" id="valor_total_carrinho"> Total : {{cart.total |currency:"R$" }}</h3>
                      </div>
                      
                      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
