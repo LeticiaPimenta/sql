@@ -289,6 +289,8 @@
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
               cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
+              cart.total_descontos = 0;
+              cart.creditos_disponiveis = cart.logged_user.wallet;
               
               
               function getQueryParams(qs) {
@@ -346,7 +348,6 @@
               
                     setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
                     setLocalData("BENJAMIN_USERCART_CI",cartCI);
-                 toastr.success('Seu Produto Esta no Seu Carrinho!', 'Produto Adicionado!');
          
               }
 
@@ -372,14 +373,34 @@
               setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
               };
               
-              cart.adicionar = function(id) {
+              cart.add_origin = function(id){
                 addItemInCart(id);
                 cart.total = carrinho_local();
                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
+              }
+
+              cart.adicionar = function(id) {
+                cart.add_origin(id);
+                toastr.success('Seu Produto Esta no Seu Carrinho!', 'Produto Adicionado!');
+              };
+
+              cart.adicionar_desconto = function(id,valor) {
+                cart.total_descontos = cart.total_descontos+valor;
+                cart.creditos_disponiveis = cart.creditos_disponiveis-valor;
+                cart.add_origin(id);
+                toastr.warning('Você Descontou do Seu Carrinho!', 'Desconto Adicionado!');
               };
               
 
               cart.removeItem = function(id){
+                cart_removeCartRow_v2(id);
+                cart.total = carrinho_local();
+                cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+              }
+              
+              cart.remove_desconto = function(id,valor){
+                cart.total_descontos = cart.total_descontos+valor;
+                cart.creditos_disponiveis = cart.creditos_disponiveis-valor;
                 cart_removeCartRow_v2(id);
                 cart.total = carrinho_local();
                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
@@ -560,7 +581,8 @@
                      <img src="img/foto.jpg" class="img-fluid" alt="" width="60">
                      </a> -->
                      <div class="oHidden">
-                        <span class="close" ng-click="cart.removeItem($index)"><i class="ti-close"></i></span>
+                        <span class="close" ng-click="cart.removeItem($index)" ng-show='produto.VALUE > 0'><i class="ti-close"></i></span>
+                        <span class="close" ng-click="cart.remove_desconto($index,produto.VALUE)" ng-show='produto.VALUE < 0'><i class="ti-close"></i></span>
                         <h4><a href="#">{{produto.PRESENTATION_NAME}}</a></h4>
                         <p class="text-white-gray" ng-show='produto.VALUE > 0'><strong>{{produto.VALUE}}</strong></p>
                         <p class="text-white-gray" ng-show='produto.VALUE < 0'><strong>Desconto de {{produto.VALUE*-1}}</strong></p>
@@ -570,12 +592,13 @@
                   <span ng-show="cart.email_cliente && online">
                   <hr>
                   <h5 class="text-white-gray">Descontar Bencréditos:</h5>
-                   Seus bencréditos : {{cart.logged_user.wallet}}
+                   Seus bencréditos : {{cart.creditos_disponiveis}}
+
                     <div class="row">
-                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(13) style="margin: auto;"><i class="fa fa-btc"></i>1</a>
-                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(14) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
-                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(14) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
-                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(14) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar_desconto(13,1) style="margin: auto;"><i class="fa fa-btc"></i>1</a>
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar_desconto(14,10) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar_desconto(14,10) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar_desconto(14,10) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
                     </div>
                     </span>
                   <li>
