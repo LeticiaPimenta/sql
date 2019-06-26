@@ -415,10 +415,11 @@
                     
                      console.log(resposta);
                      if(resposta.response == 1){
-                      //$("#form-paypal").submit();
+                      $("#form-paypal").submit();
 
                      }else{
-                      alert(resposta.msg);
+                      console.log(resposta);
+                      toastr.error('Nao conseguimos descontar seus creditos!', resposta.msg);
                      }
                      
                  }, function (response) {
