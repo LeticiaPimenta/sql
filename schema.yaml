@@ -66,7 +66,21 @@ Shop:
     total:
       schema: double nullable
       tags: fillable
-  add: timestamps   
+  add: timestamps
+ShopManager:
+  fields:
+    shop_id:
+      schema: integer
+      rules: required
+      tags: fillable
+    manager_id:
+      schema: integer
+      rules: required
+      tags: fillable
+    role:
+      schema: integer
+      tags: fillable  
+  add: timestamps    
 Payment:
   fields:
     name:
@@ -138,3 +152,20 @@ Transfer:
       schema: integer nullable
       tags: fillable       
   add: timestamps
+Product:
+  fields:
+    NAME:
+      schema: string
+      rules: required
+      tags: fillable
+    CODE:
+      schema: string
+      rules: required
+      tags: fillable  
+    PRESENTATION_NAME:
+      schema: text nullable
+      tags: fillable
+    VALUE:
+      schema: double nullable
+      tags: fillable
+  add: timestamps  

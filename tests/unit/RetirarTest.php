@@ -501,7 +501,7 @@ public function testRetiraProduto()
         curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
         $response = curl_exec( $curl );
         curl_close( $curl );*/
-	die();
+	//die();
 
 	//die();
 

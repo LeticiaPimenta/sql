@@ -96,6 +96,7 @@
 				document.write('<script src="/smart_admin/js/libs/jquery-ui.min.js"><\/script>');
 			}
 		</script>
+		<script src="/smart_admin/js/plugin/dropzone/dropzone.min.js"></script>
 		<!-- #HEADER -->
 		<header id="header">
 			<div id="logo-group">
@@ -556,6 +557,21 @@
 	          moveOnSelect: false,
 	          nonSelectedFilter: 'ion ([7-9]|[1][0-2])'
 	        });
+
+	        Dropzone.options.productDrop = {
+			  paramName: "file", // The name that will be used to transfer the file
+			  url:'admin/upload_file',
+			  maxFilesize: 2, // MB
+			  accept: function(file, done) {
+			    if (file.name == "justinbieber.jpg") {
+			      done("Naha, you don't.");
+			    }
+			    else { done(); }
+			  },
+			  complete: function(file, progress, bytesSent) {
+			    alert("foi");
+			  }
+			};
 			
 				initializeDuallistbox;
 			})

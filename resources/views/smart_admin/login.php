@@ -216,7 +216,6 @@
 					},
 					submitHandler: function(form,e) {
 			            e.preventDefault();
-			            alert("teste");
 			            console.log('Form submitted');
 			            $.ajax({
 			                type: 'POST',

@@ -34,9 +34,9 @@
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 						<h1 class="page-title txt-color-blueDark">
 							<i class="fa fa-table fa-fw "></i> 
-								Table 
+								Listagem 
 							<span>> 
-								Data Tables
+								<?php echo $entidade; ?>
 							</span>
 						</h1>
 					</div>
@@ -91,7 +91,7 @@
 								-->
 								<header>
 									<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-									<h2>Hide / Show Columns </h2>
+									<h2>Listagem de <?php echo $entidade ?> </h2>
 				
 								</header>
 				
@@ -112,23 +112,22 @@
 											<thead>
 												<tr>
 													<th data-hide="phone">ID</th>
-													<th>Codigo</th>
 													<th data-class="expand">Name</th>
-												
-													<th data-hide="phone">Imagem</th>
+													<th>Criado</th>
 													<th>Ações</th>
 												</tr>
 											</thead>
 											<tbody>
 
-												<tr ng-repeat="usuario in todoList.listagem">
-													<td><a href="/admin/<?php echo $entidade;?>/{{usuario.id}}">{{usuario.id}}</a></td>
-													<td>{{usuario.name}}</td>
-									
-													<td>{{usuario.pni_valor}}</td>
-													<td>{{usuario.pro_imagem}}</td>
-												
-													<td><input type="button" name="actions"></td>
+												<tr ng-repeat="item in todoList.listagem">
+													<td>
+														<a href="/admin/<?php echo $entidade;?>/{{item.id}}">{{item.id}}</a>
+													</td>
+													<td>{{item.name}}</td>
+													<td>{{item.created_at}}</td>
+													<td>
+														<input type="button" name="actions" value="editar" class="btn">
+													</td>
 												</tr>
 												
 											
