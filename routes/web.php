@@ -154,6 +154,7 @@ $router->get('/admin/home', 'AdminController@home');
 $router->post('/admin/login', 'AdminController@login');
 $router->get('/admin/preset', 'AdminController@preset');
 $router->get('/admin/list/produtos', 'AdminController@list_produtos');
+$router->get('/admin/produtos', 'AdminController@list_produtos');
 $router->get('/admin/produto/{id}', 'AdminController@view_produto');
 $router->get('/admin/list/usuarios', 'AdminController@list_usuarios');
 $router->get('/admin/list/lojas', 'AdminController@list_lojas');

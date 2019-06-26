@@ -42,11 +42,11 @@ class AdminController extends Controller {
     public function list_produtos(){
         //$selected_action = $this->actions[$action];
 
-        $produtos = \DB::table('produto')->take(500)->get()->toJson();
+       // $produtos = \DB::table('produto')->take(500)->get()->toJson();
 
         $usuario_logado = $_SESSION['usuario_logado'];
        
-        return view('smart_admin/produtos', ['partial'=>'teste' , 'usuarios'=>$produtos , 'usuario'=>$usuario_logado ]);
+        return view('smart_admin/index', ['partial'=>'produtos' , 'usuarios'=>'[]' , 'usuario'=>$usuario_logado , 'js'=>'empty' ]);
     }
 
       public function list_lojas(){
