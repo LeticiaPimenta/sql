@@ -488,19 +488,19 @@
                </div>               
                     <!--  <a href="" data-toggle="modal" data-target="#myModal" ng-show="cart.email_cliente && !online">
                         <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && !online">
-                      </a> -->
+                      </a> 
 
                      <img class="img-profile float-left" src="images/resto/placeholder.jpg" ng-show="cart.email_cliente && online">
                      <a href="/perfil" ng-show="cart.email_cliente && online" class="center-title-img">
                       Meu Perfil
-                     </a>
+                     </a>-->
                      
                <div class="center-title" ng-show="!cart.email_cliente">
                   <p>Você precisa logar para pagar seu carrinho. <a class="popup-content menu-btn" href="#popup-login" >Logar.</a></p>
                </div>
-            <!--   <div class="center-title" ng-show="cart.email_cliente">
-                  <p><a data-scroll class="popup-content" href="#popup-login"><i class="ti-settings"></i> Alterar o email.</a></p>
-               </div>-->
+               <div class="center-title" ng-show="cart.email_cliente">
+                  <p><i class="ti-shopping-cart"></i> Carrinho</p>
+               </div>
                
                <hr>
                <ul class="list-unstyled">
@@ -546,7 +546,7 @@
                         <input type="hidden" name="item_number_2" value="Sonho" />
                         <!--Botão para submissão do formulário-->
                         <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente"/>
-                        <!-- <input type="submit" value="Pagar Paypal" class="btn btn-primary"  border="0"/> 
+                         <input type="submit" value="Pagar Paypal" class="btn btn-primary"  border="0"/> <!--
                         <button class="btn btn-primary popup-content menu-btn" href="#popup-bencreditos">Bencréditos</button>-->
                      </form>
                   </li>
@@ -582,11 +582,11 @@
                      <li class="nav-item"><a data-scroll class="nav-link" href="/qrunidade.html">  <i class="fa fa-qrcode"></i> QR Code</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href="#menu">  <i class="fa fa-coffee"></i> Nossos Cardápios</a></li>
                      <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> <i class="fa fa-dollar"></i> Bencréditos</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href="#chefs"> <i class="fa fa-user" ></i> Meu perfil</a></li>
-                     <li class="nav-item"  ng-show="cart.email_cliente && online"><a href="/perfil" ng-show="cart.email_cliente && online" class="nav-link">
+                     <li class="nav-item" ng-show="cart.email_cliente && online"><a data-scroll class="nav-link" href="/perfil" ng-show="cart.email_cliente && online"> <i class="fa fa-user" ></i>Meu perfil</a></li>
+                    <!-- <li class="nav-item"  ng-show="cart.email_cliente && online"><a href="/perfil" ng-show="cart.email_cliente && online" class="nav-link">
                         <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && online"> Meu perfil
                         </a>
-                     </li>
+                     </li> -->
 
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
                       
@@ -594,7 +594,7 @@
                </div>
                <div class="navbar-right-elements">
                   <ul class="list-inline">
-                     <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
+                    <!-- <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li> -->
                      <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
                   </ul>
                </div>
