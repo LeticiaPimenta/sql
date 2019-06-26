@@ -290,7 +290,8 @@
               cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
               cart.total_descontos = 0;
-              cart.creditos_disponiveis = cart.logged_user.wallet;
+              //if(cart.logged_user.wallet)
+              cart.creditos_disponiveis = cart.logged_user?cart.logged_user.wallet:0;
               
               
               function getQueryParams(qs) {
