@@ -633,17 +633,24 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                         <img class="img-profile" src="images/resto/profile.jpg" ng-show="cart.email_cliente && !online">
                       </a> -->
 
-                     <img class="img-profile float-left" src="images/resto/placeholder.jpg" ng-show="cart.email_cliente && online">
+                <!--     <img class="img-profile float-left" src="images/resto/placeholder.jpg" ng-show="cart.email_cliente && online">
                      <a href="/perfil" ng-show="cart.email_cliente && online" class="center-title-img">
                       Meu Perfil
                      </a>
                      
                <div class="center-title" ng-show="!cart.email_cliente">
                   <p>Você precisa logar para pagar seu carrinho. <a class="popup-content menu-btn" href="#popup-login" >Logar.</a></p>
-               </div>
+               </div> -->
             <!--   <div class="center-title" ng-show="cart.email_cliente">
                   <p><a data-scroll class="popup-content" href="#popup-login"><i class="ti-settings"></i> Alterar o email.</a></p>
                </div>-->
+
+               <div class="center-title" ng-show="!cart.email_cliente">
+                  <p>Você precisa logar para pagar seu carrinho. <a class="popup-content menu-btn" href="#popup-login" >Logar.</a></p>
+               </div>
+               <div class="center-title" ng-show="cart.email_cliente">
+                  <p><i class="ti-shopping-cart"></i> Carrinho</p>
+               </div>
                
                <hr>
                <ul class="list-unstyled">
@@ -719,9 +726,11 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                </a>
                <div  id="navbarRestaurant" class="navbar-collapse collapse">
                   <ul class="navbar-nav  ml-auto">
-                     <li class="nav-item"><a data-scroll class="nav-link active" href="/pocket.html"> Home</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href="/qrunidade.html"> QR Code</a></li>
-                     <li class="nav-item"><a data-scroll class="nav-link" href="/pocket.html#menu"> Nossos Cardápios</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link active" href="/pocket.html"> <i class="fa fa-home"></i>  Home</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="/qrunidade.html">  <i class="fa fa-qrcode"></i> QR Code</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="/pocket.html#menu">  <i class="fa fa-coffee"></i> Nossos Cardápios</a></li>
+                     <li class="nav-item"><a data-scroll class="nav-link" href="/pocket.html#chefs"> <i class="fa fa-dollar"></i> Bencréditos</a></li>
+                     <li class="nav-item" ng-show="cart.email_cliente && online"><a data-scroll class="nav-link" href="/perfil" ng-show="cart.email_cliente && online"> <i class="fa fa-user" ></i>Meu perfil</a></li>
                      
                      <li class="nav-item"  ng-show="!cart.email_cliente"><a data-scroll class="nav-link btn si-orange btn-primary popup-content" href="#popup-login"> Logar</a></li>
                       
@@ -729,8 +738,8 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                </div>
                <div class="navbar-right-elements">
                   <ul class="list-inline">
-                     <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li>
-                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="fa fa-user"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
+                    <!-- <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a></li> -->
+                     <li class="list-inline-item"><a href="javascript:void(0)" class=" menu-btn"><i class="ti-shopping-cart"></i> <span class="badge badge-default btn-primary">{{cart.carrinho.length}}</span></a></li>
                   </ul>
                </div>
             </div>
