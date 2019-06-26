@@ -289,7 +289,7 @@
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
               cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
-              cart.total_descontos = 0;
+              cart.total_descontos = getLocalData('total_descontos')?parseFloat(getLocalData('total_descontos')):0;
               //if(cart.logged_user.wallet)
               cart.creditos_disponiveis = cart.logged_user?cart.logged_user.wallet:0;
               
@@ -386,8 +386,9 @@
               };
 
               cart.adicionar_desconto = function(id,valor) {
-                cart.total_descontos = cart.total_descontos+valor;
+                cart.total_descontos = parseFloat(cart.total_descontos)+parseFloat(valor);
                 cart.creditos_disponiveis = cart.creditos_disponiveis-valor;
+                setLocalData('total_descontos',cart.total_descontos);
                 cart.add_origin(id);
                 toastr.warning('Você Descontou do Seu Carrinho!', 'Desconto Adicionado!');
               };
@@ -400,8 +401,9 @@
               }
               
               cart.remove_desconto = function(id,valor){
-                cart.total_descontos = cart.total_descontos+valor;
+                cart.total_descontos = parseFloat(cart.total_descontos)+parseFloat(valor);
                 cart.creditos_disponiveis = cart.creditos_disponiveis-valor;
+                setLocalData('total_descontos',cart.total_descontos);
                 cart_removeCartRow_v2(id);
                 cart.total = carrinho_local();
                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
@@ -613,7 +615,7 @@
                   <!--/cart item-->
                   <span ng-show="cart.email_cliente && online">
                   <hr>
-                  <h5 class="text-white-gray">Descontar Bencréditos:</h5>
+                  <h5 class="text-white-gray">Descontar Bencréditos:  {{cart.total_descontos}}</h5>
                    Seus bencréditos : {{cart.creditos_disponiveis}}
                    <a href="/perfil">
                    <h5 class="text-warning-cred text-center" ng-show="cart.creditos_disponiveis <= 0">Compre Bencréditos aqui.</h5></a>
