@@ -568,13 +568,21 @@
                   </li>
                   <!--/cart item-->
                   <hr>
+                  <h5 class="text-white-gray">Descontar Bencréditos:</h5>
+                   Seus bencréditos : {{cart.logged_user.wallet}}
+                    <div class="row">
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(13) style="margin: 10px;"><i class="fa fa-btc"></i>1</a>
+                      <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar(14) style="margin: 10px;"><i class="fa fa-btc"></i>10</a>
+                    </div>
+                  <hr>
+                  <div class="center-text">
+                    <h4 class="text-white-gray">Fechar compra:</h4>
+                  </div>
                   <li>
                      <div class="center-text">
                         <p class="text-white-gray" id="valor_total_carrinho"> Total : {{cart.total |currency:"R$" }}</p>
                      </div>
-                     <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(13)><a class="" href=""><i class="ti-plus"></i>1</a></button>
-                     <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(14)><a class="" href=""><i class="ti-plus"></i>10</a></button>
-                     Limite : {{cart.logged_user.wallet}}
+                     
                      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                         <!--Tipo do botão-->
                         <input type="hidden" name="cmd" value="_xclick" />
@@ -600,12 +608,12 @@
                         <input type="hidden" name="item_number_1" value="bolinho" />
                         <input type="hidden" name="item_number_2" value="Sonho" />
                         <!--Botão para submissão do formulário-->
-                        <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente"/>
+                        <!--<input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente"/> -->
                          <input type="submit" value="Pagar Paypal" class="btn btn-primary"  border="0"/> <!--
                         <button class="btn btn-primary popup-content menu-btn" href="#popup-bencreditos">Bencréditos</button>-->
                      </form>
                   </li>
-               </ul>
+               </ul>               
                <div class="float-right">
                  <a href="#popup-logoff" class="text-white popup-content menu-btn">
                    Sair  <i class="ti-share-alt"></i>
