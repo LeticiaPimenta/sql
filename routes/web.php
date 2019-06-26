@@ -151,10 +151,12 @@ $router->get('/admin/home', function () use ($router) {
 });*/
 
 $router->get('/admin/home', 'AdminController@home');
+$router->post('/admin/file_upload', 'AdminController@file_upload');
 $router->post('/admin/login', 'AdminController@login');
 $router->get('/admin/preset', 'AdminController@preset');
 $router->get('/admin/list/produtos', 'AdminController@list_produtos');
 $router->get('/admin/produtos', 'AdminController@list_produtos');
+$router->get('/admin/upload/produtos', 'AdminController@upload_produtos');
 $router->get('/admin/produto/{id}', 'AdminController@view_produto');
 $router->get('/admin/list/usuarios', 'AdminController@list_usuarios');
 $router->get('/admin/list/lojas', 'AdminController@list_lojas');

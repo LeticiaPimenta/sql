@@ -24,6 +24,16 @@ class AdminController extends Controller {
     	return view('smart_admin/index', ['partial'=>'home', 'usuario'=>$usuario_logado, 'js'=>'home']);
     }
 
+     public function file_upload(){
+        $catalogo = new \App\Classes\Catalog;
+        if($catalogo->carrega_catalogo($_FILES['file']['tmp_name'])){
+            $response = array('status'=>1);
+        }else{
+            $response = array('status'=>0);
+        }
+        echo json_encode($response);
+    }
+
     public function listagem($entidade){
         $usuario_logado = $_SESSION['usuario_logado'];
         $app_entidade = '\App\\'.ucfirst($entidade);
@@ -44,9 +54,19 @@ class AdminController extends Controller {
 
        // $produtos = \DB::table('produto')->take(500)->get()->toJson();
 
+           $usuario_logado = $_SESSION['usuario_logado'];
+       
+        return view('smart_admin/index', ['partial'=>'produtos' , 'produtos'=>\App\Product::all()->toJson() , 'usuario'=>$usuario_logado , 'js'=>'produtos' ]);
+    }
+
+    public function upload_produtos(){
+        //$selected_action = $this->actions[$action];
+
+       // $produtos = \DB::table('produto')->take(500)->get()->toJson();
+
         $usuario_logado = $_SESSION['usuario_logado'];
        
-        return view('smart_admin/index', ['partial'=>'produtos' , 'usuarios'=>'[]' , 'usuario'=>$usuario_logado , 'js'=>'empty' ]);
+        return view('smart_admin/index', ['partial'=>'upload' , 'usuarios'=>'[]' , 'usuario'=>$usuario_logado , 'js'=>'empty' ]);
     }
 
       public function list_lojas(){
@@ -56,7 +76,7 @@ class AdminController extends Controller {
 
         $usuario_logado = $_SESSION['usuario_logado'];
        
-        return view('smart_admin/index', ['partial'=>'listagem' ,'entidade'=>'Loja', 'usuarios'=>\App\Shop::all()->toJson()  , 'usuario'=>$usuario_logado ]);
+        return view('smart_admin/index', ['partial'=>'listagem' ,'entidade'=>'Loja', 'listagem'=>\App\Shop::all()->toJson() ,'js'=>'listagem'  , 'usuario'=>$usuario_logado ]);
     }
 
 
@@ -106,14 +126,20 @@ class AdminController extends Controller {
 
         $usuario_logado = $_SESSION['usuario_logado'];
 
-        $lojas = \App\ShopManager::where('manager_id',$usuario_logado['id'])->get();
+      /*  $lojas = \App\ShopManager::where('manager_id',$usuario_logado['id'])->get();
 
         $ids_lojas = array();
         foreach ($lojas as $loja) {
             $ids_lojas[]=\App\Shop::find($loja->shop_id);
-        }
+        }*/
 
-        return view('smart_admin/index', ['partial'=>'listagem' ,'entidade'=>'Loja', 'usuarios'=>json_encode($ids_lojas)  , 'usuario'=>$usuario_logado ]);
+        return view('smart_admin/index', 
+            ['partial'=>'listagem',
+            'js'=>'empty',
+            'entidade'=>'Loja', 
+            'usuarios'=>'usuario',
+            'usuario'=>$usuario_logado ]
+        );
     }
 
      public function ver_loja($id){

@@ -45,7 +45,7 @@
     </span>
   <sa-route-breadcrumbs>
         <ol class="breadcrumb">
-           <!----><li class="ng-star-inserted">Home</li><li class="ng-star-inserted">Forms</li><li class="ng-star-inserted">Plugins</li>
+           <!----><li class="ng-star-inserted">Home</li><li class="ng-star-inserted">Produtos</li><li class="ng-star-inserted">Catalogo</li>
         </ol>
   </sa-route-breadcrumbs>
 </div>
@@ -110,32 +110,17 @@
 
 
      <select multiple="multiple" size="10" name="duallistbox_demo2" class="demo2">
-        <option value="option1">Produto 1</option>
-        <option value="option2">Produto 2</option>
-        <option value="option3" selected="selected">Produto 3</option>
-        <option value="option4">Produto 4</option>
-        <option value="option5">Produto 5</option>
-        <option value="option6" selected="selected">Produto 6</option>
-        <option value="option7">Produto 7</option>
-        <option value="option8">Produto 8</option>
-        <option value="option9">Produto 9</option>
-        <option value="option0">Produto 10</option>
-        <option value="option0">Produto 11</option>
-        <option value="option0">Produto 12</option>
-        <option value="option0">Produto 13</option>
-        <option value="option0">Produto 14</option>
-        <option value="option0">Produto 15</option>
-        <option value="option0">Produto 16</option>
-        <option value="option0">Produto 17</option>
-        <option value="option0">Produto 18</option>
-        <option value="option0">Produto 19</option>
-        <option value="option0">Produto 20</option>
+        <option value="option{{produto.CODE}}" ng-repeat="produto in todoList.produtos">{{produto.NAME}}</option>
       </select>
       <script>
         var demo2 = $('.demo2').bootstrapDualListbox({
+          filterTextClear: 'Filtrar',
+          filterPlaceHolder :'Filtro',
+          infoText:"Mostrando {0}",
           nonSelectedListLabel: 'Não Selecionados',
           selectedListLabel: 'Selecionados',
           preserveSelectionOnMove: 'movido',
+          infoTextFiltered :'<span class="label label-warning">Filtrando</span>  {0} a {1}',
           moveOnSelect: false,
           nonSelectedFilter: 'uto ([7-9]|[1][0-2])'
         });

@@ -28,30 +28,35 @@
           "CODE":0,
           "VALUE":10.00,
           "NAME" : "CROISS",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Croissant"   
           };
           produtos[1] = {
           "CODE":1,
           "VALUE":10.00,
           "NAME" : "ACAI COM BANAN",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Açai com bananas"   
           };
           produtos[2] = {
           "CODE":2,
           "VALUE":14.00,
           "NAME" : "SANDUI COM QUEI",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Sanduiche natural com queijo"   
           };
           produtos[3] = {
           "CODE":3,
           "VALUE":17.00,
           "NAME" : "BEN ALMOÇO",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Ben Almoço do dia"   
           };
           produtos[4] = {
           "CODE":4,
           "VALUE":6.49,
           "NAME" : "PASTEL DE NADA",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Pastelzinho de Belem"   
           };
           
@@ -59,12 +64,14 @@
           "CODE":5,
           "VALUE":14.90,
           "NAME" : "BIG BEN",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Big Ben"   
           };
           produtos[6] = {
           "CODE":6,
           "VALUE":2.99,
           "NAME" : "MINI CROISS CHOC",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Mini Croissant Chocolate"   
           };
           
@@ -72,6 +79,7 @@
           "CODE":7,
           "VALUE":11.00,
           "NAME" : "ACAI COM MEL",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Açai com mel"   
           };
           
@@ -79,6 +87,7 @@
           "CODE":8,
           "VALUE":14.00,
           "NAME" : "SANDUI COM QUEI e PRES",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Sanduiche natural com queijo e presunto"   
           };
          
@@ -86,6 +95,7 @@
           "CODE":9,
           "VALUE":14.90,
           "NAME" : "SANDUI COM QUEI e PRES e TOM",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Sanduiche natural com queijo , presunto e tomate"   
           };
           
@@ -93,7 +103,40 @@
           "CODE":10,
           "VALUE":14.90,
           "NAME" : "SANDUI COM QUEI e PRES e TOM e ALF",
+          "QTD" : 1,
           "PRESENTATION_NAME" : "Sanduiche natural com queijo , presunto , tomate e tomate"   
+          };
+
+          produtos[11] = {
+          "CODE":111,
+          "VALUE":30.0,
+          "NAME" : "COMB 10 PAO Q",
+          "QTD" : 10,
+          "PRESENTATION_NAME" : "Combo 10 paẽs de queijo $30,00"   
+          };
+
+          produtos[12] = {
+          "CODE":112,
+          "VALUE":60.00,
+          "NAME" : "COMB 30 CAFE",
+          "QTD" : 30,
+          "PRESENTATION_NAME" : "Combo 30 café $60,00"   
+          };
+
+          produtos[13] = {
+            "CODE":1020,
+            "VALUE":-1,
+            "NAME" : "1 BENCREDITOS",
+            "QTD" : 1,
+            "PRESENTATION_NAME" : "1 Bencrédito"   
+          };
+
+          produtos[14] = {
+            "CODE":1021,
+            "VALUE":-10,
+            "NAME" : "10 BENCREDITOS",
+            "QTD" : 1,
+            "PRESENTATION_NAME" : "10 Bencréditos"   
           };
           
          
@@ -124,10 +167,18 @@
           "PRODUCTS" : [2,8 , 9, 10]
           
           };
+
+          campanhas[3] = {
+          "CODE":3,
+          "NAME" : "Combos",
+          "DESCRIPTION" : "Descontos na quantidade" ,
+          "PRODUCTS" : [11, 12]
+          
+          };
           
           
           var campanhas_lojas = [];
-          campanhas_lojas[0] = [1,2];
+          campanhas_lojas[0] = [0,1,2,3];
           campanhas_lojas[2] = [1];
           campanhas_lojas[3] = [2];
           
@@ -1169,7 +1220,7 @@
                                           <h3 class="align-self-center text-capitalize mb0 h6  font400">{{cart.produtos[produto_code].PRESENTATION_NAME}}</h3>
                                           <div class="align-self-center">
                                              <strong class=" font700">
-                                             <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].VALUE|currency:"R$"}}</strong>
+                                             <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(produto_code)><a class="" href=""><i class="ti-plus"></i></a></button> {{cart.produtos[produto_code].QTD * cart.produtos[produto_code].VALUE}}</strong>
                                           </div>
                                        </div>
                                     </div>
