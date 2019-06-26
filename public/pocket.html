@@ -571,6 +571,9 @@
                      <div class="center-text">
                         <p class="text-white-gray" id="valor_total_carrinho"> Total : {{cart.total |currency:"R$" }}</p>
                      </div>
+                     <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(13)><a class="" href=""><i class="ti-plus"></i>1</a></button>
+                     <button class="btn-icon-sm float-right si-orange si-dark-round si-round" ng-click=cart.adicionar(14)><a class="" href=""><i class="ti-plus"></i>10</a></button>
+                     Limite : {{cart.logged_user.wallet}}
                      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                         <!--Tipo do botão-->
                         <input type="hidden" name="cmd" value="_xclick" />
