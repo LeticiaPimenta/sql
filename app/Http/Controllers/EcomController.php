@@ -39,6 +39,30 @@ class EcomController extends Controller
         return view('benjamin/client/retorno', ['app_name' => 'app de teste' , 'public' => '/adm/']);
     }
 
+    public function confirma(){
+        header('Content-Type: application/json'); 
+
+        $postdata = file_get_contents("php://input");
+        $dados = json_decode($postdata , true);
+
+
+        $usuario = \App\User::where('user_token',$dados['user_token'])->first();
+        //print_r($usuario->wallet);
+        $msg = "";
+        $response = 0;
+
+        if($usuario->wallet >= $dados['total_descontos']){
+            $usuario->wallet = $usuario->wallet - $dados['total_descontos'];
+            $usuario->save();
+            $response = 1;
+            $msg = "descontado";
+        }else{
+            $response = 0;
+            $msg = "nao conseguimos descontar o valor";
+        }
+        echo '{"response":'.$response.', "total":'.$usuario->wallet.' , "descontos":'.$dados['total_descontos'].' , "msg":'.$msg.'}';
+    }
+
     public function renderizar_voucher($idcompra){
         return view('benjamin/client/retorno_voucher', ['app_name' => 'app de teste' , 'public' => '/adm/']);
     }

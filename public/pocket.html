@@ -407,6 +407,26 @@
                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
               }
 
+              cart.validar_creditos = function(){
+                $http.post('/voucher/confirma', {"user_token":cart.hash_email_cliente,
+                  "total_descontos":cart.total_descontos}).then(function (response) {
+                    var resposta = response.data;
+
+                    
+                     console.log(resposta);
+                     if(resposta.response == 1){
+                      //$("#form-paypal").submit();
+
+                     }else{
+                      alert(resposta.msg);
+                     }
+                     
+                 }, function (response) {
+                     console.log(response);
+                     // body...
+                 });
+              }
+
               cart.pega_email_registrado = function(){
                // alert("teste");
                // alert(jQuery("#email_registrado").val());
@@ -609,7 +629,7 @@
                       <h3 class="text-white-gray" id="valor_total_carrinho"> Total : {{cart.total |currency:"R$" }}</h3>
                     </div>
                      
-                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="form-paypal">
                         <!--Tipo do botão-->
                         <input type="hidden" name="cmd" value="_xclick" />
                         <!--Vendedor e URL de retorno, cancelamento e notificação-->
@@ -637,6 +657,7 @@
                         <!--<input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente"/> -->
                          <input type="submit" value="Pagar Paypal" class="btn btn-primary"  border="0"/ ng-show="cart.email_cliente && online"> <!--
                         <button class="btn btn-primary popup-content menu-btn" href="#popup-bencreditos">Bencréditos</button>-->
+                        <input type="button" value="Pagar bencreditos" class="btn btn-primary"  border="0"/ ng-click="cart.validar_creditos()">
                      </form>
                   </li>
                </ul>               
