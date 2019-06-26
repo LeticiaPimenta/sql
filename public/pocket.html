@@ -594,8 +594,9 @@
                   <hr>
                   <h5 class="text-white-gray">Descontar Bencréditos:</h5>
                    Seus bencréditos : {{cart.creditos_disponiveis}}
-
-                    <div class="row">
+                   <a href="/perfil">
+                   <h5 class="text-warning-cred text-center" ng-show="cart.creditos_disponiveis <= 0">Compre Bencréditos aqui.</h5></a>
+                    <div class="row" ng-show="cart.creditos_disponiveis > 0">
                       <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar_desconto(13,1) style="margin: auto;"><i class="fa fa-btc"></i>1</a>
                       <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar_desconto(14,10) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
                       <a class="btn btn-primary btn-smc mb5" ng-click=cart.adicionar_desconto(14,10) style="margin: auto;"><i class="fa fa-btc"></i>10</a>
