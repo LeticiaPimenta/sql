@@ -443,7 +443,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="produto in cart.user_vault" ng-show="produto.PRESENTATION_NAME">
+                    <tr ng-repeat="produto in cart.user_vault track by $index" ng-show="produto.PRESENTATION_NAME && produto.VALUE > 0">
                         <td class="product-name">{{produto.PRESENTATION_NAME}}</td>
                         <td></td>
                         <td class="product-delete"> Selecionar <input type="checkbox" ng-model="produto.done"></td>

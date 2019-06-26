@@ -417,7 +417,13 @@
                     
                      console.log(resposta);
                      if(resposta.response == 1){
-                      $("#form-paypal").submit();
+                      if(cart.total <= 0){
+                        alert("seu carrinho ta pago!");
+                        window.location.replace("/compra/retorno/"+cart.hash_email_cliente);
+                      }else{
+                        $("#form-paypal").submit();
+
+                      }
 
                      }else{
                       console.log(resposta);

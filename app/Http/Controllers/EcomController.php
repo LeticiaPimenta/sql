@@ -51,6 +51,7 @@ class EcomController extends Controller
         $msg = "";
         $response = 0;
 
+
         if($usuario->wallet >= $dados['total_descontos']){
             $usuario->wallet = $usuario->wallet - $dados['total_descontos'];
             $usuario->save();
@@ -60,7 +61,7 @@ class EcomController extends Controller
             $response = 0;
             $msg = "nao conseguimos descontar o valor";
         }
-        echo '{"response":'.$response.', "total":'.$usuario->wallet.' , "descontos":'.$dados['total_descontos'].' , "msg":'.$msg.'}';
+        echo '{"response":'.$response.', "total":'.$usuario->wallet.' , "descontos":'.$dados['total_descontos'].' , "msg":"'.$msg.'"}';
     }
 
     public function renderizar_voucher($idcompra){
