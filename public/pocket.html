@@ -562,7 +562,8 @@
                      <div class="oHidden">
                         <span class="close" ng-click="cart.removeItem($index)"><i class="ti-close"></i></span>
                         <h4><a href="#">{{produto.PRESENTATION_NAME}}</a></h4>
-                        <p class="text-white-gray"><strong>{{produto.VALUE}}</strong></p>
+                        <p class="text-white-gray" ng-show='produto.VALUE > 0'><strong>{{produto.VALUE}}</strong></p>
+                        <p class="text-white-gray" ng-show='produto.VALUE < 0'><strong>Desconto de {{produto.VALUE*-1}}</strong></p>
                      </div>
                   </li>
                   <!--/cart item-->
