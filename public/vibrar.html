@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	
+
+	var canVibrate = "vibrate" in navigator || "mozVibrate" in navigator;
+
+if (canVibrate && !("vibrate" in navigator))
+    navigator.vibrate = navigator.mozVibrate;
+
+	navigator.vibrate([1000]);
+
+	navigator.vibrate([1000]);
+</script>
+</body>
+</html>

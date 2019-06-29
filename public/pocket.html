@@ -370,14 +370,16 @@
               }
               
               cart.change_vouchers = function() {
-              console.log(cart.total_vouchers);
-              setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
+                console.log(cart.total_vouchers);
+                setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
               };
               
               cart.add_origin = function(id){
                 addItemInCart(id);
                 cart.total = carrinho_local();
                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
+
+
               }
 
               cart.adicionar = function(id) {
