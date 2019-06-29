@@ -4,6 +4,7 @@
 	<title></title>
 </head>
 <body>
+	<button class="button">vibrar</button>
 
 <script type="text/javascript">
 	
@@ -13,9 +14,19 @@
 if (canVibrate && !("vibrate" in navigator))
     navigator.vibrate = navigator.mozVibrate;
 
-	navigator.vibrate([1000]);
+	
+
+	var isMobile = (/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent);
+
+$(".button").on(isMobile ? 'touchstart' : 'mousedown', function(e) {
+    navigator.vibrate([1000]);
 
 	navigator.vibrate([1000]);
+});
+
+$(".button").on(isMobile ? 'touchend' : 'mouseup', function(e) {
+    navigator.vibrate(0);
+});
 </script>
 </body>
 </html>
