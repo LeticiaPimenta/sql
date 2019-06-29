@@ -349,6 +349,7 @@
               
                     setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
                     setLocalData("BENJAMIN_USERCART_CI",cartCI);
+                    
          
               }
 
@@ -378,7 +379,7 @@
                 addItemInCart(id);
                 cart.total = carrinho_local();
                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
-
+                navigator.vibrate([1000]);
 
               }
 
