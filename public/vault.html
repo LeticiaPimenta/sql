@@ -529,6 +529,16 @@
                                     <div id="collapse{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
                                       <div class="card-body">
                                         <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs" cols="40"></textarea></div>
+                                        <span ng-if="produto.QTD != 1" class="text-center">
+                                            
+                                        <p  >
+                                            Quantidade :
+                                        </p>
+                                        <center>
+                                            
+                                        <input type="number" name="QTD" ng-model="produto.quantidade" min="1" max="{{produto.QTD}}"  value="1">
+                                        </center>
+                                        </span>
                                     </div>
                                   </div>
                                   

@@ -266,9 +266,11 @@ class EcomController extends Controller
                     foreach ($produtos as $key => $produto) {
                         if(isset($produto->CODE) && $produto->CODE == $item['CODE']){
                             $obs = isset($item['obs'])?$item['obs']:'';
+                            $qtd = isset($item['quantidade'])?$item['quantidade']:1;
                             $produtos_atendimento[] = array('CODE' => $item['CODE'],
                                         'PRESENTATION_NAME'=>  $item['CODE'],
                                         'VALUE'=>$item['VALUE'],
+                                        'QTD'=>$qtd,
                                         'OBS'=>$obs);
                             $NODE_DELETE = $key.".json";
 
@@ -285,9 +287,11 @@ class EcomController extends Controller
                     }
                 }else{
                     $obs = isset($item['obs'])?$item['obs']:'';
+                    $qtd = isset($item['quantidade'])?$item['quantidade']:1;
                         $produtos_atendimento[] = array('CODE' => $item['CODE'],
                                     'PRESENTATION_NAME'=>  $item['CODE'],
                                     'VALUE'=>$item['VALUE'],
+                                    'QTD'=>$qtd,
                                     'OBS'=>$obs);
                     $curl = curl_init();
                     curl_setopt( $curl, CURLOPT_URL, $FIREBASE.".json" );
