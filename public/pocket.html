@@ -349,7 +349,7 @@
               
                     setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
                     setLocalData("BENJAMIN_USERCART_CI",cartCI);
-                    
+
          
               }
 
@@ -419,6 +419,7 @@
 
                     
                      console.log(resposta);
+                     navigator.vibrate([1000]);
                      if(resposta.response == 1){
                       if(cart.total <= 0){
                         alert("seu carrinho ta pago!");
