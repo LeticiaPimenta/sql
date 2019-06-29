@@ -414,6 +414,13 @@
               }
 
               cart.validar_creditos = function(){
+
+                if(!cart.hash_email_cliente){
+                  alert("voce nao esta logado");
+                  return false;
+                }
+
+
                 $http.post('/voucher/confirma', {"user_token":cart.hash_email_cliente,
                   "total_descontos":cart.total_descontos}).then(function (response) {
                     var resposta = response.data;
