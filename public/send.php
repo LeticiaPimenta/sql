@@ -1,6 +1,6 @@
 <?php
     $url = "https://fcm.googleapis.com/fcm/send";
-    $token = "your device token";
+    $token = "820a9863-9251-4085-ae23-1ba115e89e4b";
     $serverKey = 'AAAAhvFtF9A:APA91bES6WRxy_X69FiQt8uBi-DYQz4_x29MTJJX_fDNLMIM-q8eQ8VQRXyeia4XQs6rYuCgFlOORMLIIGzC6Apno0U9TFFtebK4LzLpTQ4Q7QT3XN5gyPZuxmoF9G9Qy0LszXKluO0R';
     $title = "Notification title";
     $body = "Hello I am from Your php server";
