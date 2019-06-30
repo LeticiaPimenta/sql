@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
+    <link rel="manifest" href="manifest.json">
     <script type="text/javascript">
         
 
@@ -247,9 +249,16 @@ window.addEventListener('load', function() {
 </head>
 <body>
 <p>
-        <button class="js-push-button btn">Habilitar notificações</button>
-        <div class="js-curl-command"></div>
-        </p>
+        <button class="js-push-button" disabled>
+          Habilitar as mensagens
+        </button>
+    </p>
+
+    <br />
+    <br />
+
+    <h2>cURL Command to Send Push</h2>
+    <div class="js-curl-command"></div>
 </body>
 </html>
 
