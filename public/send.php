@@ -1,7 +1,7 @@
 <?php
     $url = "https://fcm.googleapis.com/fcm/send";
-    $token = "eahQ2CpeJlA:APA91bEkhDqe8Hr_L-vKPOD1u9Evc5VsdEWI-4Tkz3CuqoVxR8J7PQ5btltWYWF1Lhoh4VcOYlbfh0DDoYekmdEns4k7pdEFRncR6x9JEJxlmmLaQlUJlACrHM3umc9unmUGK9cTBtUU";
-    $serverKey = 'AAAA-lI1rew:APA91bG5bfkTxVA7UdqrKbsmPC-XSHwBU7q0h6Y6lOqFpJ5Wb_RVuajtxzYhtiHA_PycN8p_4opG9Vezk07NHXliCp42MHY1W7-MH0D7m0Pf6Jwd7NbOkbgto89oEBbwYz-TImrsE1le';
+    $token = "cIExcu6AezU:APA91bEVmsNcifszcy9hSzaBGV4652MkhW9YEK9N_EupPB-Fica0u9fV2kgpl1l1OkewG4SKRYYSJeriblTiFvXCVDqqzWOzDHHmhMwwa8I6HOsLGd_Apel83jYeSAZt-LmOkzsHkpYD";
+    $serverKey = 'AAAAhvFtF9A:APA91bES6WRxy_X69FiQt8uBi-DYQz4_x29MTJJX_fDNLMIM-q8eQ8VQRXyeia4XQs6rYuCgFlOORMLIIGzC6Apno0U9TFFtebK4LzLpTQ4Q7QT3XN5gyPZuxmoF9G9Qy0LszXKluO0R';
     $title = "Notification title";
     $body = "Hello I am from Your php server";
     $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1');
