@@ -5,7 +5,7 @@
     $title = "Notification title";
     $body = "Hello I am from Your php server";
     $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1');
-    $arrayToSend = array('to' => $token, 'notification' => $notification,'priority'=>'high');
+    $arrayToSend = array('to' => $token,'data' => $notification, 'notification' => $notification,'priority'=>'high');
     $json = json_encode($arrayToSend);
     $headers = array();
     $headers[] = 'Content-Type: application/json';
