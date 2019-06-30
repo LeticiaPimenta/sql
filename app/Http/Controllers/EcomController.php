@@ -267,19 +267,39 @@ class EcomController extends Controller
                         if(isset($produto->CODE) && $produto->CODE == $item['CODE']){
                             $obs = isset($item['obs'])?$item['obs']:'';
                             $qtd = isset($item['quantidade'])?$item['quantidade']:1;
-                            $produtos_atendimento[] = array('CODE' => $item['CODE'],
+
+
+                            $curl = curl_init();
+                            if($item['quantidade'] == 1){
+                                $produtos_atendimento[] = array('CODE' => $item['CODE'],
                                         'PRESENTATION_NAME'=>  $item['CODE'],
                                         'VALUE'=>$item['VALUE'],
                                         'QTD'=>$qtd,
                                         'OBS'=>$obs);
-                            $NODE_DELETE = $key.".json";
+                               $NODE_DELETE = $key.".json";
+                               curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+                            }else{
+                                for ($i=0; $i < $qtd; $i++) { 
+                                    $produtos_atendimento[] = array('CODE' => $item['CODE'],
+                                        'PRESENTATION_NAME'=>  $item['CODE'],
+                                        'VALUE'=>$item['VALUE'],
+                                        'QTD'=>1,
+                                        'OBS'=>$obs);
+                                }
+                                $produto->QTD = $produto->QTD - $item['quantidade'];
+                                $produto = json_encode($produto);
 
-                            $curl = curl_init();
+                                $NODE_PUT = $key."/".$produto.".json";
+                               curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_PUT );
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+                                curl_setopt( $curl, CURLOPT_POSTFIELDS, $json );
 
-                             curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
-                             curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
-                            curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
 
+                            }
+                            
+
+                            curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true ); 
                             $response = curl_exec( $curl );
                             curl_close( $curl );
                             break;
@@ -475,8 +495,199 @@ class EcomController extends Controller
         print_r($response);
     }
 
+        public function retirar_historico(){
+             header('Content-Type: application/json'); 
+        $dados = $_POST;
 
-    public function retirar_historico(){
+        //print_r($dados['itens'][0]);
+       // echo json_encode($dados['itens'][0]);
+
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar.json" );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+      //  print_r($response);
+        //$produtos = json_decode($response,true); 
+        
+        $tratado = $dados['itens'];
+
+    unset($tratado['$$hashKey']);
+   // $dados['user_email'] = 'daniel@email';
+   // $dados['loja'] = 1;
+    $array_produtos_servidor = json_decode($response,true);
+    $produtos_atendimento = array();
+
+
+    foreach ($tratado as $key => $compras) {
+        foreach ($compras as $compra => $products) {
+            //
+            //if(isset($products['done']))
+            if (isset($products) && is_array($products)) {
+                # code...
+                foreach ($products as $produto) {
+                    if(isset($produto['done'])){
+                        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$key."/products/";
+                        
+                        if (is_array($array_produtos_servidor[$key]['products'])) {
+                            foreach ($array_produtos_servidor[$key]['products'] as $seq => $itens) {
+                                //print_r($seq);
+                                if(isset($produto['CODE']) && $produto['CODE'] == $itens['CODE']){
+    
+                                    //print_r($seq);
+                                    $NODE_DELETE = $seq.".json";
+                                    $obs = isset($itens['obs'])?$itens['obs']:'';
+                                    $qtd = isset($produto['quantidade'])?$produto['quantidade']:1;
+                            $curl = curl_init();
+                            if($qtd != 1){
+                        
+                                for ($i=0; $i < $qtd; $i++) { 
+                                    $produtos_atendimento[] = array('CODE' => $produto['CODE'],
+                                    'PRESENTATION_NAME'=>$produto['PRESENTATION_NAME'],
+                                        'VALUE'=>$produto['VALUE'],
+                                        'QTD'=>1,
+                                        'OBS'=>$obs);
+                                }
+                                $produto['QTD'] = $produto['QTD'] - $produto['quantidade'];
+                                $produto = json_encode($produto);
+                            
+                                $NODE_PUT = $FIREBASE.'/'.$seq.".json";
+                               curl_setopt( $curl, CURLOPT_URL,  $NODE_PUT );
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+                                curl_setopt( $curl, CURLOPT_POSTFIELDS, $produto );
+
+
+                                /*editar um produto
+
+                                $curl = curl_init();
+                                array('CODE' => $itens['CODE'],
+                                        'PRESENTATION_NAME'=>  $itens['CODE'],
+                                        'VALUE'=>$itens['VALUE'],
+                                        'QTD'=>1,
+                                        'OBS'=>$obs)
+         curl_setopt( $curl, CURLOPT_URL, 'https://benjamin-a-padaria.firebaseio.com/users/6f7276a7c8ce4f5ca0950eb0a97cc470/retirar/-Li_9HPxxFuKsG1-ePZG/products/4.json');
+        curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+        curl_setopt( $curl, CURLOPT_POSTFIELDS, $json );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );*/
+                                
+                            }else{
+                                $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar".$dados['vault_key']."/";
+                                $produtos_atendimento[] = array('CODE' => $itens['CODE'],
+                                        'PRESENTATION_NAME'=>  $itens['CODE'],
+                                        'VALUE'=>$itens['VALUE'],
+                                        'QTD'=>$qtd,
+                                        'OBS'=>$obs);
+                               $NODE_DELETE = $seq.".json";
+                                //die($FIREBASE .$key.'/products/'. $NODE_DELETE);
+                               curl_setopt( $curl, CURLOPT_URL, $FIREBASE .$key.'/products/'. $NODE_DELETE);
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+                            }
+                            
+
+                            curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+                            $response = curl_exec( $curl );
+                            curl_close( $curl );
+                            break;
+
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+        }
+    }
+
+
+       foreach ($tratado as $key => $compras) {
+        if(isset($compras['done'])){
+
+            $obs = isset($compras['obs'])?$compras['obs']:'';
+            $qtd = isset($compras['quantidade'])?$compras['quantidade']:1;
+
+
+                            $curl = curl_init();
+                            if($compras['quantidade'] == 1){
+                                $produtos_atendimento[] = array('CODE' => $compras['CODE'],
+                                        'PRESENTATION_NAME'=>  $compras['CODE'],
+                                        'VALUE'=>$compras['VALUE'],
+                                        'QTD'=>$qtd,
+                                        'OBS'=>$obs);
+                               $NODE_DELETE = $key.".json";
+                               curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+                            }else{
+                                for ($i=0; $i < $qtd; $i++) { 
+                                    $produtos_atendimento[] = array('CODE' => $compras['CODE'],
+                                        'PRESENTATION_NAME'=>  $compras['CODE'],
+                                        'VALUE'=>$compras['VALUE'],
+                                        'QTD'=>1,
+                                        'OBS'=>$obs);
+                                }
+                                $produto->QTD = $produto->QTD - $compras['quantidade'];
+                                $produto = json_encode($produto);
+
+                                $NODE_PUT = $key."/".$produto.".json";
+                               curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_PUT );
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+                                curl_setopt( $curl, CURLOPT_POSTFIELDS, $json );
+
+
+                            }
+                             curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+
+
+                            $response = curl_exec( $curl );
+
+            $response = curl_exec( $curl );
+            curl_close( $curl );
+
+        }
+     
+    }
+
+ 
+
+    //print_r($produtos_atendimento);
+    $atendimento = array('user_email' => $dados['user_email'],
+                            'user_hash' => md5($dados['user_email']),
+                            'shop'=> $dados['loja'],
+                            'products'=>$produtos_atendimento,
+                            'tid'=>(new \DateTime())->getTimestamp(),
+                            'hora'=> (new \DateTime())->getTimestamp());
+
+        $json = json_encode( $atendimento );
+        //print_r($json);
+
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/atendimentos/".$dados['loja']."/".md5($dados['user_email'])."/".(new \DateTime())->getTimestamp();
+        $NODE_PUT = ".json";
+       // echo $FIREBASE . $NODE_PUT ;
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_PUT );
+        curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+        curl_setopt( $curl, CURLOPT_POSTFIELDS, $json );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+
+
+        $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/";
+        $NODE_GET = "retirar.json";
+       // echo $FIREBASE . $NODE_GET ;
+        $curl = curl_init();
+        curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );
+        print_r($response);
+
+    }
+
+    public function _retirar_historico(){
         $dados = $_POST;
 
         //print_r($dados['itens'][0]);
@@ -516,24 +727,64 @@ class EcomController extends Controller
                                 if(isset($produto['CODE']) && $produto['CODE'] == $itens['CODE']){
                                     //print_r($seq);
 
+
                                     $NODE_DELETE = $seq.".json";
 
 
                                     //echo $FIREBASE.$NODE_DELETE;
 
-                                    $obs = isset($itens['obs'])?$itens['obs']:'';
-                            $produtos_atendimento[] = array('CODE' => $itens['CODE'],
-                                        'PRESENTATION_NAME'=>  $itens['PRESENTATION_NAME'],
-                                        'VALUE'=>$itens['VALUE'],
-                                        'OBS'=>$obs);
-                            $NODE_DELETE = $seq.".json";
+                            $obs = isset($itens['obs'])?$itens['obs']:'';
+           
 
+                            $qtd = isset($itens['quantidade'])?$itens['quantidade']:1;
                             $curl = curl_init();
+                            if($qtd != 1){
+                                print_r($itens);
+                                die();
+                                for ($i=0; $i < $qtd; $i++) { 
+                                    $produtos_atendimento[] = array('CODE' => $itens['CODE'],
+                                        'PRESENTATION_NAME'=>  $itens['CODE'],
+                                        'VALUE'=>$itens['VALUE'],
+                                        'QTD'=>1,
+                                        'OBS'=>$obs);
+                                }
+                                $produto->QTD = $produto->QTD - $itens['quantidade'];
+                                $produto = json_encode($produto);
 
-                             curl_setopt( $curl, CURLOPT_URL, $FIREBASE.$NODE_DELETE );
-                             curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+                                $NODE_PUT = $key."/".$produto.".json";
+                               curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_PUT );
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+                                curl_setopt( $curl, CURLOPT_POSTFIELDS, $json );
+
+
+                                /*editar um produto
+
+                                $curl = curl_init();
+                                array('CODE' => $itens['CODE'],
+                                        'PRESENTATION_NAME'=>  $itens['CODE'],
+                                        'VALUE'=>$itens['VALUE'],
+                                        'QTD'=>1,
+                                        'OBS'=>$obs)
+         curl_setopt( $curl, CURLOPT_URL, 'https://benjamin-a-padaria.firebaseio.com/users/6f7276a7c8ce4f5ca0950eb0a97cc470/retirar/-Li_9HPxxFuKsG1-ePZG/products/4.json');
+        curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+        curl_setopt( $curl, CURLOPT_POSTFIELDS, $json );
+        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+        $response = curl_exec( $curl );
+        curl_close( $curl );*/
+                                
+                            }else{
+                                $produtos_atendimento[] = array('CODE' => $itens['CODE'],
+                                        'PRESENTATION_NAME'=>  $itens['CODE'],
+                                        'VALUE'=>$itens['VALUE'],
+                                        'QTD'=>$qtd,
+                                        'OBS'=>$obs);
+                               $NODE_DELETE = $key.".json";
+                               curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+                            }
+                            
+
                             curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-
                             $response = curl_exec( $curl );
                             curl_close( $curl );
                             break;
@@ -552,19 +803,43 @@ class EcomController extends Controller
 
        foreach ($tratado as $key => $compras) {
         if(isset($compras['done'])){
+
             $obs = isset($compras['obs'])?$compras['obs']:'';
-            $produtos_atendimento[] = array('CODE' => $compras['CODE'],
-                        'PRESENTATION_NAME'=>  $compras['PRESENTATION_NAME'],
-                        'VALUE'=>$compras['VALUE'],
-                        'OBS'=>$obs);
-            $FIREBASE = "https://benjamin-a-padaria.firebaseio.com/users/".md5($dados['user_email'])."/retirar/".$key;
-             $NODE_DELETE = $FIREBASE.".json";
+            $qtd = isset($compras['quantidade'])?$compras['quantidade']:1;
 
-            $curl = curl_init();
 
-            curl_setopt( $curl, CURLOPT_URL, $NODE_DELETE );
-            curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
-            curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+                            $curl = curl_init();
+                            if($compras['quantidade'] == 1){
+                                $produtos_atendimento[] = array('CODE' => $compras['CODE'],
+                                        'PRESENTATION_NAME'=>  $compras['CODE'],
+                                        'VALUE'=>$compras['VALUE'],
+                                        'QTD'=>$qtd,
+                                        'OBS'=>$obs);
+                               $NODE_DELETE = $key.".json";
+                               curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_DELETE );
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
+                            }else{
+                                for ($i=0; $i < $qtd; $i++) { 
+                                    $produtos_atendimento[] = array('CODE' => $compras['CODE'],
+                                        'PRESENTATION_NAME'=>  $compras['CODE'],
+                                        'VALUE'=>$compras['VALUE'],
+                                        'QTD'=>1,
+                                        'OBS'=>$obs);
+                                }
+                                $produto->QTD = $produto->QTD - $compras['quantidade'];
+                                $produto = json_encode($produto);
+
+                                $NODE_PUT = $key."/".$produto.".json";
+                               curl_setopt( $curl, CURLOPT_URL, $FIREBASE .'products/'. $NODE_PUT );
+                                curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "PUT" );
+                                curl_setopt( $curl, CURLOPT_POSTFIELDS, $json );
+
+
+                            }
+                             curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+
+
+                            $response = curl_exec( $curl );
 
             $response = curl_exec( $curl );
             curl_close( $curl );

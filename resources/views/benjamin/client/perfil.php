@@ -234,7 +234,20 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                        $rootScope.online = true;
                      });
                    }, false);
-             })
+             }).
+          directive('stringToNumber', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      ngModel.$parsers.push(function(value) {
+        return '' + value;
+      });
+      ngModel.$formatters.push(function(value) {
+        return parseFloat(value);
+      });
+    }
+  };
+})
           .controller('CartController', function($sce,toastr, $http) {
               var cart = this;
               cart.produtos = produtos;
@@ -1242,7 +1255,7 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                         </p>
                                         <center>
                                             
-                                        <input type="number" name="QTD" ng-model="produto.quantidade" min="1" max="{{produto.QTD}}"  value="1">
+                                        <input type="number" name="QTD" ng-model="produto.quantidade" string-to-number min="1" max="{{produto.QTD}}"  value="1">
                                         </center>
                                         </span>
                                     </div>
