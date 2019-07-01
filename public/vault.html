@@ -443,7 +443,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="produto in cart.user_vault" ng-show="produto.PRESENTATION_NAME">
+                    <tr ng-repeat="produto in cart.user_vault track by $index" ng-show="produto.PRESENTATION_NAME && produto.VALUE > 0">
                         <td class="product-name">{{produto.PRESENTATION_NAME}}</td>
                         <td></td>
                         <td class="product-delete"> Selecionar <input type="checkbox" ng-model="produto.done"></td>
@@ -529,6 +529,16 @@
                                     <div id="collapse{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
                                       <div class="card-body">
                                         <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs" cols="40"></textarea></div>
+                                        <span ng-if="produto.QTD != 1" class="text-center">
+                                            
+                                        <p  >
+                                            Quantidade :
+                                        </p>
+                                        <center>
+                                            
+                                        <input type="number" name="QTD" ng-model="produto.quantidade" min="1" max="{{produto.QTD}}"  value="1">
+                                        </center>
+                                        </span>
                                     </div>
                                   </div>
                                   

@@ -289,7 +289,7 @@
               cart.email_cliente = getLocalData("BENJAMIN_USERCART_EMAIL");
               cart.logged_user_friends = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER_FRIENDS"));
               cart.logged_user = JSON.parse(getLocalData("BENJAMIN_USERCART_LOGGED_USER"));
-              cart.total_descontos = 0;
+              cart.total_descontos = getLocalData('total_descontos')?parseFloat(getLocalData('total_descontos')):0;
               //if(cart.logged_user.wallet)
               cart.creditos_disponiveis = cart.logged_user?cart.logged_user.wallet:0;
               
@@ -336,6 +336,7 @@
                     newRow["CODE"] = code;
                     newRow["PRESENTATION_NAME"] = produtos[code].PRESENTATION_NAME;
                     newRow["VALUE"] = produtos[code].VALUE;
+                    newRow["QTD"] = produtos[code].QTD;
                     
                     console.log(newRow);
               
@@ -349,6 +350,7 @@
               
                     setLocalData("BENJAMIN_USERCART",JSON.stringify(cartObj));
                     setLocalData("BENJAMIN_USERCART_CI",cartCI);
+
          
               }
 
@@ -370,14 +372,16 @@
               }
               
               cart.change_vouchers = function() {
-              console.log(cart.total_vouchers);
-              setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
+                console.log(cart.total_vouchers);
+                setLocalData("BENJAMIN_TOTAL_VOUCHERS",cart.total_vouchers);
               };
               
               cart.add_origin = function(id){
                 addItemInCart(id);
                 cart.total = carrinho_local();
                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART")); 
+                navigator.vibrate([1000]);
+
               }
 
               cart.adicionar = function(id) {
@@ -386,8 +390,9 @@
               };
 
               cart.adicionar_desconto = function(id,valor) {
-                cart.total_descontos = cart.total_descontos+valor;
+                cart.total_descontos = parseFloat(cart.total_descontos)+parseFloat(valor);
                 cart.creditos_disponiveis = cart.creditos_disponiveis-valor;
+                setLocalData('total_descontos',cart.total_descontos);
                 cart.add_origin(id);
                 toastr.warning('Você Descontou do Seu Carrinho!', 'Desconto Adicionado!');
               };
@@ -400,11 +405,47 @@
               }
               
               cart.remove_desconto = function(id,valor){
-                cart.total_descontos = cart.total_descontos+valor;
+                cart.total_descontos = parseFloat(cart.total_descontos)+parseFloat(valor);
                 cart.creditos_disponiveis = cart.creditos_disponiveis-valor;
+                setLocalData('total_descontos',cart.total_descontos);
                 cart_removeCartRow_v2(id);
                 cart.total = carrinho_local();
                 cart.carrinho = JSON.parse(getLocalData("BENJAMIN_USERCART"));
+              }
+
+              cart.validar_creditos = function(){
+
+                if(!cart.hash_email_cliente){
+                  alert("voce nao esta logado");
+                  return false;
+                }
+
+
+                $http.post('/voucher/confirma', {"user_token":cart.hash_email_cliente,
+                  "total_descontos":cart.total_descontos}).then(function (response) {
+                    var resposta = response.data;
+
+                    
+                     console.log(resposta);
+                     navigator.vibrate([1000]);
+                     if(resposta.response == 1){
+                      if(cart.total <= 0){
+                        alert("seu carrinho ta pago!");
+                        window.location.replace("/compra/retorno/"+cart.hash_email_cliente);
+                      }else{
+                        $("#form-paypal").submit();
+
+                      }
+
+                     }else{
+                      console.log(resposta);
+                      toastr.error('Nao conseguimos descontar seus creditos!', resposta.msg);
+                     }
+                     
+                 }, function (response) {
+                     console.log(response);
+                     // body...
+                 });
               }
 
               cart.pega_email_registrado = function(){
@@ -592,7 +633,7 @@
                   <!--/cart item-->
                   <span ng-show="cart.email_cliente && online">
                   <hr>
-                  <h5 class="text-white-gray">Descontar Bencréditos:</h5>
+                  <h5 class="text-white-gray">Descontar Bencréditos:  {{cart.total_descontos}}</h5>
                    Seus bencréditos : {{cart.creditos_disponiveis}}
                    <a href="/perfil">
                    <h5 class="text-warning-cred text-center" ng-show="cart.creditos_disponiveis <= 0">Compre Bencréditos aqui.</h5></a>
@@ -609,7 +650,7 @@
                       <h3 class="text-white-gray" id="valor_total_carrinho"> Total : {{cart.total |currency:"R$" }}</h3>
                     </div>
                      
-                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="form-paypal">
                         <!--Tipo do botão-->
                         <input type="hidden" name="cmd" value="_xclick" />
                         <!--Vendedor e URL de retorno, cancelamento e notificação-->
@@ -637,6 +678,7 @@
                         <!--<input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" ng-show="cart.email_cliente"/> -->
                          <input type="submit" value="Pagar Paypal" class="btn btn-primary"  border="0"/ ng-show="cart.email_cliente && online"> <!--
                         <button class="btn btn-primary popup-content menu-btn" href="#popup-bencreditos">Bencréditos</button>-->
+                        <input type="button" value="Pagar bencreditos" class="btn btn-primary"  border="0"/ ng-click="cart.validar_creditos()">
                      </form>
                   </li>
                </ul>               

@@ -115,7 +115,8 @@
 
                            		Compra	{{compra.hora|date:'dd/MM/yyyy - h:mm'}}
 
-                           		<div ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME"><input type="checkbox" ng-model="produto.done">&nbsp;{{produto.PRESENTATION_NAME}}</div><br>
+                           		<div ng-repeat="produto in compra.products track by $index" ng-show="produto.PRESENTATION_NAME"><input type="checkbox" ng-model="produto.done">&nbsp;{{produto.PRESENTATION_NAME}}
+                                <span ng-if="produto.QTD != 1">&nbsp;{{produto.QTD}}</span></div><br>
                            		</li>
                            	</ul>
                             <h5>Presenteados</h5>

@@ -20,6 +20,8 @@ class AdminController extends Controller {
  
     public function home(){
     	//$selected_action = $this->actions[$action];
+        if(!isset($_SESSION['usuario_logado']))
+            return redirect('/admin');
         $usuario_logado = $_SESSION['usuario_logado'];
     	return view('smart_admin/index', ['partial'=>'home', 'usuario'=>$usuario_logado, 'js'=>'home']);
     }
@@ -35,6 +37,8 @@ class AdminController extends Controller {
     }
 
     public function listagem($entidade){
+        if(!isset($_SESSION['usuario_logado']))
+            return redirect('/admin');
         $usuario_logado = $_SESSION['usuario_logado'];
         $app_entidade = '\App\\'.ucfirst($entidade);
         return view('smart_admin/index', ['partial'=>'listagem' , 'js'=>'listagem' ,  'listagem'=>$app_entidade::all()->toJson() , 'entidade'=>$entidade, 'usuario'=>$usuario_logado ]);
@@ -42,6 +46,8 @@ class AdminController extends Controller {
 
     public function ver($entidade, $id)
     {
+        if(!isset($_SESSION['usuario_logado']))
+            return redirect('/admin');
         $usuario_logado = $_SESSION['usuario_logado'];
         $value = \Symfony\Component\Yaml\Yaml::parseFile('../schema.yaml');
         $app_entidade = '\App\\'.ucfirst($entidade);
@@ -53,7 +59,8 @@ class AdminController extends Controller {
         //$selected_action = $this->actions[$action];
 
        // $produtos = \DB::table('produto')->take(500)->get()->toJson();
-
+if(!isset($_SESSION['usuario_logado']))
+            return redirect('/admin');
            $usuario_logado = $_SESSION['usuario_logado'];
        
         return view('smart_admin/index', ['partial'=>'produtos' , 'produtos'=>\App\Product::all()->toJson() , 'usuario'=>$usuario_logado , 'js'=>'produtos' ]);
@@ -73,7 +80,8 @@ class AdminController extends Controller {
         //$selected_action = $this->actions[$action];
 
         //$produtos = \DB::table('produto')->take(500)->get()->toJson();
-
+if(!isset($_SESSION['usuario_logado']))
+            return redirect('/admin');
         $usuario_logado = $_SESSION['usuario_logado'];
        
         return view('smart_admin/index', ['partial'=>'listagem' ,'entidade'=>'Loja', 'listagem'=>\App\Shop::all()->toJson() ,'js'=>'listagem'  , 'usuario'=>$usuario_logado ]);
@@ -84,7 +92,8 @@ class AdminController extends Controller {
         //$selected_action = $this->actions[$action];
 
         //$produtos = \DB::table('produto')->take(500)->get()->toJson();
-
+if(!isset($_SESSION['usuario_logado']))
+            return redirect('/admin');
         $usuario_logado = $_SESSION['usuario_logado'];
        
         return view('smart_admin/index', ['partial'=>'pagamentos' ,'entidade'=>'pagamento', 'listagem'=>\App\Payment::all()->toJson()  , 'usuario'=>$usuario_logado, 'js'=>'pagamentos']);
@@ -105,7 +114,8 @@ class AdminController extends Controller {
         //$selected_action = $this->actions[$action];
 
         //$produtos = \DB::table('produto')->take(500)->get()->toJson();
-
+        if(!isset($_SESSION['usuario_logado']))
+            return redirect('/admin');
         $usuario_logado = $_SESSION['usuario_logado'];
 
         $dados = \App\Payment::find($id);
@@ -123,7 +133,8 @@ class AdminController extends Controller {
         //$selected_action = $this->actions[$action];
 
         //$produtos = \DB::table('produto')->take(500)->get()->toJson();
-
+        if(!isset($_SESSION['usuario_logado']))
+            return redirect('/admin');
         $usuario_logado = $_SESSION['usuario_logado'];
 
       /*  $lojas = \App\ShopManager::where('manager_id',$usuario_logado['id'])->get();
@@ -146,6 +157,8 @@ class AdminController extends Controller {
         //$selected_action = $this->actions[$action];
 
         //$produtos = \DB::table('produto')->take(500)->get()->toJson();
+        if(!isset($_SESSION['usuario_logado']))
+            return redirect('/admin');
 
         $usuario_logado = $_SESSION['usuario_logado'];
 

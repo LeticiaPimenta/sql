@@ -234,7 +234,20 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                        $rootScope.online = true;
                      });
                    }, false);
-             })
+             }).
+          directive('stringToNumber', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      ngModel.$parsers.push(function(value) {
+        return '' + value;
+      });
+      ngModel.$formatters.push(function(value) {
+        return parseFloat(value);
+      });
+    }
+  };
+})
           .controller('CartController', function($sce,toastr, $http) {
               var cart = this;
               cart.produtos = produtos;
@@ -1235,6 +1248,16 @@ $url = 'https://benjamin-a-padaria.firebaseio.com/users/'.$user_token.'/retirar.
                                     <div id="collapse{{$parent.$index}}{{$index}}List" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}1">
                                       <div class="card-body">
                                         <textarea placeholder="Detalhes do pedido , ex : Retirar cebola, sem salada ..." name="obs['{{$index}}']" ng-model="produto.obs" cols="40"></textarea></div>
+                                         <span ng-if="produto.QTD != 1" class="text-center">
+                                            
+                                        <p  >
+                                            Quantidade :
+                                        </p>
+                                        <center>
+                                            
+                                        <input type="number" name="QTD" ng-model="produto.quantidade" string-to-number min="1" max="{{produto.QTD}}"  value="1">
+                                        </center>
+                                        </span>
                                     </div>
                                     </span>
                                   </div>

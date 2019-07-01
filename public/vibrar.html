@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<button class="button">vibrar</button>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+	
+
+	var isMobile = (/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent);
+
+$(".button").on(isMobile ? 'touchstart' : 'mousedown', function(e) {
+    navigator.vibrate([1000]);
+
+	navigator.vibrate([1000]);
+});
+
+
+</script>
+</body>
+</html>
