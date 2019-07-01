@@ -1,0 +1,66 @@
+{
+  "id": "a6190d00-6ec0-43d3-ab1b-b48943edfc7a",
+  "version": "2.0",
+  "name": "benja",
+  "url": "http://localhost:8000",
+  "tests": [{
+    "id": "e9bb080a-1a1a-4591-822a-16c0912be839",
+    "name": "login",
+    "commands": [{
+      "id": "2e9bf4c6-5b88-4faa-bfe5-42f00b2f9d2f",
+      "comment": "",
+      "command": "open",
+      "target": "/admin/preset",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d2af2a1c-76b3-4afb-81b6-9c2f52b36943",
+      "comment": "",
+      "command": "open",
+      "target": "/pocket.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "94079ceb-c1d6-43fc-8726-5a38b176b22b",
+      "comment": "",
+      "command": "open",
+      "target": "/admin/preset",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f93f83c7-0e0b-4622-9998-375edbf1812e",
+      "comment": "",
+      "command": "open",
+      "target": "/pocket.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8453493a-58d1-46c4-8df4-92833ab6fc41",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container:nth-child(2)",
+      "targets": [
+        ["css=.container:nth-child(2)", "css:finder"],
+        ["xpath=//nav/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a810c94d-4112-4e97-8b3a-ad714e6fc72e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-item > .btn",
+      "targets": [],
+      "value": "4.15625,12.203125"
+    }]
+  }],
+  "suites": [{
+    "id": "63cbf93b-b721-4125-bb6b-e79efdccd86b",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8000/"],
+  "plugins": []
+}
