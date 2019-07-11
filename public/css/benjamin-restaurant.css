@@ -169,6 +169,12 @@ Responsive style (always bottom in main style file)
     top: 0 !important;
 }
 
+.navbar-toggler-left {
+    position: absolute !important;
+    left: 2rem !important;
+    top: 0 !important;
+}
+
 .footer p {
   color: #aaa !important; }
 
